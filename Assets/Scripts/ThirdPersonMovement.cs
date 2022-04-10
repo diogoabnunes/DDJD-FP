@@ -27,6 +27,7 @@ public class ThirdPersonMovement : MonoBehaviour
 
     void Start()
     {
+        Cursor.lockState = CursorLockMode.Locked;
         groundCheck = GameObject.Find("GroundCheck").transform;
     }
 
