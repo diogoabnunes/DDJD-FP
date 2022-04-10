@@ -12,11 +12,13 @@ public class ThirdPersonMovement : MonoBehaviour
     public CharacterController controller;
     public Transform cam;
 
-    public float speed = 6;
+    public float baseSpeed = 6;
     public float gravity = -9.81f;
     public float jumpHeight = 3;
     Vector3 velocity;
     bool isGrounded;
+
+    public float speedModifier = 3;
 
     public Transform groundCheck;
     public float groundDistance = 0.4f;
@@ -50,10 +52,16 @@ public class ThirdPersonMovement : MonoBehaviour
         //gravity
         velocity.y += gravity * Time.deltaTime;
         controller.Move(velocity * Time.deltaTime);
+
+
         //walk
         float horizontal = Input.GetAxisRaw("Horizontal");
         float vertical = Input.GetAxisRaw("Vertical");
         Vector3 direction = new Vector3(horizontal, 0f, vertical).normalized;
+        
+
+        //sprint 
+        float speed = Input.GetKey(KeyCode.LeftShift)? baseSpeed * speedModifier : baseSpeed;
 
         // walk the direction the camera is facing
         // this way W is always forward
