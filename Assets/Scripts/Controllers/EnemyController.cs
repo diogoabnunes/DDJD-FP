@@ -6,6 +6,7 @@ using UnityEngine.AI;
 public class EnemyController : MonoBehaviour
 {
 
+    public int health = 10;
     public float lookRadius = 10f;
 
     public float rotationSpeed = 5f;
@@ -46,5 +47,16 @@ public class EnemyController : MonoBehaviour
     void OnDrawGizmosSelected() {
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, lookRadius);
+    }
+
+    public void TakeDamage(int damage){
+        health -= damage;
+        Debug.Log(health);
+
+        //do something
+
+        if(health <= 0){
+            Destroy(gameObject);
+        }
     }
 }

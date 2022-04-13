@@ -63,6 +63,7 @@ public class ThirdPersonMovement : MonoBehaviour
         //sprint 
         float speed = Input.GetKey(KeyCode.LeftShift)? baseSpeed * speedModifier : baseSpeed;
 
+
         // walk the direction the camera is facing
         // this way W is always forward
         if(direction.magnitude >= 0.1f)
