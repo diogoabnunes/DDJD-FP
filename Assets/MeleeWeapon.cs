@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class MeleeWeapon : MonoBehaviour
 {
+    public int damage = 10;
     public LayerMask m_LayerMask;
 
     private Collider[] hitColliders;
@@ -19,7 +20,7 @@ public class MeleeWeapon : MonoBehaviour
         checkCollisions();
         if(Input.GetButtonDown("Normal Attack")){
             foreach(Collider coll in hitColliders){
-                coll.gameObject.GetComponent<EnemyController>().TakeDamage(5);
+                coll.gameObject.GetComponent<EnemyController>().TakeDamage(damage);
                 Debug.Log("Hit : " + coll.name);
             }
         }

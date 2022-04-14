@@ -1513,6 +1513,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e23bc05ba0a3874ea2d4d9fecefac26, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damage: 25
   m_LayerMask:
     serializedVersion: 2
     m_Bits: 8
@@ -1721,6 +1722,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3fb158e2505567846b1b7ec75f9c2ff1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  health: 50
   lookRadius: 10
   rotationSpeed: 5
 --- !u!54 &2003913969
@@ -1799,6 +1801,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2061165605}
+  - component: {fileID: 2061165606}
   m_Layer: 0
   m_Name: Ranged Weapon
   m_TagString: Untagged
@@ -1820,6 +1823,23 @@ Transform:
   m_Father: {fileID: 1947933751}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2061165606
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2061165604}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9d89a83f6a06db645a8181c8fca06530, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 10
+  range: 100
+  fireRate: 30
+  impactForce: 30
+  cam: {fileID: 963194227}
 --- !u!1 &2132469476
 GameObject:
   m_ObjectHideFlags: 0
