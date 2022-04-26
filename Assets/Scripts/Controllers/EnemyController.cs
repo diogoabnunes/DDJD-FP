@@ -27,16 +27,46 @@ public class EnemyController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-       float distance = Vector3.Distance(target.position, transform.position);
-
-       if(distance <= lookRadius){
-           agent.SetDestination(target.position);
-
-           if(distance <= agent.stoppingDistance){
-               FaceTarget();
-           }
-       }
+       Move();
     }
+
+    // -------------------------------------
+
+    void Move() {
+        float distance = Vector3.Distance(target.position, transform.position);
+
+        if(InPursuitRange(distance)) {
+            Pursuit(distance);
+        }
+        else if (InAtackRange(distance)) {
+            Attack();
+        }
+        else {
+            RandomMove();
+        }
+    }
+
+    bool InPursuitRange(float distance) {
+        return distance <= lookRadius;
+    }
+
+    void Pursuit(float distance) {
+        agent.SetDestination(target.position);
+
+        // if(distance <= agent.stoppingDistance){
+        //     FaceTarget();
+        // }
+    }
+
+    bool InAtackRange(float distance) {
+        return false;
+    }
+
+    void Attack() {}
+
+    void RandomMove() {}
+
+    // -------------------------------------
 
     void FaceTarget(){
         Vector3 direction = (target.position - transform.position).normalized;
