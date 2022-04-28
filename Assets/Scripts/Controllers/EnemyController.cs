@@ -6,50 +6,43 @@ using UnityEngine.AI;
 public class EnemyController : MonoBehaviour
 {
 
+    public float rotationSpeed = 5f;
+
     public float health = 1f;
 
-    public float durationOfAttack = 3f;
-
-    public float pursuitRange = 10f;
+    public float lookRange = 10f;
     public float attackRange = 2.5f;
 
-    public float rotationSpeed = 5f;
+    public float attackDuration = 3f;
+
+    public float attackDamage = 1f;
 
     private bool isAttacking = false;
 
-    Transform target;
-
+    PlayerManager playerManager;
+    Transform player;
     NavMeshAgent agent;
 
     // Start is called before the first frame update
     void Start()
     {
-        target = PlayerManager.instance.player.transform;
+        playerManager = PlayerManager.instance;
+        player = PlayerManager.instance.player.transform;
         agent = GetComponent<NavMeshAgent>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (CanPerformAction()) {
-            PerformAction();
-        }
-    }
+        if (!isAttacking) {
+            float distanceToPlayer = ComputeDistanceToPlayer();
+            Quaternion rotationTowardsPlayer = ComputeRotationTowardsPlayer();
+                
+            Move(distanceToPlayer, rotationTowardsPlayer);
 
-    // -------------------------------------
-
-    bool CanPerformAction() {
-        return !isAttacking;
-    }
-
-    void PerformAction() {
-        float distanceToPlayer = ComputeDistanceToPlayer();
-        Quaternion rotationTowardsPlayer = ComputeRotationTowardsPlayer();
-            
-        Move(distanceToPlayer, rotationTowardsPlayer);
-
-        if (CanAttack(distanceToPlayer, rotationTowardsPlayer)) {
-            StartCoroutine(Attack());
+            if (CanAttack(distanceToPlayer, rotationTowardsPlayer)) {
+                StartCoroutine(Attack());
+            }
         }
     }
 
@@ -58,30 +51,27 @@ public class EnemyController : MonoBehaviour
     }
 
     void Move(float distanceToPlayer, Quaternion rotationTowardsPlayer) {        
-        if(InPursuitRange(distanceToPlayer)) {
-            Pursuit();
-        }
-        else {
-            // play idle animation
-        }
-
-        if (!IsFacingPlayer(rotationTowardsPlayer)) {
-            FacePlayer(rotationTowardsPlayer);
+        if(PlayerInLookRange(distanceToPlayer)) {
+            ChasePlayer();
+            
+            if (!IsFacingPlayer(rotationTowardsPlayer)) {
+                FacePlayer(rotationTowardsPlayer);
+            }
         }
     }
 
-    bool InPursuitRange(float distance) {
-        return distance <= pursuitRange;
+    bool PlayerInLookRange(float distance) {
+        return distance <= lookRange;
     }
 
-    void Pursuit() {
-        agent.SetDestination(target.position);
+    void ChasePlayer() {
+        agent.SetDestination(player.position);
 
         // play animation of moving
     }
 
     bool InAtackRange(float distance) {
-        return distance <= attackRange;;
+        return distance <= attackRange;
     }
 
     IEnumerator Attack() {
@@ -91,18 +81,19 @@ public class EnemyController : MonoBehaviour
         isAttacking = true;
 
         // play animation of attack
+        playerManager.TakeDamage(attackDamage);
 
-        yield return new WaitForSeconds(durationOfAttack);
+        yield return new WaitForSeconds(attackDuration);
 
         isAttacking = false;
     }
 
     float ComputeDistanceToPlayer() {
-        return Vector3.Distance(target.position, transform.position);
+        return Vector3.Distance(player.position, transform.position);
     }
 
     Quaternion ComputeRotationTowardsPlayer() {
-        Vector3 direction = (target.position - transform.position).normalized;
+        Vector3 direction = (player.position - transform.position).normalized;
         return Quaternion.LookRotation(new Vector3(direction.x, 0, direction.z));
     }
 
@@ -112,13 +103,6 @@ public class EnemyController : MonoBehaviour
 
     void FacePlayer(Quaternion rotation) {
         transform.rotation = Quaternion.Slerp(transform.rotation, rotation, Time.deltaTime * rotationSpeed);
-
-        // play animation of rotation
-    }
-
-    void OnDrawGizmosSelected() {
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, pursuitRange);
     }
 
     public void TakeDamage(float damage){
@@ -128,7 +112,17 @@ public class EnemyController : MonoBehaviour
         //do something
 
         if(health <= 0){
-            Destroy(gameObject);
+            Die();
         }
+    }
+
+    void Die() {
+        Debug.Log("Dying!");
+        Destroy(gameObject);
+    }
+
+    void OnDrawGizmosSelected() {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, lookRange);
     }
 }
