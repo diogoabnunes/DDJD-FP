@@ -6,80 +6,122 @@ using UnityEngine.AI;
 public class EnemyController : MonoBehaviour
 {
 
-    public int health = 10;
-    public float lookRadius = 10f;
+    public float health = 1f;
+
+    public float durationOfAttack = 3f;
+
+    public float pursuitRange = 10f;
+    public float attackRange = 2.5f;
 
     public float rotationSpeed = 5f;
 
+    private bool isAttacking = false;
 
     Transform target;
-    NavMeshAgent agent;
 
+    NavMeshAgent agent;
 
     // Start is called before the first frame update
     void Start()
     {
         target = PlayerManager.instance.player.transform;
-
         agent = GetComponent<NavMeshAgent>();
     }
 
     // Update is called once per frame
     void Update()
     {
-       Move();
+        if (CanPerformAction()) {
+            PerformAction();
+        }
     }
 
     // -------------------------------------
 
-    void Move() {
-        float distance = Vector3.Distance(target.position, transform.position);
+    bool CanPerformAction() {
+        return !isAttacking;
+    }
 
-        if(InPursuitRange(distance)) {
-            Pursuit(distance);
+    void PerformAction() {
+        float distanceToPlayer = ComputeDistanceToPlayer();
+        Quaternion rotationTowardsPlayer = ComputeRotationTowardsPlayer();
+            
+        Move(distanceToPlayer, rotationTowardsPlayer);
+
+        if (CanAttack(distanceToPlayer, rotationTowardsPlayer)) {
+            StartCoroutine(Attack());
         }
-        else if (InAtackRange(distance)) {
-            Attack();
+    }
+
+    bool CanAttack(float distanceToPlayer, Quaternion rotationTowardsPlayer) {
+        return InAtackRange(distanceToPlayer) && IsFacingPlayer(rotationTowardsPlayer);
+    }
+
+    void Move(float distanceToPlayer, Quaternion rotationTowardsPlayer) {        
+        if(InPursuitRange(distanceToPlayer)) {
+            Pursuit();
         }
         else {
-            RandomMove();
+            // play idle animation
+        }
+
+        if (!IsFacingPlayer(rotationTowardsPlayer)) {
+            FacePlayer(rotationTowardsPlayer);
         }
     }
 
     bool InPursuitRange(float distance) {
-        return distance <= lookRadius;
+        return distance <= pursuitRange;
     }
 
-    void Pursuit(float distance) {
+    void Pursuit() {
         agent.SetDestination(target.position);
 
-        // if(distance <= agent.stoppingDistance){
-        //     FaceTarget();
-        // }
+        // play animation of moving
     }
 
     bool InAtackRange(float distance) {
-        return false;
+        return distance <= attackRange;;
     }
 
-    void Attack() {}
+    IEnumerator Attack() {
+        // stop movement
+        agent.SetDestination(transform.position);
+        
+        isAttacking = true;
 
-    void RandomMove() {}
+        // play animation of attack
 
-    // -------------------------------------
+        yield return new WaitForSeconds(durationOfAttack);
 
-    void FaceTarget(){
+        isAttacking = false;
+    }
+
+    float ComputeDistanceToPlayer() {
+        return Vector3.Distance(target.position, transform.position);
+    }
+
+    Quaternion ComputeRotationTowardsPlayer() {
         Vector3 direction = (target.position - transform.position).normalized;
-        Quaternion lookRotation = Quaternion.LookRotation(new Vector3(direction.x, 0 ,direction.z));
-        transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * rotationSpeed);
+        return Quaternion.LookRotation(new Vector3(direction.x, 0, direction.z));
+    }
+
+    bool IsFacingPlayer(Quaternion rotation) {
+        return Quaternion.Angle(transform.rotation, rotation) == 0;
+    }
+
+    void FacePlayer(Quaternion rotation) {
+        transform.rotation = Quaternion.Slerp(transform.rotation, rotation, Time.deltaTime * rotationSpeed);
+
+        // play animation of rotation
     }
 
     void OnDrawGizmosSelected() {
         Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, lookRadius);
+        Gizmos.DrawWireSphere(transform.position, pursuitRange);
     }
 
-    public void TakeDamage(int damage){
+    public void TakeDamage(float damage){
         health -= damage;
         Debug.Log(health);
 
