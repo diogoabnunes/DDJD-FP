@@ -11,10 +11,9 @@ public class EnemyController : MonoBehaviour
     public float health = 1f;
 
     public float lookRange = 10f;
+
     public float attackRange = 2.5f;
-
     public float attackDuration = 3f;
-
     public float attackDamage = 1f;
 
     private bool isAttacking = false;
@@ -23,7 +22,6 @@ public class EnemyController : MonoBehaviour
     Transform player;
     NavMeshAgent agent;
 
-    // Start is called before the first frame update
     void Start()
     {
         playerManager = PlayerManager.instance;
@@ -31,7 +29,6 @@ public class EnemyController : MonoBehaviour
         agent = GetComponent<NavMeshAgent>();
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (!isAttacking) {
