@@ -12,7 +12,7 @@ public class ThirdPersonShooterController : MonoBehaviour
     public int damage = 10;
 
     public float fireRate = 30f;
-    public float impactForce = 30f;
+    public float impactForce = 3f;
 
     private float nextTimeToFire = 0f;
 
