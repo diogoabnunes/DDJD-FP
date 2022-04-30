@@ -12,14 +12,10 @@ public class EnemyController : MonoBehaviour
 
     public float lookRange = 10f;
 
-    public float attackRange = 2.5f;
-    public float attackDuration = 3f;
-    public float attackDamage = 1f;
+    protected bool isAttacking = false;
 
-    private bool isAttacking = false;
-
-    PlayerManager playerManager;
-    Transform player;
+    protected PlayerManager playerManager;
+    protected Transform player;
     NavMeshAgent agent;
 
     void Start()
@@ -38,13 +34,15 @@ public class EnemyController : MonoBehaviour
             Move(distanceToPlayer, rotationTowardsPlayer);
 
             if (CanAttack(distanceToPlayer, rotationTowardsPlayer)) {
+                Debug.Log("Attack!");
                 StartCoroutine(Attack());
             }
         }
     }
 
-    bool CanAttack(float distanceToPlayer, Quaternion rotationTowardsPlayer) {
-        return InAtackRange(distanceToPlayer) && IsFacingPlayer(rotationTowardsPlayer);
+    public virtual bool CanAttack(float distanceToPlayer, Quaternion rotationTowardsPlayer) {
+        Debug.Log("Missing Implementation for: CanAttack()!");
+        return true;
     }
 
     void Move(float distanceToPlayer, Quaternion rotationTowardsPlayer) {        
@@ -62,27 +60,14 @@ public class EnemyController : MonoBehaviour
     }
 
     void ChasePlayer() {
-        agent.SetDestination(player.position);
+        MoveTo(player.position);
 
         // play animation of moving
     }
 
-    bool InAtackRange(float distance) {
-        return distance <= attackRange;
-    }
-
-    IEnumerator Attack() {
-        // stop movement
-        agent.SetDestination(transform.position);
-        
-        isAttacking = true;
-
-        // play animation of attack
-        playerManager.TakeDamage(attackDamage);
-
-        yield return new WaitForSeconds(attackDuration);
-
-        isAttacking = false;
+    public virtual IEnumerator Attack() {
+        Debug.Log("Missing Implementation for: Attack()!");
+        yield return null;
     }
 
     float ComputeDistanceToPlayer() {
@@ -94,12 +79,20 @@ public class EnemyController : MonoBehaviour
         return Quaternion.LookRotation(new Vector3(direction.x, 0, direction.z));
     }
 
-    bool IsFacingPlayer(Quaternion rotation) {
+    public bool IsFacingPlayer(Quaternion rotation) {
         return Quaternion.Angle(transform.rotation, rotation) == 0;
     }
 
     void FacePlayer(Quaternion rotation) {
         transform.rotation = Quaternion.Slerp(transform.rotation, rotation, Time.deltaTime * rotationSpeed);
+    }
+
+    public void MoveTo(Vector3 position) {
+        agent.SetDestination(position);
+    }
+
+    public void StopMovement() {
+        agent.SetDestination(transform.position);
     }
 
     public void TakeDamage(float damage){
