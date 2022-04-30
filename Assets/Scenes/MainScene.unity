@@ -1510,7 +1510,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1909420957}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 2.5, z: 10}
+  m_LocalPosition: {x: 0, y: -5.73, z: 10}
   m_LocalScale: {x: 5, y: 5, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -1527,6 +1527,7 @@ GameObject:
   - component: {fileID: 1947933751}
   - component: {fileID: 1947933752}
   - component: {fileID: 1947933753}
+  - component: {fileID: 1947933754}
   m_Layer: 0
   m_Name: Third Person Player
   m_TagString: Player
@@ -1594,6 +1595,24 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   turnSmoothTime: 0.1
+--- !u!114 &1947933754
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1947933750}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d3b9d03158ac9274e896c69e97e8b617, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bullet: {fileID: 2957822337685437143, guid: 9b377373624d16b4185f7ac3cc169d0c, type: 3}
+  bulletSpawnPoint: {fileID: 2061165605}
+  damage: 10
+  fireRate: 30
+  impactForce: 30
+  cam: {fileID: 0}
 --- !u!1 &2003913967
 GameObject:
   m_ObjectHideFlags: 0
@@ -1705,9 +1724,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2061165605}
-  - component: {fileID: 2061165606}
   m_Layer: 0
-  m_Name: Ranged Weapon
+  m_Name: FirePoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1721,29 +1739,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2061165604}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0.8}
+  m_LocalPosition: {x: 0, y: 0, z: 1.11}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1947933751}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2061165606
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2061165604}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9d89a83f6a06db645a8181c8fca06530, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  damage: 10
-  range: 100
-  fireRate: 30
-  impactForce: 30
-  cam: {fileID: 963194227}
 --- !u!1 &2113069112
 GameObject:
   m_ObjectHideFlags: 0
