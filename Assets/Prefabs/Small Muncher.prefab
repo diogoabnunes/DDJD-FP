@@ -127,7 +127,7 @@ GameObject:
   - component: {fileID: 925129993828672649}
   - component: {fileID: 925129993828672648}
   m_Layer: 3
-  m_Name: Enemy4
+  m_Name: Small Muncher
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
