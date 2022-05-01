@@ -14,11 +14,13 @@ public class EnemyController : MonoBehaviour
 
     protected bool isAttacking = false;
 
-    protected PlayerManager playerManager;
-    protected Transform player;
+    PlayerManager playerManager;
+    Transform player;
     NavMeshAgent agent;
 
-    void Start()
+    float nextAttack = 0;
+
+    protected void Start()
     {
         playerManager = PlayerManager.instance;
         player = PlayerManager.instance.player.transform;
@@ -27,22 +29,30 @@ public class EnemyController : MonoBehaviour
 
     void Update()
     {
-        if (!isAttacking) {
-            float distanceToPlayer = ComputeDistanceToPlayer();
-            Quaternion rotationTowardsPlayer = ComputeRotationTowardsPlayer();
+        // if (!isAttacking) {
+        //     float distanceToPlayer = ComputeDistanceToPlayer();
+        //     Quaternion rotationTowardsPlayer = ComputeRotationTowardsPlayer();
                 
-            Move(distanceToPlayer, rotationTowardsPlayer);
+        //     Move(distanceToPlayer, rotationTowardsPlayer);
 
-            if (CanAttack(distanceToPlayer, rotationTowardsPlayer)) {
-                Debug.Log("Attack!");
-                StartCoroutine(Attack());
-            }
+        //     if (CanAttack(distanceToPlayer, rotationTowardsPlayer)) {
+        //         Attack();
+        //     }
+        // }
+        if (nextAttack == 0 || (nextAttack <= Time.time)) {
+            Attack();
+            nextAttack = Time.time + 3f;   
         }
+
     }
 
     public virtual bool CanAttack(float distanceToPlayer, Quaternion rotationTowardsPlayer) {
         Debug.Log("Missing Implementation for: CanAttack()!");
-        return true;
+        return false;
+    }
+
+    public virtual void Attack() {
+        Debug.Log("Missing Implementation for: Attack()!");
     }
 
     void Move(float distanceToPlayer, Quaternion rotationTowardsPlayer) {        
@@ -60,22 +70,17 @@ public class EnemyController : MonoBehaviour
     }
 
     void ChasePlayer() {
-        MoveTo(player.position);
+        MoveTo(GetPlayerPosition());
 
         // play animation of moving
     }
 
-    public virtual IEnumerator Attack() {
-        Debug.Log("Missing Implementation for: Attack()!");
-        yield return null;
-    }
-
     float ComputeDistanceToPlayer() {
-        return Vector3.Distance(player.position, transform.position);
+        return Vector3.Distance(GetPlayerPosition(), GetEnemyPosition());
     }
 
     Quaternion ComputeRotationTowardsPlayer() {
-        Vector3 direction = (player.position - transform.position).normalized;
+        Vector3 direction = (GetPlayerPosition() - GetEnemyPosition()).normalized;
         return Quaternion.LookRotation(new Vector3(direction.x, 0, direction.z));
     }
 
@@ -92,7 +97,24 @@ public class EnemyController : MonoBehaviour
     }
 
     public void StopMovement() {
-        agent.SetDestination(transform.position);
+        agent.SetDestination(GetEnemyPosition());
+    }
+
+    public void AttackStarted() {
+        isAttacking = true;
+    }
+
+    public virtual void AttackEnded() {
+        isAttacking = false;
+        Debug.Log("Attack Ended Enemy controller");
+    }
+
+    public Vector3 GetPlayerPosition() {
+        return player.position;
+    }
+
+    public Vector3 GetEnemyPosition() {
+        return transform.position;
     }
 
     public void TakeDamage(float damage){

@@ -2,32 +2,23 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(Enemy4Attack))]
 public class Enemy4Controller : EnemyController
 {
-    public float attackRange = 2.5f;
-    public float attackDuration = 3f;
-    public float attackDamage = 1f;
+    Enemy4Attack enemy4Attack;
+
+    void Start() {
+        base.Start();
+        enemy4Attack = GetComponent<Enemy4Attack>();
+    }
 
     public override bool CanAttack(float distanceToPlayer, Quaternion rotationTowardsPlayer) {
-        return InAtackRange(distanceToPlayer) && IsFacingPlayer(rotationTowardsPlayer);
+        return enemy4Attack.CanAttack(distanceToPlayer) && IsFacingPlayer(rotationTowardsPlayer);
     }
 
-    bool InAtackRange(float distance) {
-        return distance <= attackRange;
-    }
-
-    public override IEnumerator Attack() {
+    public override void Attack() {
         Debug.Log("Enemy 4 Attack");
-
-        StopMovement();
         
-        isAttacking = true;
-
-        // play animation of attack
-        playerManager.TakeDamage(attackDamage);
-
-        yield return new WaitForSeconds(attackDuration);
-
-        isAttacking = false;
+        StartCoroutine(enemy4Attack.DoAttack());
     }
 }
