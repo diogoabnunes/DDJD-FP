@@ -29,21 +29,16 @@ public class EnemyController : MonoBehaviour
 
     void Update()
     {
-        // if (!isAttacking) {
-        //     float distanceToPlayer = ComputeDistanceToPlayer();
-        //     Quaternion rotationTowardsPlayer = ComputeRotationTowardsPlayer();
+        if (!isAttacking) {
+            float distanceToPlayer = ComputeDistanceToPlayer();
+            Quaternion rotationTowardsPlayer = ComputeRotationTowardsPlayer();
                 
-        //     Move(distanceToPlayer, rotationTowardsPlayer);
+            Move(distanceToPlayer, rotationTowardsPlayer);
 
-        //     if (CanAttack(distanceToPlayer, rotationTowardsPlayer)) {
-        //         Attack();
-        //     }
-        // }
-        if (nextAttack == 0 || (nextAttack <= Time.time)) {
-            Attack();
-            nextAttack = Time.time + 3f;   
+            if (CanAttack(distanceToPlayer, rotationTowardsPlayer)) {
+                Attack();
+            }
         }
-
     }
 
     public virtual bool CanAttack(float distanceToPlayer, Quaternion rotationTowardsPlayer) {
@@ -129,7 +124,6 @@ public class EnemyController : MonoBehaviour
     }
 
     void Die() {
-        Debug.Log("Dying!");
         Destroy(gameObject);
     }
 

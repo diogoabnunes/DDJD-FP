@@ -8,13 +8,11 @@ public class Attack : MonoBehaviour
     float nextAttack = 0f;
 
     protected bool TimeElapsedForAttack() { 
-        Debug.Log("Curr Time: " + Time.time);
         return nextAttack == 0 || nextAttack <= Time.time;
     }
 
     protected void DefineNextAttackTime() {
         nextAttack = Time.time + coolDown;
-        Debug.Log("Next Attack: " + nextAttack);
     }
 
     public virtual bool CanAttack(float distanceToPlayer) {

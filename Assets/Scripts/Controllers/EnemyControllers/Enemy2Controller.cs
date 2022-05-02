@@ -6,6 +6,9 @@ using UnityEngine;
 [RequireComponent(typeof(FireballAttack))]
 public class Enemy2Controller : EnemyController
 {
+    // DEBUG
+    public GameObject damageAreaObject;
+
     PunchGroundAttack punchGroundAttack;
     FireballAttack fireballAttack;
 
@@ -28,7 +31,6 @@ public class Enemy2Controller : EnemyController
         if (canAttack) {
             nextAttack = punchGroundAttack.DoAttack;
 
-            Debug.Log("Distance: " + distanceToPlayer);
             Debug.Log("Picked Next Attack as: PunchGround");
         }
 
@@ -41,7 +43,6 @@ public class Enemy2Controller : EnemyController
         if (canAttack) {
             nextAttack = fireballAttack.DoAttack;
 
-            Debug.Log("Distance: " + distanceToPlayer);
             Debug.Log("Picked Next Attack as: Fireball");
         }
 
@@ -50,7 +51,6 @@ public class Enemy2Controller : EnemyController
 
     public override void Attack() {
         Debug.Log("Enemy 2 Attack");
-        nextAttack = fireballAttack.DoAttack;
 
         if (nextAttack != null) {
             StartCoroutine(nextAttack());
@@ -65,5 +65,13 @@ public class Enemy2Controller : EnemyController
         isAttacking = false;
 
         Debug.Log("Next Attack Reseted");
+    }
+
+    // DEBUG
+    public void DrawDamageArea(Vector3 impactPoint, float damageArea) {
+        GameObject obj = Instantiate(damageAreaObject, impactPoint, Quaternion.identity);
+        obj.transform.position = new Vector3(obj.transform.position.x, -8, obj.transform.position.z); 
+        obj.transform.localScale *= damageArea;
+        obj.transform.localScale = new Vector3(obj.transform.localScale.x, obj.transform.localScale.y / damageArea, obj.transform.localScale.z);
     }
 }

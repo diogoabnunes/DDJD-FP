@@ -4,117 +4,78 @@ using UnityEngine;
 
 public class FireballController : MonoBehaviour
 {
-    public float fireballAttackDamage = 2f;
-    public float fireballAttackDamageArea = 3f;
-
-    public Vector3 finalPosition = Vector3.positiveInfinity;
+    public float damage = 2f;
+    public float damageArea = 3f;
 
     public LayerMask layerMask;
 
+    public float maxHeight = 20f;
+    public float gravity = -18f;
+
+    Vector3 target;
+
     PlayerManager playerManager;
-    Transform player;
     Enemy2Controller enemyController;
+    Rigidbody rigidBody;
 
-    float xDir = 0;
-    float yDir = 1;
-    float maxHeight = 10;
-    float speed = 0.1f;
-
-    delegate void Direction();
-    Direction direction = null;
-
-    void Start()
+    void Awake()
     {
         playerManager = PlayerManager.instance;
         enemyController = GetComponent<Enemy2Controller>();
-        direction = UP;
+        rigidBody = GetComponent<Rigidbody>();
+
+        rigidBody.useGravity = false;
     }
 
-    void FixedUpdate()
-    {
-        if (MovementDefined()) {
-            Move();
-        }
+    void Start() {}
+
+    public void SetTarget(Vector3 _target) {
+        target = _target;
+        InitiateThrow();
     }
 
-    bool MovementDefined() { 
-        return finalPosition != Vector3.positiveInfinity;
+    void InitiateThrow() {
+        Vector3 velocity = ComputeVelocity();
+        Throw(velocity);
     }
 
-    void Move() {
-        direction();
+    // youtube: https://www.youtube.com/watch?v=IvT8hjy6q4o
+    Vector3 ComputeVelocity() {
+        float displacementY = target.y - transform.position.y;
+        Vector3 displacementXZ = new Vector3(target.x - transform.position.x, 0, target.z - transform.position.z);
+
+        float timeOfFlight = Mathf.Sqrt(-2 * maxHeight / gravity) + Mathf.Sqrt(2 * (displacementY - maxHeight) / gravity);
+
+        Vector3 velocityY = Vector3.up * Mathf.Sqrt(-2 * maxHeight * gravity);
+        Vector3 velocityXZ = displacementXZ / timeOfFlight;
+
+        return velocityXZ + velocityY * -Mathf.Sign(gravity);
     }
 
-    bool reachedTarget() {
-        return transform.position.x == finalPosition.x && transform.position.z == finalPosition.z;
-    }
+    void Throw(Vector3 velocity) {
+        Physics.gravity = Vector3.up * gravity;
+        rigidBody.useGravity = true;
 
-    void UP() {
-        float y = transform.position.y + 1 * speed;
-        if (y >= maxHeight) {
-            y = maxHeight;
-            direction = HORIZONTAL;
-        }
-
-        Vector3 position = new Vector3(transform.position.x, y, transform.position.z);
-        transform.position = position;
-    }
-
-    void HORIZONTAL() {
-        float dirX = (transform.position.x - finalPosition.x) / Mathf.Abs(transform.position.x - finalPosition.x);
-        float dirZ = (transform.position.z - finalPosition.z) / Mathf.Abs(transform.position.z - finalPosition.z);
-        float x = transform.position.x + dirX * speed;
-        float z = transform.position.z + dirZ * speed;
-        if (ExceededX(x, finalPosition.x, dirX) && ExceededZ(z, finalPosition.z, dirZ)) {
-            x = finalPosition.x;
-            z = finalPosition.z;
-            direction = DOWN;
-        }
-        else if (ExceededX(x, finalPosition.x, dirX)) {
-            x = finalPosition.x;
-        }
-        else if (ExceededZ(z, finalPosition.z, dirZ)) {
-            z = finalPosition.z;
-        }
-
-        Vector3 position = new Vector3(x, transform.position.y, z);
-        transform.position = position;
-    }
-
-    bool ExceededX(float curX, float finalX, float dirX) {
-        return (curX >= finalX && dirX == 1) || (curX <= finalX && dirX == -1);
-    }
-
-    bool ExceededZ(float curZ, float finalZ, float dirZ) {
-        return (curZ >= finalZ && dirZ == 1) || (curZ <= finalZ && dirZ == -1);
-    }
-
-    void DOWN() {
-        float y = transform.position.y - 1 * speed;
-        Vector3 position = new Vector3(transform.position.x, y, transform.position.z);
-        transform.position = position;
+        rigidBody.velocity = velocity;
     }
 
     void OnTriggerEnter(Collider other) {
-        // foreach (int layer in layerMask) {
-        //     if (other.gameObject.layer == layer) {
-        //         Debug.Log("Ground was hit!");
-        //         DoDamage();
-        //         enemyController.ResetNextAttack();
-        //     }
-        // }
-        // Debug.Log(layerMask);
-        DoDamage();
+        if (HitSomething(other.gameObject.layer)) {
+            DoDamage();
+            Destroy(this.gameObject);
+        }
+    }
+
+    bool HitSomething(int objectLayer) {
+        return (layerMask & 1 << objectLayer) != 0;
     }
 
     void DoDamage() {
-        // Vector3 impactPoint = transform.position;
-        // bool playerHit = playerManager.PlayerWithinArea(impactPoint, fireballAttackDamageArea);
-        // if (playerHit) {
-        //     Debug.Log("Player was Hit!");
-        //     playerManager.TakeDamage(fireballAttackDamage);
-        // }
-        Debug.Log("Collision*****************");
-        Destroy(this.gameObject);
+        Vector3 impactPoint = transform.position;
+        bool playerHit = playerManager.PlayerWithinArea(impactPoint, damageArea);
+        if (playerHit) {
+            Debug.Log("Player was Hit!");
+            playerManager.TakeDamage(damage);
+        }
     }
 }

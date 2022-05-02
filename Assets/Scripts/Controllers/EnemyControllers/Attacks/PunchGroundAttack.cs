@@ -35,17 +35,24 @@ public class PunchGroundAttack : Attack
         // after the enemy hits the ground
         Debug.Log("Missing time of when enemy 2 hits ground");
 
-        Vector3 impactPoint = enemy2Controller.GetEnemyPosition();
-        bool playerHit = playerManager.PlayerWithinArea(impactPoint, damageArea);
-        if (playerHit) {
-            Debug.Log("Player was Hit!");
-            playerManager.TakeDamage(damage);
-        }
+        PunchGround();
 
         enemy2Controller.AttackEnded();
 
         DefineNextAttackTime();
 
         yield return null;
+    }
+
+    void PunchGround() {
+        Vector3 impactPoint = enemy2Controller.GetEnemyPosition();
+
+        enemy2Controller.DrawDamageArea(impactPoint, damageArea);
+
+        bool playerHit = playerManager.PlayerWithinArea(impactPoint, damageArea);
+        if (playerHit) {
+            Debug.Log("Player was Hit!");
+            playerManager.TakeDamage(damage);
+        }
     }
 }

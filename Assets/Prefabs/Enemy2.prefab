@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7772434584845330141}
   - component: {fileID: 7772434584845330139}
   - component: {fileID: 7772434584845330140}
-  m_Layer: 7
+  m_Layer: 3
   m_Name: Body
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -90,7 +90,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7772434585274744454}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: GFX
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -124,7 +124,7 @@ GameObject:
   - component: {fileID: 7772434586116478457}
   - component: {fileID: 7772434586116478455}
   - component: {fileID: 7772434586116478456}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Face
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -209,7 +209,7 @@ GameObject:
   - component: {fileID: 8992398093168377497}
   - component: {fileID: 6926827992245237909}
   - component: {fileID: 3707372227866081877}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Enemy2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -298,6 +298,7 @@ MonoBehaviour:
   rotationSpeed: 5
   health: 15
   lookRange: 20
+  damageAreaObject: {fileID: 4230452629660150432, guid: a43e26e9250051d45a60dc33ca23f3c8, type: 3}
 --- !u!114 &6926827992245237909
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -314,7 +315,7 @@ MonoBehaviour:
   range: 5
   duration: 3
   damage: 1
-  damageArea: 4
+  damageArea: 10
 --- !u!114 &3707372227866081877
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -331,3 +332,4 @@ MonoBehaviour:
   fireball: {fileID: 2520425246469819010, guid: 9aab5a48a74919946b2ab3061119c5c2, type: 3}
   minRange: 8
   maxRange: 10
+  damageArea: 3

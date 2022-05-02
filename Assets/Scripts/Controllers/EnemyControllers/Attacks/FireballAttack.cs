@@ -8,6 +8,7 @@ public class FireballAttack : Attack
     public GameObject fireball;
     public float minRange = 8f;
     public float maxRange = 10f;
+    public float damageArea = 3f;
 
     Enemy2Controller enemy2Controller;
 
@@ -25,11 +26,7 @@ public class FireballAttack : Attack
         enemy2Controller.AttackStarted();
 
         enemy2Controller.StopMovement();
-
-        Vector3 position = enemy2Controller.GetEnemyPosition();
-        position.y = position.y + 3.5f;
-        GameObject obj = Instantiate(fireball, position, Quaternion.identity);
-        obj.GetComponent<FireballController>().finalPosition = enemy2Controller.GetPlayerPosition();
+        LaunchFireball();
 
         yield return new WaitForSeconds(3f);
         
@@ -38,5 +35,17 @@ public class FireballAttack : Attack
         DefineNextAttackTime();
 
         yield return null;
+    }
+
+    void LaunchFireball() {
+        Vector3 initialPosition = enemy2Controller.GetEnemyPosition();
+        initialPosition.y = initialPosition.y + 4f;
+
+        Vector3 finalPosition = enemy2Controller.GetPlayerPosition();
+
+        enemy2Controller.DrawDamageArea(finalPosition, damageArea);
+
+        GameObject obj = Instantiate(fireball, initialPosition, Quaternion.identity);
+        obj.GetComponent<FireballController>().SetTarget(finalPosition);
     }
 }
