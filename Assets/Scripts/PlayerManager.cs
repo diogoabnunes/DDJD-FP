@@ -19,6 +19,18 @@ public class PlayerManager : MonoBehaviour
 
     public float health = 10f;
 
+    public bool PlayerWithinArea(Vector3 position, float radius) {
+        Collider[] hitElements = Physics.OverlapSphere(position, radius);
+
+        foreach (Collider hitElement in hitElements) {
+            if (hitElement.tag == "Player") {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
     public void TakeDamage(float damage) {
         health -= damage;
         Debug.Log("Player was hit! Health: " + health);

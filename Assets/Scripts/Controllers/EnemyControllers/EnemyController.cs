@@ -12,17 +12,15 @@ public class EnemyController : MonoBehaviour
 
     public float lookRange = 10f;
 
-    public float attackRange = 2.5f;
-    public float attackDuration = 3f;
-    public float attackDamage = 1f;
-
-    private bool isAttacking = false;
+    protected bool isAttacking = false;
 
     PlayerManager playerManager;
     Transform player;
     NavMeshAgent agent;
 
-    void Start()
+    float nextAttack = 0;
+
+    protected void Start()
     {
         playerManager = PlayerManager.instance;
         player = PlayerManager.instance.player.transform;
@@ -38,13 +36,18 @@ public class EnemyController : MonoBehaviour
             Move(distanceToPlayer, rotationTowardsPlayer);
 
             if (CanAttack(distanceToPlayer, rotationTowardsPlayer)) {
-                StartCoroutine(Attack());
+                Attack();
             }
         }
     }
 
-    bool CanAttack(float distanceToPlayer, Quaternion rotationTowardsPlayer) {
-        return InAtackRange(distanceToPlayer) && IsFacingPlayer(rotationTowardsPlayer);
+    public virtual bool CanAttack(float distanceToPlayer, Quaternion rotationTowardsPlayer) {
+        Debug.Log("Missing Implementation for: CanAttack()!");
+        return false;
+    }
+
+    public virtual void Attack() {
+        Debug.Log("Missing Implementation for: Attack()!");
     }
 
     void Move(float distanceToPlayer, Quaternion rotationTowardsPlayer) {        
@@ -62,44 +65,51 @@ public class EnemyController : MonoBehaviour
     }
 
     void ChasePlayer() {
-        agent.SetDestination(player.position);
+        MoveTo(GetPlayerPosition());
 
         // play animation of moving
     }
 
-    bool InAtackRange(float distance) {
-        return distance <= attackRange;
-    }
-
-    IEnumerator Attack() {
-        // stop movement
-        agent.SetDestination(transform.position);
-        
-        isAttacking = true;
-
-        // play animation of attack
-        playerManager.TakeDamage(attackDamage);
-
-        yield return new WaitForSeconds(attackDuration);
-
-        isAttacking = false;
-    }
-
     float ComputeDistanceToPlayer() {
-        return Vector3.Distance(player.position, transform.position);
+        return Vector3.Distance(GetPlayerPosition(), GetEnemyPosition());
     }
 
     Quaternion ComputeRotationTowardsPlayer() {
-        Vector3 direction = (player.position - transform.position).normalized;
+        Vector3 direction = (GetPlayerPosition() - GetEnemyPosition()).normalized;
         return Quaternion.LookRotation(new Vector3(direction.x, 0, direction.z));
     }
 
-    bool IsFacingPlayer(Quaternion rotation) {
+    public bool IsFacingPlayer(Quaternion rotation) {
         return Quaternion.Angle(transform.rotation, rotation) == 0;
     }
 
     void FacePlayer(Quaternion rotation) {
         transform.rotation = Quaternion.Slerp(transform.rotation, rotation, Time.deltaTime * rotationSpeed);
+    }
+
+    public void MoveTo(Vector3 position) {
+        agent.SetDestination(position);
+    }
+
+    public void StopMovement() {
+        agent.SetDestination(GetEnemyPosition());
+    }
+
+    public void AttackStarted() {
+        isAttacking = true;
+    }
+
+    public virtual void AttackEnded() {
+        isAttacking = false;
+        Debug.Log("Attack Ended Enemy controller");
+    }
+
+    public Vector3 GetPlayerPosition() {
+        return player.position;
+    }
+
+    public Vector3 GetEnemyPosition() {
+        return transform.position;
     }
 
     public void TakeDamage(float damage){
@@ -114,7 +124,6 @@ public class EnemyController : MonoBehaviour
     }
 
     void Die() {
-        Debug.Log("Dying!");
         Destroy(gameObject);
     }
 
