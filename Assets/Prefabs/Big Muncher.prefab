@@ -210,7 +210,7 @@ GameObject:
   - component: {fileID: 6926827992245237909}
   - component: {fileID: 3707372227866081877}
   m_Layer: 3
-  m_Name: Enemy2
+  m_Name: Big Muncher
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
