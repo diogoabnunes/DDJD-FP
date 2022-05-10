@@ -11,7 +11,7 @@ TagManager:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - Enemy
+  - Player
   - Water
   - UI
   - Ground
@@ -19,6 +19,8 @@ TagManager:
   - Player
   - Objects
   - 
+  - LandEnemy
+  - FlyingEnemy
   - 
   - 
   - 
