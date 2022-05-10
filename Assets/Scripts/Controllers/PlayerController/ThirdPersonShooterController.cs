@@ -36,10 +36,21 @@ public class ThirdPersonShooterController : MonoBehaviour
         }
 
 
-
         if(Input.GetButton("Fire2") && Time.time >= nextTimeToFire){
             nextTimeToFire = Time.time + 1f/fireRate;
             Vector3 aimDir = (mouseWorldPosition - bulletSpawnPoint.position).normalized;
+
+            Vector3 worldAimTarget = mouseWorldPosition;
+            
+            worldAimTarget.y = transform.position.y;
+
+            Vector3 aimDirection = (worldAimTarget - transform.position).normalized;
+
+            transform.forward = Vector3.Lerp(transform.forward, aimDirection, Time.deltaTime * 20f);
+
+            
+            transform.rotation = Quaternion.LookRotation(aimDir, Vector3.up);
+
             Instantiate(bullet, bulletSpawnPoint.position, Quaternion.LookRotation(aimDir, Vector3.up));
         }
     }
