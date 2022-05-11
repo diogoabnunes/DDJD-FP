@@ -21,4 +21,9 @@ public class Enemy3Controller : EnemyController
         
         StartCoroutine(enemy3Attack.DoAttack());
     }
+
+    public override int XPGiven() {
+        Debug.Log("XP Given: 20");
+        return 20;
+    }
 }

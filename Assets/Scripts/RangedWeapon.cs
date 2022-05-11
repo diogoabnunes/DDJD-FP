@@ -40,6 +40,8 @@ public class RangedWeapon : MonoBehaviour
                 hit.rigidbody.AddForce(-hit.normal * impactForce);
             }
             Debug.Log(hit.collider.name);
+            gameObject.GetComponent<ThirdPersonShooterController>().XP += hit.collider.GetComponent<EnemyController>().XPGiven();
+            Debug.Log("XP Given: " + hit.collider.GetComponent<EnemyController>().XPGiven());
         }
     }
 }

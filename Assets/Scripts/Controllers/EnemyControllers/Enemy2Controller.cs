@@ -67,6 +67,11 @@ public class Enemy2Controller : EnemyController
         Debug.Log("Next Attack Reseted");
     }
 
+    public override int XPGiven() {
+        Debug.Log("XP Given: 10");
+        return 10;
+    }
+
     // DEBUG
     public void DrawDamageArea(Vector3 impactPoint, float damageArea) {
         GameObject obj = Instantiate(damageAreaObject, impactPoint, Quaternion.identity);

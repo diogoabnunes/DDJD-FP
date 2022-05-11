@@ -22,6 +22,8 @@ public class MeleeWeapon : MonoBehaviour
             foreach(Collider coll in hitColliders){
                 coll.gameObject.GetComponent<EnemyController>().TakeDamage(damage);
                 Debug.Log("Hit : " + coll.name);
+                gameObject.GetComponent<ThirdPersonShooterController>().XP += coll.gameObject.GetComponent<EnemyController>().XPGiven();
+                Debug.Log("XP Given: " + coll.gameObject.GetComponent<EnemyController>().XPGiven());
             }
         }
     }

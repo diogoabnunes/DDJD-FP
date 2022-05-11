@@ -131,4 +131,9 @@ public class EnemyController : MonoBehaviour
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, lookRange);
     }
+
+    public virtual int XPGiven() {
+        Debug.Log("Missing Implementation for: XPGiven()!");
+        return 0;
+    }
 }
