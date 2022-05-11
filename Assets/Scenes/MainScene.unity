@@ -228,6 +228,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 8
       objectReference: {fileID: 0}
+    - target: {fileID: 925129993828672651, guid: ba3c06a4df1eb8c449124f6baadb75b1, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 925129993828672660, guid: ba3c06a4df1eb8c449124f6baadb75b1, type: 3}
       propertyPath: m_RootOrder
       value: 7
@@ -2134,6 +2138,7 @@ MonoBehaviour:
   bullet: {fileID: 2957822337685437143, guid: 9b377373624d16b4185f7ac3cc169d0c, type: 3}
   bulletSpawnPoint: {fileID: 2061165605}
   damage: 10
+  XP: 0
   fireRate: 30
   impactForce: 30
   cam: {fileID: 0}
@@ -2298,6 +2303,10 @@ PrefabInstance:
     - target: {fileID: 8784357271721824740, guid: 72eb8a5bdc2108d4ab5708fc83f58d5f, type: 3}
       propertyPath: m_Name
       value: Flying Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 8784357271721824740, guid: 72eb8a5bdc2108d4ab5708fc83f58d5f, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8784357271721824763, guid: 72eb8a5bdc2108d4ab5708fc83f58d5f, type: 3}
       propertyPath: m_RootOrder
