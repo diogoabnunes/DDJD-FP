@@ -234,12 +234,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e62008d1b5f35540b0c8171c8eb0c24, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemy1: {fileID: 7772434586150686315, guid: 17c734643f97d4d45a6211fc710554df, type: 3}
-  enemy2: {fileID: 8784357271721824740, guid: 72eb8a5bdc2108d4ab5708fc83f58d5f, type: 3}
-  enemy3: {fileID: 925129993828672651, guid: ba3c06a4df1eb8c449124f6baadb75b1, type: 3}
+  enemies:
+  - {fileID: 7772434586150686315, guid: 17c734643f97d4d45a6211fc710554df, type: 3}
+  - {fileID: 8784357271721824740, guid: 72eb8a5bdc2108d4ab5708fc83f58d5f, type: 3}
+  - {fileID: 925129993828672651, guid: ba3c06a4df1eb8c449124f6baadb75b1, type: 3}
   range: 10
-  awayDistanceFromPlayer: 3
+  awayDistance: 3
   coolDown: 4
+  maxEnemiesActive: 10
+  minEnemiesToSpawn: 1
+  maxEnemiesToSpawn: 4
 --- !u!4 &251597342
 Transform:
   m_ObjectHideFlags: 0
@@ -683,7 +687,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 696959279}
-  m_LocalRotation: {x: 0.07490867, y: -0.0000000042895105, z: 3.2222683e-10, w: 0.9971904}
+  m_LocalRotation: {x: 0.07490867, y: 0.000000004289509, z: -3.2222672e-10, w: 0.9971904}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
