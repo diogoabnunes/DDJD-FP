@@ -4,13 +4,17 @@ using UnityEngine;
 
 public class SpawnManager : MonoBehaviour
 {
-    [SerializeField] private GameObject enemy1;
-    [SerializeField] private GameObject enemy2;
-    [SerializeField] private GameObject enemy3;
+    [SerializeField] private GameObject[] enemies;
 
     [SerializeField] private float range;
-    [SerializeField] private float awayDistanceFromPlayer;
+    [SerializeField] private float awayDistance;
     [SerializeField] private float coolDown;
+
+    [SerializeField] private int maxEnemiesActive;
+    [SerializeField] private int minEnemiesToSpawn;
+    [SerializeField] private int maxEnemiesToSpawn;
+
+    List<GameObject> activeEnemies = new List<GameObject>();
 
     Transform player;
 
@@ -28,67 +32,77 @@ public class SpawnManager : MonoBehaviour
     }
 
     bool CanSpawn() {
-        return Time.time >= nextSpawnTime;
+        return Time.time >= nextSpawnTime && activeEnemies.Count < maxEnemiesActive;
     }
 
     void Spawn() {
-        int numEnemiesToSpawn = Random.Range(1, 4);
+        int numEnemiesToSpawn = chooseNumberOfEnemiesToSpawn();
         int counter = 0;
 
-        while (counter != numEnemiesToSpawn) {
+        while (counter++ != numEnemiesToSpawn) {
             SpawnEnemy();
-            
-            counter++;
         }
 
         nextSpawnTime = Time.time + coolDown;
+    }
+
+    int chooseNumberOfEnemiesToSpawn() {
+        int availableSpaceForEnemies = maxEnemiesActive - activeEnemies.Count;
+        if (availableSpaceForEnemies <= minEnemiesToSpawn) {
+            return availableSpaceForEnemies;
+        }
+
+        return Random.Range(minEnemiesToSpawn, Mathf.Min(availableSpaceForEnemies, maxEnemiesToSpawn) + 1);
     }
 
     void SpawnEnemy() {
         GameObject enemyToSpawn = chooseEnemyToSpawn();
         Vector3 pointToSpawn = choosePointToSpawn();
 
-        Instantiate(enemyToSpawn, pointToSpawn, Quaternion.identity);
+        GameObject enemy = Instantiate(enemyToSpawn, pointToSpawn, Quaternion.identity);
+        activeEnemies.Add(enemy);
     }
 
     GameObject chooseEnemyToSpawn() {
-        int enemy = Random.Range(0, 3);
-
-        if (enemy == 0) return enemy1;
-        else if(enemy == 1) return enemy2;
-        else return enemy3;
+        return enemies[Random.Range(0, enemies.Length)];
     }
 
     Vector3 choosePointToSpawn() {
-        float playerX = player.position.x;
-        float playerZ = player.position.z;
+        Vector3 point;
 
-        float x = generateCoordinateAwayFromPlayerToSpawn(playerX);
-        float z = generateCoordinateAwayFromPlayerToSpawn(playerZ);
-        while (!validPosition(x, z)) {
-            x = generateCoordinateAwayFromPlayerToSpawn(playerX);
-            z = generateCoordinateAwayFromPlayerToSpawn(playerZ);
-        }
+        do {
+            point = generatePoint();
+        } while (!validPoint(point));
+
+        return point;
+    }
+
+    Vector3 generatePoint() {
+        float x = Random.Range(player.position.x - range, player.position.x + range);
+        float z = Random.Range(player.position.z - range, player.position.z + range);
 
         return new Vector3(x, 0, z);
     }
 
-    bool validPosition(float x, float z) {
-        // verify if it's not already an enemy position
+    bool validPoint(Vector3 point) {
+        return awayFromPlayer(point) && awayFromEnemies(point);
+    }
+
+    bool awayFromPlayer(Vector3 point) {
+        return Vector3.Distance(point, player.position) >= awayDistance;
+    }
+
+    bool awayFromEnemies(Vector3 point) {
+        foreach (GameObject enemy in activeEnemies) { 
+            if (Vector3.Distance(point, enemy.GetComponent<Transform>().position) < awayDistance) {
+                return false;
+            }
+        }
+
         return true;
     }
 
-    float generateCoordinateAwayFromPlayerToSpawn(float center) {
-        float coordinate = Random.Range(center - range, center + range);
-        
-        while (!awayFromPlayer(coordinate, center)) {
-            coordinate = Random.Range(center - range, center + range);
-        }
-
-        return coordinate;
-    }
-
-    bool awayFromPlayer(float point, float player) {
-        return Mathf.Abs(point - player) >= awayDistanceFromPlayer;
+    public void enemyDied(GameObject enemy) {
+        activeEnemies.Remove(enemy);
     }
 }

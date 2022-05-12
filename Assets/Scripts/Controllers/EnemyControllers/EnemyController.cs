@@ -20,11 +20,17 @@ public class EnemyController : MonoBehaviour
 
     float nextAttack = 0;
 
+    SpawnManager spawnManager;
+    float startTime;
+
     protected void Start()
     {
         playerManager = PlayerManager.instance;
         player = PlayerManager.instance.player.transform;
         agent = GetComponent<NavMeshAgent>();
+
+        spawnManager = FindObjectsOfType<SpawnManager>()[0];
+        startTime = Time.time;
     }
 
     void Update()
@@ -124,6 +130,8 @@ public class EnemyController : MonoBehaviour
     }
 
     void Die() {
+        spawnManager.enemyDied(this.gameObject);
+
         Destroy(gameObject);
     }
 
