@@ -1,0 +1,119 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!319 &31900000
+AvatarMask:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Mask_Upper
+  m_Mask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+  m_Elements:
+  - m_Path: 
+    m_Weight: 1
+  - m_Path: Hips
+    m_Weight: 0
+  - m_Path: Hips/L_Leg
+    m_Weight: 0
+  - m_Path: Hips/L_Leg/L_Knee
+    m_Weight: 0
+  - m_Path: Hips/L_Leg/L_Knee/L_Ankle
+    m_Weight: 0
+  - m_Path: Hips/L_Leg/L_Knee/L_Ankle/L_Foot 1
+    m_Weight: 0
+  - m_Path: Hips/L_Leg1
+    m_Weight: 0
+  - m_Path: Hips/L_Leg1/L_Knee1
+    m_Weight: 0
+  - m_Path: Hips/L_Leg1/L_Knee1/L_Ankle1
+    m_Weight: 0
+  - m_Path: Hips/L_Leg1/L_Knee1/L_Ankle1/L_Foot1
+    m_Weight: 0
+  - m_Path: Hips/Upper
+    m_Weight: 1
+  - m_Path: Hips/Upper/Back
+    m_Weight: 1
+  - m_Path: Hips/Upper/Back/Torso
+    m_Weight: 1
+  - m_Path: Hips/Upper/Back/Torso/Head
+    m_Weight: 1
+  - m_Path: Hips/Upper/Back/Torso/L_Arm
+    m_Weight: 1
+  - m_Path: Hips/Upper/Back/Torso/L_Arm/L_Elbow
+    m_Weight: 1
+  - m_Path: Hips/Upper/Back/Torso/L_Arm/L_Elbow/L_Hand
+    m_Weight: 1
+  - m_Path: Hips/Upper/Back/Torso/L_Arm/L_Elbow/L_Hand/L_Fingers
+    m_Weight: 1
+  - m_Path: Hips/Upper/Back/Torso/L_Arm/L_Elbow/L_Hand/L_Fingers/L_Tip
+    m_Weight: 1
+  - m_Path: Hips/Upper/Back/Torso/L_Arm/L_Elbow/L_Hand/L_Thumb
+    m_Weight: 1
+  - m_Path: Hips/Upper/Back/Torso/L_Arm/L_Elbow/L_Hand/L_Thumb/L_Thumb_Tip
+    m_Weight: 1
+  - m_Path: Hips/Upper/Back/Torso/L_Arm1
+    m_Weight: 1
+  - m_Path: Hips/Upper/Back/Torso/L_Arm1/L_Elbow1
+    m_Weight: 1
+  - m_Path: Hips/Upper/Back/Torso/L_Arm1/L_Elbow1/L_Hand1
+    m_Weight: 1
+  - m_Path: Hips/Upper/Back/Torso/L_Arm1/L_Elbow1/L_Hand1/L_Fingers1
+    m_Weight: 1
+  - m_Path: Hips/Upper/Back/Torso/L_Arm1/L_Elbow1/L_Hand1/L_Fingers1/L_Tip1
+    m_Weight: 1
+  - m_Path: Hips/Upper/Back/Torso/L_Arm1/L_Elbow1/L_Hand1/L_Thumb1
+    m_Weight: 1
+  - m_Path: Hips/Upper/Back/Torso/L_Arm1/L_Elbow1/L_Hand1/L_Thumb1/L_Thumb_Tip1
+    m_Weight: 1
+  - m_Path: HIPS1
+    m_Weight: 0
+  - m_Path: MASTER
+    m_Weight: 0
+  - m_Path: MASTER/group1
+    m_Weight: 0
+  - m_Path: MASTER/group1/Hips1
+    m_Weight: 0
+  - m_Path: MASTER/group1/Hips1/Back 1
+    m_Weight: 1
+  - m_Path: MASTER/group1/Hips1/Back 1/Torso 1
+    m_Weight: 1
+  - m_Path: MASTER/group1/Hips1/Back 1/Torso 1/Head 1
+    m_Weight: 1
+  - m_Path: MASTER/group1/Hips1/Back 1/Torso 1/L_Shoulder
+    m_Weight: 1
+  - m_Path: MASTER/group1/Hips1/Back 1/Torso 1/L_Shoulder/L_Elbow 1
+    m_Weight: 1
+  - m_Path: MASTER/group1/Hips1/Back 1/Torso 1/L_Shoulder/L_Elbow 1/L_Hand 1
+    m_Weight: 1
+  - m_Path: MASTER/group1/Hips1/Back 1/Torso 1/L_Shoulder/L_Elbow 1/L_Hand 1/Gun_Obj:pCylinder3
+    m_Weight: 1
+  - m_Path: MASTER/group1/Hips1/Back 1/Torso 1/L_Shoulder/L_Elbow 1/L_Hand 1/L_Fingers
+      1
+    m_Weight: 1
+  - m_Path: MASTER/group1/Hips1/Back 1/Torso 1/L_Shoulder/L_Elbow 1/L_Hand 1/L_Thumb
+      1
+    m_Weight: 1
+  - m_Path: MASTER/group1/Hips1/Back 1/Torso 1/R_Shoulder
+    m_Weight: 1
+  - m_Path: MASTER/group1/Hips1/Back 1/Torso 1/R_Shoulder/R_Elbow
+    m_Weight: 1
+  - m_Path: MASTER/group1/Hips1/Back 1/Torso 1/R_Shoulder/R_Elbow/R_Hand
+    m_Weight: 1
+  - m_Path: MASTER/group1/Hips1/Back 1/Torso 1/R_Shoulder/R_Elbow/R_Hand/D_Scythe:pCube1
+    m_Weight: 1
+  - m_Path: MASTER/group1/Hips1/Back 1/Torso 1/R_Shoulder/R_Elbow/R_Hand/pCylinder3
+    m_Weight: 1
+  - m_Path: MASTER/group1/Hips1/Back 1/Torso 1/R_Shoulder/R_Elbow/R_Hand/R_Fingers
+    m_Weight: 1
+  - m_Path: MASTER/group1/Hips1/Back 1/Torso 1/R_Shoulder/R_Elbow/R_Hand/R_Thumb
+    m_Weight: 1
+  - m_Path: MASTER/group1/Hips1/Back 1/Torso 1/Scarf
+    m_Weight: 1
+  - m_Path: MASTER/group1/L_Foot
+    m_Weight: 0
+  - m_Path: MASTER/group1/L_Foot/L_Knee 1
+    m_Weight: 0
+  - m_Path: MASTER/group1/R_Foot
+    m_Weight: 0
+  - m_Path: MASTER/group1/R_Foot/R_Knee
+    m_Weight: 0
