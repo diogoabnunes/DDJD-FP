@@ -68,16 +68,17 @@ public class ThirdPersonMovement : MonoBehaviour
 
         //sprint 
         float speed = Input.GetKey(KeyCode.LeftShift)? baseSpeed * speedModifier : baseSpeed;
+        bool isWalking = Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.D);
 
-        if (Input.GetKey(KeyCode.W))
+        if (isWalking)
         {
             m_Animator.SetBool("isRunning", true);
-        } else if (Input.GetKeyUp(KeyCode.W))
+        } else
         {
             m_Animator.SetBool("isRunning", false);
         }
 
-        if (Input.GetKey(KeyCode.LeftShift) && Input.GetKey(KeyCode.W))
+        if (Input.GetKey(KeyCode.LeftShift) && isWalking)
         {
             m_Animator.SetBool("isSprinting", true);
         } else m_Animator.SetBool("isSprinting", false);
