@@ -11,6 +11,11 @@ public class ThirdPersonMovement : MonoBehaviour
 {
     public CharacterController controller;
     public Transform cam;
+    public Animator m_Animator;
+    bool hasGun = false;
+    public GameObject Scythe;
+    public GameObject GunL;
+    public GameObject GunR;
 
     public float baseSpeed = 6;
     public float gravity = -9.81f;
@@ -29,6 +34,7 @@ public class ThirdPersonMovement : MonoBehaviour
 
     void Start()
     {
+        //m_Animator = gameObject.GetComponent<Animator>();
         Cursor.lockState = CursorLockMode.Locked;
         groundCheck = GameObject.Find("GroundCheck").transform;
     }
@@ -62,11 +68,50 @@ public class ThirdPersonMovement : MonoBehaviour
 
         //sprint 
         float speed = Input.GetKey(KeyCode.LeftShift)? baseSpeed * speedModifier : baseSpeed;
+        bool isWalking = Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.D);
 
+        if (isWalking)
+        {
+            m_Animator.SetBool("isRunning", true);
+        } else
+        {
+            m_Animator.SetBool("isRunning", false);
+        }
 
+        if (Input.GetKey(KeyCode.LeftShift) && isWalking)
+        {
+            m_Animator.SetBool("isSprinting", true);
+        } else m_Animator.SetBool("isSprinting", false);
+        if (!isGrounded)
+        {
+            m_Animator.SetBool("isJumping", true);
+        } else m_Animator.SetBool("isJumping", false);
+
+        if (Input.GetKeyDown(KeyCode.Mouse0))
+        {
+            m_Animator.SetTrigger("attack1");
+        }
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            hasGun = !hasGun;
+        }
+        if (hasGun == true)
+        {
+            Scythe.SetActive(false);
+            GunL.SetActive(true);
+            GunR.SetActive(true);
+            m_Animator.SetBool("hasGun", true);
+        }
+        else
+        {
+            m_Animator.SetBool("hasGun", false);
+            Scythe.SetActive(true);
+            GunL.SetActive(false);
+            GunR.SetActive(false);
+        }
         // walk the direction the camera is facing
         // this way W is always forward
-        if(direction.magnitude >= 0.1f)
+        if (direction.magnitude >= 0.1f)
         {
             float targetAngle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg + cam.eulerAngles.y;
             float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref turnSmoothVelocity, turnSmoothTime);

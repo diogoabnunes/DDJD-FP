@@ -29,8 +29,6 @@ public class MeleeWeapon : MonoBehaviour
 
     void checkCollisions(){
         hitColliders = Physics.OverlapBox(gameObject.transform.position, new Vector3(4,3,3)/2, Quaternion.identity, m_LayerMask);
-
-        
     }
 
     void OnDrawGizmosSelected() {
