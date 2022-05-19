@@ -93,8 +93,8 @@ GameObject:
   - component: {fileID: 8784357271721824760}
   - component: {fileID: 8784357271721824761}
   - component: {fileID: 8784357271721824742}
-  - component: {fileID: 592487315358325059}
-  - component: {fileID: 6971250705751050204}
+  - component: {fileID: 3358472361619344320}
+  - component: {fileID: 8818756271121428812}
   m_Layer: 9
   m_Name: Flying Enemy
   m_TagString: Enemy
@@ -169,7 +169,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &592487315358325059
+--- !u!114 &3358472361619344320
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -178,28 +178,28 @@ MonoBehaviour:
   m_GameObject: {fileID: 8784357271721824740}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 65e691b7eced7754b98d56c371521aaf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  rotationSpeed: 5
-  health: 1
-  lookRange: 10
---- !u!114 &6971250705751050204
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8784357271721824740}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dddf6b61a548e0949aaec392a2e97c25, type: 3}
+  m_Script: {fileID: 11500000, guid: 811b3df94109be84d9264e8b204a9f98, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   coolDown: 3
   range: 2.5
   duration: 3
   damage: 1
+--- !u!114 &8818756271121428812
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8784357271721824740}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a2d1805110dbf04dbaa310c5856cf7c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rotationSpeed: 5
+  health: 1
+  lookRange: 10
 --- !u!1 &8784357271884192106
 GameObject:
   m_ObjectHideFlags: 0

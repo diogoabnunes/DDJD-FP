@@ -206,9 +206,9 @@ GameObject:
   - component: {fileID: 7772434586150686311}
   - component: {fileID: 7772434586150686313}
   - component: {fileID: 7772434586150686312}
-  - component: {fileID: 8992398093168377497}
-  - component: {fileID: 6926827992245237909}
-  - component: {fileID: 3707372227866081877}
+  - component: {fileID: 1973541913090832093}
+  - component: {fileID: 4464934027144221492}
+  - component: {fileID: 7633733137775959402}
   m_Layer: 3
   m_Name: Big Muncher
   m_TagString: Untagged
@@ -283,23 +283,7 @@ NavMeshAgent:
   m_BaseOffset: 3
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!114 &8992398093168377497
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7772434586150686315}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3ac455c4d1256a64cab9f5414817104e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  rotationSpeed: 5
-  health: 15
-  lookRange: 20
-  damageAreaObject: {fileID: 4230452629660150432, guid: a43e26e9250051d45a60dc33ca23f3c8, type: 3}
---- !u!114 &6926827992245237909
+--- !u!114 &1973541913090832093
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -315,8 +299,8 @@ MonoBehaviour:
   range: 5
   duration: 3
   damage: 1
-  damageArea: 10
---- !u!114 &3707372227866081877
+  damageArea: 4
+--- !u!114 &4464934027144221492
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -333,3 +317,19 @@ MonoBehaviour:
   minRange: 8
   maxRange: 10
   damageArea: 3
+--- !u!114 &7633733137775959402
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7772434586150686315}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ce1e5257fec2764f964e1c716239ed9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rotationSpeed: 5
+  health: 1
+  lookRange: 10
+  damageAreaObject: {fileID: 4230452629660150432, guid: a43e26e9250051d45a60dc33ca23f3c8, type: 3}

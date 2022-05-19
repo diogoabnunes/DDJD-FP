@@ -125,7 +125,8 @@ GameObject:
   - component: {fileID: 925129993828672663}
   - component: {fileID: 925129993828672662}
   - component: {fileID: 925129993828672649}
-  - component: {fileID: 540727263866985482}
+  - component: {fileID: 3306299955661324102}
+  - component: {fileID: 5464573052107474538}
   m_Layer: 3
   m_Name: Small Muncher
   m_TagString: Enemy
@@ -200,7 +201,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &540727263866985482
+--- !u!114 &3306299955661324102
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -209,15 +210,28 @@ MonoBehaviour:
   m_GameObject: {fileID: 925129993828672651}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7b055dffb8a48c647a8ced3ebe268ee2, type: 3}
+  m_Script: {fileID: 11500000, guid: ac2b9fd50a8cde44f962873f00d82c64, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  coolDown: 3
+  range: 2.5
+  duration: 3
+  damage: 1
+--- !u!114 &5464573052107474538
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 925129993828672651}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3eaa7a3d9f19a524593d399c3efb77a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   rotationSpeed: 5
   health: 1
   lookRange: 10
-  attackRange: 2.5
-  attackDuration: 3
-  attackDamage: 1
 --- !u!1 &925129993991236613
 GameObject:
   m_ObjectHideFlags: 0
