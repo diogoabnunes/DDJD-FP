@@ -3045,6 +3045,10 @@ PrefabInstance:
       propertyPath: cam
       value: 
       objectReference: {fileID: 963194227}
+    - target: {fileID: 6188083686845781669, guid: e97f74ac00a3f6649ad9063c1b1dbaa7, type: 3}
+      propertyPath: lerpRatio
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6188083686845781671, guid: e97f74ac00a3f6649ad9063c1b1dbaa7, type: 3}
       propertyPath: m_RootOrder
       value: 1

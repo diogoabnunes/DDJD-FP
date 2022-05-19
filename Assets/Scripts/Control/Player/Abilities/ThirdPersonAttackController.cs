@@ -24,10 +24,16 @@ public class ThirdPersonAttackController : MonoBehaviour
 
     private float nextTimeToFire = 0f;
 
+    public float lerpRatio = 20f;
+
     public Camera cam;
     // Start is called before the first frame update
     void Start()
     {
+        m_Animator.SetBool("hasGun", false);
+        Scythe.SetActive(true);
+        GunL.SetActive(false);
+        GunR.SetActive(false);
         
     }
 
@@ -44,7 +50,7 @@ public class ThirdPersonAttackController : MonoBehaviour
         }
 
 
-        if(Input.GetButton("Fire2") && hasGun == true && Time.time >= nextTimeToFire){
+        if(Input.GetButton("Normal Attack") && hasGun == true && Time.time >= nextTimeToFire){
             nextTimeToFire = Time.time + 1f/fireRate;
             Vector3 aimDir = (mouseWorldPosition - bulletSpawnPoint.position).normalized;
 
@@ -54,7 +60,7 @@ public class ThirdPersonAttackController : MonoBehaviour
 
             Vector3 aimDirection = (worldAimTarget - transform.position).normalized;
 
-            transform.forward = Vector3.Lerp(transform.forward, aimDirection, Time.deltaTime * 20f);
+            transform.forward = Vector3.Lerp(transform.forward, aimDirection, Time.deltaTime * lerpRatio);
 
             
             transform.rotation = Quaternion.LookRotation(aimDir, Vector3.up);
@@ -65,21 +71,22 @@ public class ThirdPersonAttackController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.R))
         {
             hasGun = !hasGun;
-        }
-        if (hasGun == true)
-        {
-            Scythe.SetActive(false);
-            GunL.SetActive(true);
-            GunR.SetActive(true);
-            m_Animator.SetBool("hasGun", true);
-        }
+            if (hasGun == true)
+            {
+                Scythe.SetActive(false);
+                GunL.SetActive(true);
+                GunR.SetActive(true);
+                m_Animator.SetBool("hasGun", true);
+            }
         else
-        {
-            m_Animator.SetBool("hasGun", false);
-            Scythe.SetActive(true);
-            GunL.SetActive(false);
-            GunR.SetActive(false);
+            {
+                m_Animator.SetBool("hasGun", false);
+                Scythe.SetActive(true);
+                GunL.SetActive(false);
+                GunR.SetActive(false);
+            }
         }
+        
     }
 
 
