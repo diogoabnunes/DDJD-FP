@@ -14,7 +14,7 @@ public class SmallMuncherController : EnemyController
 
     public override Action GetNextAction(float distanceToPlayer, Quaternion rotationTowardsPlayer) {
         if (CanAttack(distanceToPlayer, rotationTowardsPlayer)) return new AttackAction(smallMuncherAttack);
-        if (PlayerInLookRange(distanceToPlayer)) return new MoveToAction(agent, GetPlayerPosition());
+        if (PlayerInLookRange(distanceToPlayer)) return new ChaseAction(base.gameObject, rotationTowardsPlayer);
 
         return null;
     }

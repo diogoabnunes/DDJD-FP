@@ -14,7 +14,7 @@ public class FlyingMuncherController : EnemyController
 
     public override Action GetNextAction(float distanceToPlayer, Quaternion rotationTowardsPlayer) {
         if (CanAttack(distanceToPlayer, rotationTowardsPlayer)) return new AttackAction(flyingMuncherAttack);
-        if (PlayerInLookRange(distanceToPlayer)) return new MoveToAction(agent, GetPlayerPosition());
+        if (PlayerInLookRange(distanceToPlayer)) return new ChaseAction(base.gameObject, rotationTowardsPlayer);
 
         return null;
     }

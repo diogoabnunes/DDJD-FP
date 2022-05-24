@@ -17,7 +17,7 @@ public class EnemyController : MonoBehaviour
 
     PlayerManager playerManager;
     Transform player;
-    protected NavMeshAgent agent;
+    NavMeshAgent agent;
 
     float nextAttack = 0;
 
@@ -58,6 +58,7 @@ public class EnemyController : MonoBehaviour
     public void Unlock() {
         locked = false;
     }
+
     protected bool PlayerInLookRange(float distance) {
         return distance <= lookRange;
     }
@@ -75,10 +76,14 @@ public class EnemyController : MonoBehaviour
         return Quaternion.Angle(transform.rotation, rotation) == 0;
     }
 
-    void FacePlayer(Quaternion rotation) {
+    public void FacePlayer(Quaternion rotation) {
         if (!IsFacingPlayer(rotation)) {
             transform.rotation = Quaternion.Slerp(transform.rotation, rotation, Time.deltaTime * rotationSpeed);
         }
+    }
+
+    public void ChasePlayer() {
+        agent.SetDestination(player.position);
     }
 
     public void StopMovement() {
@@ -105,7 +110,7 @@ public class EnemyController : MonoBehaviour
     }
 
     void Die() {
-        if (spawnManager == null){
+        if (spawnManager != null){
             spawnManager.enemyDied(this.gameObject);
         }
 

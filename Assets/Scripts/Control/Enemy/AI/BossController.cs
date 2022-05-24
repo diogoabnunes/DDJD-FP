@@ -10,7 +10,7 @@ public class BossController : EnemyController
     }
 
     public override Action GetNextAction(float distanceToPlayer, Quaternion rotationTowardsPlayer) {
-        if (PlayerInLookRange(distanceToPlayer)) return new MoveToAction(agent, GetPlayerPosition());
+        if (PlayerInLookRange(distanceToPlayer)) return new ChaseAction(base.gameObject, rotationTowardsPlayer);
 
         return null;
     }
