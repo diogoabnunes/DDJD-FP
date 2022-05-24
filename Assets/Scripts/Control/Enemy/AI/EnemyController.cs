@@ -12,7 +12,6 @@ public class EnemyController : MonoBehaviour
 
     public float lookRange = 10f;
 
-    // protected bool isAttacking = false;
     bool locked = false;
 
     PlayerManager playerManager;
