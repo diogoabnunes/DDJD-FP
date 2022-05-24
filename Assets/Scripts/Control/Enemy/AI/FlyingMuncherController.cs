@@ -12,13 +12,14 @@ public class FlyingMuncherController : EnemyController
         flyingMuncherAttack = GetComponent<FlyingMuncherAttack>();
     }
 
-    public override bool CanAttack(float distanceToPlayer, Quaternion rotationTowardsPlayer) {
-        return flyingMuncherAttack.CanAttack(distanceToPlayer) && IsFacingPlayer(rotationTowardsPlayer);
+    public override Action GetNextAction(float distanceToPlayer, Quaternion rotationTowardsPlayer) {
+        if (CanAttack(distanceToPlayer, rotationTowardsPlayer)) return new AttackAction(flyingMuncherAttack);
+        if (PlayerInLookRange(distanceToPlayer)) return new MoveToAction(agent, GetPlayerPosition());
+
+        return null;
     }
 
-    public override void Attack() {
-        Debug.Log("Flying Muncher Attack");
-        
-        StartCoroutine(flyingMuncherAttack.DoAttack());
+    bool CanAttack(float distanceToPlayer, Quaternion rotationTowardsPlayer) {
+        return flyingMuncherAttack.CanAttack(distanceToPlayer) && IsFacingPlayer(rotationTowardsPlayer);
     }
 }

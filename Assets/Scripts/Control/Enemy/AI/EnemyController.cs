@@ -12,16 +12,16 @@ public class EnemyController : MonoBehaviour
 
     public float lookRange = 10f;
 
-    protected bool isAttacking = false;
+    // protected bool isAttacking = false;
+    bool locked = false;
 
     PlayerManager playerManager;
     Transform player;
-    NavMeshAgent agent;
+    protected NavMeshAgent agent;
 
     float nextAttack = 0;
 
-    SpawnManager spawnManager;
-    float startTime;
+    SpawnManager spawnManager = null;
 
     protected void Start()
     {
@@ -29,51 +29,37 @@ public class EnemyController : MonoBehaviour
         player = PlayerManager.instance.player.transform;
         agent = GetComponent<NavMeshAgent>();
 
-        spawnManager = FindObjectsOfType<SpawnManager>()[0];
-        startTime = Time.time;
-    }
-
-    void Update()
-    {
-        if (!isAttacking) {
-            float distanceToPlayer = ComputeDistanceToPlayer();
-            Quaternion rotationTowardsPlayer = ComputeRotationTowardsPlayer();
-                
-            Move(distanceToPlayer, rotationTowardsPlayer);
-
-            if (CanAttack(distanceToPlayer, rotationTowardsPlayer)) {
-                Attack();
-            }
+        SpawnManager[] obj = FindObjectsOfType<SpawnManager>();
+        if (obj.Length != 0) {
+            spawnManager = obj[0];
         }
     }
 
-    public virtual bool CanAttack(float distanceToPlayer, Quaternion rotationTowardsPlayer) {
-        Debug.Log("Missing Implementation for: CanAttack()!");
-        return false;
-    }
+    void Update() {
+        if (locked) return;
 
-    public virtual void Attack() {
-        Debug.Log("Missing Implementation for: Attack()!");
-    }
+        float distanceToPlayer = ComputeDistanceToPlayer();
+        Quaternion rotationTowardsPlayer = ComputeRotationTowardsPlayer();
 
-    void Move(float distanceToPlayer, Quaternion rotationTowardsPlayer) {        
-        if(PlayerInLookRange(distanceToPlayer)) {
-            ChasePlayer();
-            
-            if (!IsFacingPlayer(rotationTowardsPlayer)) {
-                FacePlayer(rotationTowardsPlayer);
-            }
+        Action action = GetNextAction(distanceToPlayer, rotationTowardsPlayer);
+        if (action != null) {
+            action.execute();
         }
     }
 
-    bool PlayerInLookRange(float distance) {
+    public virtual Action GetNextAction(float distanceToPlayer, Quaternion rotationTowardsPlayer) {
+        return null;
+    }
+
+    public void Lock() {
+        locked = true;
+    }
+
+    public void Unlock() {
+        locked = false;
+    }
+    protected bool PlayerInLookRange(float distance) {
         return distance <= lookRange;
-    }
-
-    void ChasePlayer() {
-        MoveTo(GetPlayerPosition());
-
-        // play animation of moving
     }
 
     float ComputeDistanceToPlayer() {
@@ -90,24 +76,13 @@ public class EnemyController : MonoBehaviour
     }
 
     void FacePlayer(Quaternion rotation) {
-        transform.rotation = Quaternion.Slerp(transform.rotation, rotation, Time.deltaTime * rotationSpeed);
-    }
-
-    public void MoveTo(Vector3 position) {
-        agent.SetDestination(position);
+        if (!IsFacingPlayer(rotation)) {
+            transform.rotation = Quaternion.Slerp(transform.rotation, rotation, Time.deltaTime * rotationSpeed);
+        }
     }
 
     public void StopMovement() {
         agent.SetDestination(GetEnemyPosition());
-    }
-
-    public void AttackStarted() {
-        isAttacking = true;
-    }
-
-    public virtual void AttackEnded() {
-        isAttacking = false;
-        Debug.Log("Attack Ended Enemy controller");
     }
 
     public Vector3 GetPlayerPosition() {
@@ -130,7 +105,9 @@ public class EnemyController : MonoBehaviour
     }
 
     void Die() {
-        spawnManager.enemyDied(this.gameObject);
+        if (spawnManager == null){
+            spawnManager.enemyDied(this.gameObject);
+        }
 
         Destroy(gameObject);
     }

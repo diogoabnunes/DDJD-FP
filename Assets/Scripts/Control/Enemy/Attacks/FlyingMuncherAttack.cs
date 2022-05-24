@@ -21,10 +21,10 @@ public class FlyingMuncherAttack : Attack
         return distanceToPlayer <= range;
     }
 
-    public override IEnumerator DoAttack() {
+    public override IEnumerator DoAttackCoroutine() {
         Debug.Log("Enemy 3 Attack");
 
-        flyingMuncherController.AttackStarted();
+        flyingMuncherController.Lock();
 
         flyingMuncherController.StopMovement();
 
@@ -34,7 +34,7 @@ public class FlyingMuncherAttack : Attack
 
         yield return new WaitForSeconds(duration);
 
-        flyingMuncherController.AttackEnded();
+        flyingMuncherController.Unlock();
 
         yield return null;
     }

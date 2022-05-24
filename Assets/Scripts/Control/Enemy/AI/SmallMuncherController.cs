@@ -12,13 +12,14 @@ public class SmallMuncherController : EnemyController
         smallMuncherAttack = GetComponent<SmallMuncherAttack>();
     }
 
-    public override bool CanAttack(float distanceToPlayer, Quaternion rotationTowardsPlayer) {
-        return smallMuncherAttack.CanAttack(distanceToPlayer) && IsFacingPlayer(rotationTowardsPlayer);
+    public override Action GetNextAction(float distanceToPlayer, Quaternion rotationTowardsPlayer) {
+        if (CanAttack(distanceToPlayer, rotationTowardsPlayer)) return new AttackAction(smallMuncherAttack);
+        if (PlayerInLookRange(distanceToPlayer)) return new MoveToAction(agent, GetPlayerPosition());
+
+        return null;
     }
 
-    public override void Attack() {
-        Debug.Log("Small Muncher Attack");
-        
-        StartCoroutine(smallMuncherAttack.DoAttack());
+    bool CanAttack(float distanceToPlayer, Quaternion rotationTowardsPlayer) {
+        return smallMuncherAttack.CanAttack(distanceToPlayer) && IsFacingPlayer(rotationTowardsPlayer);
     }
 }

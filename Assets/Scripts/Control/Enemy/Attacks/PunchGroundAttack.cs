@@ -22,10 +22,10 @@ public class PunchGroundAttack : Attack
         return distanceToPlayer <= range && TimeElapsedForAttack();
     }
 
-    public override IEnumerator DoAttack() {
+    public override IEnumerator DoAttackCoroutine() {
         Debug.Log("Punch Ground Attack!");
 
-        bigMuncherController.AttackStarted();
+        bigMuncherController.Lock();
 
         bigMuncherController.StopMovement();
 
@@ -37,7 +37,7 @@ public class PunchGroundAttack : Attack
 
         PunchGround();
 
-        bigMuncherController.AttackEnded();
+        bigMuncherController.Unlock();
 
         DefineNextAttackTime();
 
@@ -46,8 +46,6 @@ public class PunchGroundAttack : Attack
 
     void PunchGround() {
         Vector3 impactPoint = bigMuncherController.GetEnemyPosition();
-
-        bigMuncherController.DrawDamageArea(impactPoint, damageArea);
 
         bool playerHit = playerManager.PlayerWithinArea(impactPoint, damageArea);
         if (playerHit) {

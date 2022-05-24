@@ -21,10 +21,10 @@ public class SmallMuncherAttack : Attack
         return distanceToPlayer <= range;
     }
 
-    public override IEnumerator DoAttack() {
+    public override IEnumerator DoAttackCoroutine() {
         Debug.Log("Enemy 4 Attack");
 
-        smallMuncherController.AttackStarted();
+        smallMuncherController.Lock();
 
         smallMuncherController.StopMovement();
 
@@ -34,7 +34,7 @@ public class SmallMuncherAttack : Attack
 
         yield return new WaitForSeconds(duration);
 
-        smallMuncherController.AttackEnded();
+        smallMuncherController.Unlock();
 
         yield return null;
     }

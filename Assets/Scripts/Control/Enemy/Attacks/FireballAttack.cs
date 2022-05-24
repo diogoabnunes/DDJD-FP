@@ -20,10 +20,10 @@ public class FireballAttack : Attack
         return distanceToPlayer >= minRange && distanceToPlayer <= maxRange && TimeElapsedForAttack();
     }
 
-    public override IEnumerator DoAttack() {
+    public override IEnumerator DoAttackCoroutine() {
         Debug.Log("Fireball Attack!");
 
-        bigMuncherController.AttackStarted();
+        bigMuncherController.Lock();
 
         bigMuncherController.StopMovement();
         
@@ -31,7 +31,7 @@ public class FireballAttack : Attack
 
         yield return new WaitForSeconds(3f);
         
-        bigMuncherController.AttackEnded();
+        bigMuncherController.Unlock();
 
         DefineNextAttackTime();
 
@@ -43,9 +43,7 @@ public class FireballAttack : Attack
         initialPosition.y = initialPosition.y + 4f;
 
         Vector3 finalPosition = bigMuncherController.GetPlayerPosition();
-
-        bigMuncherController.DrawDamageArea(finalPosition, damageArea);
-
+        
         GameObject obj = Instantiate(fireball, initialPosition, Quaternion.identity);
         obj.GetComponent<FireballController>().SetTarget(finalPosition);
     }

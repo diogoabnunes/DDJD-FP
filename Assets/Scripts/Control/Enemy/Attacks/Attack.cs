@@ -20,7 +20,11 @@ public class Attack : MonoBehaviour
         return false;
     }
 
-    public virtual IEnumerator DoAttack() {
+    public void DoAttack() {
+        StartCoroutine(DoAttackCoroutine());
+    }
+
+    public virtual IEnumerator DoAttackCoroutine() {
         Debug.Log("Missing Implementation for: Attack()!");
         yield return null;
     }

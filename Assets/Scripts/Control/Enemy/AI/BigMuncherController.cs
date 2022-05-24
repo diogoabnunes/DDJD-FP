@@ -6,14 +6,8 @@ using UnityEngine;
 [RequireComponent(typeof(FireballAttack))]
 public class BigMuncherController : EnemyController
 {
-    // DEBUG
-    public GameObject damageAreaObject;
-
     PunchGroundAttack punchGroundAttack;
     FireballAttack fireballAttack;
-
-    delegate IEnumerator NextAttack();
-    NextAttack nextAttack = null;
 
     void Start() {
         base.Start();
@@ -21,57 +15,11 @@ public class BigMuncherController : EnemyController
         fireballAttack = GetComponent<FireballAttack>();
     }
 
-    public override bool CanAttack(float distanceToPlayer, Quaternion rotationTowardsPlayer) {
-        return InPunchGroundAttackRange(distanceToPlayer) || InFireballAttackRange(distanceToPlayer);
-    }
+    public override Action GetNextAction(float distanceToPlayer, Quaternion rotationTowardsPlayer) {
+        if (punchGroundAttack.CanAttack(distanceToPlayer)) return new AttackAction(punchGroundAttack);
+        if (fireballAttack.CanAttack(distanceToPlayer)) return new AttackAction(fireballAttack);
+        if (PlayerInLookRange(distanceToPlayer)) return new MoveToAction(agent, GetPlayerPosition());
 
-    bool InPunchGroundAttackRange(float distanceToPlayer) {
-        bool canAttack = punchGroundAttack.CanAttack(distanceToPlayer);
-        
-        if (canAttack) {
-            nextAttack = punchGroundAttack.DoAttack;
-
-            Debug.Log("Picked Next Attack as: PunchGround");
-        }
-
-        return canAttack;
-    }
-
-    bool InFireballAttackRange(float distanceToPlayer) {
-        bool canAttack = fireballAttack.CanAttack(distanceToPlayer);
-        
-        if (canAttack) {
-            nextAttack = fireballAttack.DoAttack;
-
-            Debug.Log("Picked Next Attack as: Fireball");
-        }
-
-        return canAttack;
-    }
-
-    public override void Attack() {
-        Debug.Log("Enemy 2 Attack");
-
-        if (nextAttack != null) {
-            StartCoroutine(nextAttack());
-        }
-        else {
-            Debug.Log("NextAttack was not defined!");
-        }
-    }
-
-    public override void AttackEnded() {
-        nextAttack = null;
-        isAttacking = false;
-
-        Debug.Log("Next Attack Reseted");
-    }
-
-    // DEBUG
-    public void DrawDamageArea(Vector3 impactPoint, float damageArea) {
-        GameObject obj = Instantiate(damageAreaObject, impactPoint, Quaternion.identity);
-        obj.transform.position = new Vector3(obj.transform.position.x, -8, obj.transform.position.z); 
-        obj.transform.localScale *= damageArea;
-        obj.transform.localScale = new Vector3(obj.transform.localScale.x, obj.transform.localScale.y / damageArea, obj.transform.localScale.z);
+        return null;
     }
 }
