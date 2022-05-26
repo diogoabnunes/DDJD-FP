@@ -39,7 +39,7 @@ public class GunsController : WeaponController
     public override void ExecuteBasicAttack() {
         Debug.Log("Gun Attack");
 
-        /*Vector3 mouseWorldPosition = Vector3.zero;
+        Vector3 mouseWorldPosition = Vector3.zero;
 
         Vector2 screenCenterPoint = new Vector2(Screen.width / 2f, Screen.height / 2f);
 
@@ -61,7 +61,7 @@ public class GunsController : WeaponController
         
         transform.rotation = Quaternion.LookRotation(aimDir, Vector3.up);
 
-        Instantiate(bullet, bulletSpawnPoint.position, Quaternion.LookRotation(aimDir, Vector3.up));*/
+        Instantiate(bullet, bulletSpawnPoint.position, Quaternion.LookRotation(aimDir, Vector3.up));
     }
 
     public override void ExecuteAbility1() {

@@ -54,6 +54,9 @@ public class PlayerController : MonoBehaviour
         if (isGrounded) {
             m_Animator.SetBool("isJumping", false);
         }
+        else {
+            m_Animator.SetBool("isJumping", true);
+        }
     }
 
     void UpdateGravity() {

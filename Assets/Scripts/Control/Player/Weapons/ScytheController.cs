@@ -22,15 +22,6 @@ public class ScytheController : WeaponController
 
     public override void ExecuteBasicAttack() {
         m_Animator.SetTrigger("attack1");
-
-        // AnimationClip[] clips = m_Animator.runtimeAnimatorController.animationClips;
-        // foreach (AnimationClip clip in clips) {
-        //     Debug.Log(clip.length);
-        //     Debug.Log(clip.name);
-        // }
-
-        Debug.Log(m_Animator.GetCurrentAnimatorClipInfo(1)[0].clip.length);
-        Debug.Log(m_Animator.GetCurrentAnimatorClipInfo(1)[0].clip.name);
     }
 
     public override void ExecuteAbility1() {
