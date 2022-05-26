@@ -37,7 +37,7 @@ public class WeaponController : MonoBehaviour
 
         SetNextBasicAttackTime();
 
-        StartCoroutine(UnlockWhenTimeElapsed(coolDownBasicAttack));
+        StartCoroutine(UnlockWhenTimeElapsed());
     }
 
     public void Ability1() {
@@ -49,7 +49,7 @@ public class WeaponController : MonoBehaviour
 
         SetNextAbility1Time();
 
-        StartCoroutine(UnlockWhenTimeElapsed(coolDownAbility1));
+        StartCoroutine(UnlockWhenTimeElapsed());
     }
 
     public void Ability2() {
@@ -61,7 +61,7 @@ public class WeaponController : MonoBehaviour
 
         SetNextAbility2Time();
 
-        StartCoroutine(UnlockWhenTimeElapsed(coolDownAbility2));
+        StartCoroutine(UnlockWhenTimeElapsed());
     }
 
     public void Ability3() {
@@ -73,7 +73,7 @@ public class WeaponController : MonoBehaviour
 
         SetNextAbility3Time();
 
-        StartCoroutine(UnlockWhenTimeElapsed(coolDownAbility3));
+        StartCoroutine(UnlockWhenTimeElapsed());
     }
 
     public virtual void ExecuteBasicAttack() {}
@@ -128,8 +128,14 @@ public class WeaponController : MonoBehaviour
         return locked;
     }
 
-    protected IEnumerator UnlockWhenTimeElapsed(float time) {
-        yield return new WaitForSeconds(time);
+    protected IEnumerator UnlockWhenTimeElapsed() {
+        AnimatorStateInfo state = m_Animator.GetCurrentAnimatorStateInfo(1);
+        while(!state.IsTag("WaitFor")){
+            yield return null;
+            state = m_Animator.GetCurrentAnimatorStateInfo(1);
+        }
+
+        yield return new WaitForSeconds(state.length);
 
         Unlock();
     }
