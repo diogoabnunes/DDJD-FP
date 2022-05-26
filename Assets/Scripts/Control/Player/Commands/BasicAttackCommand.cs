@@ -5,8 +5,7 @@ using UnityEngine;
 public class BasicAttackCommand : Command
 {
     public override void execute(PlayerController playerController) {
-        Debug.Log("Basic attack Command");
-
-        playerController.GetActiveWeapon().BasicAttack();
+        WeaponController weapon = playerController.GetActiveWeapon();
+        if (weapon != null) weapon.BasicAttack();
     }
 }

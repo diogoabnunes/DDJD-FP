@@ -42,8 +42,9 @@ public class PlayerController : MonoBehaviour
     {
         CheckForGround();
 
-        Command command = inputHandler.GetCommand();
-        command.execute(this);
+        List<Command> commands = inputHandler.GetCommands();
+        foreach (Command command in commands)
+            command.execute(this);
 
         UpdateGravity();
     }
@@ -106,5 +107,11 @@ public class PlayerController : MonoBehaviour
         return weapons[activeWeapon].GetComponent<WeaponController>();
     }
 
-    public void SwapWeapon() {}
+    public void SwapWeapon() {
+        weapons[activeWeapon].GetComponent<WeaponController>().Disable();
+
+        activeWeapon = (activeWeapon + 1) % weapons.Length;
+
+        weapons[activeWeapon].GetComponent<WeaponController>().Enable();
+    }
 }
