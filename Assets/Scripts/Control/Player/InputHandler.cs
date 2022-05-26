@@ -19,7 +19,6 @@ public class InputHandler
         if (Input.GetButton("Normal Attack")) commands.Add(new BasicAttackCommand());
         if (Input.GetKeyDown(KeyCode.Alpha1)) commands.Add(new Ability1Command());
         if (Input.GetKeyDown(KeyCode.Alpha2)) commands.Add(new Ability2Command());
-        if (Input.GetKeyDown(KeyCode.Alpha3)) commands.Add(new Ability3Command());
         if (Input.GetKeyDown(KeyCode.R)) commands.Add(new SwapWeaponCommand());
 
         return commands;

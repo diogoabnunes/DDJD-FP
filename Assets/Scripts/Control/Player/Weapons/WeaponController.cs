@@ -11,12 +11,10 @@ public class WeaponController : MonoBehaviour
     public float coolDownBasicAttack = 0f;
     public float coolDownAbility1 = 0f;
     public float coolDownAbility2 = 0f;
-    public float coolDownAbility3 = 0f;
 
     float nextTimeBasicAttack = -1f;
     float nextTimeAbility1 = -1f;
     float nextTimeAbility2 = -1f;
-    float nextTimeAbility3 = -1f;
 
     bool locked = false;
 
@@ -64,25 +62,11 @@ public class WeaponController : MonoBehaviour
         StartCoroutine(UnlockWhenTimeElapsed());
     }
 
-    public void Ability3() {
-        if (!CanDoAbility3()) return;
-
-        Lock();
-
-        ExecuteAbility3();
-
-        SetNextAbility3Time();
-
-        StartCoroutine(UnlockWhenTimeElapsed());
-    }
-
     public virtual void ExecuteBasicAttack() {}
 
     public virtual void ExecuteAbility1() {}
 
     public virtual void ExecuteAbility2() {}
-
-    public virtual void ExecuteAbility3() {}
 
     protected bool CanDoBasicAttack() {
         return !IsLocked() && Time.time >= nextTimeBasicAttack;
@@ -96,10 +80,6 @@ public class WeaponController : MonoBehaviour
         return !IsLocked() && Time.time >= nextTimeAbility2;
     }
 
-    protected bool CanDoAbility3() {
-        return !IsLocked() && Time.time >= nextTimeAbility3;
-    }
-
     protected void SetNextBasicAttackTime() {
         nextTimeBasicAttack = Time.time + coolDownBasicAttack;
     }
@@ -110,10 +90,6 @@ public class WeaponController : MonoBehaviour
 
     protected void SetNextAbility2Time() {
         nextTimeAbility2 = Time.time + coolDownAbility2;
-    }
-
-    protected void SetNextAbility3Time() {
-        nextTimeAbility3 = Time.time + coolDownAbility3;
     }
 
     protected void Lock() {

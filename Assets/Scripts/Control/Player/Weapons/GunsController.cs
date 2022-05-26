@@ -71,8 +71,4 @@ public class GunsController : WeaponController
     public override void ExecuteAbility2() {
         Debug.Log("Guns Ability 2");
     }
-
-    public override void ExecuteAbility3() {
-        Debug.Log("Guns Ability 3");
-    }
 }

@@ -32,10 +32,6 @@ public class ScytheController : WeaponController
         Debug.Log("Scythe Ability 2");
     }
 
-    public override void ExecuteAbility3() {
-        Debug.Log("Scythe Ability 3");
-    }
-
     private void OnTriggerEnter(Collider other) {
         if (!IsLocked()) return;
 
