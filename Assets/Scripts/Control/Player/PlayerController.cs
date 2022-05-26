@@ -108,6 +108,8 @@ public class PlayerController : MonoBehaviour
     }
 
     public void SwapWeapon() {
+        if (weapons[activeWeapon].GetComponent<WeaponController>().IsLocked()) return;
+
         weapons[activeWeapon].GetComponent<WeaponController>().Disable();
 
         activeWeapon = (activeWeapon + 1) % weapons.Length;

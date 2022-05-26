@@ -29,7 +29,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 6188083686845781671}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &6613654695490976779
 MonoBehaviour:
@@ -43,49 +43,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc84edab763f98d439900a9872ed22c0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1 &5683783588671726598
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 7657268940830261039}
-  - component: {fileID: 5219834048535600508}
-  m_Layer: 0
-  m_Name: Scythe
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &7657268940830261039
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5683783588671726598}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 6188083686845781671}
-  m_RootOrder: 5
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5219834048535600508
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5683783588671726598}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d9f14209a4a79694ebea4bca2376df9b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  m_Animator: {fileID: 0}
+  damage: 10
+  coolDownBasicAttack: 0
+  coolDownAbility1: 0
+  coolDownAbility2: 0
+  coolDownAbility3: 0
+  GunL: {fileID: 0}
+  GunR: {fileID: 0}
+  bullet: {fileID: 0}
+  bulletSpawnPoint: {fileID: 0}
+  fireRate: 30
+  impactForce: 3
+  lerpRatio: 20
 --- !u!1 &6188083685604352799
 GameObject:
   m_ObjectHideFlags: 0
@@ -5611,6 +5581,8 @@ GameObject:
   - component: {fileID: 6188083686401257736}
   - component: {fileID: 6188083686401257738}
   - component: {fileID: 6188083686401257739}
+  - component: {fileID: 1856032419994978429}
+  - component: {fileID: 5979602988557714046}
   m_Layer: 0
   m_Name: D_Scythe:pCube1
   m_TagString: Untagged
@@ -5681,6 +5653,39 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &1856032419994978429
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6188083686401257737}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 2763209093841701899, guid: dff6315008184a74788796e2699af000, type: 3}
+--- !u!114 &5979602988557714046
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6188083686401257737}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d9f14209a4a79694ebea4bca2376df9b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Animator: {fileID: 6188083687191178615}
+  damage: 10
+  coolDownBasicAttack: 2
+  coolDownAbility1: 0
+  coolDownAbility2: 0
+  coolDownAbility3: 0
+  Scythe: {fileID: 6188083686401257737}
 --- !u!1 &6188083686410644647
 GameObject:
   m_ObjectHideFlags: 0
@@ -6266,7 +6271,6 @@ Transform:
   - {fileID: 6188083686007637638}
   - {fileID: 6188083686883295327}
   - {fileID: 6188083687671026792}
-  - {fileID: 7657268940830261039}
   - {fileID: 4097744538749614538}
   m_Father: {fileID: 0}
   m_RootOrder: 0

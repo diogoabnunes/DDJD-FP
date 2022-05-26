@@ -20,37 +20,37 @@ public class ScytheController : WeaponController
         Scythe.SetActive(false);
     }
 
-    public override void BasicAttack() {
-        if (!CanDoBasicAttack()) return;
-
-        Debug.Log("Scythe Basic Attack");
-
+    public override void ExecuteBasicAttack() {
         m_Animator.SetTrigger("attack1");
 
-        SetNextBasicAttackTime();
+        // AnimationClip[] clips = m_Animator.runtimeAnimatorController.animationClips;
+        // foreach (AnimationClip clip in clips) {
+        //     Debug.Log(clip.length);
+        //     Debug.Log(clip.name);
+        // }
+
+        Debug.Log(m_Animator.GetCurrentAnimatorClipInfo(1)[0].clip.length);
+        Debug.Log(m_Animator.GetCurrentAnimatorClipInfo(1)[0].clip.name);
     }
 
-    public override void Ability1() {
-        if (!CanDoAbility1()) return;
-
+    public override void ExecuteAbility1() {
         Debug.Log("Scythe Ability 1");
-
-        SetNextAbility1Time();
     }
 
-    public override void Ability2() {
-        if (!CanDoAbility2()) return;
-
+    public override void ExecuteAbility2() {
         Debug.Log("Scythe Ability 2");
-
-        SetNextAbility2Time();
     }
 
-    public override void Ability3() {
-        if (!CanDoAbility3()) return;
-
+    public override void ExecuteAbility3() {
         Debug.Log("Scythe Ability 3");
+    }
 
-        SetNextAbility3Time();
+    private void OnTriggerEnter(Collider other) {
+        if (!IsLocked()) return;
+
+        EnemyController controller = other.gameObject.GetComponent<EnemyController>();
+        if (controller != null) {
+            controller.TakeDamage(damage);
+        }
     }
 }

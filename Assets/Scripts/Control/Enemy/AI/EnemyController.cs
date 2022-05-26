@@ -18,8 +18,6 @@ public class EnemyController : MonoBehaviour
     Transform player;
     NavMeshAgent agent;
 
-    float nextAttack = 0;
-
     SpawnManager spawnManager = null;
 
     protected void Start()

@@ -18,6 +18,8 @@ public class WeaponController : MonoBehaviour
     float nextTimeAbility2 = -1f;
     float nextTimeAbility3 = -1f;
 
+    bool locked = false;
+
     protected void Start() {
         m_Animator.SetBool("hasGun", false);
     }
@@ -26,28 +28,76 @@ public class WeaponController : MonoBehaviour
 
     public virtual void Disable() {}
 
-    public virtual void BasicAttack() {}
+    public void BasicAttack() {
+        if (!CanDoBasicAttack()) return;
+        
+        Lock();
 
-    public virtual void Ability1() {}
+        ExecuteBasicAttack();
 
-    public virtual void Ability2() {}
+        SetNextBasicAttackTime();
 
-    public virtual void Ability3() {}
+        StartCoroutine(UnlockWhenTimeElapsed(coolDownBasicAttack));
+    }
+
+    public void Ability1() {
+        if (!CanDoAbility1()) return;
+
+        Lock();
+
+        ExecuteAbility1();
+
+        SetNextAbility1Time();
+
+        StartCoroutine(UnlockWhenTimeElapsed(coolDownAbility1));
+    }
+
+    public void Ability2() {
+        if (!CanDoAbility2()) return;
+
+        Lock();
+
+        ExecuteAbility2();
+
+        SetNextAbility2Time();
+
+        StartCoroutine(UnlockWhenTimeElapsed(coolDownAbility2));
+    }
+
+    public void Ability3() {
+        if (!CanDoAbility3()) return;
+
+        Lock();
+
+        ExecuteAbility3();
+
+        SetNextAbility3Time();
+
+        StartCoroutine(UnlockWhenTimeElapsed(coolDownAbility3));
+    }
+
+    public virtual void ExecuteBasicAttack() {}
+
+    public virtual void ExecuteAbility1() {}
+
+    public virtual void ExecuteAbility2() {}
+
+    public virtual void ExecuteAbility3() {}
 
     protected bool CanDoBasicAttack() {
-        return Time.time >= nextTimeBasicAttack;
+        return !IsLocked() && Time.time >= nextTimeBasicAttack;
     }
 
     protected bool CanDoAbility1() {
-        return Time.time >= nextTimeAbility1;
+        return !IsLocked() && Time.time >= nextTimeAbility1;
     }
 
     protected bool CanDoAbility2() {
-        return Time.time >= nextTimeAbility2;
+        return !IsLocked() && Time.time >= nextTimeAbility2;
     }
 
     protected bool CanDoAbility3() {
-        return Time.time >= nextTimeAbility3;
+        return !IsLocked() && Time.time >= nextTimeAbility3;
     }
 
     protected void SetNextBasicAttackTime() {
@@ -64,5 +114,23 @@ public class WeaponController : MonoBehaviour
 
     protected void SetNextAbility3Time() {
         nextTimeAbility3 = Time.time + coolDownAbility3;
+    }
+
+    protected void Lock() {
+        locked = true;
+    }
+
+    protected void Unlock() {
+        locked = false;
+    }
+
+    public bool IsLocked() {
+        return locked;
+    }
+
+    protected IEnumerator UnlockWhenTimeElapsed(float time) {
+        yield return new WaitForSeconds(time);
+
+        Unlock();
     }
 }

@@ -36,9 +36,7 @@ public class GunsController : WeaponController
         GunR.SetActive(false);
     }
 
-    public override void BasicAttack() {
-        if (!CanDoBasicAttack()) return;
-
+    public override void ExecuteBasicAttack() {
         Debug.Log("Gun Attack");
 
         /*Vector3 mouseWorldPosition = Vector3.zero;
@@ -64,31 +62,17 @@ public class GunsController : WeaponController
         transform.rotation = Quaternion.LookRotation(aimDir, Vector3.up);
 
         Instantiate(bullet, bulletSpawnPoint.position, Quaternion.LookRotation(aimDir, Vector3.up));*/
-
-        SetNextBasicAttackTime();
     }
 
-    public override void Ability1() {
-        if (!CanDoAbility1()) return;
-
+    public override void ExecuteAbility1() {
         Debug.Log("Guns Ability 1");
-
-        SetNextAbility1Time();
     }
 
-    public override void Ability2() {
-        if (!CanDoAbility2()) return;
-
+    public override void ExecuteAbility2() {
         Debug.Log("Guns Ability 2");
-
-        SetNextAbility2Time();
     }
 
-    public override void Ability3() {
-        if (!CanDoAbility3()) return;
-
+    public override void ExecuteAbility3() {
         Debug.Log("Guns Ability 3");
-
-        SetNextAbility3Time();
     }
 }
