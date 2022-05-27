@@ -72,8 +72,6 @@ public class PlayerController : MonoBehaviour
         if (!isGrounded) return;
 
         velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
-
-        m_Animator.SetBool("isJumping", true);
     }
 
     public void Run(Vector3 direction) {
