@@ -100,6 +100,7 @@ public class EnemyController : MonoBehaviour
         Debug.Log(health);
 
         //do something
+        Debug.Log("hitten");
 
         if(health <= 0){
             Die();
