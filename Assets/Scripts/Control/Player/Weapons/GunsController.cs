@@ -65,7 +65,7 @@ public class GunsController : WeaponController
 
         Vector2 screenCenterPoint = new Vector2(Screen.width / 2f, Screen.height / 2f);
         Ray ray = Camera.main.ScreenPointToRay(screenCenterPoint);
-        if(Physics.Raycast(ray, out RaycastHit raycastHit, 999f)){
+        if(Physics.Raycast(ray, out RaycastHit raycastHit, Mathf.Infinity)){
             targetPoint = raycastHit.point;
         }
 

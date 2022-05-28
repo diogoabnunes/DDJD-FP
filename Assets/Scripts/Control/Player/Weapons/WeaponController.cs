@@ -110,8 +110,8 @@ public class WeaponController : MonoBehaviour
         // }
 
         // yield return new WaitForSeconds(state.length);
+        yield return new WaitForSeconds(2f);
 
         Unlock();
-        yield return null;
     }
 }

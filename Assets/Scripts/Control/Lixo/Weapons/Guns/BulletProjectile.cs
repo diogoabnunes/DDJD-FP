@@ -6,7 +6,7 @@ public class BulletProjectile : MonoBehaviour
 {
     Rigidbody bulletRigidBody;
 
-    public float speed = 5f;
+    public float speed = 80f;
     public float damage = 3f;
 
     void Awake()
@@ -24,8 +24,6 @@ public class BulletProjectile : MonoBehaviour
         if (controller != null) {
             controller.TakeDamage(damage);
         }
-
-        Debug.Log(other.gameObject.name);
 
         Destroy(gameObject);
     }
