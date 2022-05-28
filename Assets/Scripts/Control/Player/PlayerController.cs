@@ -29,6 +29,8 @@ public class PlayerController : MonoBehaviour
     Vector3 velocity;
     bool isGrounded;
 
+    bool rotatePlayer = true;
+
     void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
@@ -92,8 +94,11 @@ public class PlayerController : MonoBehaviour
         m_Animator.SetBool("isRunning", true);
 
         float targetAngle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg + cam.eulerAngles.y;
-        float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref turnSmoothVelocity, turnSmoothTime);
-        transform.rotation = Quaternion.Euler(0f, angle, 0f);
+
+        if (rotatePlayer) {
+            float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref turnSmoothVelocity, turnSmoothTime);
+            transform.rotation = Quaternion.Euler(0f, angle, 0f);
+        }
 
         Vector3 moveDir = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
         controller.Move(moveDir.normalized * speed * Time.deltaTime);
@@ -120,5 +125,9 @@ public class PlayerController : MonoBehaviour
         activeWeapon = (activeWeapon + 1) % weapons.Length;
 
         weapons[activeWeapon].GetComponent<WeaponController>().Enable();
+    }
+
+    public void SetPlayerRotation(bool newRotation) {
+        rotatePlayer = newRotation;
     }
 }
