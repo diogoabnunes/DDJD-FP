@@ -24,61 +24,45 @@ public class GunsController : WeaponController
         GunL.SetActive(false);
         GunR.SetActive(false);
 
-        this.gameObject.SetActive(false);
-
         playerController = player.GetComponent<PlayerController>();
     }
 
     public override void Enable() {
-        this.gameObject.SetActive(true);
-
         GunL.SetActive(true);
         GunR.SetActive(true);
 
         m_Animator.SetBool("hasGun", true);
-
-        playerController.SetPlayerRotation(false);
     }
 
     public override void Disable() {
-        playerController.SetPlayerRotation(true);
-
         m_Animator.SetBool("hasGun", false);
 
         GunL.SetActive(false);
         GunR.SetActive(false);
-
-        this.gameObject.SetActive(false);
-    }
-
-    void Update() {
-        // // bullet trajectory
-        // Vector3 targetPoint = GetTargetPoint();
-        // Vector3 aimDir = (targetPoint - bulletSpawnPoint.position).normalized;
-
-        // // player rotation
-        // Vector3 worldAimTarget = targetPoint;
-        // worldAimTarget.y = player.transform.position.y;
-        // Vector3 aimDirection = (worldAimTarget - player.transform.position).normalized;
-        // player.transform.forward = Vector3.Lerp(player.transform.forward, aimDirection, Time.deltaTime * lerpRatio);
     }
 
     public override void ExecuteBasicAttack() {
         Debug.Log("Gun Attack");
 
-        // bullet trajectory
         Vector3 targetPoint = GetTargetPoint();
-        Vector3 aimDir = (targetPoint - bulletSpawnPoint.position).normalized;
 
         // player rotation
         Vector3 worldAimTarget = targetPoint;
         worldAimTarget.y = player.transform.position.y;
         Vector3 aimDirection = (worldAimTarget - player.transform.position).normalized;
         player.transform.forward = Vector3.Lerp(player.transform.forward, aimDirection, Time.deltaTime * lerpRatio);
+
+        // bullet trajectory
+        Vector3 aimDir = (targetPoint - bulletSpawnPoint.position).normalized;
+        Instantiate(bullet, bulletSpawnPoint.position, Quaternion.LookRotation(aimDir, Vector3.up));
         
         // transform.rotation = Quaternion.LookRotation(aimDir, Vector3.up);
 
-        Instantiate(bullet, bulletSpawnPoint.position, Quaternion.LookRotation(aimDir, Vector3.up));
+        // player moving backwards
+        // float gunStrength = 3;
+        // Vector3 moveDirection = (aimDir / 1) * (-gunStrength);
+        // moveDirection.y = 0;
+        // playerController.Move(player.transform.position + moveDirection, -1);
     }
 
     public override void ExecuteAbility1() {
