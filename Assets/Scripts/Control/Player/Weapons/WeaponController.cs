@@ -5,8 +5,6 @@ using UnityEngine;
 public class WeaponController : MonoBehaviour
 {
     public Animator m_Animator;
-
-    public int damage = 10;
     
     public float coolDownBasicAttack = 0f;
     public float coolDownAbility1 = 0f;

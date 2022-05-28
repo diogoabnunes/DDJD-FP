@@ -13,10 +13,10 @@ public class GunsController : WeaponController
     public Transform bullet;
     public Transform bulletSpawnPoint;
 
-    public float fireRate = 30f;
-    public float impactForce = 3f;
+    public float recoil = 1f;
 
-    public float lerpRatio = 20f;
+    // public float fireRate = 30f;
+    // public float impactForce = 3f;
 
     void Start() {
         base.Start();
@@ -42,27 +42,14 @@ public class GunsController : WeaponController
     }
 
     public override void ExecuteBasicAttack() {
-        Debug.Log("Gun Attack");
+        float targetAngle = playerController.GetTargetAngleTowardsCameraDirection(Vector3.zero);
+        playerController.RotatePlayer(targetAngle, 0f);
 
         Vector3 targetPoint = GetTargetPoint();
-
-        // player rotation
-        Vector3 worldAimTarget = targetPoint;
-        worldAimTarget.y = player.transform.position.y;
-        Vector3 aimDirection = (worldAimTarget - player.transform.position).normalized;
-        player.transform.forward = Vector3.Lerp(player.transform.forward, aimDirection, Time.deltaTime * lerpRatio);
-
-        // bullet trajectory
         Vector3 aimDir = (targetPoint - bulletSpawnPoint.position).normalized;
         Instantiate(bullet, bulletSpawnPoint.position, Quaternion.LookRotation(aimDir, Vector3.up));
         
-        // transform.rotation = Quaternion.LookRotation(aimDir, Vector3.up);
-
-        // player moving backwards
-        // float gunStrength = 3;
-        // Vector3 moveDirection = (aimDir / 1) * (-gunStrength);
-        // moveDirection.y = 0;
-        // playerController.Move(player.transform.position + moveDirection, -1);
+        ApplyGunRecoil(aimDir);
     }
 
     public override void ExecuteAbility1() {
@@ -83,5 +70,15 @@ public class GunsController : WeaponController
         }
 
         return targetPoint;
+    }
+
+    void ApplyGunRecoil(Vector3 aimDir) {
+        aimDir.x = aimDir.x / Mathf.Abs(aimDir.x);
+        aimDir.z = aimDir.z / Mathf.Abs(aimDir.z);
+        aimDir.y = 0;
+
+        aimDir = aimDir * recoil * -1;
+
+        playerController.MovePlayer(aimDir);
     }
 }

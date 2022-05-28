@@ -72,8 +72,6 @@ public class PlayerController : MonoBehaviour
         if (!isGrounded) return;
 
         velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
-
-        m_Animator.SetBool("isJumping", true);
     }
 
     public void Run(Vector3 direction) {
@@ -91,17 +89,25 @@ public class PlayerController : MonoBehaviour
 
         m_Animator.SetBool("isRunning", true);
 
-        float targetAngle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg + cam.eulerAngles.y;
+        float targetAngle = GetTargetAngleTowardsCameraDirection(direction);
 
-        float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref turnSmoothVelocity, turnSmoothTime);
-        transform.rotation = Quaternion.Euler(0f, angle, 0f);
+        RotatePlayer(targetAngle, turnSmoothTime);
 
         Vector3 moveDir = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
-        controller.Move(moveDir.normalized * speed * Time.deltaTime);
+        MovePlayer(moveDir.normalized * speed * Time.deltaTime);
     }
 
-    public void RotateTowardsCamera(Vector3 direction) {
+    public void MovePlayer(Vector3 direction) {
+        controller.Move(direction);
+    }
 
+    public void RotatePlayer(float targetAngle, float smoothTime) {
+        float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref turnSmoothVelocity, smoothTime);
+        transform.rotation = Quaternion.Euler(0f, angle, 0f);
+    }
+
+    public float GetTargetAngleTowardsCameraDirection(Vector3 direction) {
+        return Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg + cam.eulerAngles.y;
     }
 
     public void Idle() {

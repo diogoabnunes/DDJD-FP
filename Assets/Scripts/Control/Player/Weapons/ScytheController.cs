@@ -5,6 +5,8 @@ using UnityEngine;
 public class ScytheController : WeaponController
 {
     public GameObject Scythe;
+    
+    public float damage = 10;
 
     void Start() {
         base.Start();

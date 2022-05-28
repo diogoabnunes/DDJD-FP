@@ -4,27 +4,29 @@ using UnityEngine;
 
 public class BulletProjectile : MonoBehaviour
 {
+    Rigidbody bulletRigidBody;
 
-    private Rigidbody bulletRigidBody;
+    public float speed = 5f;
+    public float damage = 3f;
+
     void Awake()
     {
         bulletRigidBody = GetComponent<Rigidbody>();
     }
-    // Start is called before the first frame update
+
     void Start()
     {
-        
-        float speed = 5f;
         bulletRigidBody.velocity = transform.forward * speed;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     private void OnTriggerEnter(Collider other) {
+        EnemyController controller = other.gameObject.GetComponent<EnemyController>();
+        if (controller != null) {
+            controller.TakeDamage(damage);
+        }
+
+        Debug.Log(other.gameObject.name);
+
         Destroy(gameObject);
     }
 }
