@@ -4,9 +4,6 @@ using UnityEngine;
 
 public class GunsController : WeaponController
 {
-    public GameObject player;
-    PlayerController playerController;
-
     public GameObject GunL;
     public GameObject GunR;
 
@@ -23,8 +20,6 @@ public class GunsController : WeaponController
 
         GunL.SetActive(false);
         GunR.SetActive(false);
-
-        playerController = player.GetComponent<PlayerController>();
     }
 
     public override void Enable() {

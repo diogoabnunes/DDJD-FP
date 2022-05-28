@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class WeaponController : MonoBehaviour
 {
+    public GameObject player;
+    protected PlayerController playerController;
+
     public Animator m_Animator;
     
     public float coolDownBasicAttack = 0f;
@@ -17,6 +20,8 @@ public class WeaponController : MonoBehaviour
     bool locked = false;
 
     protected void Start() {
+        playerController = player.GetComponent<PlayerController>();
+
         m_Animator.SetBool("hasGun", false);
     }
 
