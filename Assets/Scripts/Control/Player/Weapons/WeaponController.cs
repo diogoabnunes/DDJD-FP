@@ -108,14 +108,14 @@ public class WeaponController : MonoBehaviour
     }
 
     protected IEnumerator UnlockWhenTimeElapsed() {
-        // AnimatorStateInfo state = m_Animator.GetCurrentAnimatorStateInfo(1);
-        // while(!state.IsTag("WaitFor")){
-        //     yield return null;
-        //     state = m_Animator.GetCurrentAnimatorStateInfo(1);
-        // }
+        AnimatorStateInfo state = m_Animator.GetCurrentAnimatorStateInfo(1);
+        while(!state.IsTag("WaitFor")){
+            yield return null;
+            state = m_Animator.GetCurrentAnimatorStateInfo(1);
+        }
 
-        // yield return new WaitForSeconds(state.length);
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(state.length);
+        // yield return new WaitForSeconds(0.5f);
 
         Unlock();
     }

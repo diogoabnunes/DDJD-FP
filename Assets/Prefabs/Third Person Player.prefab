@@ -43,19 +43,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc84edab763f98d439900a9872ed22c0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Animator: {fileID: 0}
-  damage: 10
-  coolDownBasicAttack: 0
+  player: {fileID: 6188083686845781659}
+  m_Animator: {fileID: 6188083687191178615}
+  coolDownBasicAttack: 0.2
   coolDownAbility1: 0
   coolDownAbility2: 0
-  coolDownAbility3: 0
-  GunL: {fileID: 0}
-  GunR: {fileID: 0}
-  bullet: {fileID: 0}
-  bulletSpawnPoint: {fileID: 0}
-  fireRate: 30
-  impactForce: 3
-  lerpRatio: 20
+  GunL: {fileID: 6188083686582889015}
+  GunR: {fileID: 6188083686084518980}
+  bullet: {fileID: 2957822337685437143, guid: 9b377373624d16b4185f7ac3cc169d0c, type: 3}
+  bulletSpawnPoint: {fileID: 6188083686883295327}
+  recoil: 1
 --- !u!1 &6188083685604352799
 GameObject:
   m_ObjectHideFlags: 0
@@ -5679,13 +5676,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d9f14209a4a79694ebea4bca2376df9b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 6188083686845781659}
   m_Animator: {fileID: 6188083687191178615}
-  damage: 10
-  coolDownBasicAttack: 2
+  coolDownBasicAttack: 0.25
   coolDownAbility1: 0
   coolDownAbility2: 0
-  coolDownAbility3: 0
   Scythe: {fileID: 6188083686401257737}
+  damage: 10
+  comboTiming: 2
 --- !u!1 &6188083686410644647
 GameObject:
   m_ObjectHideFlags: 0
@@ -6248,6 +6246,7 @@ GameObject:
   - component: {fileID: 6188083686845781668}
   - component: {fileID: 6188083686845781669}
   - component: {fileID: 6188083686845781658}
+  - component: {fileID: 53928756}
   m_Layer: 8
   m_Name: Third Person Player
   m_TagString: Player
@@ -6262,7 +6261,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6188083686845781659}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0.5, y: -6.54, z: 0.30845356}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -6300,7 +6299,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6188083686845781659}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f05871b1a8267d343b58f23916545ba2, type: 3}
   m_Name: 
@@ -6314,7 +6313,7 @@ MonoBehaviour:
   Scythe: {fileID: 6188083686401257737}
   GunL: {fileID: 6188083686582889015}
   GunR: {fileID: 6188083686084518980}
-  lerpRatio: 20
+  lerpRatio: 1
   cam: {fileID: 0}
 --- !u!114 &6188083686845781658
 MonoBehaviour:
@@ -6323,7 +6322,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6188083686845781659}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c15179027447a034ebb7cb680894f111, type: 3}
   m_Name: 
@@ -6340,7 +6339,34 @@ MonoBehaviour:
   groundMask:
     serializedVersion: 2
     m_Bits: 64
-  turnSmoothTime: 0.6
+  turnSmoothTime: 0.1
+--- !u!114 &53928756
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6188083686845781659}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 77dd1b92c3b3c8148a27e7e10422e05e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  controller: {fileID: 6188083686845781668}
+  cam: {fileID: 0}
+  baseSpeed: 15
+  gravity: -34.335
+  jumpHeight: 15
+  m_Animator: {fileID: 6188083687191178615}
+  speedModifier: 2.5
+  groundDistance: 0.4
+  groundMask:
+    serializedVersion: 2
+    m_Bits: 64
+  turnSmoothTime: 0.1
+  weapons:
+  - {fileID: 6188083686401257737}
+  - {fileID: 3619131493065048135}
 --- !u!1 &6188083686883295324
 GameObject:
   m_ObjectHideFlags: 0
@@ -6365,7 +6391,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6188083686883295324}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 1.11}
+  m_LocalPosition: {x: 0, y: 0, z: 3.6915464}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 6188083686845781671}
