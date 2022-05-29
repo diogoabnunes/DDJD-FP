@@ -1,5 +1,35 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &382132951
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 382132952}
+  m_Layer: 8
+  m_Name: FirePointLeft
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &382132952
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 382132951}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.5, y: 0.77, z: 1.522}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 6188083686845781671}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3619131493065048135
 GameObject:
   m_ObjectHideFlags: 0
@@ -51,7 +81,8 @@ MonoBehaviour:
   GunL: {fileID: 6188083686582889015}
   GunR: {fileID: 6188083686084518980}
   bullet: {fileID: 2957822337685437143, guid: 9b377373624d16b4185f7ac3cc169d0c, type: 3}
-  bulletSpawnPoint: {fileID: 6188083686883295327}
+  rightBulletSpawnPoint: {fileID: 6188083686883295327}
+  leftBulletSpawnPoint: {fileID: 382132952}
   recoil: 1
 --- !u!1 &6188083685604352799
 GameObject:
@@ -6271,6 +6302,7 @@ Transform:
   - {fileID: 6188083686883295327}
   - {fileID: 6188083687671026792}
   - {fileID: 4097744538749614538}
+  - {fileID: 382132952}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -6377,7 +6409,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6188083686883295327}
   m_Layer: 8
-  m_Name: FirePoint
+  m_Name: FirePointRight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6391,7 +6423,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6188083686883295324}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 3.6915464}
+  m_LocalPosition: {x: 0.35, y: 0.77, z: 1.522}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 6188083686845781671}
