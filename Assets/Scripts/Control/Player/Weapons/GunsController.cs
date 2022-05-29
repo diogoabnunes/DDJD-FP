@@ -8,9 +8,14 @@ public class GunsController : WeaponController
     public GameObject GunR;
 
     public Transform bullet;
-    public Transform bulletSpawnPoint;
+    public Transform rightBulletSpawnPoint;
+    public Transform leftBulletSpawnPoint;
 
     public float recoil = 1f;
+
+    string[] basicAttackAnimationNames = {"leftGunBasicAttack", "rightGunBasicAttack"};
+
+    bool shootLeft = true;
 
     // public float fireRate = 30f;
     // public float impactForce = 3f;
@@ -26,11 +31,11 @@ public class GunsController : WeaponController
         GunL.SetActive(true);
         GunR.SetActive(true);
 
-        m_Animator.SetBool("hasGun", true);
+        m_Animator.SetTrigger("switchToGuns");
     }
 
     public override void Disable() {
-        m_Animator.SetBool("hasGun", false);
+        m_Animator.SetTrigger("switchToScythe");
 
         GunL.SetActive(false);
         GunR.SetActive(false);
@@ -41,10 +46,27 @@ public class GunsController : WeaponController
         playerController.RotatePlayer(targetAngle, 0f);
 
         Vector3 targetPoint = GetTargetPoint();
+        
+        Transform bulletSpawnPoint;
+
+        if(shootLeft){
+            bulletSpawnPoint = leftBulletSpawnPoint;
+            m_Animator.SetTrigger(basicAttackAnimationNames[0]);
+            Debug.Log("SHOOTING LEFT");
+        }
+        else{
+            Debug.Log("SHOOTING RIGHT");
+            bulletSpawnPoint = rightBulletSpawnPoint;
+            m_Animator.SetTrigger(basicAttackAnimationNames[1]);
+        }
+
         Vector3 aimDir = (targetPoint - bulletSpawnPoint.position).normalized;
         Instantiate(bullet, bulletSpawnPoint.position, Quaternion.LookRotation(aimDir, Vector3.up));
         
-        ApplyGunRecoil(aimDir);
+        //ApplyGunRecoil(aimDir);
+
+        shootLeft = !shootLeft;
+        Debug.Log(shootLeft);
     }
 
     public override void ExecuteAbility1() {
