@@ -8,14 +8,13 @@ public class GunsController : WeaponController
     public GameObject GunR;
 
     public Transform bullet;
-    public Transform rightBulletSpawnPoint;
     public Transform leftBulletSpawnPoint;
+    public Transform rightBulletSpawnPoint;
 
     public float recoil = 1f;
 
     string[] basicAttackAnimationNames = {"leftGunBasicAttack", "rightGunBasicAttack"};
-
-    bool shootLeft = true;
+    int currentGun = 0;
 
     // public float fireRate = 30f;
     // public float impactForce = 3f;
@@ -47,26 +46,17 @@ public class GunsController : WeaponController
 
         Vector3 targetPoint = GetTargetPoint();
         
-        Transform bulletSpawnPoint;
+        Transform bulletSpawnPoint = leftBulletSpawnPoint;
+        if (currentGun == 1) bulletSpawnPoint = rightBulletSpawnPoint;
 
-        if(shootLeft){
-            bulletSpawnPoint = leftBulletSpawnPoint;
-            m_Animator.SetTrigger(basicAttackAnimationNames[0]);
-            Debug.Log("SHOOTING LEFT");
-        }
-        else{
-            Debug.Log("SHOOTING RIGHT");
-            bulletSpawnPoint = rightBulletSpawnPoint;
-            m_Animator.SetTrigger(basicAttackAnimationNames[1]);
-        }
+        m_Animator.SetTrigger(basicAttackAnimationNames[currentGun]);
 
         Vector3 aimDir = (targetPoint - bulletSpawnPoint.position).normalized;
         Instantiate(bullet, bulletSpawnPoint.position, Quaternion.LookRotation(aimDir, Vector3.up));
         
         //ApplyGunRecoil(aimDir);
 
-        shootLeft = !shootLeft;
-        Debug.Log(shootLeft);
+        currentGun = (currentGun + 1) % basicAttackAnimationNames.Length;
     }
 
     public override void ExecuteAbility1() {

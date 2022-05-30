@@ -10,7 +10,7 @@ public class ScytheController : WeaponController
 
     string[] baiscAttackAnimationNames = {"attack1_phase1", "attack1_phase2", "attack1_phase3"};
 
-    int currentBasicAttackPhase = 1;
+    int currentBasicAttackPhase = 0;
     
     float timeSinceLastBasicAttack = 0f;
     public float comboTiming = 2f;
@@ -31,14 +31,13 @@ public class ScytheController : WeaponController
     }
 
     public override void ExecuteBasicAttack() {
-
-        if(currentBasicAttackPhase == 4 || Time.time - timeSinceLastBasicAttack > comboTiming){
-            currentBasicAttackPhase = 1;
+        if (Time.time - timeSinceLastBasicAttack > comboTiming) {
+            currentBasicAttackPhase = 0;
         }
 
-        m_Animator.SetTrigger(baiscAttackAnimationNames[currentBasicAttackPhase - 1]);
+        m_Animator.SetTrigger(baiscAttackAnimationNames[currentBasicAttackPhase]);
 
-        currentBasicAttackPhase++;
+        currentBasicAttackPhase = (currentBasicAttackPhase + 1) % baiscAttackAnimationNames.Length;
         timeSinceLastBasicAttack = Time.time;
     }
 
