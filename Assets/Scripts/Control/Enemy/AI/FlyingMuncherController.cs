@@ -30,4 +30,10 @@ public class FlyingMuncherController : EnemyController
         m_Animator.SetBool("isWalking", false);
       }
     }
+
+    public override void Die() {
+      m_Animator.SetTrigger("die");
+      dead = true;
+      StartCoroutine(DieDelay());
+    }
 }

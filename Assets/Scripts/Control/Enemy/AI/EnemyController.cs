@@ -13,6 +13,7 @@ public class EnemyController : MonoBehaviour
     public float lookRange = 10f;
 
     bool locked = false;
+    public bool dead = false;
 
     PlayerManager playerManager;
     Transform player;
@@ -35,6 +36,7 @@ public class EnemyController : MonoBehaviour
     }
 
     void Update() {
+        if (dead) return;
         if (locked) return;
 
         float distanceToPlayer = ComputeDistanceToPlayer();
@@ -71,11 +73,11 @@ public class EnemyController : MonoBehaviour
       Vector2 runningVector = new Vector2(agent.velocity.x, agent.velocity.z);
 
       if (!runningVector.Equals(Vector2.zero)) {
-        Debug.Log("Enemy is Running!");
+        //Debug.Log("Enemy is Running!");
         return true;
       }
 
-      Debug.Log("Enemy is Not Running!");
+      //Debug.Log("Enemy is Not Running!");
       return false;
     }
 
@@ -132,10 +134,20 @@ public class EnemyController : MonoBehaviour
         }
     }
 
-    void Die() {
+    public virtual void Die() {
         if (spawnManager != null){
             spawnManager.enemyDied(this.gameObject);
         }
+
+        Destroy(gameObject);
+    }
+
+    public IEnumerator DieDelay() {
+        if (spawnManager != null){
+            spawnManager.enemyDied(this.gameObject);
+        }
+
+        yield return new WaitForSeconds(2);
 
         Destroy(gameObject);
     }
