@@ -22,4 +22,12 @@ public class SmallMuncherController : EnemyController
     bool CanAttack(float distanceToPlayer, Quaternion rotationTowardsPlayer) {
         return smallMuncherAttack.CanAttack(distanceToPlayer) && IsFacingPlayer(rotationTowardsPlayer);
     }
+
+    public override void ManageAnimations() {
+      if (isRunning()) {
+        m_Animator.SetBool("isRunning", true);
+      } else {
+        m_Animator.SetBool("isRunning", false);
+      }
+    }
 }
