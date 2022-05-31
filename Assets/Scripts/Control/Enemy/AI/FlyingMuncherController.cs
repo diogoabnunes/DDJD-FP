@@ -22,4 +22,12 @@ public class FlyingMuncherController : EnemyController
     bool CanAttack(float distanceToPlayer, Quaternion rotationTowardsPlayer) {
         return flyingMuncherAttack.CanAttack(distanceToPlayer) && IsFacingPlayer(rotationTowardsPlayer);
     }
+
+    public override void ManageAnimations() {
+      if (isRunning()) {
+        m_Animator.SetBool("isWalking", true);
+      } else {
+        m_Animator.SetBool("isWalking", false);
+      }
+    }
 }
