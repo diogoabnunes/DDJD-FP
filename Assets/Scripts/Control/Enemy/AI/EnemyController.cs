@@ -37,6 +37,7 @@ public class EnemyController : MonoBehaviour
 
     void Update() {
         if (dead) return;
+
         if (locked) return;
 
         float distanceToPlayer = ComputeDistanceToPlayer();
@@ -63,6 +64,10 @@ public class EnemyController : MonoBehaviour
 
     public virtual void ManageAnimations() {
       // Function to manage animations
+    }
+
+    public virtual void DeadAnimation() {
+
     }
 
     public Animator GetAnimator() {

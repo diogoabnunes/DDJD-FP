@@ -3400,9 +3400,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemies:
-  - {fileID: 7772434586150686315, guid: 17c734643f97d4d45a6211fc710554df, type: 3}
+  - {fileID: 5185886381209011960, guid: f781fe3c05c75614eabc5d7200eba594, type: 3}
   - {fileID: 7114415016163205245, guid: c02289a3b78613a478e8399dc03d25d6, type: 3}
-  - {fileID: 925129993828672651, guid: ba3c06a4df1eb8c449124f6baadb75b1, type: 3}
+  - {fileID: 7772434586150686315, guid: 17c734643f97d4d45a6211fc710554df, type: 3}
   range: 20
   awayDistance: 5
   coolDown: 3
