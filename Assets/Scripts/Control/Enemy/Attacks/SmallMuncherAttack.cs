@@ -12,9 +12,12 @@ public class SmallMuncherAttack : Attack
     SmallMuncherController smallMuncherController;
     PlayerManager playerManager;
 
+    Animator m_Animator;
+
     void Start() {
         smallMuncherController = GetComponent<SmallMuncherController>();
         playerManager = PlayerManager.instance;
+        m_Animator = smallMuncherController.GetAnimator();
     }
 
     public override bool CanAttack(float distanceToPlayer) {
@@ -29,6 +32,8 @@ public class SmallMuncherAttack : Attack
         smallMuncherController.StopMovement();
 
         // play animation of attack
+        m_Animator.SetTrigger("attack");
+
         // verify if player is still in range
         playerManager.TakeDamage(damage);
 

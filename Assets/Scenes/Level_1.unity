@@ -156,7 +156,7 @@ Transform:
   - {fileID: 134703459}
   - {fileID: 305241403}
   m_Father: {fileID: 0}
-  m_RootOrder: 11
+  m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &53928755 stripped
 GameObject:
@@ -823,7 +823,7 @@ Transform:
   - {fileID: 1894746337}
   - {fileID: 1006888334}
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &522742795
 PrefabInstance:
@@ -1108,7 +1108,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 696959279}
-  m_LocalRotation: {x: 0.07490867, y: 0.0000000042895105, z: -3.2222683e-10, w: 0.9971904}
+  m_LocalRotation: {x: 0.07490867, y: -0.000000004289509, z: 3.2222672e-10, w: 0.9971904}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -2199,7 +2199,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2533861558167335204, guid: c0cf21e19e5bb12468e51cd7d87018cf, type: 3}
       propertyPath: m_RootOrder
-      value: 13
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 2533861558167335204, guid: c0cf21e19e5bb12468e51cd7d87018cf, type: 3}
       propertyPath: m_LocalScale.x
@@ -3031,7 +3031,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3101674561024748235, guid: 64fea93124758c541b16ab0eeb0fcedb, type: 3}
       propertyPath: m_RootOrder
-      value: 12
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 3101674561024748235, guid: 64fea93124758c541b16ab0eeb0fcedb, type: 3}
       propertyPath: m_LocalScale.x
@@ -3401,7 +3401,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemies:
   - {fileID: 7772434586150686315, guid: 17c734643f97d4d45a6211fc710554df, type: 3}
-  - {fileID: 8784357271721824740, guid: 72eb8a5bdc2108d4ab5708fc83f58d5f, type: 3}
+  - {fileID: 7114415016163205245, guid: c02289a3b78613a478e8399dc03d25d6, type: 3}
   - {fileID: 925129993828672651, guid: ba3c06a4df1eb8c449124f6baadb75b1, type: 3}
   range: 20
   awayDistance: 5

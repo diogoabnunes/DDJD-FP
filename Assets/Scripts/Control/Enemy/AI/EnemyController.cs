@@ -20,6 +20,8 @@ public class EnemyController : MonoBehaviour
 
     SpawnManager spawnManager = null;
 
+    public Animator m_Animator;
+
     protected void Start()
     {
         playerManager = PlayerManager.instance;
@@ -42,6 +44,7 @@ public class EnemyController : MonoBehaviour
         if (action != null) {
             action.execute();
         }
+        ManageAnimations();
     }
 
     public virtual Action GetNextAction(float distanceToPlayer, Quaternion rotationTowardsPlayer) {
@@ -54,6 +57,26 @@ public class EnemyController : MonoBehaviour
 
     public void Unlock() {
         locked = false;
+    }
+
+    public virtual void ManageAnimations() {
+      // Function to manage animations
+    }
+
+    public Animator GetAnimator() {
+      return m_Animator;
+    }
+
+    public bool isRunning() {
+      Vector2 runningVector = new Vector2(agent.velocity.x, agent.velocity.z);
+
+      if (!runningVector.Equals(Vector2.zero)) {
+        Debug.Log("Enemy is Running!");
+        return true;
+      }
+
+      Debug.Log("Enemy is Not Running!");
+      return false;
     }
 
     protected bool PlayerInLookRange(float distance) {
@@ -80,11 +103,13 @@ public class EnemyController : MonoBehaviour
     }
 
     public void ChasePlayer() {
+        //agent.Resume();
         agent.SetDestination(player.position);
     }
 
     public void StopMovement() {
-        agent.SetDestination(GetEnemyPosition());
+        //agent.SetDestination(GetEnemyPosition());
+        //agent.Stop();
     }
 
     public Vector3 GetPlayerPosition() {
