@@ -30,4 +30,10 @@ public class SmallMuncherController : EnemyController
         m_Animator.SetBool("isRunning", false);
       }
     }
+
+    public override void Die() {
+      m_Animator.SetTrigger("die");
+      dead = true;
+      StartCoroutine(DieDelay());
+    }
 }
