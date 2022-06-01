@@ -21,7 +21,7 @@ public class SpawnManager : MonoBehaviour
     float nextSpawnTime = 3f;
 
     void Start() {
-        player = PlayerManager.instance.player.transform;
+        player = PlayerModel.instance.player.transform;
     }
 
     void Update()
@@ -93,7 +93,7 @@ public class SpawnManager : MonoBehaviour
     }
 
     bool awayFromEnemies(Vector3 point) {
-        foreach (GameObject enemy in activeEnemies) { 
+        foreach (GameObject enemy in activeEnemies) {
             if (Vector3.Distance(point, enemy.GetComponent<Transform>().position) < awayDistance) {
                 return false;
             }

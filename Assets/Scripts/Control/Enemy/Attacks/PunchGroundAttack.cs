@@ -9,13 +9,13 @@ public class PunchGroundAttack : Attack
     public float duration = 3f;
     public float damage = 1f;
     public float damageArea = 4f;
-    
+
     BigMuncherController bigMuncherController;
-    PlayerManager playerManager;
+    PlayerModel playerModel;
 
     void Start() {
         bigMuncherController = GetComponent<BigMuncherController>();
-        playerManager = PlayerManager.instance;
+        playerModel = PlayerModel.instance;
     }
 
     public override bool CanAttack(float distanceToPlayer) {
@@ -47,10 +47,10 @@ public class PunchGroundAttack : Attack
     void PunchGround() {
         Vector3 impactPoint = bigMuncherController.GetEnemyPosition();
 
-        bool playerHit = playerManager.PlayerWithinArea(impactPoint, damageArea);
+        bool playerHit = playerModel.PlayerWithinArea(impactPoint, damageArea);
         if (playerHit) {
             Debug.Log("Player was Hit!");
-            playerManager.TakeDamage(damage);
+            playerModel.TakeDamage(damage);
         }
     }
 }

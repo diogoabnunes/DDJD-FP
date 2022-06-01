@@ -14,13 +14,13 @@ public class FireballController : MonoBehaviour
 
     Vector3 target;
 
-    PlayerManager playerManager;
+    PlayerModel playerModel;
     BigMuncherController enemyController;
     Rigidbody rigidBody;
 
     void Awake()
     {
-        playerManager = PlayerManager.instance;
+        playerModel = PlayerModel.instance;
         enemyController = GetComponent<BigMuncherController>();
         rigidBody = GetComponent<Rigidbody>();
 
@@ -72,10 +72,10 @@ public class FireballController : MonoBehaviour
 
     void DoDamage() {
         Vector3 impactPoint = transform.position;
-        bool playerHit = playerManager.PlayerWithinArea(impactPoint, damageArea);
+        bool playerHit = playerModel.PlayerWithinArea(impactPoint, damageArea);
         if (playerHit) {
             Debug.Log("Player was Hit!");
-            playerManager.TakeDamage(damage);
+            playerModel.TakeDamage(damage);
         }
     }
 }

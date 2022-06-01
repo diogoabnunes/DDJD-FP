@@ -241,6 +241,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2533861558167335204, guid: c0cf21e19e5bb12468e51cd7d87018cf, type: 3}
   m_PrefabInstance: {fileID: 2533861558301464647}
   m_PrefabAsset: {fileID: 0}
+--- !u!95 &140848476 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 6188083687191178615, guid: e97f74ac00a3f6649ad9063c1b1dbaa7, type: 3}
+  m_PrefabInstance: {fileID: 6188083686951927749}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &207260152
 GameObject:
   m_ObjectHideFlags: 0
@@ -2431,6 +2436,31 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c0cf21e19e5bb12468e51cd7d87018cf, type: 3}
+--- !u!1 &1604991483 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6188083686007637639, guid: e97f74ac00a3f6649ad9063c1b1dbaa7, type: 3}
+  m_PrefabInstance: {fileID: 6188083686951927749}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1604991486
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1604991483}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d9f14209a4a79694ebea4bca2376df9b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 53928755}
+  m_Animator: {fileID: 140848476}
+  coolDownBasicAttack: 0
+  coolDownAbility1: 0
+  coolDownAbility2: 0
+  Scythe: {fileID: 1715955997}
+  damage: 10
+  comboTiming: 2
 --- !u!4 &1636767787 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2533861558167335204, guid: c0cf21e19e5bb12468e51cd7d87018cf, type: 3}
@@ -2582,6 +2612,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 64fea93124758c541b16ab0eeb0fcedb, type: 3}
+--- !u!1 &1715955997 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6188083686401257737, guid: e97f74ac00a3f6649ad9063c1b1dbaa7, type: 3}
+  m_PrefabInstance: {fileID: 6188083686951927749}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1752004277
 GameObject:
   m_ObjectHideFlags: 3
@@ -3400,9 +3435,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemies:
-  - {fileID: 7772434586150686315, guid: 17c734643f97d4d45a6211fc710554df, type: 3}
+  - {fileID: 5185886381209011960, guid: f781fe3c05c75614eabc5d7200eba594, type: 3}
   - {fileID: 7114415016163205245, guid: c02289a3b78613a478e8399dc03d25d6, type: 3}
-  - {fileID: 925129993828672651, guid: ba3c06a4df1eb8c449124f6baadb75b1, type: 3}
+  - {fileID: 7772434586150686315, guid: 17c734643f97d4d45a6211fc710554df, type: 3}
   range: 20
   awayDistance: 5
   coolDown: 3
@@ -3601,18 +3636,14 @@ PrefabInstance:
       propertyPath: cam
       value: 
       objectReference: {fileID: 963194228}
-    - target: {fileID: 6188083686845781658, guid: e97f74ac00a3f6649ad9063c1b1dbaa7, type: 3}
-      propertyPath: cam
-      value: 
-      objectReference: {fileID: 963194228}
+    - target: {fileID: 53928756, guid: e97f74ac00a3f6649ad9063c1b1dbaa7, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6188083686845781659, guid: e97f74ac00a3f6649ad9063c1b1dbaa7, type: 3}
       propertyPath: m_Name
       value: Third Person Player
       objectReference: {fileID: 0}
-    - target: {fileID: 6188083686845781669, guid: e97f74ac00a3f6649ad9063c1b1dbaa7, type: 3}
-      propertyPath: cam
-      value: 
-      objectReference: {fileID: 963194227}
     - target: {fileID: 6188083686845781671, guid: e97f74ac00a3f6649ad9063c1b1dbaa7, type: 3}
       propertyPath: m_RootOrder
       value: 1

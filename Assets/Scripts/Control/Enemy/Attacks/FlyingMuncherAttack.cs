@@ -10,13 +10,13 @@ public class FlyingMuncherAttack : Attack
     public float damage = 1f;
 
     FlyingMuncherController flyingMuncherController;
-    PlayerManager playerManager;
+    PlayerModel playerModel;
 
     Animator m_Animator;
 
     void Start() {
         flyingMuncherController = GetComponent<FlyingMuncherController>();
-        playerManager = PlayerManager.instance;
+        playerModel = PlayerModel.instance;
         m_Animator = flyingMuncherController.GetAnimator();
     }
 
@@ -35,7 +35,7 @@ public class FlyingMuncherAttack : Attack
         m_Animator.SetTrigger("attack");
 
         // verify if player is still in range
-        playerManager.TakeDamage(damage);
+        playerModel.TakeDamage(damage);
 
         yield return new WaitForSeconds(duration);
 

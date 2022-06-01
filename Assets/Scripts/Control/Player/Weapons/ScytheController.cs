@@ -5,16 +5,16 @@ using UnityEngine;
 public class ScytheController : WeaponController
 {
     public GameObject Scythe;
-    
-    public float damage = 10;
+
+    public float damage = 10f;
 
     string[] baiscAttackAnimationNames = {"attack1_phase1", "attack1_phase2", "attack1_phase3"};
 
     int currentBasicAttackPhase = 0;
-    
+
     float timeSinceLastBasicAttack = 0f;
     public float comboTiming = 2f;
-    
+
 
     void Start() {
         base.Start();
@@ -61,5 +61,9 @@ public class ScytheController : WeaponController
         if (controller != null) {
             controller.TakeDamage(damage);
         }
+    }
+
+    public float getDamage(){
+        return this.damage;
     }
 }

@@ -15,7 +15,7 @@ public class EnemyController : MonoBehaviour
     bool locked = false;
     public bool dead = false;
 
-    PlayerManager playerManager;
+    PlayerModel playerModel;
     Transform player;
     NavMeshAgent agent;
 
@@ -25,8 +25,8 @@ public class EnemyController : MonoBehaviour
 
     protected void Start()
     {
-        playerManager = PlayerManager.instance;
-        player = PlayerManager.instance.player.transform;
+        playerModel = PlayerModel.instance;
+        player = PlayerModel.instance.player.transform;
         agent = GetComponent<NavMeshAgent>();
 
         SpawnManager[] obj = FindObjectsOfType<SpawnManager>();
@@ -37,6 +37,7 @@ public class EnemyController : MonoBehaviour
 
     void Update() {
         if (dead) return;
+
         if (locked) return;
 
         float distanceToPlayer = ComputeDistanceToPlayer();
@@ -65,17 +66,26 @@ public class EnemyController : MonoBehaviour
       // Function to manage animations
     }
 
+    public virtual void DeadAnimation() {
+
+    }
+
     public Animator GetAnimator() {
       return m_Animator;
     }
 
     public bool isRunning() {
       Vector2 runningVector = new Vector2(agent.velocity.x, agent.velocity.z);
+      float distance = Vector2.Distance(runningVector, Vector2.zero);
 
-      if (!runningVector.Equals(Vector2.zero)) {
-        //Debug.Log("Enemy is Running!");
+      if (distance > 1.0f) {
         return true;
       }
+
+      /*if (!runningVector.Equals(Vector2.zero)) {
+        //Debug.Log("Enemy is Running!");
+        return true;
+      }*/
 
       //Debug.Log("Enemy is Not Running!");
       return false;
@@ -111,7 +121,7 @@ public class EnemyController : MonoBehaviour
 
     public void StopMovement() {
         //agent.SetDestination(GetEnemyPosition());
-        //agent.Stop();
+        agent.isStopped = true;
     }
 
     public Vector3 GetPlayerPosition() {

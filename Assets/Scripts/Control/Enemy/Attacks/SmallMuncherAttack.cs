@@ -10,13 +10,13 @@ public class SmallMuncherAttack : Attack
     public float damage = 1f;
 
     SmallMuncherController smallMuncherController;
-    PlayerManager playerManager;
+    PlayerModel playerModel;
 
     Animator m_Animator;
 
     void Start() {
         smallMuncherController = GetComponent<SmallMuncherController>();
-        playerManager = PlayerManager.instance;
+        playerModel = PlayerModel.instance;
         m_Animator = smallMuncherController.GetAnimator();
     }
 
@@ -35,7 +35,7 @@ public class SmallMuncherAttack : Attack
         m_Animator.SetTrigger("attack");
 
         // verify if player is still in range
-        playerManager.TakeDamage(damage);
+        playerModel.TakeDamage(damage);
 
         yield return new WaitForSeconds(duration);
 
