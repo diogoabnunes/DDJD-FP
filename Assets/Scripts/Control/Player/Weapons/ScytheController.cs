@@ -16,7 +16,7 @@ public class ScytheController : WeaponController
     public float comboTiming = 2f;
 
 
-    void Start() {
+    override public void Start() {
         base.Start();
 
         Scythe.SetActive(true);

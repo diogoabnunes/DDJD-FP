@@ -9,7 +9,7 @@ public class BigMuncherController : EnemyController
     PunchGroundAttack punchGroundAttack;
     FireballAttack fireballAttack;
 
-    void Start() {
+    override public void Start() {
         base.Start();
         punchGroundAttack = GetComponent<PunchGroundAttack>();
         fireballAttack = GetComponent<FireballAttack>();

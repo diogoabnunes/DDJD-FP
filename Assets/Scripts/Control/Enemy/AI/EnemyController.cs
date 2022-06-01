@@ -13,7 +13,6 @@ public class EnemyController : MonoBehaviour
     public float lookRange = 10f;
 
     bool locked = false;
-    public bool dead = false;
 
     PlayerModel playerModel;
     Transform player;
@@ -23,7 +22,7 @@ public class EnemyController : MonoBehaviour
 
     public Animator m_Animator;
 
-    protected void Start()
+    public virtual void Start()
     {
         playerModel = PlayerModel.instance;
         player = PlayerModel.instance.player.transform;
@@ -36,8 +35,6 @@ public class EnemyController : MonoBehaviour
     }
 
     void Update() {
-        if (dead) return;
-
         if (locked) return;
 
         float distanceToPlayer = ComputeDistanceToPlayer();
@@ -47,7 +44,6 @@ public class EnemyController : MonoBehaviour
         if (action != null) {
             action.execute();
         }
-        ManageAnimations();
     }
 
     public virtual Action GetNextAction(float distanceToPlayer, Quaternion rotationTowardsPlayer) {
@@ -62,14 +58,6 @@ public class EnemyController : MonoBehaviour
         locked = false;
     }
 
-    public virtual void ManageAnimations() {
-      // Function to manage animations
-    }
-
-    public virtual void DeadAnimation() {
-
-    }
-
     public Animator GetAnimator() {
       return m_Animator;
     }
@@ -82,12 +70,6 @@ public class EnemyController : MonoBehaviour
         return true;
       }
 
-      /*if (!runningVector.Equals(Vector2.zero)) {
-        //Debug.Log("Enemy is Running!");
-        return true;
-      }*/
-
-      //Debug.Log("Enemy is Not Running!");
       return false;
     }
 
@@ -115,12 +97,10 @@ public class EnemyController : MonoBehaviour
     }
 
     public void ChasePlayer() {
-        //agent.Resume();
         agent.SetDestination(player.position);
     }
 
     public void StopMovement() {
-        //agent.SetDestination(GetEnemyPosition());
         agent.isStopped = true;
     }
 
@@ -130,24 +110,6 @@ public class EnemyController : MonoBehaviour
 
     public Vector3 GetEnemyPosition() {
         return transform.position;
-    }
-
-    public virtual void Die() {
-        if (spawnManager != null){
-            spawnManager.enemyDied(this.gameObject);
-        }
-
-        Destroy(gameObject);
-    }
-
-    public IEnumerator DieDelay() {
-        if (spawnManager != null){
-            spawnManager.enemyDied(this.gameObject);
-        }
-
-        yield return new WaitForSeconds(2);
-
-        Destroy(gameObject);
     }
 
     void OnDrawGizmosSelected() {

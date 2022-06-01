@@ -19,7 +19,7 @@ public class GunsController : WeaponController
     // public float fireRate = 30f;
     // public float impactForce = 3f;
 
-    void Start() {
+    override public void Start() {
         base.Start();
 
         GunL.SetActive(false);
@@ -45,7 +45,7 @@ public class GunsController : WeaponController
         playerController.RotatePlayer(targetAngle, 0f);
 
         Vector3 targetPoint = GetTargetPoint();
-        
+
         Transform bulletSpawnPoint = leftBulletSpawnPoint;
         if (currentGun == 1) bulletSpawnPoint = rightBulletSpawnPoint;
 
@@ -53,7 +53,7 @@ public class GunsController : WeaponController
 
         Vector3 aimDir = (targetPoint - bulletSpawnPoint.position).normalized;
         Instantiate(bullet, bulletSpawnPoint.position, Quaternion.LookRotation(aimDir, Vector3.up));
-        
+
         //ApplyGunRecoil(aimDir);
 
         currentGun = (currentGun + 1) % basicAttackAnimationNames.Length;

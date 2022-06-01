@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class BossController : EnemyController
 {
-    void Start()
+    override public void Start()
     {
         base.Start();
     }
