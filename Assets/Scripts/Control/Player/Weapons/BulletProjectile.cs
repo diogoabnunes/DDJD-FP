@@ -9,8 +9,11 @@ public class BulletProjectile : MonoBehaviour
     public float speed = 80f;
     public float damage = 3f;
 
+    private InteractionManager interactionManager;
+
     void Awake()
     {
+        interactionManager = InteractionManager.instance;
         bulletRigidBody = GetComponent<Rigidbody>();
     }
 
@@ -20,9 +23,10 @@ public class BulletProjectile : MonoBehaviour
     }
 
     private void OnTriggerEnter(Collider other) {
-        EnemyController controller = other.gameObject.GetComponent<EnemyController>();
-        if (controller != null) {
-            controller.TakeDamage(damage);
+
+        CharacterModel model = other.gameObject.GetComponent<CharacterModel>();
+        if (model != null) {
+            interactionManager.manageInteraction(new TakeDamage(damage, model));
         }
 
         Destroy(gameObject);

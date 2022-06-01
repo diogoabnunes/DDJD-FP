@@ -1886,7 +1886,7 @@ MonoBehaviour:
   m_OverrideVoxelSize: 0
   m_VoxelSize: 0.16666667
   m_BuildHeightMesh: 0
-  m_NavMeshData: {fileID: 23800000, guid: 93125adc485748a42ab88a4093f9e410, type: 2}
+  m_NavMeshData: {fileID: 23800000, guid: d9e0661324f982249b316d7de9d6e5a4, type: 2}
 --- !u!4 &1006888334
 Transform:
   m_ObjectHideFlags: 0
@@ -3034,7 +3034,7 @@ MonoBehaviour:
   m_OverrideVoxelSize: 0
   m_VoxelSize: 0.16666667
   m_BuildHeightMesh: 0
-  m_NavMeshData: {fileID: 23800000, guid: 51271e62cf8013b4c9bc0dc1eee94e60, type: 2}
+  m_NavMeshData: {fileID: 23800000, guid: 35e526d0a09a38f459760b9a880debdd, type: 2}
 --- !u!4 &1894746337
 Transform:
   m_ObjectHideFlags: 0
@@ -3468,6 +3468,8 @@ GameObject:
   m_Component:
   - component: {fileID: 2132469477}
   - component: {fileID: 2132469478}
+  - component: {fileID: 2132469480}
+  - component: {fileID: 2132469479}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -3503,6 +3505,31 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 53928755}
   health: 10
+--- !u!114 &2132469479
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2132469476}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e2c9fdc68aca7e4abe109747d0d4771, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  difficulty: 11.22
+--- !u!114 &2132469480
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2132469476}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b706826309b5aab46b329e18de62580a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &2533861558301464647
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -132,18 +132,6 @@ public class EnemyController : MonoBehaviour
         return transform.position;
     }
 
-    public void TakeDamage(float damage){
-        health -= damage;
-        Debug.Log(health);
-
-        //do something
-        Debug.Log("hitten");
-
-        if(health <= 0){
-            Die();
-        }
-    }
-
     public virtual void Die() {
         if (spawnManager != null){
             spawnManager.enemyDied(this.gameObject);

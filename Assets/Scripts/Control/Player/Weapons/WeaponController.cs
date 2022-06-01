@@ -7,6 +7,8 @@ public class WeaponController : MonoBehaviour
     public GameObject player;
     protected PlayerController playerController;
 
+    protected InteractionManager interactionManager;
+
     public Animator m_Animator;
     
     public float coolDownBasicAttack = 0f;
@@ -20,8 +22,9 @@ public class WeaponController : MonoBehaviour
     bool locked = false;
 
     protected void Start() {
-        playerController = player.GetComponent<PlayerController>();
+        interactionManager = InteractionManager.instance;
 
+        playerController = player.GetComponent<PlayerController>();
         m_Animator.SetBool("hasGun", false);
     }
 

@@ -4,17 +4,17 @@ using UnityEngine;
 
 public class TakeDamage : Interaction
 {
-    private Attack attack;
-    private Character character;
+    private float damage;
+    private CharacterModel character;
 
-    public TakeDamage(Attack attack, Character character){
-        this.attack = attack;
+    public TakeDamage(float damage, CharacterModel character){
+        this.damage = damage;
         this.character = character;
     }
 
     public override void execute()
     {
-        float realDamage = attack.GetAttackDamage();
+        float realDamage = damage;
         character.TakeDamage(realDamage);
     }
 }

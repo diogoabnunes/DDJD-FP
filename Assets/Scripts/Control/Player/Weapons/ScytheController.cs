@@ -57,10 +57,12 @@ public class ScytheController : WeaponController
     private void OnTriggerEnter(Collider other) {
         if (!IsLocked()) return;
 
-        EnemyController controller = other.gameObject.GetComponent<EnemyController>();
-        if (controller != null) {
-            controller.TakeDamage(damage);
+
+        CharacterModel model = other.gameObject.GetComponent<CharacterModel>();
+        if (model != null) {
+            interactionManager.manageInteraction(new TakeDamage(damage, model));
         }
+
     }
 
     public float getDamage(){

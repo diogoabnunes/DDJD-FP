@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerModel : MonoBehaviour
+public class PlayerModel : CharacterModel
 {
 
     #region Singleton
@@ -31,7 +31,7 @@ public class PlayerModel : MonoBehaviour
         return false;
     }
 
-    public void TakeDamage(float damage) {
+    override public void TakeDamage(float damage) {
         health -= damage;
         Debug.Log("Player was hit! Health: " + health);
 
