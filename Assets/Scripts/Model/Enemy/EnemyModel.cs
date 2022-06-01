@@ -4,6 +4,22 @@ using UnityEngine;
 
 public abstract class EnemyModel : CharacterModel
 {
+    protected SpawnManager spawnManager = null;
 
-    
+    public bool dead = false;
+
+    public virtual void Start() {
+      SpawnManager[] obj = FindObjectsOfType<SpawnManager>();
+      if (obj.Length != 0) {
+          spawnManager = obj[0];
+      }
+    }
+
+    public virtual void Die() {
+      if (spawnManager != null){
+          spawnManager.enemyDied(this.gameObject);
+      }
+
+      Destroy(gameObject);
+    }
 }

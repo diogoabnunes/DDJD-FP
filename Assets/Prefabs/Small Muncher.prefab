@@ -120,9 +120,7 @@ MonoBehaviour:
   rotationSpeed: 5
   health: 1
   lookRange: 20
-  dead: 0
   m_Animator: {fileID: 5413679573704359020}
-  rendererHolder: {fileID: 2120070075992261276}
 --- !u!114 &7613202267756866001
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -135,7 +133,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da004f5a548bdf9479518b8d55fc7ab6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dead: 0
   health: 10
+  m_Animator: {fileID: 5413679573704359020}
+  rendererHolder: {fileID: 2120070075992261276}
 --- !u!1001 &7717872263707708555
 PrefabInstance:
   m_ObjectHideFlags: 0

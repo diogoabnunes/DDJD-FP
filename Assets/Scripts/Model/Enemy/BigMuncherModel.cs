@@ -12,7 +12,9 @@ public class BigMuncherModel : EnemyModel
         gameManager = GameManager.instance;
     }
 
-    private void Start() {
+    override public void Start() {
+        base.Start();
+
         health = 10f * gameManager.getDifficulty();
     }
 
@@ -26,7 +28,8 @@ public class BigMuncherModel : EnemyModel
         }
     }
 
-    void Die() {
+    override public void Die() {
+        base.Die();
         Debug.Log("Big Muncher died!");
     }
 }
