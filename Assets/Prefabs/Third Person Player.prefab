@@ -81,8 +81,8 @@ MonoBehaviour:
   GunL: {fileID: 6188083686582889015}
   GunR: {fileID: 6188083686084518980}
   bullet: {fileID: 2957822337685437143, guid: 9b377373624d16b4185f7ac3cc169d0c, type: 3}
-  rightBulletSpawnPoint: {fileID: 6188083686883295327}
   leftBulletSpawnPoint: {fileID: 382132952}
+  rightBulletSpawnPoint: {fileID: 6188083686883295327}
   recoil: 1
 --- !u!1 &6188083685604352799
 GameObject:
@@ -5169,7 +5169,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6188083686007637638}
-  - component: {fileID: 6188083686007637633}
   m_Layer: 8
   m_Name: Melee Weapon
   m_TagString: Untagged
@@ -5191,22 +5190,6 @@ Transform:
   m_Father: {fileID: 6188083686845781671}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &6188083686007637633
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6188083686007637639}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: af9c49c8546f32b4fb89cc0d9a5fee50, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  damage: 10
-  m_LayerMask:
-    serializedVersion: 2
-    m_Bits: 6144
 --- !u!1 &6188083686020807312
 GameObject:
   m_ObjectHideFlags: 0
@@ -6275,8 +6258,6 @@ GameObject:
   m_Component:
   - component: {fileID: 6188083686845781671}
   - component: {fileID: 6188083686845781668}
-  - component: {fileID: 6188083686845781669}
-  - component: {fileID: 6188083686845781658}
   - component: {fileID: 53928756}
   m_Layer: 8
   m_Name: Third Person Player
@@ -6324,54 +6305,6 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &6188083686845781669
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6188083686845781659}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f05871b1a8267d343b58f23916545ba2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  bullet: {fileID: 2957822337685437143, guid: 9b377373624d16b4185f7ac3cc169d0c, type: 3}
-  bulletSpawnPoint: {fileID: 6188083686883295327}
-  damage: 10
-  fireRate: 30
-  impactForce: 3
-  m_Animator: {fileID: 6188083687191178615}
-  Scythe: {fileID: 6188083686401257737}
-  GunL: {fileID: 6188083686582889015}
-  GunR: {fileID: 6188083686084518980}
-  lerpRatio: 1
-  cam: {fileID: 0}
---- !u!114 &6188083686845781658
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6188083686845781659}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c15179027447a034ebb7cb680894f111, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  controller: {fileID: 6188083686845781668}
-  cam: {fileID: 0}
-  baseSpeed: 15
-  gravity: -34.335
-  jumpHeight: 15
-  m_Animator: {fileID: 6188083687191178615}
-  speedModifier: 2.5
-  groundCheck: {fileID: 0}
-  groundDistance: 0.4
-  groundMask:
-    serializedVersion: 2
-    m_Bits: 64
-  turnSmoothTime: 0.1
 --- !u!114 &53928756
 MonoBehaviour:
   m_ObjectHideFlags: 0
