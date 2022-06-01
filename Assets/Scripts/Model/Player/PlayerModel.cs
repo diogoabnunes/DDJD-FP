@@ -2,8 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerModel : MonoBehaviour
+public class PlayerModel : CharacterModel
 {
+
+    public GameObject player;
+
+    public float health = 10f;
+
+    public List<OffensiveEffect> offensiveEffects;
+    public List<DefensiveEffect> defensiveEffects;
+    public List<OtherEffect> otherEffects;
 
     #region Singleton
 
@@ -11,13 +19,13 @@ public class PlayerModel : MonoBehaviour
 
     void Awake() {
         instance = this;
+        offensiveEffects  = new List<OffensiveEffect>();
+        defensiveEffects  = new List<DefensiveEffect>();
+        otherEffects = new List<OtherEffect>();
     }
 
     #endregion
 
-    public GameObject player;
-
-    public float health = 10f;
 
     public bool PlayerWithinArea(Vector3 position, float radius) {
         Collider[] hitElements = Physics.OverlapSphere(position, radius);
@@ -31,7 +39,7 @@ public class PlayerModel : MonoBehaviour
         return false;
     }
 
-    public void TakeDamage(float damage) {
+    override public void TakeDamage(float damage) {
         health -= damage;
         Debug.Log("Player was hit! Health: " + health);
 

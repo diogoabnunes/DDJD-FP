@@ -50,7 +50,7 @@ public class PunchGroundAttack : Attack
         bool playerHit = playerModel.PlayerWithinArea(impactPoint, damageArea);
         if (playerHit) {
             Debug.Log("Player was Hit!");
-            playerModel.TakeDamage(damage);
+            interactionManager.manageInteraction(new TakeDamage(damage, playerModel));
         }
     }
 }
