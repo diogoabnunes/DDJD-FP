@@ -7,7 +7,7 @@ public class Attack : MonoBehaviour
     public float coolDown = 3f;
     float nextAttack = 0f;
 
-    protected bool TimeElapsedForAttack() { 
+    protected bool TimeElapsedForAttack() {
         return nextAttack == 0 || nextAttack <= Time.time;
     }
 
@@ -27,5 +27,9 @@ public class Attack : MonoBehaviour
     public virtual IEnumerator DoAttackCoroutine() {
         Debug.Log("Missing Implementation for: Attack()!");
         yield return null;
+    }
+
+    public virtual float GetAttackDamage(){
+      return 1f;
     }
 }

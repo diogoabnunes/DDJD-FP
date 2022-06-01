@@ -39,7 +39,6 @@ public class FlyingMuncherController : EnemyController
     public override void DeadAnimation() {
       dissolvedPercentage = dissolvedPercentage + 0.01f;
       renderer.materials[0].SetFloat("Vector1_89f3df7da7884450b303f423e3242b03", dissolvedPercentage);
-      renderer.materials[1].SetFloat("Vector1_89f3df7da7884450b303f423e3242b03", dissolvedPercentage);
     }
 
     public override void Die() {

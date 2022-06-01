@@ -15,7 +15,7 @@ public class EnemyController : MonoBehaviour
     bool locked = false;
     public bool dead = false;
 
-    PlayerManager playerManager;
+    PlayerModel playerModel;
     Transform player;
     NavMeshAgent agent;
 
@@ -25,8 +25,8 @@ public class EnemyController : MonoBehaviour
 
     protected void Start()
     {
-        playerManager = PlayerManager.instance;
-        player = PlayerManager.instance.player.transform;
+        playerModel = PlayerModel.instance;
+        player = PlayerModel.instance.player.transform;
         agent = GetComponent<NavMeshAgent>();
 
         SpawnManager[] obj = FindObjectsOfType<SpawnManager>();
