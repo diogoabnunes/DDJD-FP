@@ -9,7 +9,6 @@ public class SmallMuncherController : EnemyController
 
     SkinnedMeshRenderer renderer;
     public GameObject rendererHolder;
-    public Material dissolveMaterial;
     float dissolvedPercentage = 0f;
 
     void Start() {
@@ -46,6 +45,7 @@ public class SmallMuncherController : EnemyController
     public override void Die() {
       m_Animator.SetTrigger("die");
       dead = true;
+      StopMovement();
       StartCoroutine(Dissolve());
     }
 

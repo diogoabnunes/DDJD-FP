@@ -76,11 +76,16 @@ public class EnemyController : MonoBehaviour
 
     public bool isRunning() {
       Vector2 runningVector = new Vector2(agent.velocity.x, agent.velocity.z);
+      float distance = Vector2.Distance(runningVector, Vector2.zero);
 
-      if (!runningVector.Equals(Vector2.zero)) {
-        //Debug.Log("Enemy is Running!");
+      if (distance > 1.0f) {
         return true;
       }
+
+      /*if (!runningVector.Equals(Vector2.zero)) {
+        //Debug.Log("Enemy is Running!");
+        return true;
+      }*/
 
       //Debug.Log("Enemy is Not Running!");
       return false;
@@ -116,7 +121,7 @@ public class EnemyController : MonoBehaviour
 
     public void StopMovement() {
         //agent.SetDestination(GetEnemyPosition());
-        //agent.Stop();
+        agent.isStopped = true;
     }
 
     public Vector3 GetPlayerPosition() {
