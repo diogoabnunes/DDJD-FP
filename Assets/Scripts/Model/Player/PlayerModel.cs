@@ -5,19 +5,27 @@ using UnityEngine;
 public class PlayerModel : CharacterModel
 {
 
+    public GameObject player;
+
+    public float health = 10f;
+
+    public List<OffensiveEffect> offensiveEffects;
+    public List<DefensiveEffect> defensiveEffects;
+    public List<OtherEffect> otherEffects;
+
     #region Singleton
 
     public static PlayerModel instance;
 
     void Awake() {
         instance = this;
+        offensiveEffects  = new List<OffensiveEffect>();
+        defensiveEffects  = new List<DefensiveEffect>();
+        otherEffects = new List<OtherEffect>();
     }
 
     #endregion
 
-    public GameObject player;
-
-    public float health = 10f;
 
     public bool PlayerWithinArea(Vector3 position, float radius) {
         Collider[] hitElements = Physics.OverlapSphere(position, radius);

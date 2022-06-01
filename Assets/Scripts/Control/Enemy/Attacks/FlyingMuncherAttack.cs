@@ -35,7 +35,8 @@ public class FlyingMuncherAttack : Attack
         m_Animator.SetTrigger("attack");
 
         // verify if player is still in range
-        playerModel.TakeDamage(damage);
+
+        interactionManager.manageInteraction(new TakeDamage(damage, playerModel));
 
         yield return new WaitForSeconds(duration);
 

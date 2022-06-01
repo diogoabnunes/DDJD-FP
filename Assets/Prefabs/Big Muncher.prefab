@@ -209,6 +209,7 @@ GameObject:
   - component: {fileID: 1973541913090832093}
   - component: {fileID: 4464934027144221492}
   - component: {fileID: 7633733137775959402}
+  - component: {fileID: 7407707991411374167}
   m_Layer: 3
   m_Name: Big Muncher
   m_TagString: Untagged
@@ -332,4 +333,18 @@ MonoBehaviour:
   rotationSpeed: 5
   health: 1
   lookRange: 10
-  damageAreaObject: {fileID: 4230452629660150432, guid: a43e26e9250051d45a60dc33ca23f3c8, type: 3}
+  dead: 0
+  m_Animator: {fileID: 0}
+--- !u!114 &7407707991411374167
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7772434586150686315}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eef486b0881031f479fd5fd97fc816a3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 0

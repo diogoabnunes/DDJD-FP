@@ -14,6 +14,7 @@ public class TakeDamage : Interaction
 
     public override void execute()
     {
+        
         float realDamage = damage;
         character.TakeDamage(realDamage);
     }
