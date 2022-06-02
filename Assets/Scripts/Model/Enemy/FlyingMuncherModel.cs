@@ -15,12 +15,6 @@ public class FlyingMuncherModel : EnemyModel
 
     FlyingMuncherController flyingMuncherController;
 
-    GameManager gameManager;
-
-    void Awake() {
-        gameManager = GameManager.instance;
-    }
-
     override public void Start() {
         base.Start();
 

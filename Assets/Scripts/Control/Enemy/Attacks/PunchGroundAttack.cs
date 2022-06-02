@@ -13,7 +13,9 @@ public class PunchGroundAttack : Attack
     BigMuncherController bigMuncherController;
     PlayerModel playerModel;
 
-    void Start() {
+    override public void Start() {
+        base.Start();
+
         bigMuncherController = GetComponent<BigMuncherController>();
         playerModel = PlayerModel.instance;
     }
@@ -27,7 +29,7 @@ public class PunchGroundAttack : Attack
 
         bigMuncherController.Lock();
 
-        bigMuncherController.StopMovement();
+        bigMuncherController.CancelMovement();
 
         // time until he punches the ground
         yield return new WaitForSeconds(duration);
