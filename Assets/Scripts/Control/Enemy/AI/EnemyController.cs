@@ -105,7 +105,6 @@ public class EnemyController : MonoBehaviour
     }
 
     public void ChasePlayer() {
-        Debug.Log("chasing player");
         agent.SetDestination(player.position);
     }
 
