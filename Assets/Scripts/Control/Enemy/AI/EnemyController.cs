@@ -12,8 +12,6 @@ public class EnemyController : MonoBehaviour
 
     public float lookRange = 10f;
 
-    public float fireRange = 5f;
-
     bool locked = false;
 
     PlayerModel playerModel;
@@ -45,10 +43,6 @@ public class EnemyController : MonoBehaviour
         Action action = GetNextAction(distanceToPlayer, rotationTowardsPlayer);
         if (action != null) {
             action.execute();
-        }
-
-        if (distanceToPlayer <= fireRange) {
-            CancelMovement();
         }
     }
 
