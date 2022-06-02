@@ -8,6 +8,7 @@ public class FlyingMuncherAttack : Attack
     public float range = 5f;
     public float duration = 3f;
     public float damage = 1f;
+    public float TIME_ELAPSED_FROM_ANIMATION_START_UNTIL_SHOOT = 1F;
 
     FlyingMuncherController flyingMuncherController;
     PlayerModel playerModel;
@@ -26,7 +27,7 @@ public class FlyingMuncherAttack : Attack
     }
 
     public override bool CanAttack(float distanceToPlayer) {
-        return distanceToPlayer <= range;
+        return distanceToPlayer <= range && TimeElapsedForAttack();
     }
 
     public override IEnumerator DoAttackCoroutine() {
@@ -54,7 +55,7 @@ public class FlyingMuncherAttack : Attack
 
         Vector3 finalPosition = flyingMuncherController.GetPlayerPosition();
 
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(TIME_ELAPSED_FROM_ANIMATION_START_UNTIL_SHOOT);
 
         GameObject obj = Instantiate(bullet, initialPosition, Quaternion.identity);
         obj.GetComponent<EnemyBulletController>().SetTarget(finalPosition);

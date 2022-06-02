@@ -96,7 +96,16 @@ public class EnemyController : MonoBehaviour
         }
     }
 
+    public void SetSpeed(float speed) {
+        agent.speed = speed;
+    }
+
+    public float GetSpeed() {
+        return agent.speed;
+    }
+
     public void ChasePlayer() {
+        Debug.Log("chasing player");
         agent.SetDestination(player.position);
     }
 
