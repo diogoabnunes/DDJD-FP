@@ -6,9 +6,13 @@ public abstract class EnemyModel : CharacterModel
 {
     protected SpawnManager spawnManager = null;
 
+    protected GameManager gameManager;
+
     public bool dead = false;
 
     public virtual void Start() {
+      gameManager = GameManager.instance;
+
       SpawnManager[] obj = FindObjectsOfType<SpawnManager>();
       if (obj.Length != 0) {
           spawnManager = obj[0];

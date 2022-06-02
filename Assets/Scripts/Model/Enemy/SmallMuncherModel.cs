@@ -15,12 +15,6 @@ public class SmallMuncherModel : EnemyModel
 
     SmallMuncherController smallMuncherController;
 
-    GameManager gameManager;
-
-    void Awake() {
-        gameManager = GameManager.instance;
-    }
-
     override public void Start() {
         base.Start();
 

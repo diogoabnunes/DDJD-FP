@@ -8,7 +8,8 @@ public class Attack : MonoBehaviour
     float nextAttack = 0f;
 
     protected InteractionManager interactionManager;
-    void Awake(){
+
+    public virtual void Start() {
         interactionManager = InteractionManager.instance;
     }
 

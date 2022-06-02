@@ -7,11 +7,6 @@ public class BigMuncherModel : EnemyModel
 
     public float health;
 
-    GameManager gameManager;
-    void Awake() {
-        gameManager = GameManager.instance;
-    }
-
     override public void Start() {
         base.Start();
 

@@ -14,7 +14,9 @@ public class SmallMuncherAttack : Attack
 
     Animator m_Animator;
 
-    void Start() {
+    override public void Start() {
+        base.Start();
+
         smallMuncherController = GetComponent<SmallMuncherController>();
         playerModel = PlayerModel.instance;
         m_Animator = smallMuncherController.GetAnimator();
@@ -29,7 +31,7 @@ public class SmallMuncherAttack : Attack
 
         smallMuncherController.Lock();
 
-        smallMuncherController.StopMovement();
+        smallMuncherController.CancelMovement();
 
         // play animation of attack
         m_Animator.SetTrigger("attack");
