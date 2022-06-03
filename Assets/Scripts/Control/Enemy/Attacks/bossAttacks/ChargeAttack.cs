@@ -9,7 +9,7 @@ public class ChargeAttack : Attack
     public float minRange = 30f;
     public float damage = 1f;
 
-    public float speed = 30f;
+    public float speed = 50f;
 
     public float CHARGE_DURATION = 2f;
     public float REST_DURATION = 2f;

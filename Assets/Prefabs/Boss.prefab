@@ -237,7 +237,7 @@ MonoBehaviour:
   maxRange: 70
   minRange: 30
   damage: 1
-  speed: 30
+  speed: 50
   CHARGE_DURATION: 2
   REST_DURATION: 2
 --- !u!1 &6575386942619793680

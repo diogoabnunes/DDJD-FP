@@ -45,11 +45,9 @@ public class FireBreathAttack : Attack
         bossController.GoTo(arenaCenterPoint);
 
         Vector3 enemyPosition = bossController.GetEnemyPosition();
-        enemyPosition.y = 0;
-        while (enemyPosition != arenaCenterPoint) {
+        while (enemyPosition.x != arenaCenterPoint.x || enemyPosition.z != arenaCenterPoint.z) {
             yield return null;
             enemyPosition = bossController.GetEnemyPosition();
-            enemyPosition.y = 0;
         }
 
         Debug.Log("Facing player!");
