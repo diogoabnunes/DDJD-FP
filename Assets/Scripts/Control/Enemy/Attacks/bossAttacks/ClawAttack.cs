@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(BossController))]
-public class BiteAttack : Attack
+public class ClawAttack : Attack
 {
     public float range = 2.5f;
     public float duration = 3f;
@@ -27,7 +27,7 @@ public class BiteAttack : Attack
     }
 
     public override IEnumerator DoAttackCoroutine() {
-        Debug.Log("Boss Bite Attack");
+        Debug.Log("Claw Attack");
 
         bossController.Lock();
 
@@ -40,6 +40,8 @@ public class BiteAttack : Attack
         interactionManager.manageInteraction(new TakeDamage(damage, playerModel));
 
         yield return new WaitForSeconds(duration);
+
+        DefineNextAttackTime();
 
         bossController.Unlock();
 

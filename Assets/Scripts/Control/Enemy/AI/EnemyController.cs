@@ -81,7 +81,7 @@ public class EnemyController : MonoBehaviour
         return Vector3.Distance(GetPlayerPosition(), GetEnemyPosition());
     }
 
-    Quaternion ComputeRotationTowardsPlayer() {
+    public Quaternion ComputeRotationTowardsPlayer() {
         Vector3 direction = (GetPlayerPosition() - GetEnemyPosition()).normalized;
         return Quaternion.LookRotation(new Vector3(direction.x, 0, direction.z));
     }
@@ -102,6 +102,10 @@ public class EnemyController : MonoBehaviour
 
     public float GetSpeed() {
         return agent.speed;
+    }
+
+    public void GoTo(Vector3 destination) {
+        agent.SetDestination(destination);
     }
 
     public void ChasePlayer() {
