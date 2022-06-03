@@ -15,6 +15,6 @@ public class ChaseAction : Action
 
     public override void execute() {
         controller.ChasePlayer();
-        // controller.FacePlayer(rotation);
+        controller.FacePlayer(rotation);
     }
 }
