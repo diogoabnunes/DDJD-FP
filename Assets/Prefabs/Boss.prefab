@@ -96,6 +96,7 @@ GameObject:
   - component: {fileID: 2248141052534496048}
   - component: {fileID: 3127369922271147237}
   - component: {fileID: 1056409213347368660}
+  - component: {fileID: 9056516339841640861}
   m_Layer: 13
   m_Name: Boss
   m_TagString: Untagged
@@ -217,8 +218,28 @@ MonoBehaviour:
   coolDown: 3
   duration: 3
   damage: 1
-  FIRE_DURATION: 2
-  arenaCenterPoint: {fileID: 0}
+  LOOK_DURATION: 1.5
+  FIRE_BREATH_DURATION: 2
+  REST_DURATION: 1
+--- !u!114 &9056516339841640861
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6575386942593529428}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 01b9cb6ca8620a745928fd6c56245eb2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  coolDown: 3
+  maxRange: 70
+  minRange: 30
+  damage: 1
+  speed: 30
+  CHARGE_DURATION: 2
+  REST_DURATION: 2
 --- !u!1 &6575386942619793680
 GameObject:
   m_ObjectHideFlags: 0

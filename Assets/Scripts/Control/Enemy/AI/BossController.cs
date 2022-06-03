@@ -4,6 +4,7 @@ using UnityEngine;
 
 [RequireComponent(typeof(ClawAttack))]
 [RequireComponent(typeof(FireBreathAttack))]
+[RequireComponent(typeof(ChargeAttack))]
 public class BossController : EnemyController
 {
     List<Attack> attacks = new List<Attack>();
@@ -12,8 +13,9 @@ public class BossController : EnemyController
     {
         base.Start();
 
-        attacks.Add(GetComponent<ClawAttack>());
-        attacks.Add(GetComponent<FireBreathAttack>());
+        // attacks.Add(GetComponent<ClawAttack>());
+        // attacks.Add(GetComponent<FireBreathAttack>());
+        attacks.Add(GetComponent<ChargeAttack>());
     }
 
     public override Action GetNextAction(float distanceToPlayer, Quaternion rotationTowardsPlayer) {

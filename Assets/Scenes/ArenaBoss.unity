@@ -523,7 +523,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 436206369}
-  m_LocalRotation: {x: 0.11108213, y: -4.385925e-16, z: -1.2361557e-17, w: 0.99381125}
+  m_LocalRotation: {x: 0.11108212, y: 0.0000000074044713, z: -8.2762636e-10, w: 0.99381125}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -632,7 +632,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 674401993}
-  m_LocalRotation: {x: 0.09660856, y: 0.000000017818042, z: 0.0000000017294602, w: 0.9953225}
+  m_LocalRotation: {x: 0.09660854, y: -0.000000017617532, z: -0.0000000020406055, w: 0.9953225}
   m_LocalPosition: {x: -0.5, y: 18.505945, z: -44.049374}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -2393,8 +2393,9 @@ MonoBehaviour:
   coolDown: 3
   duration: 3
   damage: 1
-  FIRE_DURATION: 2
-  arenaCenterPoint: {fileID: 244027400}
+  LOOK_DURATION: 1.5
+  FIRE_BREATH_DURATION: 2
+  REST_DURATION: 1
 --- !u!1 &2032948391
 GameObject:
   m_ObjectHideFlags: 0

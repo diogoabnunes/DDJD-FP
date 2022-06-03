@@ -5,13 +5,11 @@ using UnityEngine;
 [RequireComponent(typeof(BossController))]
 public class ChargeAttack : Attack
 {
-    public float maxRange = 50f;
-    public float minRange = 25f;
-    public float duration = 3f;
+    public float maxRange = 70f;
+    public float minRange = 30f;
     public float damage = 1f;
 
-    public float speed = 10f;
-    public float stopChasingPlayerAtDistance = 10f;
+    public float speed = 30f;
 
     public float CHARGE_DURATION = 2f;
     public float REST_DURATION = 2f;
@@ -27,8 +25,6 @@ public class ChargeAttack : Attack
         bossController = GetComponent<BossController>();
         playerModel = PlayerModel.instance;
         m_Animator = bossController.GetAnimator();
-
-        minRange = maxRange / 2f;
     }
 
     public override bool CanAttack(float distanceToPlayer) {
@@ -42,42 +38,44 @@ public class ChargeAttack : Attack
 
         bossController.CancelMovement();
 
-        yield return new WaitForSeconds(CHARGE_DURATION);
+        Debug.Log("Charging");
+
+        float startChargingTime = Time.time;
+        while (Time.time - startChargingTime < CHARGE_DURATION) {
+            Quaternion rotationTowardsPlayer = bossController.ComputeRotationTowardsPlayer();
+            bossController.FacePlayer(rotationTowardsPlayer);
+            
+            yield return null;
+        }
+
+        Debug.Log("Dash");
+
+        Vector3 destination = bossController.GetPlayerPosition();
 
         float initialSpeed = bossController.GetSpeed();
         bossController.SetSpeed(speed);
 
-        do {
-            Vector3 playerPosition = bossController.GetPlayerPosition();
-            Vector3 currentPosition = bossController.GetEnemyPosition();
-            float distance = Vector3.Distance(currentPosition, playerPosition);
+        bossController.GoTo(destination);
 
-            if (distance == 0) break;
-
-            if (distance > stopChasingPlayerAtDistance) {
-                bossController.ChasePlayer();
-            }
-            
-        } while (true);
+        Vector3 enemyPosition = bossController.GetEnemyPosition();
+        while (enemyPosition.x != destination.x || enemyPosition.z != destination.z) {
+            yield return null;
+            enemyPosition = bossController.GetEnemyPosition();
+        }
 
         bossController.SetSpeed(initialSpeed);
 
-        // play animation of attack
-        // m_Animator.SetTrigger("attack");
+        Debug.Log("Resting");
+
+        yield return new WaitForSeconds(REST_DURATION);
 
         // verify if player is still in range
-        interactionManager.manageInteraction(new TakeDamage(damage, playerModel));
+        // interactionManager.manageInteraction(new TakeDamage(damage, playerModel));
 
-        yield return new WaitForSeconds(CHARGE_DURATION);
+        DefineNextAttackTime();
 
         bossController.Unlock();
 
         yield return null;
     }
-
-    void Charge() {
-
-    }
-
-    void Sprint() {}
 }

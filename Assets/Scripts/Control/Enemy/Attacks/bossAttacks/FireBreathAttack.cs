@@ -7,9 +7,9 @@ public class FireBreathAttack : Attack
 {
     public float duration = 3f;
     public float damage = 1f;
-    public float LOOKING_DURATION = 1.5f;
+    public float LOOK_DURATION = 1.5f;
     public float FIRE_BREATH_DURATION = 2f;
-    public float RESTING_DURATION = 1f;
+    public float REST_DURATION = 1f;
 
     BossController bossController;
     PlayerModel playerModel;
@@ -56,7 +56,7 @@ public class FireBreathAttack : Attack
 
         // look for player
         float startLookingTime = Time.time;
-        while (Time.time - startLookingTime < LOOKING_DURATION) {
+        while (Time.time - startLookingTime < LOOK_DURATION) {
             Quaternion rotationTowardsPlayer = bossController.ComputeRotationTowardsPlayer();
             bossController.FacePlayer(rotationTowardsPlayer);
 
@@ -76,7 +76,7 @@ public class FireBreathAttack : Attack
 
         Debug.Log("Resting!");
 
-        yield return new WaitForSeconds(RESTING_DURATION);
+        yield return new WaitForSeconds(REST_DURATION);
 
         Debug.Log("Done!");
 
