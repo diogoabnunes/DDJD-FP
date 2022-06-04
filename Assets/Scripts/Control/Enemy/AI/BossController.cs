@@ -13,9 +13,9 @@ public class BossController : EnemyController
     {
         base.Start();
 
-        attacks.Add(GetComponent<ClawAttack>());
+        // attacks.Add(GetComponent<ClawAttack>());
         // attacks.Add(GetComponent<FireBreathAttack>());
-        // attacks.Add(GetComponent<ChargeAttack>());
+        attacks.Add(GetComponent<ChargeAttack>());
     }
 
     public override Action GetNextAction(float distanceToPlayer, Quaternion rotationTowardsPlayer) {

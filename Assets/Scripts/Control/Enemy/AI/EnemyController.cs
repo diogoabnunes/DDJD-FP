@@ -96,12 +96,12 @@ public class EnemyController : MonoBehaviour
         }
     }
 
-    public void SetSpeed(float speed) {
-        agent.speed = speed;
+    public void SetRigidbodyVelocity(Vector3 velocity) {
+        GetComponent<Rigidbody>().velocity = velocity;
     }
 
-    public float GetSpeed() {
-        return agent.speed;
+    public void RemoveRigidbodyVelocity() {
+        GetComponent<Rigidbody>().velocity = Vector3.zero;
     }
 
     public void GoTo(Vector3 destination) {

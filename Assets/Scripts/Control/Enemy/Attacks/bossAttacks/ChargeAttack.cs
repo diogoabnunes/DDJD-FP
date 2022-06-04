@@ -12,12 +12,26 @@ public class ChargeAttack : Attack
     public float speed = 100f;
 
     public float CHARGE_DURATION = 2f;
+    public float STUNNED_DURATION = 5f;
     public float REST_DURATION = 2f;
+
+    bool dashing = false;
+
+    GameObject chargeImpactPoint;
 
     BossController bossController;
     PlayerModel playerModel;
 
     Animator m_Animator;
+
+    enum CollisionType {
+        PlayerCollision,
+        ObjectCollision,
+        NoCollision,
+        Null
+    };
+
+    CollisionType collision = CollisionType.Null;
 
     override public void Start() {
         base.Start();
@@ -25,10 +39,27 @@ public class ChargeAttack : Attack
         bossController = GetComponent<BossController>();
         playerModel = PlayerModel.instance;
         m_Animator = bossController.GetAnimator();
+
+        chargeImpactPoint = transform.Find("ChargeImpactPoint").gameObject;
     }
 
     public override bool CanAttack(float distanceToPlayer) {
         return distanceToPlayer >= minRange && distanceToPlayer <= maxRange && TimeElapsedForAttack();
+    }
+
+    public void EnemyCollidedWithPlayer() {
+        dashing = false;
+        collision = CollisionType.PlayerCollision;
+    }
+
+    public void EnemyCollidedWithObject() {
+        dashing = false;
+        collision = CollisionType.ObjectCollision;
+    }
+
+    public void EnemyCollidedWithEndOfArena() {
+        dashing = false;
+        collision = CollisionType.NoCollision;
     }
 
     public override IEnumerator DoAttackCoroutine() {
@@ -37,6 +68,8 @@ public class ChargeAttack : Attack
         bossController.Lock();
 
         bossController.CancelMovement();
+
+        chargeImpactPoint.SetActive(true);
 
         Debug.Log("Charging");
 
@@ -50,36 +83,50 @@ public class ChargeAttack : Attack
 
         Debug.Log("Dash");
 
-        Vector3 destination = bossController.GetPlayerPosition();
+        dashing = true;
 
-        float initialSpeed = bossController.GetSpeed();
-        bossController.SetSpeed(speed);
+        Vector3 velocity = GetVelocity();
+        bossController.SetRigidbodyVelocity(velocity);
 
-        bossController.GoTo(destination);
-
-        Vector3 enemyPosition = bossController.GetEnemyPosition();
-        while (enemyPosition.x != destination.x || enemyPosition.z != destination.z) {
-            // Debug.Log(enemyPosition);
-            // bossController.ShowDest();
-            // Debug.Log(destination);
-            // Debug.Log("-------------------------");
+        while (dashing) {
             yield return null;
-            enemyPosition = bossController.GetEnemyPosition();
         }
 
-        bossController.SetSpeed(initialSpeed);
+        Debug.Log("Stopped");
 
-        Debug.Log("Resting");
+        bossController.RemoveRigidbodyVelocity();
+        
+        chargeImpactPoint.SetActive(false);
 
-        yield return new WaitForSeconds(REST_DURATION);
-
-        // verify if player is still in range
-        // interactionManager.manageInteraction(new TakeDamage(damage, playerModel));
+        if (collision == CollisionType.PlayerCollision) {
+            Debug.Log("Resting");
+            // interactionManager.manageInteraction(new TakeDamage(damage, playerModel));
+            yield return new WaitForSeconds(REST_DURATION);
+        }
+        else if (collision == CollisionType.ObjectCollision) {
+            Debug.Log("Stunned");
+            yield return new WaitForSeconds(STUNNED_DURATION);
+        }
+        else {
+            Debug.Log("Resting");
+            yield return new WaitForSeconds(REST_DURATION);
+        }
 
         DefineNextAttackTime();
 
         bossController.Unlock();
 
         yield return null;
+    }
+
+    Vector3 GetVelocity() {
+        Vector3 destination = bossController.GetPlayerPosition();
+        Vector3 currentPosition = bossController.GetEnemyPosition();
+        Vector3 direction = (destination - currentPosition).normalized;
+
+        Vector3 velocity = direction * speed;
+        velocity.y = 0;
+
+        return velocity;
     }
 }
