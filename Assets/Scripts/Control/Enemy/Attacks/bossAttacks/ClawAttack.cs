@@ -7,7 +7,8 @@ public class ClawAttack : Attack
 {
     public float range = 2.5f;
     public float duration = 3f;
-    public float damage = 1f;
+
+    GameObject clawImpactPoint;
 
     BossController bossController;
     PlayerModel playerModel;
@@ -20,6 +21,8 @@ public class ClawAttack : Attack
         bossController = GetComponent<BossController>();
         playerModel = PlayerModel.instance;
         m_Animator = bossController.GetAnimator();
+
+        clawImpactPoint = transform.Find("ClawImpactPoint").gameObject;
     }
 
     public override bool CanAttack(float distanceToPlayer) {
@@ -33,13 +36,14 @@ public class ClawAttack : Attack
 
         bossController.CancelMovement();
 
+        clawImpactPoint.SetActive(true);
+
         // play animation of attack
         // m_Animator.SetTrigger("attack");
 
-        // verify if player is still in range
-        interactionManager.manageInteraction(new TakeDamage(damage, playerModel));
-
         yield return new WaitForSeconds(duration);
+
+        clawImpactPoint.SetActive(false);
 
         DefineNextAttackTime();
 

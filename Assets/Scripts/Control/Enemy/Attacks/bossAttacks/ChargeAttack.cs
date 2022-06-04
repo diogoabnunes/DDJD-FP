@@ -9,7 +9,7 @@ public class ChargeAttack : Attack
     public float minRange = 30f;
     public float damage = 1f;
 
-    public float speed = 50f;
+    public float speed = 100f;
 
     public float CHARGE_DURATION = 2f;
     public float REST_DURATION = 2f;
@@ -59,6 +59,10 @@ public class ChargeAttack : Attack
 
         Vector3 enemyPosition = bossController.GetEnemyPosition();
         while (enemyPosition.x != destination.x || enemyPosition.z != destination.z) {
+            // Debug.Log(enemyPosition);
+            // bossController.ShowDest();
+            // Debug.Log(destination);
+            // Debug.Log("-------------------------");
             yield return null;
             enemyPosition = bossController.GetEnemyPosition();
         }
