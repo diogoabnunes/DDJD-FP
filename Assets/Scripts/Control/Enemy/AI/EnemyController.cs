@@ -104,6 +104,22 @@ public class EnemyController : MonoBehaviour
         GetComponent<Rigidbody>().velocity = Vector3.zero;
     }
 
+    public void DisableAI() {
+        agent.enabled = false;
+    }
+
+    public void EnableAI() {
+        agent.enabled = true;
+    }
+
+    public float GetStoppingDistance() {
+        return agent.stoppingDistance;
+    }
+
+    public void SetStoppingDistance(float stoppingDistance) {
+        agent.stoppingDistance = stoppingDistance;
+    }
+
     public void GoTo(Vector3 destination) {
         agent.SetDestination(destination);
     }

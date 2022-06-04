@@ -18,6 +18,7 @@ public class ChargeAttack : Attack
     bool dashing = false;
 
     GameObject chargeImpactPoint;
+    GameObject frontPoint;
 
     BossController bossController;
     PlayerModel playerModel;
@@ -41,6 +42,7 @@ public class ChargeAttack : Attack
         m_Animator = bossController.GetAnimator();
 
         chargeImpactPoint = transform.Find("ChargeImpactPoint").gameObject;
+        frontPoint = transform.Find("FrontPoint").gameObject;
     }
 
     public override bool CanAttack(float distanceToPlayer) {
@@ -86,6 +88,7 @@ public class ChargeAttack : Attack
         dashing = true;
 
         Vector3 velocity = GetVelocity();
+        bossController.DisableAI();
         bossController.SetRigidbodyVelocity(velocity);
 
         while (dashing) {
@@ -94,13 +97,14 @@ public class ChargeAttack : Attack
 
         Debug.Log("Stopped");
 
-        bossController.RemoveRigidbodyVelocity();
-        
         chargeImpactPoint.SetActive(false);
-
+        
+        bossController.RemoveRigidbodyVelocity();
+        bossController.EnableAI();
+        
         if (collision == CollisionType.PlayerCollision) {
-            Debug.Log("Resting");
-            // interactionManager.manageInteraction(new TakeDamage(damage, playerModel));
+            Debug.Log("Player Collision");
+            interactionManager.manageInteraction(new TakeDamage(damage, playerModel));
             yield return new WaitForSeconds(REST_DURATION);
         }
         else if (collision == CollisionType.ObjectCollision) {
@@ -108,7 +112,7 @@ public class ChargeAttack : Attack
             yield return new WaitForSeconds(STUNNED_DURATION);
         }
         else {
-            Debug.Log("Resting");
+            Debug.Log("Arena");
             yield return new WaitForSeconds(REST_DURATION);
         }
 
@@ -120,7 +124,7 @@ public class ChargeAttack : Attack
     }
 
     Vector3 GetVelocity() {
-        Vector3 destination = bossController.GetPlayerPosition();
+        Vector3 destination = frontPoint.transform.position;
         Vector3 currentPosition = bossController.GetEnemyPosition();
         Vector3 direction = (destination - currentPosition).normalized;
 

@@ -37,11 +37,10 @@ public class FireBreathAttack : Attack
 
         bossController.Lock();
 
-        bossController.CancelMovement();
-
         Debug.Log("Moving to the center of the arena!");
 
-        // move to center of arena
+        float stoppingDistance = bossController.GetStoppingDistance();
+        bossController.SetStoppingDistance(0f);
         bossController.GoTo(arenaCenterPoint);
 
         Vector3 enemyPosition = bossController.GetEnemyPosition();
@@ -49,6 +48,8 @@ public class FireBreathAttack : Attack
             yield return null;
             enemyPosition = bossController.GetEnemyPosition();
         }
+
+        bossController.SetStoppingDistance(stoppingDistance);
 
         Debug.Log("Facing player!");
 
