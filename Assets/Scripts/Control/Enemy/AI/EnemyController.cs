@@ -31,7 +31,6 @@ public class EnemyController : MonoBehaviour
         player = PlayerModel.instance.player.transform;
         agent = GetComponent<NavMeshAgent>();
         
-
         SpawnManager[] obj = FindObjectsOfType<SpawnManager>();
         if (obj.Length != 0) {
             spawnManager = obj[0];
@@ -100,20 +99,16 @@ public class EnemyController : MonoBehaviour
         }
     }
 
-    public void SetRigidbodyVelocity(Vector3 velocity) {
-        GetComponent<Rigidbody>().velocity = velocity;
+    public void SetAgentSpeed(float speed) {
+        agent.speed = speed;
     }
 
-    public void RemoveRigidbodyVelocity() {
-        GetComponent<Rigidbody>().velocity = Vector3.zero;
+    public float GetAgentSpeed() {
+        return agent.speed;
     }
 
-    public void DisableAI() {
-        agent.enabled = false;
-    }
-
-    public void EnableAI() {
-        agent.enabled = true;
+    public void AlternateAIAgent(int agentId) {
+        agent.agentTypeID = agentId;
     }
 
     public float GetStoppingDistance() {

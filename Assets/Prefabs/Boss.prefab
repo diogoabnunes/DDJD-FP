@@ -269,13 +269,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6575386942593529425}
-  - component: {fileID: 6575386942593529427}
   - component: {fileID: 6575386942593529424}
   - component: {fileID: 6575386942593529439}
-  - component: {fileID: 2248141052534496048}
   - component: {fileID: 3127369922271147237}
   - component: {fileID: 1056409213347368660}
   - component: {fileID: 9056516339841640861}
+  - component: {fileID: 1614188141948152524}
   m_Layer: 13
   m_Name: Boss
   m_TagString: Untagged
@@ -301,22 +300,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!54 &6575386942593529427
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6575386942593529428}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 80
-  m_CollisionDetection: 0
 --- !u!195 &6575386942593529424
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -328,7 +311,7 @@ NavMeshAgent:
   m_AgentTypeID: 1479372276
   m_Radius: 0.1
   m_Speed: 5
-  m_Acceleration: 8
+  m_Acceleration: 100
   avoidancePriority: 50
   m_AngularSpeed: 120
   m_StoppingDistance: 10
@@ -355,20 +338,6 @@ MonoBehaviour:
   health: 7
   lookRange: 200
   m_Animator: {fileID: 0}
---- !u!136 &2248141052534496048
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6575386942593529428}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 2.5
-  m_Height: 10
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &3127369922271147237
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -418,10 +387,23 @@ MonoBehaviour:
   maxRange: 70
   minRange: 30
   damage: 3
-  speed: 100
+  speed: 500
   CHARGE_DURATION: 2
   STUNNED_DURATION: 5
   REST_DURATION: 2
+--- !u!65 &1614188141948152524
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6575386942593529428}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 5, y: 9, z: 5}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &6575386942619793680
 GameObject:
   m_ObjectHideFlags: 0

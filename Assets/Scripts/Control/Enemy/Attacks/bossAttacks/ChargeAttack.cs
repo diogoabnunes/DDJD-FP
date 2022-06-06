@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 [RequireComponent(typeof(BossController))]
 public class ChargeAttack : Attack
@@ -65,7 +66,7 @@ public class ChargeAttack : Attack
     }
 
     public override IEnumerator DoAttackCoroutine() {
-        Debug.Log("Boss Bite Attack");
+        Debug.Log("Boss Charge Attack");
 
         bossController.Lock();
 
@@ -87,20 +88,27 @@ public class ChargeAttack : Attack
 
         dashing = true;
 
-        Vector3 velocity = GetVelocity();
-        bossController.DisableAI();
-        bossController.SetRigidbodyVelocity(velocity);
+        bossController.AlternateAIAgent(GetAgenTypeIDByName("BossDash"));
+        Vector3 destination = bossController.GetPlayerPosition();
 
-        while (dashing) {
+        float initialSpeed = bossController.GetAgentSpeed();
+        bossController.SetAgentSpeed(speed);
+        bossController.GoTo(destination);
+
+        Vector3 enemyPosition = bossController.GetEnemyPosition();
+        while (dashing && (enemyPosition.x != destination.x && enemyPosition.z != destination.z)) {
             yield return null;
+            enemyPosition = bossController.GetEnemyPosition();
         }
+
+        dashing = false;
 
         Debug.Log("Stopped");
 
+        bossController.CancelMovement();
         chargeImpactPoint.SetActive(false);
-        
-        bossController.RemoveRigidbodyVelocity();
-        bossController.EnableAI();
+        bossController.AlternateAIAgent(GetAgenTypeIDByName("Boss"));
+        bossController.SetAgentSpeed(initialSpeed);
         
         if (collision == CollisionType.PlayerCollision) {
             Debug.Log("Player Collision");
@@ -112,7 +120,7 @@ public class ChargeAttack : Attack
             yield return new WaitForSeconds(STUNNED_DURATION);
         }
         else {
-            Debug.Log("Arena");
+            Debug.Log("Arena or Not find player");
             yield return new WaitForSeconds(REST_DURATION);
         }
 
@@ -123,14 +131,19 @@ public class ChargeAttack : Attack
         yield return null;
     }
 
-    Vector3 GetVelocity() {
-        Vector3 destination = frontPoint.transform.position;
-        Vector3 currentPosition = bossController.GetEnemyPosition();
-        Vector3 direction = (destination - currentPosition).normalized;
-
-        Vector3 velocity = direction * speed;
-        velocity.y = 0;
-
-        return velocity;
-    }
+    static int GetAgenTypeIDByName(string agentTypeName)
+     {
+         int count = NavMesh.GetSettingsCount();
+         string[] agentTypeNames = new string[count + 2];
+         for (var i = 0; i < count; i++)
+         {
+             int id = NavMesh.GetSettingsByIndex(i).agentTypeID;
+             string name = NavMesh.GetSettingsNameFromID(id);
+             if(name == agentTypeName)
+             {
+                 return id;
+             }
+         }
+         return -1;
+     }
 }
