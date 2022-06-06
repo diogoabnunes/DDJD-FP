@@ -6,6 +6,9 @@ public class GameManager : MonoBehaviour
 {
 
     public float difficulty = 1;
+    public int killedEnemies = 0;
+
+    public int bossCount = 50;
 
     #region Singleton
 
@@ -31,5 +34,12 @@ public class GameManager : MonoBehaviour
 
     public float getDifficulty(){
         return difficulty;
+    }
+
+    public void addEnemyKilled(){
+        killedEnemies += 1;
+        if(killedEnemies > bossCount){
+            Debug.Log("BOSS");
+        }
     }
 }

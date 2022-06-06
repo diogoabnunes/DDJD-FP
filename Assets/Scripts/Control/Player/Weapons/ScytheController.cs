@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.VFX;
 
 public class ScytheController : WeaponController
 {
@@ -8,8 +9,10 @@ public class ScytheController : WeaponController
 
     public float damage = 10f;
 
-    string[] baiscAttackAnimationNames = {"attack1_phase1", "attack1_phase2", "attack1_phase3"};
+    string[] basicAttackAnimationNames = {"attack1_phase1", "attack1_phase2", "attack1_phase3"};
 
+    public VisualEffect slashVFX;
+    
     int currentBasicAttackPhase = 0;
 
     float timeSinceLastBasicAttack = 0f;
@@ -35,9 +38,10 @@ public class ScytheController : WeaponController
             currentBasicAttackPhase = 0;
         }
 
-        m_Animator.SetTrigger(baiscAttackAnimationNames[currentBasicAttackPhase]);
+        m_Animator.SetTrigger(basicAttackAnimationNames[currentBasicAttackPhase]);
+        slashVFX.Play();
 
-        currentBasicAttackPhase = (currentBasicAttackPhase + 1) % baiscAttackAnimationNames.Length;
+        currentBasicAttackPhase = (currentBasicAttackPhase + 1) % basicAttackAnimationNames.Length;
         timeSinceLastBasicAttack = Time.time;
     }
 

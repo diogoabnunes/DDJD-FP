@@ -11,6 +11,7 @@ public class WeaponController : MonoBehaviour
 
     public Animator m_Animator;
 
+
     public float coolDownBasicAttack = 0f;
     public float coolDownAbility1 = 0f;
     public float coolDownAbility2 = 0f;

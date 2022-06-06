@@ -18,6 +18,8 @@ public class EnemyController : MonoBehaviour
     Transform player;
     NavMeshAgent agent;
 
+    protected GameManager gameManager;
+
     SpawnManager spawnManager = null;
 
     public Animator m_Animator;
@@ -25,8 +27,10 @@ public class EnemyController : MonoBehaviour
     public virtual void Start()
     {
         playerModel = PlayerModel.instance;
+        gameManager = GameManager.instance;
         player = PlayerModel.instance.player.transform;
         agent = GetComponent<NavMeshAgent>();
+        
 
         SpawnManager[] obj = FindObjectsOfType<SpawnManager>();
         if (obj.Length != 0) {
@@ -151,5 +155,11 @@ public class EnemyController : MonoBehaviour
     void OnDrawGizmosSelected() {
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, lookRange);
+    }
+
+    void OnDestroy()
+    {
+        gameManager.addEnemyKilled();
+        Debug.Log("Dead");
     }
 }

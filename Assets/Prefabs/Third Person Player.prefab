@@ -5119,7 +5119,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6188083685997313316}
-  - component: {fileID: 6188083685997313319}
   m_Layer: 0
   m_Name: Torso 1
   m_TagString: Untagged
@@ -5146,20 +5145,6 @@ Transform:
   m_Father: {fileID: 6188083686784453562}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!136 &6188083685997313319
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6188083685997313317}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.51137686
-  m_Height: 1.1301332
-  m_Direction: 1
-  m_Center: {x: -0.06541291, y: -0.081341356, z: 0.13913569}
 --- !u!1 &6188083686007637639
 GameObject:
   m_ObjectHideFlags: 0
@@ -5169,6 +5154,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6188083686007637638}
+  - component: {fileID: 1604991486}
   m_Layer: 8
   m_Name: Melee Weapon
   m_TagString: Untagged
@@ -5190,6 +5176,27 @@ Transform:
   m_Father: {fileID: 6188083686845781671}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1604991486
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6188083686007637639}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d9f14209a4a79694ebea4bca2376df9b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 6188083686845781659}
+  m_Animator: {fileID: 6188083687191178615}
+  coolDownBasicAttack: 0
+  coolDownAbility1: 0
+  coolDownAbility2: 0
+  Scythe: {fileID: 6188083686401257737}
+  damage: 10
+  slashVFX: {fileID: 0}
+  comboTiming: 2
 --- !u!1 &6188083686020807312
 GameObject:
   m_ObjectHideFlags: 0
@@ -5596,7 +5603,7 @@ GameObject:
   - component: {fileID: 5979602988557714046}
   m_Layer: 0
   m_Name: D_Scythe:pCube1
-  m_TagString: Untagged
+  m_TagString: PlayerWeapon
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5697,6 +5704,7 @@ MonoBehaviour:
   coolDownAbility2: 0
   Scythe: {fileID: 6188083686401257737}
   damage: 10
+  slashVFX: {fileID: 6188083687187144837}
   comboTiming: 2
 --- !u!1 &6188083686410644647
 GameObject:
@@ -5942,7 +5950,7 @@ Cloth:
   - maxDistance: 1.25
     collisionSphereDistance: 3.4028235e+38
   m_CapsuleColliders:
-  - {fileID: 6188083685997313319}
+  - {fileID: 0}
   m_SphereColliders: []
   m_SelfCollisionDistance: 0
   m_SelfCollisionStiffness: 0.2
@@ -6259,6 +6267,7 @@ GameObject:
   - component: {fileID: 6188083686845781671}
   - component: {fileID: 6188083686845781668}
   - component: {fileID: 53928756}
+  - component: {fileID: 53928759}
   m_Layer: 8
   m_Name: Third Person Player
   m_TagString: Player
@@ -6332,6 +6341,20 @@ MonoBehaviour:
   weapons:
   - {fileID: 6188083686401257737}
   - {fileID: 3619131493065048135}
+--- !u!136 &53928759
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6188083686845781659}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.5
+  m_Height: 2.4464717
+  m_Direction: 1
+  m_Center: {x: 0, y: 0.72323585, z: 0}
 --- !u!1 &6188083686883295324
 GameObject:
   m_ObjectHideFlags: 0
