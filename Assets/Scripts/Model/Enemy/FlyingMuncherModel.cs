@@ -1,11 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class FlyingMuncherModel : EnemyModel
 {
 
     public float health;
+
+    public float maxHealth;
+
+    public GameObject healthBarUI;
+    public Slider healthSlider;
 
     public Animator m_Animator;
 
@@ -18,17 +24,22 @@ public class FlyingMuncherModel : EnemyModel
     override public void Start() {
         base.Start();
 
-        health = 1f * gameManager.getDifficulty();
+        health = 1.5f * gameManager.getDifficulty();
+        maxHealth = health;
+        healthSlider.value = 1;
+
         m_Renderer = rendererHolder.GetComponentInChildren<SkinnedMeshRenderer>();
         flyingMuncherController = gameObject.GetComponent<FlyingMuncherController>();
     }
 
     override public void TakeDamage(float damage) {
         health -= damage;
-        Debug.Log("Small Muncher was hit! Health: " + health);
+        healthSlider.value = health/maxHealth;
+        Debug.Log("Flying Muncher was hit! Health: " + health);
 
         if (health <= 0) {
-            Die();
+          healthBarUI.SetActive(false);
+          Die();
         }
     }
 

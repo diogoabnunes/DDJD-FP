@@ -1,11 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class SmallMuncherModel : EnemyModel
 {
 
     public float health;
+
+    public float maxHealth;
+
+    public GameObject healthBarUI;
+    public Slider healthSlider;
 
     public Animator m_Animator;
 
@@ -13,12 +19,17 @@ public class SmallMuncherModel : EnemyModel
     public GameObject rendererHolder;
     float dissolvedPercentage = 0f;
 
+
     SmallMuncherController smallMuncherController;
 
     override public void Start() {
+
         base.Start();
 
         health = 2f * gameManager.getDifficulty();
+        maxHealth = health;
+        healthSlider.value = 1;
+
         m_Renderer = rendererHolder.GetComponentInChildren<SkinnedMeshRenderer>();
         smallMuncherController = gameObject.GetComponent<SmallMuncherController>();
     }
@@ -29,9 +40,12 @@ public class SmallMuncherModel : EnemyModel
 
     override public void TakeDamage(float damage) {
         health -= damage;
+        healthSlider.value = health/maxHealth;
+
         Debug.Log("Small Muncher was hit! Health: " + health);
 
         if (health <= 0) {
+            healthBarUI.SetActive(false);
             Die();
         }
     }

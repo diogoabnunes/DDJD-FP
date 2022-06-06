@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public abstract class EnemyModel : CharacterModel
 {
@@ -9,6 +10,7 @@ public abstract class EnemyModel : CharacterModel
     protected GameManager gameManager;
 
     public bool dead = false;
+
 
     public virtual void Start() {
       gameManager = GameManager.instance;
