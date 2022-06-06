@@ -35,6 +35,9 @@ public class ChargeAttack : Attack
 
     CollisionType collision = CollisionType.Null;
 
+    float normalSpeed;
+    Vector3 dashDestination;
+
     override public void Start() {
         base.Start();
 
@@ -72,8 +75,6 @@ public class ChargeAttack : Attack
 
         bossController.CancelMovement();
 
-        chargeImpactPoint.SetActive(true);
-
         Debug.Log("Charging");
 
         float startChargingTime = Time.time;
@@ -84,31 +85,13 @@ public class ChargeAttack : Attack
             yield return null;
         }
 
-        Debug.Log("Dash");
+        Dash();
 
-        dashing = true;
-
-        bossController.AlternateAIAgent(GetAgenTypeIDByName("BossDash"));
-        Vector3 destination = bossController.GetPlayerPosition();
-
-        float initialSpeed = bossController.GetAgentSpeed();
-        bossController.SetAgentSpeed(speed);
-        bossController.GoTo(destination);
-
-        Vector3 enemyPosition = bossController.GetEnemyPosition();
-        while (dashing && (enemyPosition.x != destination.x && enemyPosition.z != destination.z)) {
+        while (!CollidedWithSomething() && !ReachedDestination()) {
             yield return null;
-            enemyPosition = bossController.GetEnemyPosition();
         }
 
-        dashing = false;
-
-        Debug.Log("Stopped");
-
-        bossController.CancelMovement();
-        chargeImpactPoint.SetActive(false);
-        bossController.AlternateAIAgent(GetAgenTypeIDByName("Boss"));
-        bossController.SetAgentSpeed(initialSpeed);
+        StopDash();
         
         if (collision == CollisionType.PlayerCollision) {
             Debug.Log("Player Collision");
@@ -131,8 +114,69 @@ public class ChargeAttack : Attack
         yield return null;
     }
 
-    static int GetAgenTypeIDByName(string agentTypeName)
-     {
+    void Dash() {
+        Debug.Log("Dash");
+
+        SetupDash();
+
+        dashDestination = bossController.GetPlayerPosition();
+        bossController.GoTo(dashDestination);
+    }
+
+    void SetupDash() {
+        dashing = true;
+        chargeImpactPoint.SetActive(true);
+
+        ChangeToDashAgentType();
+        ChangeToDashSpeed();
+    }
+
+    void ChangeToDashSpeed() {
+        normalSpeed = bossController.GetAgentSpeed();
+        bossController.SetAgentSpeed(speed);
+    }
+
+    void ChangeToDashAgentType() {
+        bossController.AlternateAIAgent(GetAgentIdByName("BossDash"));
+    }
+
+    void StopDash() {
+        Debug.Log("Stopped");
+
+        StopMovement();
+        
+        dashing = false;
+        chargeImpactPoint.SetActive(false);
+
+        ResetAgentType();
+        ResetSpeed();
+    }
+
+    void StopMovement() {
+        bossController.CancelMovement();
+    }
+
+    void ResetAgentType() {
+        bossController.AlternateAIAgent(GetAgentIdByName("Boss"));
+    }
+
+    void ResetSpeed() {
+        bossController.SetAgentSpeed(normalSpeed);
+    }
+
+    bool CollidedWithSomething() {
+        return !dashing;
+    }
+
+    bool ReachedDestination() {
+        Vector3 currentPosition = bossController.GetEnemyPosition();
+        return currentPosition.x == dashDestination.x && currentPosition.z == dashDestination.z;
+    }
+
+    // -----------------------------------------------------------------
+
+    static int GetAgentIdByName(string agentTypeName)
+    {
          int count = NavMesh.GetSettingsCount();
          string[] agentTypeNames = new string[count + 2];
          for (var i = 0; i < count; i++)
@@ -145,5 +189,5 @@ public class ChargeAttack : Attack
              }
          }
          return -1;
-     }
+    }
 }
