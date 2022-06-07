@@ -13,8 +13,8 @@ public class BossController : EnemyController
     {
         base.Start();
 
-        attacks.Add(GetComponent<ClawAttack>());
-        attacks.Add(GetComponent<FireBreathAttack>());
+        // attacks.Add(GetComponent<ClawAttack>());
+        // attacks.Add(GetComponent<FireBreathAttack>());
         attacks.Add(GetComponent<ChargeAttack>());
     }
 

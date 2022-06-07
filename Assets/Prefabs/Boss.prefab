@@ -271,10 +271,10 @@ GameObject:
   - component: {fileID: 6575386942593529425}
   - component: {fileID: 6575386942593529424}
   - component: {fileID: 6575386942593529439}
-  - component: {fileID: 3127369922271147237}
-  - component: {fileID: 1056409213347368660}
-  - component: {fileID: 9056516339841640861}
   - component: {fileID: 1614188141948152524}
+  - component: {fileID: 6696106359074929424}
+  - component: {fileID: 384316476500166742}
+  - component: {fileID: 2417919139375263295}
   m_Layer: 13
   m_Name: Boss
   m_TagString: Untagged
@@ -338,7 +338,20 @@ MonoBehaviour:
   health: 7
   lookRange: 200
   m_Animator: {fileID: 0}
---- !u!114 &3127369922271147237
+--- !u!65 &1614188141948152524
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6575386942593529428}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 5, y: 9, z: 5}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &6696106359074929424
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -347,13 +360,18 @@ MonoBehaviour:
   m_GameObject: {fileID: 6575386942593529428}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d3acb5dc94894bd4cb4afde189a0c4f1, type: 3}
+  m_Script: {fileID: 11500000, guid: 01b9cb6ca8620a745928fd6c56245eb2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  coolDown: 0
-  range: 15
-  duration: 3
---- !u!114 &1056409213347368660
+  coolDown: 3
+  maxRange: 70
+  minRange: 30
+  damage: 1
+  speed: 100
+  CHARGE_DURATION: 2
+  STUNNED_DURATION: 5
+  REST_DURATION: 2
+--- !u!114 &384316476500166742
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -371,7 +389,7 @@ MonoBehaviour:
   LOOK_DURATION: 1.5
   FIRE_BREATH_DURATION: 2
   REST_DURATION: 1
---- !u!114 &9056516339841640861
+--- !u!114 &2417919139375263295
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -380,30 +398,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 6575386942593529428}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 01b9cb6ca8620a745928fd6c56245eb2, type: 3}
+  m_Script: {fileID: 11500000, guid: d3acb5dc94894bd4cb4afde189a0c4f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   coolDown: 3
-  maxRange: 70
-  minRange: 30
-  damage: 3
-  speed: 500
-  CHARGE_DURATION: 2
-  STUNNED_DURATION: 5
-  REST_DURATION: 2
---- !u!65 &1614188141948152524
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6575386942593529428}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 5, y: 9, z: 5}
-  m_Center: {x: 0, y: 0, z: 0}
+  range: 2.5
+  duration: 3
 --- !u!1 &6575386942619793680
 GameObject:
   m_ObjectHideFlags: 0

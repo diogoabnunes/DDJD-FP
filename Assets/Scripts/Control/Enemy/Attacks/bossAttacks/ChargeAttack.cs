@@ -87,31 +87,54 @@ public class ChargeAttack : Attack
 
         Dash();
 
-        while (!CollidedWithSomething() && !ReachedDestination()) {
+        while (IsDashing()) {
             yield return null;
         }
-
+        
         StopDash();
         
-        if (collision == CollisionType.PlayerCollision) {
-            Debug.Log("Player Collision");
-            interactionManager.manageInteraction(new TakeDamage(damage, playerModel));
-            yield return new WaitForSeconds(REST_DURATION);
-        }
-        else if (collision == CollisionType.ObjectCollision) {
-            Debug.Log("Stunned");
-            yield return new WaitForSeconds(STUNNED_DURATION);
-        }
-        else {
-            Debug.Log("Arena or Not find player");
-            yield return new WaitForSeconds(REST_DURATION);
-        }
+        float time = ResolveCollisionAndGetTimeStoppedAfterCollision();
+        yield return new WaitForSeconds(time);
 
         DefineNextAttackTime();
 
         bossController.Unlock();
 
         yield return null;
+    }
+
+    float ResolveCollisionAndGetTimeStoppedAfterCollision() {
+        ResolveCollsiion();
+        return GetTimeStoppedAfterCollision();
+    }
+
+    void ResolveCollsiion() {
+        if (CollidedWithPlayer()) {
+            interactionManager.manageInteraction(new TakeDamage(damage, playerModel));
+        }
+    }
+
+    float GetTimeStoppedAfterCollision() {
+        if (CollidedWithObject()) {
+            Debug.Log("STUNNED!!!");
+            return STUNNED_DURATION;
+        }
+        else {
+            Debug.Log("RESTING!!!");
+            return REST_DURATION;
+        }
+    }
+
+    bool CollidedWithPlayer() {
+        return collision == CollisionType.PlayerCollision;
+    }
+
+    bool CollidedWithObject() {
+        return collision == CollisionType.ObjectCollision;
+    }
+
+    bool IsDashing() {
+        return !CollidedWithSomething() && !ReachedDestination();
     }
 
     void Dash() {
@@ -145,15 +168,19 @@ public class ChargeAttack : Attack
 
         StopMovement();
         
+        ResetDash();
+    }
+
+    void StopMovement() {
+        bossController.CancelMovement();
+    }
+
+    void ResetDash() {
         dashing = false;
         chargeImpactPoint.SetActive(false);
 
         ResetAgentType();
         ResetSpeed();
-    }
-
-    void StopMovement() {
-        bossController.CancelMovement();
     }
 
     void ResetAgentType() {
