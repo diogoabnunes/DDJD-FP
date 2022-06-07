@@ -11,6 +11,13 @@ public abstract class EnemyModel : CharacterModel
 
     public bool dead = false;
 
+    public float health;
+    public float maxHealth;
+
+    public GameObject healthBarUI;
+    public Slider healthSlider;
+    bool healthBarActive = false;
+
 
     public virtual void Start() {
       gameManager = GameManager.instance;
@@ -19,6 +26,26 @@ public abstract class EnemyModel : CharacterModel
       if (obj.Length != 0) {
           spawnManager = obj[0];
       }
+
+      health = 2f * gameManager.getDifficulty();
+      maxHealth = health;
+      healthSlider.value = 1;
+      healthBarUI.SetActive(false);
+    }
+
+    override public void TakeDamage(float damage) {
+        health -= damage;
+        healthSlider.value = health/maxHealth;
+
+        if (!healthBarActive) {
+          healthBarActive = true;
+          healthBarUI.SetActive(true);
+        }
+
+        if (health <= 0) {
+            healthBarUI.SetActive(false);
+            Die();
+        }
     }
 
     public virtual void Die() {

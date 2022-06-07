@@ -5,14 +5,6 @@ using UnityEngine.UI;
 
 public class FlyingMuncherModel : EnemyModel
 {
-
-    public float health;
-
-    public float maxHealth;
-
-    public GameObject healthBarUI;
-    public Slider healthSlider;
-
     public Animator m_Animator;
 
     SkinnedMeshRenderer m_Renderer;
@@ -33,14 +25,8 @@ public class FlyingMuncherModel : EnemyModel
     }
 
     override public void TakeDamage(float damage) {
-        health -= damage;
-        healthSlider.value = health/maxHealth;
+        base.TakeDamage(damage);
         Debug.Log("Flying Muncher was hit! Health: " + health);
-
-        if (health <= 0) {
-          healthBarUI.SetActive(false);
-          Die();
-        }
     }
 
     public void ManageAnimations() {
