@@ -19,7 +19,6 @@ public class ChargeAttack : Attack
     bool dashing = false;
 
     GameObject chargeImpactPoint;
-    GameObject frontPoint;
 
     BossController bossController;
     PlayerModel playerModel;
@@ -46,7 +45,6 @@ public class ChargeAttack : Attack
         m_Animator = bossController.GetAnimator();
 
         chargeImpactPoint = transform.Find("ChargeImpactPoint").gameObject;
-        frontPoint = transform.Find("FrontPoint").gameObject;
     }
 
     public override bool CanAttack(float distanceToPlayer) {
@@ -69,13 +67,13 @@ public class ChargeAttack : Attack
     }
 
     public override IEnumerator DoAttackCoroutine() {
-        Debug.Log("Boss Charge Attack");
+        // Debug.Log("Boss Charge Attack");
 
         bossController.Lock();
 
         bossController.CancelMovement();
 
-        Debug.Log("Charging");
+        // Debug.Log("Charging");
 
         float startChargingTime = Time.time;
         while (Time.time - startChargingTime < CHARGE_DURATION) {
@@ -116,11 +114,11 @@ public class ChargeAttack : Attack
 
     float GetTimeStoppedAfterCollision() {
         if (CollidedWithObject()) {
-            Debug.Log("STUNNED!!!");
+            // Debug.Log("STUNNED!!!");
             return STUNNED_DURATION;
         }
         else {
-            Debug.Log("RESTING!!!");
+            // Debug.Log("RESTING!!!");
             return REST_DURATION;
         }
     }
@@ -138,7 +136,7 @@ public class ChargeAttack : Attack
     }
 
     void Dash() {
-        Debug.Log("Dash");
+        // Debug.Log("Dash");
 
         SetupDash();
 
@@ -164,7 +162,7 @@ public class ChargeAttack : Attack
     }
 
     void StopDash() {
-        Debug.Log("Stopped");
+        // Debug.Log("Stopped");
 
         StopMovement();
         
