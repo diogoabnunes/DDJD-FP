@@ -80,6 +80,14 @@ public class PlayerController : MonoBehaviour
         velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
     }
 
+    public void Dive(){
+        isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
+        if (isGrounded) return;
+
+        velocity.y = Mathf.Sqrt(jumpHeight * -10f * gravity) * -1;
+        Debug.Log(velocity);
+    }
+
     public void Run(Vector3 direction) {
         m_Animator.SetBool("isSprinting", true);
 
