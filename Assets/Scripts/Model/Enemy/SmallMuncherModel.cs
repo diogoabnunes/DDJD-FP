@@ -5,16 +5,7 @@ using UnityEngine.UI;
 
 public class SmallMuncherModel : EnemyModel
 {
-
-    public float health;
-
-    public float maxHealth;
-
-    public GameObject healthBarUI;
-    public Slider healthSlider;
-
     public Animator m_Animator;
-
     SkinnedMeshRenderer m_Renderer;
     public GameObject rendererHolder;
     float dissolvedPercentage = 0f;
@@ -39,15 +30,8 @@ public class SmallMuncherModel : EnemyModel
     }
 
     override public void TakeDamage(float damage) {
-        health -= damage;
-        healthSlider.value = health/maxHealth;
-
+        base.TakeDamage(damage);
         Debug.Log("Small Muncher was hit! Health: " + health);
-
-        if (health <= 0) {
-            healthBarUI.SetActive(false);
-            Die();
-        }
     }
 
     public void ManageAnimations() {
