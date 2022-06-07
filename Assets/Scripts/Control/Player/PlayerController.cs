@@ -28,6 +28,7 @@ public class PlayerController : MonoBehaviour
 
     Vector3 velocity;
     bool isGrounded;
+    bool isShooting;
 
     void Start()
     {
@@ -41,6 +42,7 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         CheckForGround();
+        CheckForShooting();
 
         List<Command> commands = inputHandler.GetCommands();
         foreach (Command command in commands)
@@ -57,6 +59,10 @@ public class PlayerController : MonoBehaviour
         else {
             m_Animator.SetBool("isJumping", true);
         }
+    }
+
+    void CheckForShooting(){
+        isShooting = hasGunEquiped() && inputHandler.checkForBasicAttackButtonDown();
     }
 
     void UpdateGravity() {
@@ -88,10 +94,11 @@ public class PlayerController : MonoBehaviour
         }
 
         m_Animator.SetBool("isRunning", true);
-
         float targetAngle = GetTargetAngleTowardsCameraDirection(direction);
 
-        RotatePlayer(targetAngle, turnSmoothTime);
+        if(!isShooting){
+            RotatePlayer(targetAngle, turnSmoothTime);
+        }
 
         Vector3 moveDir = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
         MovePlayer(moveDir.normalized * speed * Time.deltaTime);
@@ -131,5 +138,9 @@ public class PlayerController : MonoBehaviour
         activeWeapon = (activeWeapon + 1) % weapons.Length;
 
         weapons[activeWeapon].GetComponent<WeaponController>().Enable();
+    }
+
+    public bool hasGunEquiped(){
+        return activeWeapon == 1;
     }
 }
