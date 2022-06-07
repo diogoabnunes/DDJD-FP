@@ -48,13 +48,9 @@ public class WeaponController : MonoBehaviour
     public void Ability1() {
         if (!CanDoAbility1()) return;
 
-        Lock();
-
         ExecuteAbility1();
 
         SetNextAbility1Time();
-
-        StartCoroutine(UnlockWhenTimeElapsed());
     }
 
     public void Ability2() {
