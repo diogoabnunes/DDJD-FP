@@ -143,4 +143,9 @@ public class PlayerController : MonoBehaviour
     public bool hasGunEquiped(){
         return activeWeapon == 1;
     }
-}
+
+    public Vector3 getCharacterFacingDirection(){
+        Debug.Log(transform.forward);
+        return transform.forward;
+    }
+}   

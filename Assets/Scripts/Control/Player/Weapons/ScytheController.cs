@@ -50,7 +50,7 @@ public class ScytheController : WeaponController
 
         float targetAngle = playerController.GetTargetAngleTowardsCameraDirection(Vector3.forward);
 
-        Vector3 moveDir = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
+        Vector3 moveDir = playerController.getCharacterFacingDirection();
         playerController.MovePlayer(moveDir.normalized * 30f * (1.5f / 3));
     }
 
