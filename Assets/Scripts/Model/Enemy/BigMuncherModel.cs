@@ -5,22 +5,18 @@ using UnityEngine;
 public class BigMuncherModel : EnemyModel
 {
 
-    public float health;
-
     override public void Start() {
         base.Start();
 
         health = 10f * gameManager.getDifficulty();
+        maxHealth = health;
+        healthSlider.value = 1;
     }
 
 
     override public void TakeDamage(float damage) {
-        health -= damage;
+        base.TakeDamage(damage);
         Debug.Log("Big Muncher was hit! Health: " + health);
-
-        if (health <= 0) {
-            Die();
-        }
     }
 
     override public void Die() {
