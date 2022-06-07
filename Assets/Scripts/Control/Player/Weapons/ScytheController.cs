@@ -6,6 +6,7 @@ using UnityEngine.VFX;
 public class ScytheController : WeaponController
 {
     public GameObject Scythe;
+    public ScytheExplosion scytheExplosion;
 
     public float damage = 10f;
 
@@ -51,10 +52,29 @@ public class ScytheController : WeaponController
     }
 
     public override void ExecuteAbility2() {
-        Debug.Log("Scythe Ability 2");
-        playerController.Jump();
-        ExecuteBasicAttack();
-        playerController.Dive();
+        if(playerController.IsGrounded()){
+            playerController.Jump();
+            ExecuteBasicAttack();
+        }
+        else{
+            playerController.Dive();
+
+            Collider[] hitColliders = scytheExplosion.ExplosionDamage(playerController.GetCharacterGlobalPosition());
+
+            TriggerAOEDamage(hitColliders, scytheExplosion.damage);
+        }
+        
+    }
+
+    private void TriggerAOEDamage(Collider[] hitColliders, float aoeDamage){
+        Debug.Log("dealing " + aoeDamage + " to " + hitColliders.Length + " monsters");
+        foreach (var hitCollider in hitColliders)
+        {
+           CharacterModel model = hitCollider.gameObject.GetComponent<CharacterModel>();
+            if (model != null) {
+                interactionManager.manageInteraction(new TakeDamage(aoeDamage, model));
+            }
+        }
     }
 
     private void OnTriggerEnter(Collider other) {

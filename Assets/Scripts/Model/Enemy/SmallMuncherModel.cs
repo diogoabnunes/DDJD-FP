@@ -31,7 +31,7 @@ public class SmallMuncherModel : EnemyModel
 
     override public void TakeDamage(float damage) {
         base.TakeDamage(damage);
-        Debug.Log("Small Muncher was hit! Health: " + health);
+        Debug.Log("Small Muncher was hit " + damage +"! Health: " + health);
     }
 
     public void ManageAnimations() {
