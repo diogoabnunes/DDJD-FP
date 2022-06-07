@@ -46,16 +46,15 @@ public class ScytheController : WeaponController
     }
 
     public override void ExecuteAbility1() {
-        Debug.Log("Scythe Ability 1");
-
-        float targetAngle = playerController.GetTargetAngleTowardsCameraDirection(Vector3.forward);
-
         Vector3 moveDir = playerController.getCharacterFacingDirection();
         playerController.MovePlayer(moveDir.normalized * 30f * (1.5f / 3));
     }
 
     public override void ExecuteAbility2() {
         Debug.Log("Scythe Ability 2");
+        playerController.Jump();
+        ExecuteBasicAttack();
+        playerController.Dive();
     }
 
     private void OnTriggerEnter(Collider other) {
