@@ -30,20 +30,21 @@ public abstract class EnemyModel : CharacterModel
       health = 2f * gameManager.getDifficulty();
       maxHealth = health;
       healthSlider.value = 1;
-      healthBarUI.SetActive(false);
+      if (healthBarUI != null)
+        healthBarUI.SetActive(false);
     }
 
     override public void TakeDamage(float damage) {
         health -= damage;
         healthSlider.value = health/maxHealth;
 
-        if (!healthBarActive) {
+        if (healthBarUI != null && !healthBarActive) {
           healthBarActive = true;
           healthBarUI.SetActive(true);
         }
 
         if (health <= 0) {
-            healthBarUI.SetActive(false);
+            if (healthBarUI != null) healthBarUI.SetActive(false);
             Die();
         }
     }
