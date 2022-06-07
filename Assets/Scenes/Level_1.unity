@@ -3660,8 +3660,8 @@ MonoBehaviour:
   enemies:
   - {fileID: 5185886381209011960, guid: f781fe3c05c75614eabc5d7200eba594, type: 3}
   - {fileID: 7114415016163205245, guid: c02289a3b78613a478e8399dc03d25d6, type: 3}
-  range: 20
-  awayDistance: 5
+  range: 40
+  awayDistance: 15
   coolDown: 3
   maxEnemiesActive: 10
   minEnemiesToSpawn: 1
