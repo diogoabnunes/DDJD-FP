@@ -12,6 +12,8 @@ public class EnemyController : MonoBehaviour
 
     public float lookRange = 10f;
 
+    float thresholdToNextMovement = 1f;
+
     bool locked = false;
 
     PlayerModel playerModel;
@@ -128,7 +130,17 @@ public class EnemyController : MonoBehaviour
     }
 
     public void ChasePlayer() {
-        agent.SetDestination(player.position);
+        Vector3 previousDestination = agent.destination;
+        Vector3 newDestination = player.position;
+        Vector3 difference = newDestination - previousDestination;
+
+        bool xDifference = Mathf.Abs(Mathf.Round(difference.x)) > thresholdToNextMovement;
+        bool yDifference = Mathf.Abs(Mathf.Round(difference.y)) > thresholdToNextMovement;
+        bool zDifference = Mathf.Abs(Mathf.Round(difference.z)) > thresholdToNextMovement;
+
+        if (xDifference || yDifference || zDifference){
+            agent.SetDestination(player.position);
+        }
     }
 
     public void CancelMovement() {
