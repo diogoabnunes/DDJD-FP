@@ -6,6 +6,7 @@ using UnityEngine;
 public class FlyingMuncherController : EnemyController
 {
     public float stoppingDistance = 5f;
+    bool previousActionWasRandomMovement = false;
 
     FlyingMuncherAttack flyingMuncherAttack;
 
@@ -15,18 +16,39 @@ public class FlyingMuncherController : EnemyController
     }
 
     public override Action GetNextAction(float distanceToPlayer, Quaternion rotationTowardsPlayer) {
-        if (CanAttack(distanceToPlayer, rotationTowardsPlayer)) return new AttackAction(flyingMuncherAttack);
-        if (TooCloseOfPlayer(distanceToPlayer)) return new StopMovementAction(base.gameObject);
-        if (PlayerInLookRange(distanceToPlayer)) return new ChaseAction(base.gameObject, rotationTowardsPlayer);
+        if (CanAttack(distanceToPlayer, rotationTowardsPlayer)) return GetActionWhenEnemyCanAttack();
+        if (TooCloseOfPlayer(distanceToPlayer)) return GetActionWhenEnemyIsTooCloseFromPlayer();
+        if (PlayerInLookRange(distanceToPlayer)) return GetActionWhenPlayerIsInLookRange(rotationTowardsPlayer);
 
         return null;
     }
 
     bool CanAttack(float distanceToPlayer, Quaternion rotationTowardsPlayer) {
+        Debug.Log("Can Attack: " + flyingMuncherAttack.CanAttack(distanceToPlayer));
+        Debug.Log("Rotation: " + IsFacingPlayer(rotationTowardsPlayer));
         return flyingMuncherAttack.CanAttack(distanceToPlayer) && IsFacingPlayer(rotationTowardsPlayer);
     }
 
     bool TooCloseOfPlayer(float distanceToPlayer) {
         return distanceToPlayer <= stoppingDistance;
+    }
+
+    Action GetActionWhenEnemyIsTooCloseFromPlayer() {
+        if (previousActionWasRandomMovement && !IsStopped()) return null;
+        
+        previousActionWasRandomMovement = true;
+
+        return new RandomMovementAction(base.gameObject);
+    }
+
+    Action GetActionWhenEnemyCanAttack() {
+        previousActionWasRandomMovement = false;
+        return new AttackAction(flyingMuncherAttack);
+    }
+
+    Action GetActionWhenPlayerIsInLookRange(Quaternion rotationTowardsPlayer) {
+        previousActionWasRandomMovement = false;
+        Debug.Log("chasing");
+        return new ChaseAction(base.gameObject, rotationTowardsPlayer);
     }
 }

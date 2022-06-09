@@ -92,7 +92,7 @@ public class EnemyController : MonoBehaviour
     }
 
     public bool IsFacingPlayer(Quaternion rotation) {
-        return Quaternion.Angle(transform.rotation, rotation) == 0;
+        return Quaternion.Angle(transform.rotation, rotation) <= 5f;
     }
 
     public void FacePlayer(Quaternion rotation) {
@@ -149,6 +149,10 @@ public class EnemyController : MonoBehaviour
 
     public void StopMovement() {
         agent.isStopped = true;
+    }
+
+    public bool IsStopped() {
+        return agent.isStopped;
     }
 
     public Vector3 GetPlayerPosition() {

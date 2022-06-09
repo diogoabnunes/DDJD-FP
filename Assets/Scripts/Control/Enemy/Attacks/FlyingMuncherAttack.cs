@@ -59,5 +59,6 @@ public class FlyingMuncherAttack : Attack
 
         GameObject obj = Instantiate(bullet, initialPosition, Quaternion.identity);
         obj.GetComponent<EnemyBulletController>().SetTarget(finalPosition);
+        obj.GetComponent<EnemyBulletController>().SetLauncher(this.gameObject);
     }
 }

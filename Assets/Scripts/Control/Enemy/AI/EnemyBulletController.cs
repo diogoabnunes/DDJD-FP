@@ -14,6 +14,7 @@ public class EnemyBulletController : MonoBehaviour
     Rigidbody rigidBody;
 
     Vector3 target;
+    GameObject launcher;
 
     bool active = true;
 
@@ -37,6 +38,10 @@ public class EnemyBulletController : MonoBehaviour
         Fire();
     }
 
+    public void SetLauncher(GameObject _launcher) {
+        launcher = _launcher;
+    }
+
     void Fire() {
       Vector3 distance = target - transform.position;
       rigidBody.velocity = Vector3.Normalize(distance) * speed;
@@ -45,7 +50,7 @@ public class EnemyBulletController : MonoBehaviour
     private void OnTriggerEnter(Collider other) {
         CharacterModel model = null;
 
-        if (!active) return;
+        if (!active || CollidedWithObjectLauncher(other)) return;
 
         if (other.gameObject.tag == "PlayerWeapon")
             return;
@@ -59,6 +64,11 @@ public class EnemyBulletController : MonoBehaviour
             interactionManager.manageInteraction(new TakeDamage(damage, model));
         }
 
+        Debug.Log(other.gameObject.name);
         Destroy(gameObject);
+    }
+
+    bool CollidedWithObjectLauncher(Collider other) {
+        return other.gameObject == launcher;   
     }
 }
