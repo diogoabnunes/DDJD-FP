@@ -4042,9 +4042,6 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5979602988557714046, guid: e97f74ac00a3f6649ad9063c1b1dbaa7, type: 3}
-      propertyPath: coolDownAbility1
-      value: 5
-      objectReference: {fileID: 0}
       propertyPath: scytheExplosion
       value: 
       objectReference: {fileID: 513386286}
