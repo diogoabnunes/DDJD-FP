@@ -56,13 +56,9 @@ public class WeaponController : MonoBehaviour
     public void Ability2() {
         if (!CanDoAbility2()) return;
 
-        Lock();
-
         ExecuteAbility2();
 
         SetNextAbility2Time();
-
-        StartCoroutine(UnlockWhenTimeElapsed());
     }
 
     public virtual void ExecuteBasicAttack() {}

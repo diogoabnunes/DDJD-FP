@@ -6,6 +6,7 @@ using UnityEngine.VFX;
 public class ScytheController : WeaponController
 {
     public GameObject Scythe;
+    public ScytheExplosion scytheExplosion;
 
     public float damage = 10f;
 
@@ -46,16 +47,34 @@ public class ScytheController : WeaponController
     }
 
     public override void ExecuteAbility1() {
-        Debug.Log("Scythe Ability 1");
-
-        float targetAngle = playerController.GetTargetAngleTowardsCameraDirection(Vector3.forward);
-
-        Vector3 moveDir = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
+        Vector3 moveDir = playerController.getCharacterFacingDirection();
         playerController.MovePlayer(moveDir.normalized * 30f * (1.5f / 3));
     }
 
     public override void ExecuteAbility2() {
-        Debug.Log("Scythe Ability 2");
+        if(playerController.IsGrounded()){
+            playerController.Jump();
+            ExecuteBasicAttack();
+        }
+        else{
+            playerController.Dive();
+
+            Collider[] hitColliders = scytheExplosion.ExplosionDamage(playerController.GetCharacterGlobalPosition());
+
+            TriggerAOEDamage(hitColliders, scytheExplosion.damage);
+        }
+        
+    }
+
+    private void TriggerAOEDamage(Collider[] hitColliders, float aoeDamage){
+        Debug.Log("dealing " + aoeDamage + " to " + hitColliders.Length + " monsters");
+        foreach (var hitCollider in hitColliders)
+        {
+           CharacterModel model = hitCollider.gameObject.GetComponent<CharacterModel>();
+            if (model != null) {
+                interactionManager.manageInteraction(new TakeDamage(aoeDamage, model));
+            }
+        }
     }
 
     private void OnTriggerEnter(Collider other) {

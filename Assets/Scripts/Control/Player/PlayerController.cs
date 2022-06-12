@@ -65,6 +65,22 @@ public class PlayerController : MonoBehaviour
         isShooting = hasGunEquiped() && inputHandler.checkForBasicAttackButtonDown();
     }
 
+    public bool hasGunEquiped(){
+        return activeWeapon == 1;
+    }
+
+    public bool IsGrounded(){
+        return Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
+    }
+
+    public Vector3 getCharacterFacingDirection(){
+        return transform.forward;
+    }
+
+    public Vector3 GetCharacterGlobalPosition(){
+        return transform.position;
+    }
+
     void UpdateGravity() {
         if (isGrounded && velocity.y < 0){
             velocity.y = -2f;
@@ -78,6 +94,13 @@ public class PlayerController : MonoBehaviour
         if (!isGrounded) return;
 
         velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
+    }
+
+    public void Dive(){
+        isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
+        if (isGrounded) return;
+
+        velocity.y = Mathf.Sqrt(jumpHeight * -10f * gravity) * -1;
     }
 
     public void Run(Vector3 direction) {
@@ -139,8 +162,4 @@ public class PlayerController : MonoBehaviour
 
         weapons[activeWeapon].GetComponent<WeaponController>().Enable();
     }
-
-    public bool hasGunEquiped(){
-        return activeWeapon == 1;
-    }
-}
+}   
