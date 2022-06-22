@@ -81,8 +81,8 @@ MonoBehaviour:
   GunL: {fileID: 6188083686582889015}
   GunR: {fileID: 6188083686084518980}
   bullet: {fileID: 2957822337685437143, guid: 9b377373624d16b4185f7ac3cc169d0c, type: 3}
-  rightBulletSpawnPoint: {fileID: 6188083686883295327}
   leftBulletSpawnPoint: {fileID: 382132952}
+  rightBulletSpawnPoint: {fileID: 6188083686883295327}
   recoil: 1
 --- !u!1 &6188083685604352799
 GameObject:
@@ -4950,7 +4950,7 @@ Transform:
   m_Children:
   - {fileID: 6188083685767401736}
   m_Father: {fileID: 6188083685997313316}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6188083685679238543
 GameObject:
@@ -5138,7 +5138,6 @@ Transform:
   m_LocalPosition: {x: 0.010365648, y: 0.76256067, z: 0.09744442}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 6188083687187144955}
   - {fileID: 6188083686962929458}
   - {fileID: 6188083685648710746}
   - {fileID: 6188083687295195284}
@@ -6425,7 +6424,8 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.35, y: 0.77, z: 1.522}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 6188083687187144955}
   m_Father: {fileID: 6188083686845781671}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -6583,7 +6583,7 @@ Transform:
   m_Children:
   - {fileID: 6188083685604352798}
   m_Father: {fileID: 6188083685997313316}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6188083686999092922
 GameObject:
@@ -6765,6 +6765,7 @@ SkinnedMeshRenderer:
   - {fileID: 2100000, guid: a5c1d365935f1bc4280a2509deb8d412, type: 2}
   - {fileID: 2100000, guid: 55b894b145b961c48ac8caedf1fb3629, type: 2}
   - {fileID: 2100000, guid: ee822e77ac6a7b54fa4c86fdaadf491b, type: 2}
+  - {fileID: 2100000, guid: 5401763a2b41a364284d8e68aad7ba26, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -6866,7 +6867,7 @@ GameObject:
   - component: {fileID: 6188083687187144837}
   - component: {fileID: 6188083687187144954}
   m_Layer: 0
-  m_Name: Vfx_Graph_Slash
+  m_Name: Vfx_Graph_Slash1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6879,11 +6880,11 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6188083687187144952}
-  m_LocalRotation: {x: 0.05248903, y: 0.9425125, z: 0.011534897, w: 0.32982126}
-  m_LocalPosition: {x: -0.4492467, y: -0.8033599, z: 0.6858524}
-  m_LocalScale: {x: -2.3730037, y: 2.3730037, z: 2.3730042}
+  m_LocalRotation: {x: -0.02554638, y: 0.84290403, z: -0.08009917, w: 0.5314549}
+  m_LocalPosition: {x: -0.8900001, y: -0.42999983, z: -1.2219999}
+  m_LocalScale: {x: -1.7362041, y: 1.7362045, z: 1.7362049}
   m_Children: []
-  m_Father: {fileID: 6188083685997313316}
+  m_Father: {fileID: 6188083686883295327}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0.738, y: 141.466, z: 6.117}
 --- !u!2083052967 &6188083687187144837
@@ -7074,7 +7075,7 @@ Transform:
   m_Children:
   - {fileID: 6188083686884715355}
   m_Father: {fileID: 6188083685997313316}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6188083687351759251
 GameObject:
@@ -7230,7 +7231,7 @@ Transform:
   m_Children:
   - {fileID: 6188083686488481706}
   m_Father: {fileID: 6188083685997313316}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 7.379, y: 0, z: 0}
 --- !u!33 &6188083687570899510
 MeshFilter:

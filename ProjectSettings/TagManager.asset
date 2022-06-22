@@ -18,12 +18,12 @@ TagManager:
   - GFX
   - Player
   - Objects
-  - 
+  - Glow
   - LandEnemy
   - FlyingEnemy
   - 
-  - 
-  - 
+  - LayerMask
+  - SeeThrough
   - 
   - 
   - 
