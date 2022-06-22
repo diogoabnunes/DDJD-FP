@@ -12,23 +12,27 @@ public class EnemyController : MonoBehaviour
 
     public float lookRange = 10f;
 
-    bool locked = false;
-    public bool dead = false;
+    float thresholdToNextMovement = 1f;
 
-    PlayerManager playerManager;
+    bool locked = false;
+
+    PlayerModel playerModel;
     Transform player;
     NavMeshAgent agent;
+
+    protected GameManager gameManager;
 
     SpawnManager spawnManager = null;
 
     public Animator m_Animator;
 
-    protected void Start()
+    public virtual void Start()
     {
-        playerManager = PlayerManager.instance;
-        player = PlayerManager.instance.player.transform;
+        playerModel = PlayerModel.instance;
+        gameManager = GameManager.instance;
+        player = PlayerModel.instance.player.transform;
         agent = GetComponent<NavMeshAgent>();
-
+        
         SpawnManager[] obj = FindObjectsOfType<SpawnManager>();
         if (obj.Length != 0) {
             spawnManager = obj[0];
@@ -36,7 +40,6 @@ public class EnemyController : MonoBehaviour
     }
 
     void Update() {
-        if (dead) return;
         if (locked) return;
 
         float distanceToPlayer = ComputeDistanceToPlayer();
@@ -46,7 +49,6 @@ public class EnemyController : MonoBehaviour
         if (action != null) {
             action.execute();
         }
-        ManageAnimations();
     }
 
     public virtual Action GetNextAction(float distanceToPlayer, Quaternion rotationTowardsPlayer) {
@@ -61,23 +63,18 @@ public class EnemyController : MonoBehaviour
         locked = false;
     }
 
-    public virtual void ManageAnimations() {
-      // Function to manage animations
-    }
-
     public Animator GetAnimator() {
       return m_Animator;
     }
 
     public bool isRunning() {
       Vector2 runningVector = new Vector2(agent.velocity.x, agent.velocity.z);
+      float distance = Vector2.Distance(runningVector, Vector2.zero);
 
-      if (!runningVector.Equals(Vector2.zero)) {
-        //Debug.Log("Enemy is Running!");
+      if (distance > 1.0f) {
         return true;
       }
 
-      //Debug.Log("Enemy is Not Running!");
       return false;
     }
 
@@ -89,13 +86,13 @@ public class EnemyController : MonoBehaviour
         return Vector3.Distance(GetPlayerPosition(), GetEnemyPosition());
     }
 
-    Quaternion ComputeRotationTowardsPlayer() {
+    public Quaternion ComputeRotationTowardsPlayer() {
         Vector3 direction = (GetPlayerPosition() - GetEnemyPosition()).normalized;
         return Quaternion.LookRotation(new Vector3(direction.x, 0, direction.z));
     }
 
     public bool IsFacingPlayer(Quaternion rotation) {
-        return Quaternion.Angle(transform.rotation, rotation) == 0;
+        return Quaternion.Angle(transform.rotation, rotation) <= 5f;
     }
 
     public void FacePlayer(Quaternion rotation) {
@@ -104,14 +101,58 @@ public class EnemyController : MonoBehaviour
         }
     }
 
+    public void SetAgentSpeed(float speed) {
+        agent.speed = speed;
+    }
+
+    public float GetAgentSpeed() {
+        return agent.speed;
+    }
+
+    public void AlternateAIAgent(int agentId) {
+        agent.agentTypeID = agentId;
+    }
+
+    public float GetStoppingDistance() {
+        return agent.stoppingDistance;
+    }
+
+    public void SetStoppingDistance(float stoppingDistance) {
+        agent.stoppingDistance = stoppingDistance;
+    }
+
+    public void GoTo(Vector3 destination) {
+        agent.SetDestination(destination);
+    }
+
+    public void ShowDest() {
+        Debug.Log(agent.destination);
+    }
+
     public void ChasePlayer() {
-        //agent.Resume();
-        agent.SetDestination(player.position);
+        Vector3 previousDestination = agent.destination;
+        Vector3 newDestination = player.position;
+        Vector3 difference = newDestination - previousDestination;
+
+        bool xDifference = Mathf.Abs(Mathf.Round(difference.x)) > thresholdToNextMovement;
+        bool yDifference = Mathf.Abs(Mathf.Round(difference.y)) > thresholdToNextMovement;
+        bool zDifference = Mathf.Abs(Mathf.Round(difference.z)) > thresholdToNextMovement;
+
+        if (xDifference || yDifference || zDifference){
+            agent.SetDestination(player.position);
+        }
+    }
+
+    public void CancelMovement() {
+        agent.SetDestination(transform.position);
     }
 
     public void StopMovement() {
-        //agent.SetDestination(GetEnemyPosition());
-        //agent.Stop();
+        agent.isStopped = true;
+    }
+
+    public bool IsStopped() {
+        return agent.isStopped;
     }
 
     public Vector3 GetPlayerPosition() {
@@ -122,38 +163,14 @@ public class EnemyController : MonoBehaviour
         return transform.position;
     }
 
-    public void TakeDamage(float damage){
-        health -= damage;
-        Debug.Log(health);
-
-        //do something
-        Debug.Log("hitten");
-
-        if(health <= 0){
-            Die();
-        }
-    }
-
-    public virtual void Die() {
-        if (spawnManager != null){
-            spawnManager.enemyDied(this.gameObject);
-        }
-
-        Destroy(gameObject);
-    }
-
-    public IEnumerator DieDelay() {
-        if (spawnManager != null){
-            spawnManager.enemyDied(this.gameObject);
-        }
-
-        yield return new WaitForSeconds(2);
-
-        Destroy(gameObject);
-    }
-
     void OnDrawGizmosSelected() {
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, lookRange);
+    }
+
+    void OnDestroy()
+    {
+        gameManager.addEnemyKilled();
+        Debug.Log("Dead");
     }
 }

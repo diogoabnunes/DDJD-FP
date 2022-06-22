@@ -5,35 +5,50 @@ using UnityEngine;
 [RequireComponent(typeof(FlyingMuncherAttack))]
 public class FlyingMuncherController : EnemyController
 {
+    public float stoppingDistance = 5f;
+    bool previousActionWasRandomMovement = false;
+
     FlyingMuncherAttack flyingMuncherAttack;
 
-    void Start() {
+    override public void Start() {
         base.Start();
         flyingMuncherAttack = GetComponent<FlyingMuncherAttack>();
     }
 
     public override Action GetNextAction(float distanceToPlayer, Quaternion rotationTowardsPlayer) {
-        if (CanAttack(distanceToPlayer, rotationTowardsPlayer)) return new AttackAction(flyingMuncherAttack);
-        if (PlayerInLookRange(distanceToPlayer)) return new ChaseAction(base.gameObject, rotationTowardsPlayer);
+        if (CanAttack(distanceToPlayer, rotationTowardsPlayer)) return GetActionWhenEnemyCanAttack();
+        if (TooCloseOfPlayer(distanceToPlayer)) return GetActionWhenEnemyIsTooCloseFromPlayer();
+        if (PlayerInLookRange(distanceToPlayer)) return GetActionWhenPlayerIsInLookRange(rotationTowardsPlayer);
 
         return null;
     }
 
     bool CanAttack(float distanceToPlayer, Quaternion rotationTowardsPlayer) {
+        Debug.Log("Can Attack: " + flyingMuncherAttack.CanAttack(distanceToPlayer));
+        Debug.Log("Rotation: " + IsFacingPlayer(rotationTowardsPlayer));
         return flyingMuncherAttack.CanAttack(distanceToPlayer) && IsFacingPlayer(rotationTowardsPlayer);
     }
 
-    public override void ManageAnimations() {
-      if (isRunning()) {
-        m_Animator.SetBool("isWalking", true);
-      } else {
-        m_Animator.SetBool("isWalking", false);
-      }
+    bool TooCloseOfPlayer(float distanceToPlayer) {
+        return distanceToPlayer <= stoppingDistance;
     }
 
-    public override void Die() {
-      m_Animator.SetTrigger("die");
-      dead = true;
-      StartCoroutine(DieDelay());
+    Action GetActionWhenEnemyIsTooCloseFromPlayer() {
+        if (previousActionWasRandomMovement && !IsStopped()) return null;
+        
+        previousActionWasRandomMovement = true;
+
+        return new RandomMovementAction(base.gameObject);
+    }
+
+    Action GetActionWhenEnemyCanAttack() {
+        previousActionWasRandomMovement = false;
+        return new AttackAction(flyingMuncherAttack);
+    }
+
+    Action GetActionWhenPlayerIsInLookRange(Quaternion rotationTowardsPlayer) {
+        previousActionWasRandomMovement = false;
+        Debug.Log("chasing");
+        return new ChaseAction(base.gameObject, rotationTowardsPlayer);
     }
 }

@@ -9,13 +9,15 @@ public class PunchGroundAttack : Attack
     public float duration = 3f;
     public float damage = 1f;
     public float damageArea = 4f;
-    
-    BigMuncherController bigMuncherController;
-    PlayerManager playerManager;
 
-    void Start() {
+    BigMuncherController bigMuncherController;
+    PlayerModel playerModel;
+
+    override public void Start() {
+        base.Start();
+
         bigMuncherController = GetComponent<BigMuncherController>();
-        playerManager = PlayerManager.instance;
+        playerModel = PlayerModel.instance;
     }
 
     public override bool CanAttack(float distanceToPlayer) {
@@ -27,7 +29,7 @@ public class PunchGroundAttack : Attack
 
         bigMuncherController.Lock();
 
-        bigMuncherController.StopMovement();
+        bigMuncherController.CancelMovement();
 
         // time until he punches the ground
         yield return new WaitForSeconds(duration);
@@ -47,10 +49,10 @@ public class PunchGroundAttack : Attack
     void PunchGround() {
         Vector3 impactPoint = bigMuncherController.GetEnemyPosition();
 
-        bool playerHit = playerManager.PlayerWithinArea(impactPoint, damageArea);
+        bool playerHit = playerModel.PlayerWithinArea(impactPoint, damageArea);
         if (playerHit) {
             Debug.Log("Player was Hit!");
-            playerManager.TakeDamage(damage);
+            interactionManager.manageInteraction(new TakeDamage(damage, playerModel));
         }
     }
 }

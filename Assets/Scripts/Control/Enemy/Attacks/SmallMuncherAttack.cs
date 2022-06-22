@@ -8,15 +8,18 @@ public class SmallMuncherAttack : Attack
     public float range = 2.5f;
     public float duration = 3f;
     public float damage = 1f;
+    public SmallMuncherBlade blade;
 
     SmallMuncherController smallMuncherController;
-    PlayerManager playerManager;
+    PlayerModel playerModel;
 
     Animator m_Animator;
 
-    void Start() {
+    override public void Start() {
+        base.Start();
+
         smallMuncherController = GetComponent<SmallMuncherController>();
-        playerManager = PlayerManager.instance;
+        playerModel = PlayerModel.instance;
         m_Animator = smallMuncherController.GetAnimator();
     }
 
@@ -25,20 +28,19 @@ public class SmallMuncherAttack : Attack
     }
 
     public override IEnumerator DoAttackCoroutine() {
-        Debug.Log("Enemy 4 Attack");
-
         smallMuncherController.Lock();
 
-        smallMuncherController.StopMovement();
+        smallMuncherController.CancelMovement();
 
         // play animation of attack
         m_Animator.SetTrigger("attack");
-
-        // verify if player is still in range
-        playerManager.TakeDamage(damage);
-
+        
+        blade.enabled = true;
+        
         yield return new WaitForSeconds(duration);
 
+        blade.enabled = false;
+        
         smallMuncherController.Unlock();
 
         yield return null;

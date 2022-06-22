@@ -23,4 +23,8 @@ public class InputHandler
 
         return commands;
     }
+
+    public bool checkForBasicAttackButtonDown(){
+        return Input.GetKey(KeyCode.Mouse0);
+    }
 }

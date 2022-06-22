@@ -12,7 +12,9 @@ public class FireballAttack : Attack
 
     BigMuncherController bigMuncherController;
 
-    void Start() {
+    override public void Start() {
+        base.Start();
+
         bigMuncherController = GetComponent<BigMuncherController>();
     }
 
@@ -25,12 +27,12 @@ public class FireballAttack : Attack
 
         bigMuncherController.Lock();
 
-        bigMuncherController.StopMovement();
-        
+        bigMuncherController.CancelMovement();
+
         LaunchFireball();
 
         yield return new WaitForSeconds(3f);
-        
+
         bigMuncherController.Unlock();
 
         DefineNextAttackTime();
@@ -43,7 +45,7 @@ public class FireballAttack : Attack
         initialPosition.y = initialPosition.y + 4f;
 
         Vector3 finalPosition = bigMuncherController.GetPlayerPosition();
-        
+
         GameObject obj = Instantiate(fireball, initialPosition, Quaternion.identity);
         obj.GetComponent<FireballController>().SetTarget(finalPosition);
     }

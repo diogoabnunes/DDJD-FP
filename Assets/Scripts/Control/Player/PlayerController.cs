@@ -28,6 +28,7 @@ public class PlayerController : MonoBehaviour
 
     Vector3 velocity;
     bool isGrounded;
+    bool isShooting;
 
     void Start()
     {
@@ -41,6 +42,7 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         CheckForGround();
+        CheckForShooting();
 
         List<Command> commands = inputHandler.GetCommands();
         foreach (Command command in commands)
@@ -59,6 +61,26 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    void CheckForShooting(){
+        isShooting = hasGunEquiped() && inputHandler.checkForBasicAttackButtonDown();
+    }
+
+    public bool hasGunEquiped(){
+        return activeWeapon == 1;
+    }
+
+    public bool IsGrounded(){
+        return Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
+    }
+
+    public Vector3 getCharacterFacingDirection(){
+        return transform.forward;
+    }
+
+    public Vector3 GetCharacterGlobalPosition(){
+        return transform.position;
+    }
+
     void UpdateGravity() {
         if (isGrounded && velocity.y < 0){
             velocity.y = -2f;
@@ -72,6 +94,13 @@ public class PlayerController : MonoBehaviour
         if (!isGrounded) return;
 
         velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
+    }
+
+    public void Dive(){
+        isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
+        if (isGrounded) return;
+
+        velocity.y = Mathf.Sqrt(jumpHeight * -10f * gravity) * -1;
     }
 
     public void Run(Vector3 direction) {
@@ -88,10 +117,11 @@ public class PlayerController : MonoBehaviour
         }
 
         m_Animator.SetBool("isRunning", true);
-
         float targetAngle = GetTargetAngleTowardsCameraDirection(direction);
 
-        RotatePlayer(targetAngle, turnSmoothTime);
+        if(!isShooting){
+            RotatePlayer(targetAngle, turnSmoothTime);
+        }
 
         Vector3 moveDir = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
         MovePlayer(moveDir.normalized * speed * Time.deltaTime);
@@ -132,4 +162,4 @@ public class PlayerController : MonoBehaviour
 
         weapons[activeWeapon].GetComponent<WeaponController>().Enable();
     }
-}
+}   

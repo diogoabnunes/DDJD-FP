@@ -7,8 +7,11 @@ public class WeaponController : MonoBehaviour
     public GameObject player;
     protected PlayerController playerController;
 
+    protected InteractionManager interactionManager;
+
     public Animator m_Animator;
-    
+
+
     public float coolDownBasicAttack = 0f;
     public float coolDownAbility1 = 0f;
     public float coolDownAbility2 = 0f;
@@ -19,9 +22,10 @@ public class WeaponController : MonoBehaviour
 
     bool locked = false;
 
-    protected void Start() {
-        playerController = player.GetComponent<PlayerController>();
+    public virtual void Start() {
+        interactionManager = InteractionManager.instance;
 
+        playerController = player.GetComponent<PlayerController>();
         m_Animator.SetBool("hasGun", false);
     }
 
@@ -31,7 +35,7 @@ public class WeaponController : MonoBehaviour
 
     public void BasicAttack() {
         if (!CanDoBasicAttack()) return;
-        
+
         Lock();
 
         ExecuteBasicAttack();
@@ -44,25 +48,17 @@ public class WeaponController : MonoBehaviour
     public void Ability1() {
         if (!CanDoAbility1()) return;
 
-        Lock();
-
         ExecuteAbility1();
 
         SetNextAbility1Time();
-
-        StartCoroutine(UnlockWhenTimeElapsed());
     }
 
     public void Ability2() {
         if (!CanDoAbility2()) return;
 
-        Lock();
-
         ExecuteAbility2();
 
         SetNextAbility2Time();
-
-        StartCoroutine(UnlockWhenTimeElapsed());
     }
 
     public virtual void ExecuteBasicAttack() {}
