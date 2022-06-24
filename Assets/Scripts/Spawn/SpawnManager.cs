@@ -6,7 +6,6 @@ public class SpawnManager : MonoBehaviour
 {
     [SerializeField] private GameObject[] enemies;
 
-    [SerializeField] private float range;
     [SerializeField] private float awayDistance;
     [SerializeField] private float coolDown;
 
@@ -20,30 +19,33 @@ public class SpawnManager : MonoBehaviour
 
     float nextSpawnTime = 3f;
 
+    SpawnRectangle spawnRectangle;
+
     void Start() {
         player = PlayerModel.instance.player.transform;
     }
 
-    void Update()
-    {
-        if (CanSpawn()) {
-            Spawn();
-        }
+    public void DefineSpawnRectangle(SpawnRectangle spawnRectangle) {
+        this.spawnRectangle = spawnRectangle;
     }
 
-    bool CanSpawn() {
-        return Time.time >= nextSpawnTime && activeEnemies.Count < maxEnemiesActive;
-    }
+    public void Spawn() {
+        if (!CanSpawn()) return;
+        Debug.Log("sp");
 
-    void Spawn() {
-        int numEnemiesToSpawn = chooseNumberOfEnemiesToSpawn();
+        // int numEnemiesToSpawn = chooseNumberOfEnemiesToSpawn();
+        int numEnemiesToSpawn = 1;
         int counter = 0;
-
         while (counter++ != numEnemiesToSpawn) {
+            Debug.Log("spawn: " + numEnemiesToSpawn);
             SpawnEnemy();
         }
 
         nextSpawnTime = Time.time + coolDown;
+    }
+
+    bool CanSpawn() {
+        return Time.time >= nextSpawnTime && activeEnemies.Count < maxEnemiesActive;
     }
 
     int chooseNumberOfEnemiesToSpawn() {
@@ -78,10 +80,14 @@ public class SpawnManager : MonoBehaviour
     }
 
     Vector3 generatePoint() {
-        float x = Random.Range(player.position.x - range, player.position.x + range);
-        float z = Random.Range(player.position.z - range, player.position.z + range);
+        // float x = Random.Range(spawnRectangle.getMinXPoint(), spawnRectangle.getMaxXPoint());
+        // float z = Random.Range(spawnRectangle.getMinZPoint(), spawnRectangle.getMaxZPoint());
+        float x = spawnRectangle.getMinXPoint();
+        float z = spawnRectangle.getMinZPoint();
 
-        return new Vector3(x, 0, z);
+        Vector3 point = new Vector3(x, spawnRectangle.getY(), z);
+
+        return spawnRectangle.rotatePointToRectangleRotation(point);
     }
 
     bool validPoint(Vector3 point) {

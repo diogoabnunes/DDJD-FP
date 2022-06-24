@@ -389,6 +389,7 @@ GameObject:
   - component: {fileID: 8301829470012420382}
   - component: {fileID: 8361871492036607398}
   - component: {fileID: 7427822928097824036}
+  - component: {fileID: 7871712293745103961}
   m_Layer: 8
   m_Name: Colossal_EXPORT_FIX 1
   m_TagString: Enemy
@@ -473,7 +474,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1998946839587997947}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3ce1e5257fec2764f964e1c716239ed9, type: 3}
   m_Name: 
@@ -489,7 +490,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1998946839587997947}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: eef486b0881031f479fd5fd97fc816a3, type: 3}
   m_Name: 
@@ -506,8 +507,8 @@ NavMeshAgent:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1998946839587997947}
-  m_Enabled: 1
-  m_AgentTypeID: 0
+  m_Enabled: 0
+  m_AgentTypeID: -902729914
   m_Radius: 1.5
   m_Speed: 2
   m_Acceleration: 8
@@ -533,9 +534,9 @@ Rigidbody:
   m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 1
-  m_IsKinematic: 1
+  m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 112
   m_CollisionDetection: 0
 --- !u!136 &7427822928097824036
 CapsuleCollider:
@@ -551,6 +552,20 @@ CapsuleCollider:
   m_Height: 8.296913
   m_Direction: 1
   m_Center: {x: 0.122084625, y: 4.351391, z: -2.1133332}
+--- !u!114 &7871712293745103961
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1998946839587997947}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e6db0ce997ba234ebf089e0ddbe9ede, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  controller: {fileID: 7922710384162458389}
+  model: {fileID: -2936366589781418865}
 --- !u!1 &2128611990667185116
 GameObject:
   m_ObjectHideFlags: 0

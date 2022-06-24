@@ -54,9 +54,9 @@ public class EnemyBulletController : MonoBehaviour
 
         if (other.gameObject.tag == "PlayerWeapon")
             return;
-
+        
         if (other.gameObject.tag == "Player") {
-            model = gameManager.GetComponent<CharacterModel>();
+            model = other.gameObject.GetComponent<CharacterModel>();
             active = false;
         }
 
@@ -64,7 +64,6 @@ public class EnemyBulletController : MonoBehaviour
             interactionManager.manageInteraction(new TakeDamage(damage, model));
         }
 
-        Debug.Log(other.gameObject.name);
         Destroy(gameObject);
     }
 

@@ -1611,6 +1611,7 @@ GameObject:
   - component: {fileID: 53928756}
   - component: {fileID: 53928759}
   - component: {fileID: 1089440018}
+  - component: {fileID: 5206948393666748351}
   m_Layer: 3
   m_Name: Third Person Player
   m_TagString: Player
@@ -1713,6 +1714,21 @@ CapsuleCollider:
   m_Height: 2.4464717
   m_Direction: 1
   m_Center: {x: 0, y: 0.72323585, z: 0}
+--- !u!114 &5206948393666748351
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6188083686845781659}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c5fa737224c49c1419b9aa57cd311491, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 6188083686845781659}
+  health: 10
+  healthSlider: {fileID: 0}
 --- !u!1 &6188083686883295324
 GameObject:
   m_ObjectHideFlags: 0
