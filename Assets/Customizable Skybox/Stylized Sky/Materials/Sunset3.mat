@@ -75,13 +75,13 @@ Material:
     - _SpecularHighlights: 1
     - _SrcBlend: 1
     - _SunDiscContribution: 1
-    - _SunDiscExponent: 100000
+    - _SunDiscExponent: 1061.4
     - _SunDiscExponentSize: 100000
-    - _SunDiscMultiplier: 100000
+    - _SunDiscMultiplier: 4
     - _SunDiscMultiplierSharpness: 1000
     - _SunHaloBlendMode: 0
-    - _SunHaloContribution: 0.5
-    - _SunHaloExponent: 100
+    - _SunHaloContribution: 0.42
+    - _SunHaloExponent: 150
     - _UVSec: 0
     - _View: 0
     - _ZWrite: 1
@@ -89,8 +89,9 @@ Material:
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _HorizonLineColor: {r: 1, g: 0.50885606, b: 0.23921567, a: 0.6}
-    - _SkyGradientBottom: {r: 0.38431376, g: 0.13333334, b: 0.20392159, a: 1}
+    - _HorizonLineColor: {r: 0, g: 0, b: 0, a: 0}
+    - _SkyGradientBottom: {r: 0.16981131, g: 0, b: 0.04775943, a: 0.6431373}
     - _SkyGradientTop: {r: 0, g: 0, b: 0, a: 1}
-    - _SunDiscColor: {r: 1, g: 1, b: 1, a: 1}
-    - _SunHaloColor: {r: 1, g: 0.37821245, b: 0.108490564, a: 1}
+    - _SunDiscColor: {r: 0, g: 0, b: 0, a: 1}
+    - _SunHaloColor: {r: 1, g: 0, b: 0.07597923, a: 1}
+  m_BuildTextureStacks: []

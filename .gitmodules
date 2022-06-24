@@ -1,0 +1,3 @@
+[submodule "Assets/FlexibleCelShader-SRP"]
+	path = Assets/FlexibleCelShader-SRP
+	url = https://github.com/zacharypetersen1/FlexibleCelShader-SRP

@@ -248,8 +248,8 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.5
-  m_Height: 2
+  m_Radius: 0.89
+  m_Height: 1.91
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!195 &5185886381209011941
@@ -302,9 +302,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac2b9fd50a8cde44f962873f00d82c64, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  coolDown: 3
-  range: 2.5
-  duration: 3
+  coolDown: 1.25
+  range: 5
+  duration: 1.25
   damage: 1
   blade: {fileID: 6909240230177459753}
 --- !u!114 &69613237490000921

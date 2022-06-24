@@ -691,7 +691,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   coolDown: 3
-  fireball: {fileID: 2520425246469819010, guid: 9aab5a48a74919946b2ab3061119c5c2, type: 3}
+  fireball: {fileID: 7848996684634915871, guid: d6bcd3506d9e09043acab0c813c80437, type: 3}
   minRange: 8
   maxRange: 10
   damageArea: 3
@@ -708,8 +708,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rotationSpeed: 5
-  health: 1
+  health: 15
   lookRange: 10
+  m_Animator: {fileID: 8703782033280754355, guid: f54a41fe8139eff40bd074034ee10411, type: 3}
   m_Animator: {fileID: 0}
 --- !u!114 &7407707991411374167
 MonoBehaviour:

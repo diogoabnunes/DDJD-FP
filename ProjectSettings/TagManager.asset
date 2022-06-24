@@ -8,6 +8,7 @@ TagManager:
   - Enemy
   - Objects
   - PlayerWeapon
+  - TerrainElement
   layers:
   - Default
   - TransparentFX
@@ -19,13 +20,13 @@ TagManager:
   - GFX
   - Player
   - Objects
-  - 
+  - Glow
   - LandEnemy
   - FlyingEnemy
+  - 
+  - LayerMask
+  - SeeThrough
   - BossEnemy
-  - 
-  - 
-  - 
   - 
   - 
   - 
