@@ -109,8 +109,8 @@ MonoBehaviour:
   duration: 3
   damage: 1
   TIME_ELAPSED_FROM_ANIMATION_START_UNTIL_SHOOT: 1
-  bullet: {fileID: 0}
-  firePoint: {fileID: 0}
+  bullet: {fileID: 7848996684634915871, guid: d6bcd3506d9e09043acab0c813c80437, type: 3}
+  firePoint: {fileID: 6904743607938266084}
 --- !u!114 &275684989685424265
 MonoBehaviour:
   m_ObjectHideFlags: 0

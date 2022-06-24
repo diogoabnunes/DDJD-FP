@@ -13,9 +13,9 @@ GameObject:
   - component: {fileID: 2533861558167335206}
   - component: {fileID: 2533861558167335203}
   - component: {fileID: 4939990440995837859}
-  m_Layer: 6
+  m_Layer: 9
   m_Name: Cliff_2
-  m_TagString: Ground
+  m_TagString: TerrainElement
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
@@ -27,9 +27,9 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2533861558167335207}
-  m_LocalRotation: {x: -0, y: -0.43285123, z: -0, w: 0.9014654}
+  m_LocalRotation: {x: 0, y: -0.43284905, z: 0, w: 0.9014664}
   m_LocalPosition: {x: -55.2, y: -12.3, z: 46}
-  m_LocalScale: {x: 4.894394, y: 4.894394, z: 4.894394}
+  m_LocalScale: {x: 20.907448, y: 11.793054, z: 20.907448}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
