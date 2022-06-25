@@ -25,8 +25,6 @@ public class ChargeImpactPoint : MonoBehaviour
     void OnTriggerEnter(Collider other) {
         ChargeAttack chargeAttack = transform.parent.gameObject.GetComponent<ChargeAttack>();
 
-        Debug.Log(other.gameObject.name);
-
         if (EnemyCollidedWithPlayer(other)) {
             chargeAttack.EnemyCollidedWithPlayer();
         }

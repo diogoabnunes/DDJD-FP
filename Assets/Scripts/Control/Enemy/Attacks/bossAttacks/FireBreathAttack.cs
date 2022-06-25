@@ -16,7 +16,7 @@ public class FireBreathAttack : Attack
 
     Animator m_Animator;
 
-    Vector3 arenaCenterPoint;
+    public Transform arenaCenterPoint;
 
     override public void Start() {
         base.Start();
@@ -24,8 +24,6 @@ public class FireBreathAttack : Attack
         bossController = GetComponent<BossController>();
         playerModel = PlayerModel.instance;
         m_Animator = bossController.GetAnimator();
-
-        arenaCenterPoint = Vector3.zero;
     }
 
     public override bool CanAttack(float distanceToPlayer) {
@@ -41,10 +39,10 @@ public class FireBreathAttack : Attack
 
         float stoppingDistance = bossController.GetStoppingDistance();
         bossController.SetStoppingDistance(0f);
-        bossController.GoTo(arenaCenterPoint);
+        bossController.GoTo(arenaCenterPoint.position);
 
         Vector3 enemyPosition = bossController.GetEnemyPosition();
-        while (enemyPosition.x != arenaCenterPoint.x || enemyPosition.z != arenaCenterPoint.z) {
+        while (enemyPosition.x != arenaCenterPoint.position.x || enemyPosition.z != arenaCenterPoint.position.z) {
             yield return null;
             enemyPosition = bossController.GetEnemyPosition();
         }

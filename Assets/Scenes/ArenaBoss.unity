@@ -1256,6 +1256,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 212320746334171807, guid: 06553309af6a81f479c1a5e3b3b35491, type: 3}
+      propertyPath: m_Layer
+      value: 17
+      objectReference: {fileID: 0}
     - target: {fileID: 1896295652648047398, guid: 06553309af6a81f479c1a5e3b3b35491, type: 3}
       propertyPath: m_IsTrigger
       value: 1
@@ -1277,12 +1281,16 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4165000547759169742, guid: 06553309af6a81f479c1a5e3b3b35491, type: 3}
+      propertyPath: m_Layer
+      value: 17
+      objectReference: {fileID: 0}
+    - target: {fileID: 4165000547759169742, guid: 06553309af6a81f479c1a5e3b3b35491, type: 3}
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6575386942430056017, guid: 06553309af6a81f479c1a5e3b3b35491, type: 3}
       propertyPath: m_Layer
-      value: 13
+      value: 17
       objectReference: {fileID: 0}
     - target: {fileID: 6575386942593529424, guid: 06553309af6a81f479c1a5e3b3b35491, type: 3}
       propertyPath: m_AgentTypeID
@@ -1342,7 +1350,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6575386942593529428, guid: 06553309af6a81f479c1a5e3b3b35491, type: 3}
       propertyPath: m_Layer
-      value: 13
+      value: 17
       objectReference: {fileID: 0}
     - target: {fileID: 6575386942593529439, guid: 06553309af6a81f479c1a5e3b3b35491, type: 3}
       propertyPath: lookRange
@@ -1350,11 +1358,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6575386942619793680, guid: 06553309af6a81f479c1a5e3b3b35491, type: 3}
       propertyPath: m_Layer
-      value: 13
+      value: 17
       objectReference: {fileID: 0}
     - target: {fileID: 6575386943470820935, guid: 06553309af6a81f479c1a5e3b3b35491, type: 3}
       propertyPath: m_Layer
-      value: 13
+      value: 17
       objectReference: {fileID: 0}
     - target: {fileID: 7643207491557862632, guid: 06553309af6a81f479c1a5e3b3b35491, type: 3}
       propertyPath: m_RootOrder
@@ -3322,6 +3330,7 @@ MonoBehaviour:
   LOOK_DURATION: 1.5
   FIRE_BREATH_DURATION: 2
   REST_DURATION: 1
+  arenaCenterPoint: {fileID: 0}
 --- !u!1 &1934871249
 GameObject:
   m_ObjectHideFlags: 0

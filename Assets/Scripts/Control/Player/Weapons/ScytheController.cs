@@ -78,7 +78,7 @@ public class ScytheController : WeaponController
     }
 
     private void OnTriggerEnter(Collider other) {
-        if (!IsLocked()) return;
+        if (!IsLocked() || other.gameObject.tag == "Player") return;
 
         CharacterModel model = other.gameObject.GetComponent<CharacterModel>();
         if (model != null) {
