@@ -18,18 +18,11 @@ public class SpawnPoint : MonoBehaviour
         Vector3 position = transform.position;
         position.y = 1 * transform.localScale.y;
 
-        spawnRectangle = new SpawnRectangle(position, transform.localScale.x, transform.localScale.z, transform.rotation.y);
-    }
-    
-    void Update() {
-        if (Time.time - lastSpawn > 3f) {
-            spawnManager.DefineSpawnRectangle(spawnRectangle);
-            spawnManager.Spawn();
-        }
+        spawnRectangle = new SpawnRectangle(position, transform.localScale.z, transform.localScale.x, transform.rotation.eulerAngles.y);
     }
 
     void OnTriggerEnter() {
-        // spawnManager.DefineSpawnPoint(position, 3f);
-        // spawnManager.Spawn();
+        spawnManager.DefineSpawnRectangle(spawnRectangle);
+        spawnManager.Spawn();
     }
 }

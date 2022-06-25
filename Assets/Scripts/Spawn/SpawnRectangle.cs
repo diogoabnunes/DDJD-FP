@@ -18,19 +18,19 @@ public class SpawnRectangle {
     }
 
     public float getMinXPoint() {
-        return centerPoint.x - (width / 2f);
+        return centerPoint.x - (height / 2f);
     }
 
     public float getMaxXPoint() {
-        return centerPoint.x + (width / 2f);
+        return centerPoint.x + (height / 2f);
     }
 
     public float getMinZPoint() {
-        return centerPoint.z - (height / 2f);
+        return centerPoint.z - (width / 2f);
     }
 
     public float getMaxZPoint() {
-        return centerPoint.z + (height / 2f);
+        return centerPoint.z + (width / 2f);
     }
 
     public float getY() {
@@ -38,12 +38,15 @@ public class SpawnRectangle {
     }
 
     public Vector3 rotatePointToRectangleRotation(Vector3 point) {
-        // float distanceToCenter = Mathf.Sqrt(Mathf.Pow(centerPoint.x - point.x, 2) + Mathf.Pow(centerPoint.z - point.z, 2));
-        // float newX = distanceToCenter * Mathf.Cos(rotation * Mathf.Deg2Rad) + centerPoint.x;
-        // float newZ = distanceToCenter * Mathf.Sin(rotation * Mathf.Deg2Rad) + centerPoint.z;
+        Vector3 vector1 = new Vector3(0, 0, centerPoint.z + (width / 2f));
+        Vector3 vector2 = new Vector3(point.x - centerPoint.x, point.y - centerPoint.y, point.z - centerPoint.z);
+        float angle = Vector3.Angle(vector1, vector2) + rotation;
 
-        // return new Vector3(newX, point.y, newZ);
-        // float newX = point.x * Mathf.Cos(rotation * Mathf.Deg2Rad)
-        return point;
+        float radius = Mathf.Sqrt(Mathf.Pow(vector2.x, 2) + Mathf.Pow(vector2.z, 2));
+
+        float newX = radius * Mathf.Sin(angle * Mathf.Deg2Rad) + centerPoint.x;
+        float newZ = radius * Mathf.Cos(angle * Mathf.Deg2Rad) + centerPoint.z;
+
+        return new Vector3(newX, point.y, newZ);
     }
 }

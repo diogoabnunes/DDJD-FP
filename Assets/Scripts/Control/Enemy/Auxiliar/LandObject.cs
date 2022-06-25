@@ -8,6 +8,10 @@ public class LandObject : MonoBehaviour
     public EnemyController controller;
     public EnemyModel model;
 
+    public Transform groundCheck;
+    public float groundDistance = 0.4f;
+    public LayerMask groundMask;
+
     Rigidbody rigidbody;
 
     void Start() {
@@ -21,7 +25,9 @@ public class LandObject : MonoBehaviour
     }
 
     bool CollidedWithGround() {
-        return rigidbody.velocity.y == 0;
+        // Debug.Log(rigidbody.velocity.y);
+        // return Mathf.Abs(rigidbody.velocity.y) <= 0.0001f;
+        return Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
     }
 
     void EnableControlls() {

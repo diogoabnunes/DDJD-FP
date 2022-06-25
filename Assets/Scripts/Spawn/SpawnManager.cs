@@ -17,7 +17,7 @@ public class SpawnManager : MonoBehaviour
 
     Transform player;
 
-    float nextSpawnTime = 3f;
+    float nextSpawnTime = 0f;
 
     SpawnRectangle spawnRectangle;
 
@@ -31,13 +31,11 @@ public class SpawnManager : MonoBehaviour
 
     public void Spawn() {
         if (!CanSpawn()) return;
-        Debug.Log("sp");
 
-        // int numEnemiesToSpawn = chooseNumberOfEnemiesToSpawn();
-        int numEnemiesToSpawn = 1;
+        int numEnemiesToSpawn = chooseNumberOfEnemiesToSpawn();
+
         int counter = 0;
         while (counter++ != numEnemiesToSpawn) {
-            Debug.Log("spawn: " + numEnemiesToSpawn);
             SpawnEnemy();
         }
 
@@ -80,10 +78,8 @@ public class SpawnManager : MonoBehaviour
     }
 
     Vector3 generatePoint() {
-        // float x = Random.Range(spawnRectangle.getMinXPoint(), spawnRectangle.getMaxXPoint());
-        // float z = Random.Range(spawnRectangle.getMinZPoint(), spawnRectangle.getMaxZPoint());
-        float x = spawnRectangle.getMinXPoint();
-        float z = spawnRectangle.getMinZPoint();
+        float x = Random.Range(spawnRectangle.getMinXPoint(), spawnRectangle.getMaxXPoint());
+        float z = Random.Range(spawnRectangle.getMinZPoint(), spawnRectangle.getMaxZPoint());
 
         Vector3 point = new Vector3(x, spawnRectangle.getY(), z);
 
