@@ -36,7 +36,7 @@ public class TransictionFromBossController : MonoBehaviour
         }
 
         if (ReachedEndOfTransition()) {
-            // gameManager.UpdateState(new BossState());
+            gameManager.UpdateState(new MainMenuState());
             this.gameObject.SetActive(false);
         }
     }
@@ -62,6 +62,6 @@ public class TransictionFromBossController : MonoBehaviour
 
     void SetupNextLevel() {
         // gameManager.DestroyEnemies();
-        // SceneManager.LoadScene(4);
+        SceneManager.LoadScene(0);
     }
 }
