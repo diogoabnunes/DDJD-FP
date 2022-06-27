@@ -91,10 +91,10 @@ public class GameManager : MonoBehaviour
     }
 
     void EnablePlayerInputController() {
-        // GameObject playerInput = GameObject.Find("Third Person Player");
-        // if (playerInput != null) {
-        //     playerInput.GetComponent<PlayerController>().Enable();
-        // }
+        GameObject playerInput = GameObject.Find("Third Person Player");
+        if (playerInput != null) {
+            playerInput.GetComponent<PlayerController>().Enable();
+        }
     }
 
     void EnablePlayerCanvas() {
@@ -112,10 +112,10 @@ public class GameManager : MonoBehaviour
     }
 
     void DisablePlayerInputController() {
-        // GameObject playerInput = GameObject.Find("Third Person Player");
-        // if (playerInput != null) {
-        //     playerInput.GetComponent<PlayerController>().Disable();
-        // }
+        GameObject playerInput = GameObject.Find("Third Person Player");
+        if (playerInput != null) {
+            playerInput.GetComponent<PlayerController>().Disable();
+        }
     }
 
     void DisablePlayerCanvas() {
