@@ -60,12 +60,18 @@ public class Level3AcidPool : MonoBehaviour
     }
 
     void OnTriggerEnter(Collider other) {
-        if (PlayerInAcidPool(other.gameObject.name)) {
+        if (CollisionWithPlayer(other.gameObject.name)) {
             playerInAcidPool = true;
         }
     }
 
-    bool PlayerInAcidPool(string name) {
+    void OnTriggerExit(Collider other) {
+        if (CollisionWithPlayer(other.gameObject.name)) {
+            PlayerLeftAcidPool();
+        }
+    }
+
+    bool CollisionWithPlayer(string name) {
         return name == "Third Person Player";
     }
 }
