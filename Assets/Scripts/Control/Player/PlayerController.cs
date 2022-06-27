@@ -53,6 +53,7 @@ public class PlayerController : MonoBehaviour
 
     void CheckForGround() {
         isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
+
         if (isGrounded) {
             m_Animator.SetBool("isJumping", false);
         }
