@@ -16,7 +16,7 @@ public class SpawnPoint : MonoBehaviour
 
     void Start() {
         Vector3 position = transform.position;
-        position.y = 1 * transform.localScale.y;
+        position.y = position.y + (transform.localScale.y / 2f);
 
         spawnRectangle = new SpawnRectangle(position, transform.localScale.z, transform.localScale.x, transform.rotation.eulerAngles.y);
     }
