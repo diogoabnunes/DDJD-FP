@@ -2,11 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TransictionFromLevel1State : State {
+public class TransictionFromBossState : State {
+
     public override void Setup() {
         TimeAuxiliar.StopTime();
         // gameManager.DisablePlayer();
-        gameManager.EnableTransitionFrom1();
+        gameManager.EnableTransitionFromBoss();
     }
 
     public override State GetNextState() {

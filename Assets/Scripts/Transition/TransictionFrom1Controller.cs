@@ -61,8 +61,7 @@ public class TransictionFrom1Controller : MonoBehaviour
     }
 
     void SetupNextLevel() {
-        gameManager.DestroyEnemies();
-        TimeAuxiliar.ResumeTime();
-        SceneManager.LoadScene(1);
+        // gameManager.DestroyEnemies();
+        SceneManager.LoadScene(2);
     }
 }

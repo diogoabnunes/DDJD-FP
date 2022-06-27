@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Level2State : State {
+public class Level3State : State {
     public int numberOfEnemiesToKill = 1;
 
     public override void Setup() {
@@ -16,7 +16,7 @@ public class Level2State : State {
         }
 
         if (LevelPassed()) {
-            return new TransictionFromLevel2State();
+            return new TransictionFromLevel3State();
         }
 
         return null;

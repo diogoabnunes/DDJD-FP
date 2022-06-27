@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
-public class TransictionFrom2Controller : MonoBehaviour
+public class TransictionFrom3Controller : MonoBehaviour
 {
     Image image;
 
@@ -36,7 +36,7 @@ public class TransictionFrom2Controller : MonoBehaviour
         }
 
         if (ReachedEndOfTransition()) {
-            gameManager.UpdateState(new Level3State());
+            gameManager.UpdateState(new BossState());
             this.gameObject.SetActive(false);
         }
     }
@@ -62,6 +62,6 @@ public class TransictionFrom2Controller : MonoBehaviour
 
     void SetupNextLevel() {
         // gameManager.DestroyEnemies();
-        SceneManager.LoadScene(3);
+        SceneManager.LoadScene(4);
     }
 }
