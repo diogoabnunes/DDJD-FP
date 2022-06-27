@@ -1844,9 +1844,10 @@ GameObject:
   - component: {fileID: 272634491}
   - component: {fileID: 272634490}
   - component: {fileID: 272634493}
+  - component: {fileID: 272634494}
   m_Layer: 0
   m_Name: Acid
-  m_TagString: Untagged
+  m_TagString: AcidPool
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1873,11 +1874,11 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 272634488}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1.0000001, y: 1, z: 1.0000002}
-  m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
+  m_Size: {x: 1, y: 1, z: 1.0000002}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &272634491
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -1943,6 +1944,19 @@ MonoBehaviour:
   m_Area: 1
   m_IgnoreFromBuild: 0
   m_AffectedAgents: ffffffff
+--- !u!114 &272634494
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 272634488}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e81695453df14334d9bf29fe6c2dcab5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 318504573}
 --- !u!1 &273376952
 GameObject:
   m_ObjectHideFlags: 0
@@ -7220,6 +7234,11 @@ BoxCollider:
 Transform:
   m_CorrespondingSourceObject: {fileID: 3726079752259344358, guid: d48de0b9078d35e4c91874a29d4e9f6f, type: 3}
   m_PrefabInstance: {fileID: 393712268}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &318504573 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6188083686845781659, guid: e97f74ac00a3f6649ad9063c1b1dbaa7, type: 3}
+  m_PrefabInstance: {fileID: 1160615326}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &320731848
 PrefabInstance:

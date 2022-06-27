@@ -9,6 +9,7 @@ TagManager:
   - Objects
   - PlayerWeapon
   - TerrainElement
+  - AcidPool
   layers:
   - Default
   - TransparentFX
