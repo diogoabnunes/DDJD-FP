@@ -13,11 +13,14 @@ public class PunchGroundAttack : Attack
     BigMuncherController bigMuncherController;
     PlayerModel playerModel;
 
+    Animator m_Animator;
+
     override public void Start() {
         base.Start();
 
         bigMuncherController = GetComponent<BigMuncherController>();
         playerModel = PlayerModel.instance;
+        m_Animator = bigMuncherController.GetAnimator();
     }
 
     public override bool CanAttack(float distanceToPlayer) {
@@ -30,6 +33,9 @@ public class PunchGroundAttack : Attack
         bigMuncherController.Lock();
 
         bigMuncherController.CancelMovement();
+
+        // play animation of attack
+        m_Animator.SetTrigger("groundAttack");
 
         // time until he punches the ground
         yield return new WaitForSeconds(duration);

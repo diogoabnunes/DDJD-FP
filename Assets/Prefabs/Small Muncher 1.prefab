@@ -330,7 +330,7 @@ NavMeshAgent:
   m_Enabled: 0
   m_AgentTypeID: 0
   m_Radius: 1
-  m_Speed: 10
+  m_Speed: 20
   m_Acceleration: 20
   avoidancePriority: 50
   m_AngularSpeed: 120
@@ -373,7 +373,7 @@ MonoBehaviour:
   coolDown: 1.25
   range: 4
   duration: 1.25
-  damage: 1
+  damage: 15
   blade: {fileID: 934570961098314055}
 --- !u!114 &2615334229696653915
 MonoBehaviour:

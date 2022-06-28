@@ -1727,7 +1727,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 6188083686845781659}
-  health: 10
+  health: 100
   healthSlider: {fileID: 0}
 --- !u!1 &6188083686883295324
 GameObject:
