@@ -38,11 +38,13 @@ public class PlayerController : MonoBehaviour
         
         inputHandler = new InputHandler();
 
-        groundCheck = GameObject.Find("GroundCheck").transform;
+        groundCheck = transform.Find("GroundCheck").transform;
     }
 
     void Update()
     {
+        Debug.Log(transform.position);
+
         if (!enabled) return;
 
         CheckForGround();
@@ -66,9 +68,7 @@ public class PlayerController : MonoBehaviour
     }
 
     void CheckForGround() {
-        
         isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
-        // Debug.Log(isGrounded);
 
         if (isGrounded) {
             m_Animator.SetBool("isJumping", false);

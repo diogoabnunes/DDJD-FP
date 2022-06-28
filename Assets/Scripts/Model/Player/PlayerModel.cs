@@ -36,6 +36,13 @@ public class PlayerModel : CharacterModel
         healthSlider.value = 1;
     }
 
+    public void Reset() {
+        health = 10f;
+        offensiveEffects.Clear();
+        defensiveEffects.Clear();
+        otherEffects.Clear();
+    }
+
     public bool PlayerWithinArea(Vector3 position, float radius) {
         Collider[] hitElements = Physics.OverlapSphere(position, radius);
 

@@ -2,18 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TransictionFromLevel3State : State {
-
-    public override void Setup() {
-        TimeAuxiliar.StopTime();
+public class TransictionFromLevel3State : TransictionState {
+    public override void EnableTransition() {
         gameManager.EnableTransitionFrom3();
-    }
-
-    public override State GetNextState() {
-        if (PauseMenuCommand()) {
-            return new PauseMenuState(this);
-        }
-
-        return null;
     }
 }

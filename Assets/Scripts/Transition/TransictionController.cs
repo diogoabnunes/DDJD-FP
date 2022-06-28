@@ -61,6 +61,7 @@ public class TransictionController : MonoBehaviour
     }
 
     void SetupNextLevel() {
+        TimeAuxiliar.ResumeTime();
         SceneManager.LoadScene(GetNextScene());
     }
 

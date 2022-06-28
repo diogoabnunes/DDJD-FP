@@ -1,10 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
-public class BossState : State {
-    public int numberOfEnemiesToKill = 1;
-
+public class LevelState : State {
     public override void Setup() {
         TimeAuxiliar.ResumeTime();
         gameManager.ResetEnemyKilledCounter();
@@ -16,13 +15,17 @@ public class BossState : State {
         }
 
         if (LevelPassed()) {
-            return new WinningMenuState();
+            return GetNextTransiction();
         }
 
         return null;
     }
 
-    bool LevelPassed() {
-        return gameManager.GetNumberOfEnemiesKilled() >= numberOfEnemiesToKill;
+    public virtual bool LevelPassed() {
+        return false;
+    }
+
+    public virtual State GetNextTransiction() {
+        return null;
     }
 }

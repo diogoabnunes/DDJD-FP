@@ -3,27 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class Level1State : State {
+public class Level1State : LevelState {
     int numberOfEnemiesToKill = 1;
 
-    public override void Setup() {
-        TimeAuxiliar.ResumeTime();
-        gameManager.ResetEnemyKilledCounter();
-    }
-
-    public override State GetNextState() {
-        if (PauseMenuCommand()) {
-            return new PauseMenuState(this);
-        }
-
-        if (LevelPassed()) {
-            return new TransictionFromLevel1State();
-        }
-
-        return null;
-    }
-
-    bool LevelPassed() {
+    public override bool LevelPassed() {
         return gameManager.GetNumberOfEnemiesKilled() >= numberOfEnemiesToKill;
+    }
+
+    public override State GetNextTransiction() {
+        return new TransictionFromLevel1State();
     }
 }

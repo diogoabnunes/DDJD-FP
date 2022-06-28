@@ -2,11 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TransictionFromBossState : State {
+public class TransictionState : State {
 
     public override void Setup() {
         TimeAuxiliar.StopTime();
-        gameManager.EnableTransitionFromBoss();
+        EnableTransition();
     }
 
     public override State GetNextState() {
@@ -16,4 +16,6 @@ public class TransictionFromBossState : State {
 
         return null;
     }
+
+    public virtual void EnableTransition() {}
 }
