@@ -1200,8 +1200,8 @@ SkinnedMeshRenderer:
   m_BlendShapeWeights: []
   m_RootBone: {fileID: 0}
   m_AABB:
-    m_Center: {x: 0, y: 0, z: 0}
-    m_Extent: {x: 0.375, y: 0, z: 0.375}
+    m_Center: {x: -0.029486597, y: -0.25443885, z: 0.4184948}
+    m_Extent: {x: 0.41830382, y: 0.24245933, z: 0.04420373}
   m_DirtyAABB: 0
 --- !u!183 &6188083686488481717
 Cloth:
@@ -1674,8 +1674,8 @@ MonoBehaviour:
   controller: {fileID: 6188083686845781668}
   cam: {fileID: 0}
   baseSpeed: 15
-  gravity: -34.335
-  jumpHeight: 15
+  gravity: -10000
+  jumpHeight: 12
   m_Animator: {fileID: 6188083687191178615}
   speedModifier: 2.5
   groundDistance: 0.4

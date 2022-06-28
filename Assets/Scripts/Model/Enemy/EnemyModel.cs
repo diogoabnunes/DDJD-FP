@@ -5,6 +5,8 @@ using UnityEngine.UI;
 
 public abstract class EnemyModel : CharacterModel
 {
+
+	public GameObject FloatingTextPrefab;
     protected SpawnManager spawnManager = null;
 
     protected GameManager gameManager;
@@ -35,6 +37,10 @@ public abstract class EnemyModel : CharacterModel
     }
 
     override public void TakeDamage(float damage) {
+		if(FloatingTextPrefab!= null){
+			ShowFloatingText(damage);
+		}
+
         health -= damage;
         healthSlider.value = health/maxHealth;
 
@@ -48,6 +54,11 @@ public abstract class EnemyModel : CharacterModel
             Die();
         }
     }
+
+	void ShowFloatingText(float damage){
+		var text = Instantiate(FloatingTextPrefab, transform.position, Quaternion.identity, transform);
+		text.GetComponent<TextMesh>().text = damage.ToString();
+	}
 
     public virtual void Die() {
       if (spawnManager != null){
