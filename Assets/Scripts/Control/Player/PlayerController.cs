@@ -30,6 +30,8 @@ public class PlayerController : MonoBehaviour
     bool isGrounded;
     bool isShooting;
 
+    bool enabled = true;
+
     void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
@@ -41,6 +43,8 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
+        if (!enabled) return;
+
         CheckForGround();
         CheckForShooting();
 
@@ -49,6 +53,16 @@ public class PlayerController : MonoBehaviour
             command.execute(this);
 
         UpdateGravity();
+    }
+
+    public void Enable() {
+        Cursor.lockState = CursorLockMode.Locked;
+        enabled = true;
+    }
+
+    public void Disable() {
+        Cursor.lockState = CursorLockMode.None;
+        enabled = false;
     }
 
     void CheckForGround() {

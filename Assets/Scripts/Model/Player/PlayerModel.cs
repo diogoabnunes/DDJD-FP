@@ -63,5 +63,6 @@ public class PlayerModel : CharacterModel
 
     void Die() {
         Debug.Log("Player died!");
+        GameManager.instance.PlayerDied();
     }
 }
