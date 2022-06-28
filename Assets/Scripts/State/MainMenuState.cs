@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class MainMenuState : State {
-    public override State GetNextState() {        
+    public override State GetNextState() {    
         return null;
     }
 }

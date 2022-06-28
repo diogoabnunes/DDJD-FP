@@ -5,7 +5,6 @@ using UnityEngine;
 public class TransictionFromLevel1State : State {
     public override void Setup() {
         TimeAuxiliar.StopTime();
-        // gameManager.DisablePlayer();
         gameManager.EnableTransitionFrom1();
     }
 

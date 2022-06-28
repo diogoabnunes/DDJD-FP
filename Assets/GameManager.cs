@@ -47,10 +47,6 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    void OnLevelWasLoaded(int level) {
-        state.Setup();
-    }
-
     public void UpdateState(State nextState) {
         state = nextState;
         state.Setup();
@@ -64,7 +60,7 @@ public class GameManager : MonoBehaviour
     }
 
     public void PlayerDied() {
-
+        UpdateState(new GameOverState());
     }
 
     public void EnablePlayer() {

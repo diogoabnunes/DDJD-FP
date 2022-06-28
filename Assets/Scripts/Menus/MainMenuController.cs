@@ -12,10 +12,8 @@ public class MainMenuController : MonoBehaviour
     }
 
     public void Play() {
-        // gameManager.EnablePlayerGraphics();
-        // gameManager.EnablePlayerCamera();
-        gameManager.UpdateState(new Level1State());
         SceneManager.LoadScene(1);
+        gameManager.UpdateState(new Level1State());
     }
 
     public void Exit() {

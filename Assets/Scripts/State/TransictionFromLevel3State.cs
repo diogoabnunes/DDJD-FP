@@ -6,7 +6,6 @@ public class TransictionFromLevel3State : State {
 
     public override void Setup() {
         TimeAuxiliar.StopTime();
-        // gameManager.DisablePlayer();
         gameManager.EnableTransitionFrom3();
     }
 

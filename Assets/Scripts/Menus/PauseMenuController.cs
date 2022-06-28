@@ -20,8 +20,8 @@ public class PauseMenuController : MonoBehaviour
 
     public void MainMenu() {
         TimeAuxiliar.ResumeTime();
-        gameManager.UpdateState(new MainMenuState());
         SceneManager.LoadScene(0);
+        gameManager.UpdateState(new MainMenuState());
     }
 
     public void Exit() {

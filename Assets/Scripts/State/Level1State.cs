@@ -1,11 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Level1State : State {
     int numberOfEnemiesToKill = 1;
 
     public override void Setup() {
+        TimeAuxiliar.ResumeTime();
     }
 
     public override State GetNextState() {
@@ -21,7 +23,6 @@ public class Level1State : State {
     }
 
     bool LevelPassed() {
-        Debug.Log(gameManager.GetNumberOfEnemiesKilled());
         return gameManager.GetNumberOfEnemiesKilled() >= numberOfEnemiesToKill;
     }
 }

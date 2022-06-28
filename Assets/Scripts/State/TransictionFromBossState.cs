@@ -6,7 +6,6 @@ public class TransictionFromBossState : State {
 
     public override void Setup() {
         TimeAuxiliar.StopTime();
-        // gameManager.DisablePlayer();
         gameManager.EnableTransitionFromBoss();
     }
 
