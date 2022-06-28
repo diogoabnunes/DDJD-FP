@@ -17,6 +17,10 @@ public class State {
         return null;
     }
 
+    public virtual bool IsGameOver() {
+        return false;
+    }
+
     protected bool PauseMenuCommand() {
         return Input.GetKeyDown(KeyCode.Escape);
     }

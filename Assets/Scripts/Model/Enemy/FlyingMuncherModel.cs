@@ -59,6 +59,10 @@ public class FlyingMuncherModel : EnemyModel
     public IEnumerator DieDelay() {
         yield return new WaitForSeconds(2);
 
+        if (gameManager != null) {
+          gameManager.addEnemyKilled();
+        }
+
         Destroy(gameObject);
     }
 

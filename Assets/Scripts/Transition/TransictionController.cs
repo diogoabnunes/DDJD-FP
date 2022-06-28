@@ -71,4 +71,9 @@ public class TransictionController : MonoBehaviour
     public virtual State GetNextState() {
         return new MainMenuState();
     }
+
+    void OnEnable() {
+        lastUpdate = Time.unscaledTime;
+        increment = 1f / 40f;
+    }
 }

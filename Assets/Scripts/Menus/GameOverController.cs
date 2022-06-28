@@ -12,17 +12,15 @@ public class GameOverController : MonoBehaviour
     }
 
     public void Restart() {
-        // gameManager.EnablePlayerGraphics();
-        // gameManager.EnablePlayerCamera();
-        gameManager.UpdateState(new Level1State());
         SceneManager.LoadScene(1);
+        gameManager.ResetEnemyKilledCounter();
+        gameManager.UpdateState(new Level1State());
     }
 
     public void MainMenu() {
-        // gameManager.EnablePlayerGraphics();
-        // gameManager.EnablePlayerCamera();
-        gameManager.UpdateState(new MainMenuState());
+        TimeAuxiliar.ResumeTime();
         SceneManager.LoadScene(0);
+        gameManager.UpdateState(new MainMenuState());
     }
 
     public void Exit() {

@@ -15,6 +15,7 @@ public class Level3State : State {
             return new PauseMenuState(this);
         }
 
+        Debug.Log("level3 : " + gameManager.GetNumberOfEnemiesKilled());
         if (LevelPassed()) {
             return new TransictionFromLevel3State();
         }

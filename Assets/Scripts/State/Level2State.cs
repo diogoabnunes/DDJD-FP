@@ -15,6 +15,7 @@ public class Level2State : State {
             return new PauseMenuState(this);
         }
 
+        Debug.Log("level2 : " + gameManager.GetNumberOfEnemiesKilled());
         if (LevelPassed()) {
             return new TransictionFromLevel2State();
         }

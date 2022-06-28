@@ -65,6 +65,11 @@ public abstract class EnemyModel : CharacterModel
           spawnManager.enemyDied(this.gameObject);
       }
 
+      
+      if (gameManager != null) {
+        gameManager.addEnemyKilled();
+      }
+
       Destroy(gameObject);
     }
 }

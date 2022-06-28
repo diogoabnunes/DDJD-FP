@@ -60,7 +60,9 @@ public class GameManager : MonoBehaviour
     }
 
     public void PlayerDied() {
-        UpdateState(new GameOverState());
+        if (!state.IsGameOver()) {
+            UpdateState(new GameOverState(Time.time));
+        }
     }
 
     public void EnablePlayer() {

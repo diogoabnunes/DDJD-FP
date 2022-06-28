@@ -170,8 +170,8 @@ public class EnemyController : MonoBehaviour
 
     void OnDestroy()
     {
-        if (gameManager != null) {
-            gameManager.addEnemyKilled();
-        }
+        // if (gameManager != null) {
+        //     gameManager.addEnemyKilled();
+        // }
     }
 }

@@ -64,6 +64,10 @@ public class SmallMuncherModel : EnemyModel
 
         yield return new WaitForSeconds(2);
 
+        if (gameManager != null) {
+            gameManager.addEnemyKilled();
+        }
+
         Destroy(gameObject);
     }
 

@@ -15,6 +15,7 @@ public class BossState : State {
             return new PauseMenuState(this);
         }
 
+        Debug.Log("boss : " + gameManager.GetNumberOfEnemiesKilled());
         if (LevelPassed()) {
             return new TransictionFromBossState();
         }

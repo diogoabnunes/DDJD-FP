@@ -19,7 +19,6 @@ public class TakeDamage : Interaction
     {
         float rand = random.Next(7,12) / 10.0f;
         float realDamage = damage * rand;
-        Debug.Log(realDamage);
         character.TakeDamage(realDamage);
     }
 }
