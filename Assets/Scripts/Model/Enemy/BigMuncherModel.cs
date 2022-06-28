@@ -5,18 +5,37 @@ using UnityEngine;
 public class BigMuncherModel : EnemyModel
 {
 
+    public Animator m_Animator;
+
+    SkinnedMeshRenderer m_Renderer;
+    public GameObject rendererHolder;
+    float dissolvedPercentage = 0f;
+
+
+    BigMuncherController bigMuncherController;
     override public void Start() {
         base.Start();
 
         health = 10f * gameManager.getDifficulty();
         maxHealth = health;
         healthSlider.value = 1;
+
+        // m_Renderer = rendererHolder.GetComponentInChildren<SkinnedMeshRenderer>();
+        bigMuncherController = gameObject.GetComponent<BigMuncherController>();
     }
 
 
     override public void TakeDamage(float damage) {
         base.TakeDamage(damage);
         Debug.Log("Big Muncher was hit! Health: " + health);
+    }
+
+    public void ManageAnimations() {
+      if (bigMuncherController.isRunning()) {
+        m_Animator.SetBool("isRunning", true);
+      } else {
+        m_Animator.SetBool("isRunning", false);
+      }
     }
 
     override public void Die() {

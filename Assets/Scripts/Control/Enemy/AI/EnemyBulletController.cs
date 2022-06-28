@@ -50,8 +50,12 @@ public class EnemyBulletController : MonoBehaviour
     private void OnTriggerEnter(Collider other) {
         CharacterModel model = null;
 
-        if (!active || CollidedWithObjectLauncher(other) || CollidedWithSpawner(other)) return;
+        // if (!active || CollidedWithObjectLauncher(other) || CollidedWithSpawner(other)) return;
 
+        if (other.gameObject.tag != "Player" && other.gameObject.tag != "Object"){
+            return;
+        }
+        
         if (other.gameObject.tag == "PlayerWeapon")
             return;
         
@@ -69,7 +73,7 @@ public class EnemyBulletController : MonoBehaviour
     }
 
     bool CollidedWithObjectLauncher(Collider other) {
-        return other.gameObject == launcher;   
+        return other.gameObject == launcher;  
     }
 
     bool CollidedWithSpawner(Collider other) {
