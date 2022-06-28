@@ -61,7 +61,7 @@ public class GameManager : MonoBehaviour
 
     public void PlayerDied() {
         if (!state.IsGameOver()) {
-            UpdateState(new GameOverState(Time.time));
+            UpdateState(new GameOverState());
         }
     }
 
@@ -123,10 +123,10 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void DestroyEnemies() {
-        var enemies = FindObjectsOfType<EnemyController>();
-        foreach (var enemy in enemies) {
-            Destroy(enemy.gameObject);
+    public void StopEnemies() {
+        EnemyController[] enemies = FindObjectsOfType<EnemyController>();
+        foreach (EnemyController enemyController in enemies) {
+            enemyController.Stop();
         }
     }
 

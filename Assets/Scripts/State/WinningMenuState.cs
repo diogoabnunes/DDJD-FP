@@ -2,39 +2,37 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameOverState : State {
+public class WinningMenuState : State {
     float gameOverDelay = 4f;
     float startTime;
 
-    GameObject gameOverMenu;
+    GameObject winningMenu;
 
     bool enabled = false;
 
-    public GameOverState() : base() {
+    public WinningMenuState() : base() {
         startTime = Time.time;
 
         var allObjects = GameObject.FindObjectsOfType<GameObject>(true);
         foreach(GameObject obj in allObjects) {
-            if (obj.name == "GameOverMenu") {
-                gameOverMenu = obj;
+            if (obj.name == "WinningMenu") {
+                winningMenu = obj;
             }
         }
-
-        gameManager.StopEnemies();
     }
 
     public override void Setup() {
     }
 
     public override State GetNextState() {
-        if (CanShowGameOverMenu()) {
-            EnableGameOverMenu();
+        if (CanShowWinningMenu()) {
+            EnableWinningMenu();
         }
 
         return null;
     }
 
-    bool CanShowGameOverMenu() {
+    bool CanShowWinningMenu() {
         return DelayElapsed() && !enabled;
     }
 
@@ -42,10 +40,10 @@ public class GameOverState : State {
         return (Time.time - startTime) >= gameOverDelay;
     }
 
-    void EnableGameOverMenu() {
+    void EnableWinningMenu() {
         TimeAuxiliar.StopTime();
         gameManager.DisablePlayer();
-        gameOverMenu.SetActive(true);
+        winningMenu.SetActive(true);
 
         enabled = true;
     }
