@@ -8,6 +8,7 @@ public class Level1State : State {
 
     public override void Setup() {
         TimeAuxiliar.ResumeTime();
+        gameManager.ResetEnemyKilledCounter();
     }
 
     public override State GetNextState() {
