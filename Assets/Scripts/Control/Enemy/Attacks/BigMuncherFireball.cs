@@ -2,16 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(FlyingMuncherController))]
-public class FlyingMuncherAttack : Attack
+[RequireComponent(typeof(BigMuncherController))]
+public class BigMuncherFireball : Attack
 {
     public float range = 5f;
     public float duration = 3f;
-    public float damage = 1f;
+
+    public float damage = 20f;
     public float TIME_ELAPSED_FROM_ANIMATION_START_UNTIL_SHOOT = 1F;
     public float destroyTime = 3.0f;    
 
-    FlyingMuncherController flyingMuncherController;
+    BigMuncherController bigMuncherController;
     PlayerModel playerModel;
 
     Animator m_Animator;
@@ -22,31 +23,31 @@ public class FlyingMuncherAttack : Attack
     override public void Start() {
         base.Start();
 
-        flyingMuncherController = GetComponent<FlyingMuncherController>();
+        bigMuncherController = GetComponent<BigMuncherController>();
         playerModel = PlayerModel.instance;
-        m_Animator = flyingMuncherController.GetAnimator();
+        m_Animator = bigMuncherController.GetAnimator();
     }
 
-    public override bool CanAttack(float distanceToPlayer/*, Quaternion rotationTowardsPlayer*/) {
-        return distanceToPlayer <= range && TimeElapsedForAttack() /*&& IsFacingPlayer(rotationTowardsPlayer)*/;
+    public override bool CanAttack(float distanceToPlayer) {
+        return distanceToPlayer <= range && TimeElapsedForAttack();
     }
 
     public override IEnumerator DoAttackCoroutine() {
         Debug.Log("Enemy 3 Attack");
 
-        flyingMuncherController.Lock();
+        bigMuncherController.Lock();
 
-        flyingMuncherController.CancelMovement();
+        bigMuncherController.CancelMovement();
 
         // play animation of attack
-        m_Animator.SetTrigger("attack");
+        m_Animator.SetTrigger("fireball");
 
         // verify if player is still in range
         StartCoroutine(LaunchBullet());
 
         yield return new WaitForSeconds(duration);
 
-        flyingMuncherController.Unlock();
+        bigMuncherController.Unlock();
 
         yield return null;
     }
@@ -54,7 +55,9 @@ public class FlyingMuncherAttack : Attack
     IEnumerator LaunchBullet() {
         Vector3 initialPosition = firePoint.position;
 
-        Vector3 finalPosition = flyingMuncherController.GetPlayerPosition();
+        Vector3 offset = new Vector3(0.0f, 3.0f, 0.0f);
+        
+        Vector3 finalPosition = bigMuncherController.GetPlayerPosition() + offset;
 
         yield return new WaitForSeconds(TIME_ELAPSED_FROM_ANIMATION_START_UNTIL_SHOOT);
 

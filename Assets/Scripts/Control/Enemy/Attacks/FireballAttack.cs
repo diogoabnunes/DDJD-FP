@@ -12,10 +12,15 @@ public class FireballAttack : Attack
 
     BigMuncherController bigMuncherController;
 
+    PlayerModel playerModel;
+    Animator m_Animator;
+
     override public void Start() {
         base.Start();
 
         bigMuncherController = GetComponent<BigMuncherController>();
+        playerModel = PlayerModel.instance;
+        m_Animator = bigMuncherController.GetAnimator();
     }
 
     public override bool CanAttack(float distanceToPlayer) {
