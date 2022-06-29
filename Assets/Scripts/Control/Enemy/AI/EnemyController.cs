@@ -15,6 +15,7 @@ public class EnemyController : MonoBehaviour
     float thresholdToNextMovement = 1f;
 
     bool locked = false;
+    bool stopped = false;
 
     PlayerModel playerModel;
     Transform player;
@@ -40,7 +41,7 @@ public class EnemyController : MonoBehaviour
     }
 
     void Update() {
-        if (locked) return;
+        if (locked || stopped) return;
 
         float distanceToPlayer = ComputeDistanceToPlayer();
         Quaternion rotationTowardsPlayer = ComputeRotationTowardsPlayer();
@@ -53,6 +54,10 @@ public class EnemyController : MonoBehaviour
 
     public virtual Action GetNextAction(float distanceToPlayer, Quaternion rotationTowardsPlayer) {
         return null;
+    }
+
+    public void Stop() {
+        stopped = true;
     }
 
     public void Lock() {
@@ -125,10 +130,6 @@ public class EnemyController : MonoBehaviour
         agent.SetDestination(destination);
     }
 
-    public void ShowDest() {
-        Debug.Log(agent.destination);
-    }
-
     public void ChasePlayer() {
         Vector3 previousDestination = agent.destination;
         Vector3 newDestination = player.position;
@@ -166,11 +167,5 @@ public class EnemyController : MonoBehaviour
     void OnDrawGizmosSelected() {
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, lookRange);
-    }
-
-    void OnDestroy()
-    {
-        gameManager.addEnemyKilled();
-        Debug.Log("Dead");
     }
 }

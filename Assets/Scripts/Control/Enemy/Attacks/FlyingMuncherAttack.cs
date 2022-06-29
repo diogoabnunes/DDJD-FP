@@ -9,6 +9,7 @@ public class FlyingMuncherAttack : Attack
     public float duration = 3f;
     public float damage = 1f;
     public float TIME_ELAPSED_FROM_ANIMATION_START_UNTIL_SHOOT = 1F;
+    public float destroyTime = 3.0f;    
 
     FlyingMuncherController flyingMuncherController;
     PlayerModel playerModel;
@@ -26,8 +27,8 @@ public class FlyingMuncherAttack : Attack
         m_Animator = flyingMuncherController.GetAnimator();
     }
 
-    public override bool CanAttack(float distanceToPlayer) {
-        return distanceToPlayer <= range && TimeElapsedForAttack();
+    public override bool CanAttack(float distanceToPlayer/*, Quaternion rotationTowardsPlayer*/) {
+        return distanceToPlayer <= range && TimeElapsedForAttack() /*&& IsFacingPlayer(rotationTowardsPlayer)*/;
     }
 
     public override IEnumerator DoAttackCoroutine() {
@@ -60,5 +61,8 @@ public class FlyingMuncherAttack : Attack
         GameObject obj = Instantiate(bullet, initialPosition, Quaternion.identity);
         obj.GetComponent<EnemyBulletController>().SetTarget(finalPosition);
         obj.GetComponent<EnemyBulletController>().SetLauncher(this.gameObject);
+        obj.GetComponent<EnemyBulletController>().setDamage(damage);
+
+        Destroy(obj, destroyTime);
     }
 }

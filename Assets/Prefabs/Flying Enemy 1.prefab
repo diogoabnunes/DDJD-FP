@@ -66,7 +66,7 @@ NavMeshAgent:
   m_Enabled: 0
   m_AgentTypeID: -334000983
   m_Radius: 1
-  m_Speed: 5
+  m_Speed: 10
   m_Acceleration: 20
   avoidancePriority: 50
   m_AngularSpeed: 120
@@ -109,8 +109,9 @@ MonoBehaviour:
   coolDown: 3
   range: 25
   duration: 3
-  damage: 1
+  damage: 10
   TIME_ELAPSED_FROM_ANIMATION_START_UNTIL_SHOOT: 1
+  destroyTime: 3
   bullet: {fileID: 7848996684634915871, guid: d6bcd3506d9e09043acab0c813c80437, type: 3}
   firePoint: {fileID: 6904743607938266084}
 --- !u!114 &275684989685424265
@@ -158,6 +159,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 65cb13a785a34c241bb5a305eef2eec2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  FloatingTextPrefab: {fileID: 2485013117152609409, guid: 18430196d9e59a24da5e190699454c77, type: 3}
   dead: 0
   health: 0
   maxHealth: 0
@@ -649,7 +651,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7966236214608673304}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 7.2, z: 1.5}
+  m_LocalPosition: {x: 0, y: 7.34, z: 0.53}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 25232103498235966}

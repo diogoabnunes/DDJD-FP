@@ -30,17 +30,21 @@ public class PlayerController : MonoBehaviour
     bool isGrounded;
     bool isShooting;
 
+    bool enabled = true;
+
     void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
         
         inputHandler = new InputHandler();
 
-        groundCheck = GameObject.Find("GroundCheck").transform;
+        groundCheck = transform.Find("GroundCheck").transform;
     }
 
     void Update()
     {
+        if (!enabled) return;
+
         CheckForGround();
         CheckForShooting();
 
@@ -49,6 +53,16 @@ public class PlayerController : MonoBehaviour
             command.execute(this);
 
         UpdateGravity();
+    }
+
+    public void Enable() {
+        Cursor.lockState = CursorLockMode.Locked;
+        enabled = true;
+    }
+
+    public void Disable() {
+        Cursor.lockState = CursorLockMode.None;
+        enabled = false;
     }
 
     void CheckForGround() {
@@ -84,6 +98,7 @@ public class PlayerController : MonoBehaviour
 
     void UpdateGravity() {
         if (isGrounded && velocity.y < 0){
+            gravity = -10000f;
             velocity.y = -2f;
         }
 
@@ -94,6 +109,7 @@ public class PlayerController : MonoBehaviour
     public void Jump() {
         if (!isGrounded) return;
 
+        gravity = -9.8f * 4.5f;
         velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
     }
 

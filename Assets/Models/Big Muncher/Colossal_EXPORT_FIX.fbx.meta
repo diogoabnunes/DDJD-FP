@@ -58,7 +58,7 @@ ModelImporter:
       cycleOffset: 0
       loop: 0
       hasAdditiveReferencePose: 0
-      loopTime: 1
+      loopTime: 0
       loopBlend: 0
       loopBlendOrientation: 0
       loopBlendPositionY: 0
@@ -87,7 +87,7 @@ ModelImporter:
       cycleOffset: 0
       loop: 0
       hasAdditiveReferencePose: 0
-      loopTime: 0
+      loopTime: 1
       loopBlend: 0
       loopBlendOrientation: 0
       loopBlendPositionY: 0
@@ -103,13 +103,13 @@ ModelImporter:
       transformMask: []
       maskType: 3
       maskSource: {instanceID: 0}
-      additiveReferencePoseFrame: 0
+      additiveReferencePoseFrame: 330
     - serializedVersion: 16
       name: Shoot
       takeName: Shoot
       internalID: 0
       firstFrame: 580
-      lastFrame: 830
+      lastFrame: 760
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -132,12 +132,12 @@ ModelImporter:
       transformMask: []
       maskType: 3
       maskSource: {instanceID: 0}
-      additiveReferencePoseFrame: 0
+      additiveReferencePoseFrame: 580
     - serializedVersion: 16
       name: Melee
       takeName: Melee
       internalID: 0
-      firstFrame: 850
+      firstFrame: 867
       lastFrame: 1050
       wrapMode: 0
       orientationOffsetY: 0
@@ -161,7 +161,7 @@ ModelImporter:
       transformMask: []
       maskType: 3
       maskSource: {instanceID: 0}
-      additiveReferencePoseFrame: 0
+      additiveReferencePoseFrame: 850
     - serializedVersion: 16
       name: Die
       takeName: Die

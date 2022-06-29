@@ -5,17 +5,20 @@ using UnityEngine;
 public class TakeDamage : Interaction
 {
     private float damage;
+
+    System.Random random;
     private CharacterModel character;
 
     public TakeDamage(float damage, CharacterModel character){
+        random = new System.Random();
         this.damage = damage;
         this.character = character;
     }
 
     public override void execute()
     {
-        
-        float realDamage = damage;
+        float rand = random.Next(7,12) / 10.0f;
+        float realDamage = damage * rand;
         character.TakeDamage(realDamage);
     }
 }

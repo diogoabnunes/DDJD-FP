@@ -36,6 +36,19 @@ public class PlayerModel : CharacterModel
         healthSlider.value = 1;
     }
 
+    public void Reset() {
+        health = maxHealth;
+        offensiveEffects.Clear();
+        defensiveEffects.Clear();
+        otherEffects.Clear();
+        UpdateSlider();
+    }
+
+    public void ResetLife() {
+        health = maxHealth;
+        UpdateSlider();
+    }
+
     public bool PlayerWithinArea(Vector3 position, float radius) {
         Collider[] hitElements = Physics.OverlapSphere(position, radius);
 
@@ -63,5 +76,6 @@ public class PlayerModel : CharacterModel
 
     void Die() {
         Debug.Log("Player died!");
+        GameManager.instance.PlayerDied();
     }
 }

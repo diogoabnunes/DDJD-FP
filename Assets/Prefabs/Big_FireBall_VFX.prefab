@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 7848996684634915873}
   - component: {fileID: 7848996684634915870}
   - component: {fileID: 7349903759771212618}
-  - component: {fileID: 6273132524066863548}
+  - component: {fileID: 1227541923633188175}
   m_Layer: 0
   m_Name: Big_FireBall_VFX
   m_TagString: Untagged
@@ -30,7 +30,7 @@ Transform:
   m_GameObject: {fileID: 7848996684634915871}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -12.799, y: -15.5, z: 12.02}
-  m_LocalScale: {x: 0.82193005, y: 0.82193005, z: 0.82193005}
+  m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children:
   - {fileID: 7848996685532857738}
   m_Father: {fileID: 0}
@@ -114,7 +114,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &6273132524066863548
+--- !u!114 &1227541923633188175
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -123,16 +123,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 7848996684634915871}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d8ffa32e25157e849813b375f10646e8, type: 3}
+  m_Script: {fileID: 11500000, guid: e895ac2913e433641ace707d6289d9d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 2
-  damageArea: 3
-  layerMask:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  maxHeight: 20
-  gravity: -18
+  damage: 1
+  speed: 40
 --- !u!1 &7848996685532857739
 GameObject:
   m_ObjectHideFlags: 0

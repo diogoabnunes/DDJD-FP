@@ -96,6 +96,10 @@ public class SpawnManager : MonoBehaviour
 
     bool awayFromEnemies(Vector3 point) {
         foreach (GameObject enemy in activeEnemies) {
+            if (enemy == null) {
+                continue;
+            }
+            
             if (Vector3.Distance(point, enemy.GetComponent<Transform>().position) < awayDistance) {
                 return false;
             }

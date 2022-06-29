@@ -4,11 +4,7 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-
-    public float difficulty = 1;
-    public int killedEnemies = 0;
-
-    public int bossCount = 50;
+    int numberOfEnemiesDead = 0;
 
     #region Singleton
 
@@ -20,26 +16,145 @@ public class GameManager : MonoBehaviour
 
     #endregion
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     public float getDifficulty(){
-        return difficulty;
+        return 1;
     }
 
     public void addEnemyKilled(){
-        killedEnemies += 1;
-        if(killedEnemies > bossCount){
-            Debug.Log("BOSS");
+        numberOfEnemiesDead += 1;
+    }
+
+    public int GetNumberOfEnemiesKilled() {
+        return numberOfEnemiesDead;
+    }
+
+    public void ResetEnemyKilledCounter() {
+        numberOfEnemiesDead = 0;
+    }
+
+    // ----------------------------------------------------------------
+
+    State state;
+
+    void Start() {
+        state = new MainMenuState();
+    }
+
+    void Update() {
+        State nextState = state.GetNextState();
+        if (nextState != null) {
+            UpdateState(nextState);
+        }
+    }
+
+    public void UpdateState(State nextState) {
+        state = nextState;
+        state.Setup();
+    }
+
+    public void GoToPreviousState() {
+        State previousState = state.GetPreviousState();
+        if (previousState != null) {
+            state = previousState;
+        }
+    }
+
+    public void PlayerDied() {
+        if (!state.IsGameOver()) {
+            UpdateState(new GameOverState());
+        }
+    }
+
+    public void EnablePlayer() {
+        EnablePlayerInputController();
+        EnablePlayerCanvas();
+    }
+
+    public void EnablePlayerGraphics() {
+        var gameObjects = GameObject.FindObjectsOfType<GameObject>(true);
+        foreach (GameObject gameObject in gameObjects) {
+            if (gameObject.name == "PlayerGFX") {
+                gameObject.SetActive(true);
+            }
+        }
+    }
+
+    public void EnablePlayerCamera() {
+        var gameObjects = GameObject.FindObjectsOfType<GameObject>(true);
+        foreach (GameObject gameObject in gameObjects) {
+            if (gameObject.name == "Third Person Camera") {
+                gameObject.SetActive(true);
+            }
+        }
+    }
+
+    public void EnablePlayerInputController() {
+        GameObject playerInput = GameObject.Find("Third Person Player");
+        if (playerInput != null) {
+            playerInput.GetComponent<PlayerController>().Enable();
+        }
+    }
+
+    void EnablePlayerCanvas() {
+        var gameObjects = GameObject.FindObjectsOfType<GameObject>(true);
+        foreach (GameObject gameObject in gameObjects) {
+            if (gameObject.name == "PlayerCanvas") {
+                gameObject.SetActive(true);
+            }
+        }
+    }
+
+    public void DisablePlayer() {
+        DisablePlayerInputController();
+        DisablePlayerCanvas();
+    }
+
+    public void DisablePlayerInputController() {
+        GameObject playerInput = GameObject.Find("Third Person Player");
+        if (playerInput != null) {
+            playerInput.GetComponent<PlayerController>().Disable();
+        }
+    }
+
+    void DisablePlayerCanvas() {
+        GameObject playerCanvas = GameObject.Find("PlayerCanvas");
+        if (playerCanvas != null) {
+            playerCanvas.SetActive(false);
+        }
+    }
+
+    public void StopEnemies() {
+        EnemyController[] enemies = FindObjectsOfType<EnemyController>();
+        foreach (EnemyController enemyController in enemies) {
+            enemyController.Stop();
+        }
+    }
+
+    public void EnableTransitionFrom1() {
+        var spawn = GameObject.Find("TransitionCanvas").transform.Find("TransictionFrom1");
+        if (spawn != null) {
+            spawn.gameObject.SetActive(true);
+        }
+    }
+
+    public void EnableTransitionFrom2() {
+        var spawn = GameObject.Find("TransitionCanvas").transform.Find("TransictionFrom2");
+        if (spawn != null) {
+            spawn.gameObject.SetActive(true);
+        }
+    }
+
+    public void EnableTransitionFrom3() {
+        var spawn = GameObject.Find("TransitionCanvas").transform.Find("TransictionFrom3");
+        if (spawn != null) {
+            spawn.gameObject.SetActive(true);
+        }
+    }
+
+    public void EnableTransitionFromBoss() {
+        var spawn = GameObject.Find("TransitionCanvas").transform.Find("TransictionFromBoss");
+        if (spawn != null) {
+            spawn.gameObject.SetActive(true);
         }
     }
 }

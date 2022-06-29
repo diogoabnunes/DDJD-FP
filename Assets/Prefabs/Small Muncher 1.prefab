@@ -330,7 +330,7 @@ NavMeshAgent:
   m_Enabled: 0
   m_AgentTypeID: 0
   m_Radius: 1
-  m_Speed: 10
+  m_Speed: 20
   m_Acceleration: 20
   avoidancePriority: 50
   m_AngularSpeed: 120
@@ -373,7 +373,7 @@ MonoBehaviour:
   coolDown: 1.25
   range: 4
   duration: 1.25
-  damage: 1
+  damage: 15
   blade: {fileID: 934570961098314055}
 --- !u!114 &2615334229696653915
 MonoBehaviour:
@@ -403,6 +403,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da004f5a548bdf9479518b8d55fc7ab6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  FloatingTextPrefab: {fileID: 2485013117152609409, guid: 18430196d9e59a24da5e190699454c77, type: 3}
   dead: 0
   health: 0
   maxHealth: 0
