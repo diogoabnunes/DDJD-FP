@@ -103,6 +103,7 @@ public class PlayerController : MonoBehaviour
         }
 
         velocity.y += gravity * Time.deltaTime;
+        Debug.Log(velocity);
         controller.Move(velocity * Time.deltaTime);
     }
 

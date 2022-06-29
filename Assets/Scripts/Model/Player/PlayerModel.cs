@@ -36,6 +36,10 @@ public class PlayerModel : CharacterModel
         healthSlider.value = 1;
     }
 
+    public float GetMaxHealth() {
+        return maxHealth;
+    }
+
     public void Reset() {
         health = maxHealth;
         offensiveEffects.Clear();
@@ -77,5 +81,9 @@ public class PlayerModel : CharacterModel
     void Die() {
         Debug.Log("Player died!");
         GameManager.instance.PlayerDied();
+    }
+
+    public bool IsDead() {
+        return health <= 0;
     }
 }
