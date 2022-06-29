@@ -3,16 +3,17 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(PunchGroundAttack))]
-[RequireComponent(typeof(FireballAttack))]
+[RequireComponent(typeof(BigMuncherFireball))]
 public class BigMuncherController : EnemyController
 {
     PunchGroundAttack punchGroundAttack;
-    FireballAttack fireballAttack;
+    BigMuncherFireball fireballAttack;
 
     override public void Start() {
         base.Start();
         punchGroundAttack = GetComponent<PunchGroundAttack>();
-        fireballAttack = GetComponent<FireballAttack>();
+        fireballAttack = GetComponent<BigMuncherFireball>();
+        
     }
 
     public override Action GetNextAction(float distanceToPlayer, Quaternion rotationTowardsPlayer) {

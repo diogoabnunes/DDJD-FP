@@ -42,6 +42,10 @@ public class EnemyBulletController : MonoBehaviour
         launcher = _launcher;
     }
 
+    public void setDamage(float damage) {
+        this.damage = damage;
+    }
+
     void Fire() {
       Vector3 distance = target - transform.position;
       rigidBody.velocity = Vector3.Normalize(distance) * speed;

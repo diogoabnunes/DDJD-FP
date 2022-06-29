@@ -16,7 +16,7 @@ public class BigMuncherModel : EnemyModel
     override public void Start() {
         base.Start();
 
-        health = 10f * gameManager.getDifficulty();
+        health = 100f * gameManager.getDifficulty();
         maxHealth = health;
         healthSlider.value = 1;
 
