@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class Level1State : State {
+public class Level1State : LevelState {
     int numberOfEnemiesToKill = 10;
 
     public override bool LevelPassed() {

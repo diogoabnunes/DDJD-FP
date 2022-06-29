@@ -33,9 +33,6 @@ public class PlayerModel : CharacterModel
 
     public void Reset() {
         health = maxHealth;
-        offensiveEffects.Clear();
-        defensiveEffects.Clear();
-        otherEffects.Clear();
         UpdateSlider();
     }
 
