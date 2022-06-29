@@ -406,7 +406,7 @@ Transform:
   m_GameObject: {fileID: 1998946839587997947}
   m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
   m_LocalPosition: {x: -13.656344, y: -21.35668, z: 2.5694432}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children:
   - {fileID: 4374842900321948362}
   - {fileID: 9021598005626792746}
@@ -507,7 +507,7 @@ MonoBehaviour:
   healthBarUI: {fileID: 2642743017316317065}
   healthSlider: {fileID: 5751738807736965464}
   m_Animator: {fileID: 1692445669941671252}
-  rendererHolder: {fileID: 0}
+  rendererHolder: {fileID: 8427405052481762205}
 --- !u!195 &8301829470012420382
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -527,7 +527,7 @@ NavMeshAgent:
   m_AutoBraking: 1
   m_AutoRepath: 1
   m_Height: 6
-  m_BaseOffset: -0.5
+  m_BaseOffset: -1
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
 --- !u!54 &8361871492036607398
