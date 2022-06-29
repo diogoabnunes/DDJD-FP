@@ -73,7 +73,6 @@ public class EnemyController : MonoBehaviour
     }
 
     public bool isRunning() {
-        Debug.Log("Running");
       Vector2 runningVector = new Vector2(agent.velocity.x, agent.velocity.z);
       float distance = Vector2.Distance(runningVector, Vector2.zero);
 

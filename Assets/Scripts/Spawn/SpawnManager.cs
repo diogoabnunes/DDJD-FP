@@ -17,11 +17,16 @@ public class SpawnManager : MonoBehaviour
 
     Transform player;
 
-    float nextSpawnTime = 0f;
+    float levelStart;
+    float nextSpawnTime;
+    int SECONDS_ELAPSED_TO_INCREASE_LIFE = 3;
+    float BASE_LIFE_MULTIPLIER = 1.5f;
 
     SpawnRectangle spawnRectangle;
 
     void Start() {
+        levelStart = Time.time;
+        nextSpawnTime = levelStart + 5f;
         player = PlayerModel.instance.player.transform;
     }
 
@@ -59,8 +64,27 @@ public class SpawnManager : MonoBehaviour
         GameObject enemyToSpawn = chooseEnemyToSpawn();
         Vector3 pointToSpawn = choosePointToSpawn();
 
+        if (pointToSpawn.y == (spawnRectangle.getY() - 10f)) {
+            return;
+        }
+
+        float lifeMultiplier = ComputeLifeMultiplier();
+
         GameObject enemy = Instantiate(enemyToSpawn, pointToSpawn, Quaternion.identity);
+        enemy.GetComponent<EnemyModel>().ApplyLifeTimeMultiplier(lifeMultiplier);
         activeEnemies.Add(enemy);
+    }
+
+    float ComputeLifeMultiplier() {
+        int timeElapsedSinceLevelStart = (int) (Time.time - levelStart);
+        int howManyTimes3MinutesElapsedSinceLevelStart = timeElapsedSinceLevelStart / SECONDS_ELAPSED_TO_INCREASE_LIFE;
+        
+        float lifeMultiplier = BASE_LIFE_MULTIPLIER;
+        if (howManyTimes3MinutesElapsedSinceLevelStart != 0) {
+            lifeMultiplier *= howManyTimes3MinutesElapsedSinceLevelStart;
+        }
+
+        return lifeMultiplier;
     }
 
     GameObject chooseEnemyToSpawn() {
@@ -69,10 +93,17 @@ public class SpawnManager : MonoBehaviour
 
     Vector3 choosePointToSpawn() {
         Vector3 point;
+        bool valid;
+        int numberOfTries = 10;
 
         do {
             point = generatePoint();
-        } while (!validPoint(point));
+            valid = validPoint(point);
+        } while (!valid && numberOfTries-- > 0);
+
+        if (!valid) {
+            point.y -= 10f;
+        }
 
         return point;
     }
@@ -96,6 +127,10 @@ public class SpawnManager : MonoBehaviour
 
     bool awayFromEnemies(Vector3 point) {
         foreach (GameObject enemy in activeEnemies) {
+            if (enemy == null) {
+                continue;
+            }
+            
             if (Vector3.Distance(point, enemy.GetComponent<Transform>().position) < awayDistance) {
                 return false;
             }

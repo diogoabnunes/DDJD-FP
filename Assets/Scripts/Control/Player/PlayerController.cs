@@ -38,7 +38,7 @@ public class PlayerController : MonoBehaviour
         
         inputHandler = new InputHandler();
 
-        groundCheck = GameObject.Find("GroundCheck").transform;
+        groundCheck = transform.Find("GroundCheck").transform;
     }
 
     void Update()
@@ -66,7 +66,6 @@ public class PlayerController : MonoBehaviour
     }
 
     void CheckForGround() {
-        
         isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
 
         if (isGrounded) {

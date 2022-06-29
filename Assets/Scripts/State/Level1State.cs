@@ -6,24 +6,11 @@ using UnityEngine.SceneManagement;
 public class Level1State : State {
     int numberOfEnemiesToKill = 10;
 
-    public override void Setup() {
-        TimeAuxiliar.ResumeTime();
-        gameManager.ResetEnemyKilledCounter();
-    }
-
-    public override State GetNextState() {
-        if (PauseMenuCommand()) {
-            return new PauseMenuState(this);
-        }
-
-        if (LevelPassed()) {
-            return new TransictionFromLevel1State();
-        }
-
-        return null;
-    }
-
-    bool LevelPassed() {
+    public override bool LevelPassed() {
         return gameManager.GetNumberOfEnemiesKilled() >= numberOfEnemiesToKill;
+    }
+
+    public override State GetNextTransiction() {
+        return new TransictionFromLevel1State();
     }
 }

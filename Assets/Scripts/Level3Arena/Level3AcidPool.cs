@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Level3AcidPool : MonoBehaviour
 {
-    public GameObject player;
+    GameObject player;
     PlayerModel playerModel;
 
     InteractionManager interactionManager;
@@ -18,6 +18,7 @@ public class Level3AcidPool : MonoBehaviour
     float damageInterval = 1f;
 
     void Start() {
+        player = GameObject.Find("Third Person Player");
         playerModel = player.GetComponent<PlayerModel>();
 
         interactionManager = InteractionManager.instance;

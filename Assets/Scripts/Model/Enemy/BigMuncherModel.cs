@@ -17,6 +17,10 @@ public class BigMuncherModel : EnemyModel
         base.Start();
 
         health = 100f * gameManager.getDifficulty();
+        if (lifeMultiplier != -1) {
+          health *= lifeMultiplier;
+        }
+
         maxHealth = health;
         healthSlider.value = 1;
 

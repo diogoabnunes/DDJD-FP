@@ -1,0 +1,71 @@
+{
+    "name": "Dante's Descent",
+    "description": "",
+    "year": "2022",
+    "authors": [
+        {
+            "name": "Bernardo Ramalho",
+            "role": "Developer"
+        },
+        {
+            "name": "Diogo Nunes",
+            "role": "Developer"
+        },
+        {
+            "name": "Diogo Santos",
+            "role": "Developer"
+        },
+        {
+            "name": "João Rocha",
+            "role": "Developer"
+        },
+        {
+            "name": "João Rosário",
+            "role": "Developer"
+        },
+        {
+            "name": "Marcelo Reis",
+            "role": "Developer"
+        },
+        {
+            "name": "Pedro Neves",
+            "role": "Animator"
+        },
+        {
+            "name": "Clara Tapadas",
+            "role": "Sound Designer"
+        },
+        {
+            "name": "Nathaly ",
+            "role": "Sound Designer"
+        }
+    ],
+    "genres": [
+        "Action",
+        "Roguelike",
+        "Third-person Shooter"
+    ],
+    "operative_system": [
+        "Windows"
+    ],
+    "executables": [
+        "game.executable"
+    ],
+    "UC": "DDJD",
+    "website": "www.pe_game.pt",
+    "icon": "icon.png",
+    "media": [
+        {
+            "filename": "screenshot1.png",
+            "media_type": "image"
+        },
+        {
+            "filename": "screenshot2.png",
+            "media_type": "image"
+        },
+        {
+            "filename": "video1.vid",
+            "media_type": "video"
+        }
+    ]
+}

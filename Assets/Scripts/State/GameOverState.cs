@@ -21,6 +21,7 @@ public class GameOverState : State {
         }
 
         gameManager.StopEnemies();
+        gameManager.DisablePlayerInputController();
     }
 
     public override void Setup() {

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Level3State : LevelState {
+public class BossLevelState : LevelState {
     int numberOfEnemiesToKill = 1;
 
     public override bool LevelPassed() {
@@ -10,10 +10,10 @@ public class Level3State : LevelState {
     }
 
     public override State GetNextTransiction() {
-        return new TransictionFromLevel3State();
+        return new WinningMenuState();
     }
-    
+
     public override int GetDifficulty() {
-        return 3;
+        return 4;
     }
 }

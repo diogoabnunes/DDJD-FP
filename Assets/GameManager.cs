@@ -17,7 +17,7 @@ public class GameManager : MonoBehaviour
     #endregion
 
     public float getDifficulty(){
-        return 1;
+        return state.GetDifficulty();
     }
 
     public void addEnemyKilled(){
@@ -88,7 +88,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    void EnablePlayerInputController() {
+    public void EnablePlayerInputController() {
         GameObject playerInput = GameObject.Find("Third Person Player");
         if (playerInput != null) {
             playerInput.GetComponent<PlayerController>().Enable();
@@ -109,7 +109,7 @@ public class GameManager : MonoBehaviour
         DisablePlayerCanvas();
     }
 
-    void DisablePlayerInputController() {
+    public void DisablePlayerInputController() {
         GameObject playerInput = GameObject.Find("Third Person Player");
         if (playerInput != null) {
             playerInput.GetComponent<PlayerController>().Disable();

@@ -18,6 +18,10 @@ public class SmallMuncherModel : EnemyModel
         base.Start();
 
         health = 2f * gameManager.getDifficulty();
+        if (lifeMultiplier != -1) {
+          health *= lifeMultiplier;
+        }
+
         maxHealth = health;
         healthSlider.value = 1;
 
