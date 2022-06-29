@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class Level1State : LevelState {
-    int numberOfEnemiesToKill = 10;
+    int numberOfEnemiesToKill = 1;
 
     public override bool LevelPassed() {
         return gameManager.GetNumberOfEnemiesKilled() >= numberOfEnemiesToKill;
