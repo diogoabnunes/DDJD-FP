@@ -62,6 +62,7 @@ public class TransictionController : MonoBehaviour
 
     void SetupNextLevel() {
         TimeAuxiliar.ResumeTime();
+        PlayerModel.instance.ResetLife();
         SceneManager.LoadScene(GetNextScene());
     }
 

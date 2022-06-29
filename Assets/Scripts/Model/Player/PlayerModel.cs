@@ -41,6 +41,12 @@ public class PlayerModel : CharacterModel
         offensiveEffects.Clear();
         defensiveEffects.Clear();
         otherEffects.Clear();
+        UpdateSlider();
+    }
+
+    public void ResetLife() {
+        health = 10f;
+        UpdateSlider();
     }
 
     public bool PlayerWithinArea(Vector3 position, float radius) {

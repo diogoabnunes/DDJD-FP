@@ -43,8 +43,6 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        Debug.Log(transform.position);
-
         if (!enabled) return;
 
         CheckForGround();

@@ -8,7 +8,6 @@ public class StartPosition : MonoBehaviour
     {
         GameObject player = GameObject.Find("Third Person Player");
         if (player != null) {
-            Debug.Log("Setting Player Position");
             player.GetComponent<Transform>().position = transform.position;
         }
     }

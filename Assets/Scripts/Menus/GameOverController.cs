@@ -15,6 +15,7 @@ public class GameOverController : MonoBehaviour
         SceneManager.LoadScene(1);
         gameManager.ResetEnemyKilledCounter();
         PlayerModel.instance.Reset();
+        gameManager.DisablePlayerInputController();
         gameManager.UpdateState(new Level1State());
     }
 
