@@ -37,7 +37,7 @@ public class TeletransportManager : MonoBehaviour
     }
 
     void ApplyDamageToPlayer(PlayerModel playerModel) {
-        float playerMaxHealth = playerModel.GetMaxHealth();
+        float playerMaxHealth = playerModel.GetMaxHealth(); 
         float damage = playerMaxHealth * PERCENTAGE_OF_DAMAGE;
         
         interactionManager.manageInteraction(new TakeDamage(damage, playerModel));
