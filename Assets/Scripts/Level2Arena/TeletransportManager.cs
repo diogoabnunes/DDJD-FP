@@ -11,28 +11,29 @@ public class TeletransportManager : MonoBehaviour
     
     InteractionManager interactionManager;
 
+    GameObject player;
+
     void Start() {
         interactionManager = InteractionManager.instance;
 
         foreach (Transform child in teletransportPositions) {
             positions.Add(child);
         }
+
+        player = GameObject.Find("Third Person Player");
     }
 
-    void OnTriggerEnter(Collider other) {
-        if (other.gameObject.name != "Third Person Player") {
-            return;
+    void Update() {
+        if (player.transform.position.y <= transform.position.y) {
+            Teletransport();
         }
-
-        GameObject player = other.gameObject;
-        Teletransport(player);
     }
 
-    void Teletransport(GameObject player) {
+    void Teletransport() {
         PlayerModel playerModel = player.GetComponent<PlayerModel>();
 
         ApplyDamageToPlayer(playerModel);
-        TeletransportPlayer(player, playerModel);
+        TeletransportPlayer(playerModel);
     }
 
     void ApplyDamageToPlayer(PlayerModel playerModel) {
@@ -42,14 +43,13 @@ public class TeletransportManager : MonoBehaviour
         interactionManager.manageInteraction(new TakeDamage(damage, playerModel));
     }
 
-    void TeletransportPlayer(GameObject player, PlayerModel playerModel) {
+    void TeletransportPlayer(PlayerModel playerModel) {
         if (playerModel.IsDead()) {
             return;
         }
 
         int index = Random.Range(0, positions.Count);
         Transform selectedPosition = positions[index];
-        // player.GetComponent<PlayerController>().Disable();
-        player.transform.position = selectedPosition.position;
+        player.GetComponent<PlayerController>().GoTo(selectedPosition.position);
     }
 }
