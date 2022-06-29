@@ -40,7 +40,7 @@ public class GunsController : WeaponController
         GunR.SetActive(false);
     }
 
-    public override void ExecuteBasicAttack() {
+    public override void ExecuteLeftBasicAttack() {
         float targetAngle = playerController.GetTargetAngleTowardsCameraDirection(Vector3.zero);
         playerController.RotatePlayer(targetAngle, 0f);
 

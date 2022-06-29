@@ -35,12 +35,24 @@ public class WeaponController : MonoBehaviour
 
     public virtual void Disable() {}
 
-    public void BasicAttack() {
+    public void RightBasicAttack() {
         if (!CanDoBasicAttack()) return;
 
         Lock();
 
-        ExecuteBasicAttack();
+        ExecuteRightBasicAttack();
+
+        SetNextBasicAttackTime();
+
+        StartCoroutine(UnlockWhenTimeElapsed());
+    }
+
+    public void LeftBasicAttack() {
+        if (!CanDoBasicAttack()) return;
+
+        Lock();
+
+        ExecuteLeftBasicAttack();
 
         SetNextBasicAttackTime();
 
@@ -63,7 +75,8 @@ public class WeaponController : MonoBehaviour
         SetNextAbility2Time();
     }
 
-    public virtual void ExecuteBasicAttack() {}
+    public virtual void ExecuteLeftBasicAttack() {}
+    public virtual void ExecuteRightBasicAttack() {}
 
     public virtual void ExecuteAbility1() {}
 
