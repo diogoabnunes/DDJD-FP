@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class Level1State : State {
-    int numberOfEnemiesToKill = 1;
+    int numberOfEnemiesToKill = 10;
 
     public override void Setup() {
         TimeAuxiliar.ResumeTime();

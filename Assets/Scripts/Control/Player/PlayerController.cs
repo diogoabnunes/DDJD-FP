@@ -33,7 +33,7 @@ public class PlayerController : MonoBehaviour
     bool enabled = true;
 
     void Start()
-    {
+    {   
         Cursor.lockState = CursorLockMode.Locked;
         
         inputHandler = new InputHandler();
@@ -68,7 +68,6 @@ public class PlayerController : MonoBehaviour
     void CheckForGround() {
         
         isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
-        // Debug.Log(isGrounded);
 
         if (isGrounded) {
             m_Animator.SetBool("isJumping", false);
@@ -115,7 +114,7 @@ public class PlayerController : MonoBehaviour
         velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
     }
 
-    public void Dive(){
+    public void Dive() {
         isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
         if (isGrounded) return;
 

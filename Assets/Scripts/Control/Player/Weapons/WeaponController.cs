@@ -6,7 +6,7 @@ public class WeaponController : MonoBehaviour
 {
     public GameObject player;
     protected PlayerController playerController;
-
+    protected PlayerModel playerModel;
     protected InteractionManager interactionManager;
 
     public Animator m_Animator;
@@ -24,8 +24,10 @@ public class WeaponController : MonoBehaviour
 
     public virtual void Start() {
         interactionManager = InteractionManager.instance;
+        playerModel = PlayerModel.instance;
 
         playerController = player.GetComponent<PlayerController>();
+        
         m_Animator.SetBool("hasGun", false);
     }
 

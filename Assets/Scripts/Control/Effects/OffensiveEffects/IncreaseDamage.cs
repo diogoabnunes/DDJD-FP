@@ -4,7 +4,15 @@ using UnityEngine;
 
 public class IncreaseDamage : OffensiveEffect
 {
-    public override void execute(){
+    PlayerModel playerModel;
 
+    public IncreaseDamage(PlayerModel playerModel){
+        this.playerModel = playerModel;
+    }
+
+    public override void execute(){
+        Debug.Log(playerModel);
+        Debug.Log(playerModel.playerModifiers);
+        playerModel.playerModifiers.increaseDamageModifier(0.1f);
     }
 }
