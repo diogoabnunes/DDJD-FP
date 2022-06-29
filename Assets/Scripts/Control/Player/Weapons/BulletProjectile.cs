@@ -8,6 +8,7 @@ public class BulletProjectile : MonoBehaviour
 
     public float speed = 80f;
     public float damage = 3f;
+    public Vector3 direction = Vector3.zero;
 
     private InteractionManager interactionManager;
 
@@ -18,17 +19,20 @@ public class BulletProjectile : MonoBehaviour
     }
 
     void Start()
-    {
-        bulletRigidBody.velocity = transform.forward * speed;
+    {   
+        bulletRigidBody.velocity = direction.normalized * speed;
     }
 
-    private void OnTriggerEnter(Collider other) {
-
-        CharacterModel model = other.gameObject.GetComponent<CharacterModel>();
-        if (model != null) {
-            interactionManager.manageInteraction(new TakeDamage(damage, model));
+    private void OnTriggerEnter(Collider collider) {
+        if(collider.gameObject.layer == LayerMask.NameToLayer("Spawner")){
+            return;
         }
 
-        Destroy(gameObject);
+        CharacterModel model = collider.gameObject.GetComponent<CharacterModel>();
+        if (model != null) {
+            interactionManager.manageInteraction(new TakeDamage(damage, model));
+    
+            Destroy(gameObject);
+        }
     }
 }

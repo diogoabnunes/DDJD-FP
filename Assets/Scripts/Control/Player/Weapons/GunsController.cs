@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System;
 using UnityEngine;
 
 public class GunsController : WeaponController
@@ -8,9 +9,10 @@ public class GunsController : WeaponController
     public GameObject GunR;
 
     public Transform bullet;
+    public GameObject Bullet;
     public Transform leftBulletSpawnPoint;
     public Transform rightBulletSpawnPoint;
-
+    public LayerMask spawnerLayerMask;
     public float recoil = 1f;
 
     string[] basicAttackAnimationNames = {"leftGunBasicAttack", "rightGunBasicAttack"};
@@ -42,19 +44,23 @@ public class GunsController : WeaponController
 
     public override void ExecuteLeftBasicAttack() {
         float targetAngle = playerController.GetTargetAngleTowardsCameraDirection(Vector3.zero);
+        
         playerController.RotatePlayer(targetAngle, 0f);
 
-        Vector3 targetPoint = GetTargetPoint();
-
         Transform bulletSpawnPoint = leftBulletSpawnPoint;
+
         if (currentGun == 1) bulletSpawnPoint = rightBulletSpawnPoint;
 
         m_Animator.SetTrigger(basicAttackAnimationNames[currentGun]);
 
-        Vector3 aimDir = (targetPoint - bulletSpawnPoint.position).normalized;
-        Instantiate(bullet, bulletSpawnPoint.position, Quaternion.LookRotation(aimDir, Vector3.up));
+        Vector3 targetPoint = GetTargetPoint();
 
-        //ApplyGunRecoil(aimDir);
+        Vector3 aim_dir = (targetPoint - bulletSpawnPoint.position);
+
+        GameObject spawnedBullet = Instantiate(Bullet, bulletSpawnPoint.position, Quaternion.identity);
+
+        spawnedBullet.GetComponent<BulletProjectile>().direction = aim_dir;
+
 
         currentGun = (currentGun + 1) % basicAttackAnimationNames.Length;
     }
