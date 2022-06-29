@@ -6,7 +6,7 @@ public class WeaponController : MonoBehaviour
 {
     public GameObject player;
     protected PlayerController playerController;
-
+    protected PlayerModel playerModel;
     protected InteractionManager interactionManager;
 
     public Animator m_Animator;
@@ -24,8 +24,10 @@ public class WeaponController : MonoBehaviour
 
     public virtual void Start() {
         interactionManager = InteractionManager.instance;
+        playerModel = PlayerModel.instance;
 
         playerController = player.GetComponent<PlayerController>();
+        
         m_Animator.SetBool("hasGun", false);
     }
 
@@ -33,12 +35,24 @@ public class WeaponController : MonoBehaviour
 
     public virtual void Disable() {}
 
-    public void BasicAttack() {
+    public void RightBasicAttack() {
         if (!CanDoBasicAttack()) return;
 
         Lock();
 
-        ExecuteBasicAttack();
+        ExecuteRightBasicAttack();
+
+        SetNextBasicAttackTime();
+
+        StartCoroutine(UnlockWhenTimeElapsed());
+    }
+
+    public void LeftBasicAttack() {
+        if (!CanDoBasicAttack()) return;
+
+        Lock();
+
+        ExecuteLeftBasicAttack();
 
         SetNextBasicAttackTime();
 
@@ -61,7 +75,8 @@ public class WeaponController : MonoBehaviour
         SetNextAbility2Time();
     }
 
-    public virtual void ExecuteBasicAttack() {}
+    public virtual void ExecuteLeftBasicAttack() {}
+    public virtual void ExecuteRightBasicAttack() {}
 
     public virtual void ExecuteAbility1() {}
 

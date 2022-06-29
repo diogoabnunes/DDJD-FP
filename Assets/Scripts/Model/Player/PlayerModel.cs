@@ -7,24 +7,19 @@ public class PlayerModel : CharacterModel
 {
 
     public GameObject player;
-
     float maxHealth;
     public float health = 10f;
     public Slider healthSlider;
 
-    public List<OffensiveEffect> offensiveEffects;
-    public List<DefensiveEffect> defensiveEffects;
-    public List<OtherEffect> otherEffects;
-
     #region Singleton
 
     public static PlayerModel instance;
+    public PlayerModifiers playerModifiers;
 
     void Awake() {
         instance = this;
-        offensiveEffects  = new List<OffensiveEffect>();
-        defensiveEffects  = new List<DefensiveEffect>();
-        otherEffects = new List<OtherEffect>();
+
+        playerModifiers = new PlayerModifiers();
 
         InitiateSlider();
     }
@@ -36,11 +31,12 @@ public class PlayerModel : CharacterModel
         healthSlider.value = 1;
     }
 
+    public float GetMaxHealth() {
+        return maxHealth;
+    }
+
     public void Reset() {
         health = maxHealth;
-        offensiveEffects.Clear();
-        defensiveEffects.Clear();
-        otherEffects.Clear();
         UpdateSlider();
     }
 
@@ -61,6 +57,10 @@ public class PlayerModel : CharacterModel
         return false;
     }
 
+    public PlayerModifiers getPlayerModifiers() {
+        return playerModifiers;
+    }
+
     override public void TakeDamage(float damage) {
         health -= damage;
         UpdateSlider();
@@ -77,5 +77,9 @@ public class PlayerModel : CharacterModel
     void Die() {
         Debug.Log("Player died!");
         GameManager.instance.PlayerDied();
+    }
+
+    public bool IsDead() {
+        return health <= 0;
     }
 }

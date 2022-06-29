@@ -31,9 +31,10 @@ public class PlayerController : MonoBehaviour
     bool isShooting;
 
     bool enabled = true;
+    bool locked = false;
 
     void Start()
-    {
+    {   
         Cursor.lockState = CursorLockMode.Locked;
         
         inputHandler = new InputHandler();
@@ -43,7 +44,7 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        if (!enabled) return;
+        if (!enabled || locked) return;
 
         CheckForGround();
         CheckForShooting();
@@ -63,6 +64,22 @@ public class PlayerController : MonoBehaviour
     public void Disable() {
         Cursor.lockState = CursorLockMode.None;
         enabled = false;
+    }
+
+    public void GoTo(Vector3 position) {
+        locked = true;
+
+        velocity = Vector3.zero;
+        controller.Move(Vector3.zero);
+
+        transform.position = position;
+
+        StartCoroutine("UnloackAfterSeconds");
+    }
+
+    IEnumerator UnloackAfterSeconds() {
+        yield return new WaitForSeconds(0.5f);
+        locked = false;
     }
 
     void CheckForGround() {
@@ -113,7 +130,7 @@ public class PlayerController : MonoBehaviour
         velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
     }
 
-    public void Dive(){
+    public void Dive() {
         isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
         if (isGrounded) return;
 

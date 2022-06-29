@@ -10,11 +10,14 @@ public class ScytheController : WeaponController
 
     public float damage = 10f;
 
-    string[] basicAttackAnimationNames = {"attack1_phase1", "attack1_phase2", "attack1_phase3"};
+    string[] verticalBasicAttackAnimationNames = {"attack2_phase1_vertical", "attack2_phase2_vertical", "attack2_phase3_vertical"};
+    string[] horizontalBasicAttackAnimationNames = {"attack1_phase1_horizontal", "attack1_phase2_horizontal", "attack1_phase3_horizontal"};
 
     public VisualEffect slashVFX;
     
-    int currentBasicAttackPhase = 0;
+    int leftCurrentBasicAttackPhase = 0;
+
+    int rightCurrentBasicAttackPhase = 0;
 
     float timeSinceLastBasicAttack = 0f;
     public float comboTiming = 2f;
@@ -34,19 +37,36 @@ public class ScytheController : WeaponController
         Scythe.SetActive(false);
     }
 
-    public override void ExecuteBasicAttack() {
+    public override void ExecuteLeftBasicAttack() {
         if (Time.time - timeSinceLastBasicAttack > comboTiming) {
-            currentBasicAttackPhase = 0;
+            leftCurrentBasicAttackPhase = 0;
         }
 
-        m_Animator.SetTrigger(basicAttackAnimationNames[currentBasicAttackPhase]);
+
+    
+        Debug.Log(verticalBasicAttackAnimationNames[leftCurrentBasicAttackPhase]);
+        m_Animator.SetTrigger(horizontalBasicAttackAnimationNames[leftCurrentBasicAttackPhase]);
         slashVFX.Play();
 
-        currentBasicAttackPhase = (currentBasicAttackPhase + 1) % basicAttackAnimationNames.Length;
+        leftCurrentBasicAttackPhase = (leftCurrentBasicAttackPhase + 1) % horizontalBasicAttackAnimationNames.Length;
+        timeSinceLastBasicAttack = Time.time;
+    }
+
+    public override void ExecuteRightBasicAttack() {
+        if (Time.time - timeSinceLastBasicAttack > comboTiming) {
+            rightCurrentBasicAttackPhase = 0;
+        }
+
+        Debug.Log(verticalBasicAttackAnimationNames[rightCurrentBasicAttackPhase]);
+        m_Animator.SetTrigger(verticalBasicAttackAnimationNames[rightCurrentBasicAttackPhase]);
+        slashVFX.Play();
+
+        rightCurrentBasicAttackPhase = (rightCurrentBasicAttackPhase + 1) % verticalBasicAttackAnimationNames.Length;
         timeSinceLastBasicAttack = Time.time;
     }
 
     public override void ExecuteAbility1() {
+        m_Animator.SetTrigger("dash");
         Vector3 moveDir = playerController.getCharacterFacingDirection();
         playerController.MovePlayer(moveDir.normalized * 30f * (1.5f / 3));
     }
@@ -54,7 +74,7 @@ public class ScytheController : WeaponController
     public override void ExecuteAbility2() {
         if(playerController.IsGrounded()){
             playerController.Jump();
-            ExecuteBasicAttack();
+            ExecuteRightBasicAttack();
         }
         else{
             playerController.Dive();
@@ -82,7 +102,8 @@ public class ScytheController : WeaponController
 
         CharacterModel model = other.gameObject.GetComponent<CharacterModel>();
         if (model != null) {
-            interactionManager.manageInteraction(new TakeDamage(damage, model));
+            float realDamage = damage * playerModel.getPlayerModifiers().getDamageModifier();
+            interactionManager.manageInteraction(new TakeDamage(realDamage, model));
         }
 
     }
