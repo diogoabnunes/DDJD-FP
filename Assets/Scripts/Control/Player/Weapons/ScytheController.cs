@@ -82,7 +82,8 @@ public class ScytheController : WeaponController
 
         CharacterModel model = other.gameObject.GetComponent<CharacterModel>();
         if (model != null) {
-            interactionManager.manageInteraction(new TakeDamage(damage, model));
+            float realDamage = damage * playerModel.getPlayerModifiers().getDamageModifier();
+            interactionManager.manageInteraction(new TakeDamage(realDamage, model));
         }
 
     }

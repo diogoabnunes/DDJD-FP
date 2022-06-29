@@ -7,24 +7,19 @@ public class PlayerModel : CharacterModel
 {
 
     public GameObject player;
-
     float maxHealth;
     public float health = 10f;
     public Slider healthSlider;
 
-    public List<OffensiveEffect> offensiveEffects;
-    public List<DefensiveEffect> defensiveEffects;
-    public List<OtherEffect> otherEffects;
-
     #region Singleton
 
     public static PlayerModel instance;
+    public PlayerModifiers playerModifiers;
 
     void Awake() {
         instance = this;
-        offensiveEffects  = new List<OffensiveEffect>();
-        defensiveEffects  = new List<DefensiveEffect>();
-        otherEffects = new List<OtherEffect>();
+
+        playerModifiers = new PlayerModifiers();
 
         InitiateSlider();
     }
@@ -59,6 +54,10 @@ public class PlayerModel : CharacterModel
         }
 
         return false;
+    }
+
+    public PlayerModifiers getPlayerModifiers() {
+        return playerModifiers;
     }
 
     override public void TakeDamage(float damage) {

@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class Level1State : LevelState {
-    int numberOfEnemiesToKill = 1;
+public class Level1State : State {
+    int numberOfEnemiesToKill = 10;
 
     public override bool LevelPassed() {
         return gameManager.GetNumberOfEnemiesKilled() >= numberOfEnemiesToKill;

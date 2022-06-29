@@ -24,7 +24,7 @@ TagManager:
   - Glow
   - LandEnemy
   - FlyingEnemy
-  - 
+  - Items
   - LayerMask
   - SeeThrough
   - BossEnemy
