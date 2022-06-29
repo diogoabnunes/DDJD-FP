@@ -5617,7 +5617,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 696959279}
-  m_LocalRotation: {x: 0.07490867, y: -0.000000004289509, z: 3.2222672e-10, w: 0.9971904}
+  m_LocalRotation: {x: 0.07490867, y: 0.0000000042895105, z: -3.2222683e-10, w: 0.9971904}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -17010,9 +17010,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemies:
-  - {fileID: 1998946839587997947, guid: 117b77275d207184c9c907a99c0c28e0, type: 3}
-  - {fileID: 25232103498235937, guid: 6308e22559595c248b989d278e3b5e8b, type: 3}
   - {fileID: 7154847956561250490, guid: bcaf2385efe1de447827125abeb3e03b, type: 3}
+  - {fileID: 25232103498235937, guid: 6308e22559595c248b989d278e3b5e8b, type: 3}
+  - {fileID: 1998946839587997947, guid: 117b77275d207184c9c907a99c0c28e0, type: 3}
   awayDistance: 15
   coolDown: 3
   maxEnemiesActive: 10

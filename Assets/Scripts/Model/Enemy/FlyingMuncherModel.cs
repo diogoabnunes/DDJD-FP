@@ -17,6 +17,10 @@ public class FlyingMuncherModel : EnemyModel
         base.Start();
 
         health = 1.5f * gameManager.getDifficulty();
+        if (lifeMultiplier != -1) {
+          health *= lifeMultiplier;
+        }
+        
         maxHealth = health;
         healthSlider.value = 1;
 

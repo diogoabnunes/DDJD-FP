@@ -24,4 +24,8 @@ public class State {
     protected bool PauseMenuCommand() {
         return Input.GetKeyDown(KeyCode.Escape);
     }
+
+    public virtual int GetDifficulty() {
+        return 1;
+    }
 }

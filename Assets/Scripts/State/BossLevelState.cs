@@ -12,4 +12,8 @@ public class BossLevelState : LevelState {
     public override State GetNextTransiction() {
         return new WinningMenuState();
     }
+
+    public override int GetDifficulty() {
+        return 4;
+    }
 }

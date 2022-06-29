@@ -12,4 +12,8 @@ public class Level3State : LevelState {
     public override State GetNextTransiction() {
         return new TransictionFromLevel3State();
     }
+    
+    public override int GetDifficulty() {
+        return 3;
+    }
 }

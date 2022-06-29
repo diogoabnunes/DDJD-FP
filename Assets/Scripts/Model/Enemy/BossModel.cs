@@ -8,6 +8,9 @@ public class BossModel : EnemyModel
         base.Start();
 
         health = 25f * gameManager.getDifficulty();
+        if (lifeMultiplier != -1) {
+            health *= lifeMultiplier;
+        }
         maxHealth = health;
     }
 

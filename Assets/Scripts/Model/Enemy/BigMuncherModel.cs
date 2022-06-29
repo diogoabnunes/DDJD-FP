@@ -17,13 +17,16 @@ public class BigMuncherModel : EnemyModel
         base.Start();
 
         health = 100f * gameManager.getDifficulty();
+        if (lifeMultiplier != -1) {
+          health *= lifeMultiplier;
+        }
+
         maxHealth = health;
         healthSlider.value = 1;
 
         // m_Renderer = rendererHolder.GetComponentInChildren<SkinnedMeshRenderer>();
         bigMuncherController = gameObject.GetComponent<BigMuncherController>();
     }
-
 
     override public void TakeDamage(float damage) {
         base.TakeDamage(damage);

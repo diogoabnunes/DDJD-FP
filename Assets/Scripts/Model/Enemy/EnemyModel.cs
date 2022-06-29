@@ -20,6 +20,8 @@ public abstract class EnemyModel : CharacterModel
     public Slider healthSlider;
     bool healthBarActive = false;
 
+    protected float lifeMultiplier = -1;
+    bool lifeDefined = false;
 
     public virtual void Start() {
       gameManager = GameManager.instance;
@@ -30,10 +32,24 @@ public abstract class EnemyModel : CharacterModel
       }
 
       health = 2f * gameManager.getDifficulty();
+      if (lifeMultiplier != -1) {
+        health *= lifeMultiplier;
+      }
+
       maxHealth = health;
       healthSlider.value = 1;
       if (healthBarUI != null)
         healthBarUI.SetActive(false);
+
+      lifeDefined = true;
+    }
+
+    public void ApplyLifeTimeMultiplier(float lifeMultiplier) {
+      this.lifeMultiplier = lifeMultiplier;
+      if (lifeDefined) {
+        maxHealth *= this.lifeMultiplier;
+        health *= this.lifeMultiplier;
+      }
     }
 
     override public void TakeDamage(float damage) {

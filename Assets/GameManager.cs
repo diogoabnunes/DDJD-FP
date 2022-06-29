@@ -17,7 +17,7 @@ public class GameManager : MonoBehaviour
     #endregion
 
     public float getDifficulty(){
-        return 1;
+        return state.GetDifficulty();
     }
 
     public void addEnemyKilled(){
