@@ -86,6 +86,7 @@ public class ChargeAttack : Attack
         Dash();
 
         while (IsDashing()) {
+            
             yield return null;
         }
         
@@ -142,6 +143,7 @@ public class ChargeAttack : Attack
 
         dashDestination = bossController.GetPlayerPosition();
         bossController.GoTo(dashDestination);
+        m_Animator.SetBool("dashing", true);
     }
 
     void SetupDash() {
@@ -177,6 +179,7 @@ public class ChargeAttack : Attack
         dashing = false;
         chargeImpactPoint.SetActive(false);
 
+        m_Animator.SetBool("dashing", false);
         ResetAgentType();
         ResetSpeed();
     }

@@ -16,6 +16,12 @@ public class FireBreathAttack : Attack
 
     Animator m_Animator;
 
+    public GameObject leftFire;
+
+    public GameObject rightFire;
+
+    public GameObject middleFire;
+
     public Transform arenaCenterPoint;
 
     override public void Start() {
@@ -60,6 +66,13 @@ public class FireBreathAttack : Attack
             yield return null;
         }
 
+        m_Animator.SetBool("breathingFire", true);
+
+        rightFire.GetComponent<ParticleSystem>().Play();
+        leftFire.GetComponent<ParticleSystem>().Play();
+        middleFire.GetComponent<ParticleSystem>().Play();
+
+
         Debug.Log("Breathing fire!");
 
         // breath fire
@@ -70,6 +83,14 @@ public class FireBreathAttack : Attack
 
             yield return null;
         }
+
+        rightFire.GetComponent<ParticleSystem>().Stop();
+        leftFire.GetComponent<ParticleSystem>().Stop();
+        middleFire.GetComponent<ParticleSystem>().Stop();
+
+        m_Animator.SetBool("breathingFire", false);
+
+
 
         Debug.Log("Resting!");
 

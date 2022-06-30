@@ -23,7 +23,7 @@ public class NextLevel : MonoBehaviour
 
             Debug.Log(collider.name);
 
-            gameManager.UpdateState(new TransictionFromLevel1State());
+            gameManager.UpdateState(new TransictionFromLevel3State());
         }
     }
 }

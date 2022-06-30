@@ -36,14 +36,20 @@ public class ClawAttack : Attack
 
         bossController.CancelMovement();
 
-        clawImpactPoint.SetActive(true);
+        
 
         // play animation of attack
-        // m_Animator.SetTrigger("attack");
+        m_Animator.SetTrigger("attack");
+        
+        yield return new WaitForSeconds(0.7f);
 
-        yield return new WaitForSeconds(duration);
+        clawImpactPoint.SetActive(true);
+        
+        yield return new WaitForSeconds(0.2f);
 
         clawImpactPoint.SetActive(false);
+
+        yield return new WaitForSeconds(duration - 0.9f);
 
         DefineNextAttackTime();
 
