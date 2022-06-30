@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using FMODUnity;
 
 [RequireComponent(typeof(BossController))]
 public class FireBreathAttack : Attack
@@ -23,6 +24,8 @@ public class FireBreathAttack : Attack
     public GameObject middleFire;
 
     public Transform arenaCenterPoint;
+
+    [EventRef, SerializeField] string fireBreath = default;
 
     override public void Start() {
         base.Start();
@@ -74,6 +77,10 @@ public class FireBreathAttack : Attack
 
 
         Debug.Log("Breathing fire!");
+
+        var audioEvent = RuntimeManager.CreateInstance(fireBreath);
+        audioEvent.start();
+        audioEvent.release();
 
         // breath fire
         float startBreathingTime = Time.time;

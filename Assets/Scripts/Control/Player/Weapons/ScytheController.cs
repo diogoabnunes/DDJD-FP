@@ -9,6 +9,8 @@ public class ScytheController : WeaponController
     public GameObject Scythe;
     public Explosion scytheExplosion;
 
+    public GameObject dashHitbox;
+
     public float damage = 10f;
 
     [EventRef, SerializeField] string scytheSlash = default;
@@ -19,6 +21,8 @@ public class ScytheController : WeaponController
     public VisualEffect slashHorizontalVFX;
 
     public VisualEffect slashVerticalVFX;
+
+    public VisualEffect dashVFX;
     
     int leftCurrentBasicAttackPhase = 0;
 
@@ -74,8 +78,14 @@ public class ScytheController : WeaponController
 
     public override void ExecuteAbility1() {
         m_Animator.SetTrigger("dash");
+        dashVFX.Play();
+        dashHitbox.SetActive(true);
+
+        new WaitForSeconds(0.2f);
         Vector3 moveDir = playerController.getCharacterFacingDirection();
         playerController.MovePlayer(moveDir.normalized * 30f * (1.5f / 3));
+        new WaitForSeconds(0.2f);
+        dashHitbox.SetActive(false);
 
         SetNextAbility1Time();
     }

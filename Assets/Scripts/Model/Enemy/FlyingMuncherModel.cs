@@ -16,7 +16,7 @@ public class FlyingMuncherModel : EnemyModel
     override public void Start() {
         base.Start();
 
-        health = 1.5f * gameManager.getDifficulty();
+        health = 15f * gameManager.getDifficulty();
         if (lifeMultiplier != -1) {
           health *= lifeMultiplier;
         }

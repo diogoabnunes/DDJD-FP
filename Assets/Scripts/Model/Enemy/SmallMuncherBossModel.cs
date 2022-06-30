@@ -20,7 +20,7 @@ public class SmallMuncherBossModel : EnemyModel
 
         base.Start();
 
-        health = 2f * gameManager.getDifficulty();
+        health = 200f * gameManager.getDifficulty();
         if (lifeMultiplier != -1) {
           health *= lifeMultiplier;
         }
