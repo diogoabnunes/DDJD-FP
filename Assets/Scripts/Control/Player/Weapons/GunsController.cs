@@ -44,10 +44,20 @@ public class GunsController : WeaponController
     public override void ExecuteLeftBasicAttack() {
         Transform bulletSpawnPoint = leftBulletSpawnPoint;
 
-        if (currentGun == 1) bulletSpawnPoint = rightBulletSpawnPoint;
+        m_Animator.SetTrigger("leftGunBasicAttack");
 
-        m_Animator.SetTrigger(basicAttackAnimationNames[currentGun]);
+        Shoot(bulletSpawnPoint);
+    }
 
+    public override void ExecuteRightBasicAttack() {
+        Transform bulletSpawnPoint = rightBulletSpawnPoint;
+
+        m_Animator.SetTrigger("rightGunBasicAttack");
+
+        Shoot(bulletSpawnPoint);
+    }
+
+    private void Shoot(Transform bulletSpawnPoint){
         Vector3 targetPoint = GetTargetPoint();
 
         Vector3 aim_dir = (targetPoint - bulletSpawnPoint.position);
@@ -57,16 +67,14 @@ public class GunsController : WeaponController
         GameObject spawnedBullet = Instantiate(Bullet, bulletSpawnPoint.position, Quaternion.identity);
 
         spawnedBullet.GetComponent<BulletProjectile>().direction = aim_dir;
-
-        currentGun = (currentGun + 1) % basicAttackAnimationNames.Length;
     }
 
     public override void ExecuteAbility1() {
-        Debug.Log("Guns Ability 1");
+        playerController.BackFlip();
     }
 
     public override void ExecuteAbility2() {
-        playerController.BackFlip();
+        StartCoroutine(Ability2Shooting());
     }
 
     Vector3 GetTargetPoint() {
@@ -80,5 +88,18 @@ public class GunsController : WeaponController
         }
 
         return targetPoint;
+    }
+
+    IEnumerator Ability2Shooting() {
+        Lock();
+
+        for(int i = 0; i < 15; i++){
+            ExecuteLeftBasicAttack();
+            yield return new WaitForSeconds(0.07f);
+            ExecuteRightBasicAttack();
+            yield return new WaitForSeconds(0.07f);
+        }
+        
+        Unlock();
     }
 }
