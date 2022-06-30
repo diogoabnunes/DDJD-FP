@@ -58,8 +58,11 @@ public class SmallMuncherBossModel : EnemyModel
     override public void Die() {
         m_Animator.SetTrigger("die");
         dead = true;
-        smallMuncherController.StopMovement();
-        smallMuncherController.Lock();
+
+        if (smallMuncherController != null) {
+          smallMuncherController.StopMovement();
+          smallMuncherController.Lock();
+        }
 
         StartCoroutine("AfterDeath");
     }
@@ -99,7 +102,7 @@ public class SmallMuncherBossModel : EnemyModel
 
     public IEnumerator Dissolve() {
       yield return new WaitForSeconds(1);
-      InvokeRepeating("DeadAnimation", 0f, 0.01f);
+      // InvokeRepeating("DeadAnimation", 0f, 0.01f);
 
       StartCoroutine(DieDelay());
     }

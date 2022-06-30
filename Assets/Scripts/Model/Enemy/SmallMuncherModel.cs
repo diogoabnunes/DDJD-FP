@@ -55,7 +55,12 @@ public class SmallMuncherModel : EnemyModel
     override public void Die() {
         m_Animator.SetTrigger("die");
         dead = true;
-        smallMuncherController.StopMovement();
+        
+        if (smallMuncherController != null) {
+          smallMuncherController.StopMovement();
+          smallMuncherController.Lock();
+        }
+
         StartCoroutine(Dissolve());
 
         Debug.Log("Small Muncher died!");
@@ -77,7 +82,7 @@ public class SmallMuncherModel : EnemyModel
 
     public IEnumerator Dissolve() {
       yield return new WaitForSeconds(1);
-      InvokeRepeating("DeadAnimation", 0f, 0.01f);
+      // InvokeRepeating("DeadAnimation", 0f, 0.01f);
 
       StartCoroutine(DieDelay());
     }

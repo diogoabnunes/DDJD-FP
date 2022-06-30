@@ -57,8 +57,11 @@ public class FlyingMuncherBossModel : EnemyModel
     override public void Die() {
         m_Animator.SetTrigger("die");
         dead = true;
-        flyingMuncherController.StopMovement();
-        flyingMuncherController.Lock();
+
+        if (flyingMuncherController != null) {
+          flyingMuncherController.StopMovement();
+          flyingMuncherController.Lock();
+        }
 
         if (spawnManager != null){
             spawnManager.enemyDied(this.gameObject);
@@ -98,7 +101,7 @@ public class FlyingMuncherBossModel : EnemyModel
 
     public IEnumerator Dissolve() {
       yield return new WaitForSeconds(1);
-      InvokeRepeating("DeadAnimation", 0f, 0.01f);
+      // InvokeRepeating("DeadAnimation", 0f, 0.01f);
 
       StartCoroutine(DieDelay());
     }

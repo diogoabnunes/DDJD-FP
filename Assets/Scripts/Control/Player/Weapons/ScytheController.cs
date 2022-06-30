@@ -101,7 +101,7 @@ public class ScytheController : WeaponController
         foreach (var hitCollider in hitColliders)
         {
            CharacterModel model = hitCollider.gameObject.GetComponent<CharacterModel>();
-            if (model != null) {
+            if (model != null && hitCollider.gameObject.tag != "Player") {
                 interactionManager.manageInteraction(new TakeDamage(aoeDamage, model));
             }
         }

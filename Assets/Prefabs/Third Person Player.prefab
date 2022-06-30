@@ -1797,6 +1797,7 @@ MonoBehaviour:
   player: {fileID: 6188083686845781659}
   health: 100
   healthSlider: {fileID: 0}
+  m_Animator: {fileID: 6188083687191178615}
 --- !u!1 &6188083686883295324
 GameObject:
   m_ObjectHideFlags: 0

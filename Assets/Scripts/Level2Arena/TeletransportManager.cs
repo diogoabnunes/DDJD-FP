@@ -39,14 +39,18 @@ public class TeletransportManager : MonoBehaviour
     void ApplyDamageToPlayer(PlayerModel playerModel) {
         float playerMaxHealth = playerModel.GetMaxHealth(); 
         float damage = playerMaxHealth * PERCENTAGE_OF_DAMAGE;
+        Debug.Log("Player: " +damage);
         
-        interactionManager.manageInteraction(new TakeDamage(damage, playerModel));
+        interactionManager.manageInteraction(new TakeDamage(damage, playerModel, false));
     }
 
     void TeletransportPlayer(PlayerModel playerModel) {
         if (playerModel.IsDead()) {
+            // Debug.Log("Dead");
             return;
         }
+
+        Debug.Log("Teletransporte");
 
         int index = Random.Range(0, positions.Count);
         Transform selectedPosition = positions[index];
