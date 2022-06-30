@@ -30,8 +30,7 @@ TagManager:
   - BossEnemy
   - Spawner
   - Obstacle
-  - 
-  - 
+  - IgnoreBullets
   - 
   - 
   - 
