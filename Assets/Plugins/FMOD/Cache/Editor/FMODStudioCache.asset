@@ -1,5 +1,59 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-2150979469521622081
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Stepping
+  m_EditorClassIdentifier: 
+  Path: event:/Stepping
+  Guid:
+    Data1: -903834303
+    Data2: 1115648335
+    Data3: -1604250973
+    Data4: 1313851988
+  Banks:
+  - {fileID: -1596150037198509546}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 1000
+--- !u!114 &-1597963292113131843
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/CereberusFire
+  m_EditorClassIdentifier: 
+  Path: event:/CereberusFire
+  Guid:
+    Data1: 2027034013
+    Data2: 1082769140
+    Data3: 539649684
+    Data4: 1897180117
+  Banks:
+  - {fileID: -1596150037198509546}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 3940
 --- !u!114 &-1596150037198509546
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15,10 +69,10 @@ MonoBehaviour:
   Path: Assets/Sound/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 637922158524741953
+  lastModified: 637922289687632720
   FileSizes:
   - Name: Desktop
-    Value: 5878560
+    Value: 6163712
   Exists: 1
 --- !u!114 &-1318692990778952021
 MonoBehaviour:
@@ -62,10 +116,10 @@ MonoBehaviour:
   Path: Assets/Sound/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 637922158524761971
+  lastModified: 637922289687662754
   FileSizes:
   - Name: Desktop
-    Value: 998
+    Value: 1162
   Exists: 1
 --- !u!114 &11400000
 MonoBehaviour:
@@ -89,12 +143,16 @@ MonoBehaviour:
   - {fileID: -1318692990778952021}
   - {fileID: 4769598391381382283}
   - {fileID: 8694318224279666560}
+  - {fileID: 7754399351299443951}
+  - {fileID: -1597963292113131843}
+  - {fileID: 4297941501258800081}
+  - {fileID: -2150979469521622081}
   EditorParameters: []
   MasterBanks:
   - {fileID: -1596150037198509546}
   StringsBanks:
   - {fileID: -758121949624946535}
-  cacheTime: 637922158524761971
+  cacheTime: 637922289687662754
   cacheVersion: 131591
 --- !u!114 &1339674247372411463
 MonoBehaviour:
@@ -118,7 +176,7 @@ MonoBehaviour:
   - {fileID: -1596150037198509546}
   IsStream: 1
   Is3D: 0
-  IsOneShot: 1
+  IsOneShot: 0
   Parameters: []
   MinDistance: 1
   MaxDistance: 20
@@ -145,11 +203,38 @@ MonoBehaviour:
   - {fileID: -1596150037198509546}
   IsStream: 1
   Is3D: 0
-  IsOneShot: 1
+  IsOneShot: 0
   Parameters: []
   MinDistance: 1
   MaxDistance: 20
   Length: 177984
+--- !u!114 &4297941501258800081
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Fireball
+  m_EditorClassIdentifier: 
+  Path: event:/Fireball
+  Guid:
+    Data1: 1486911972
+    Data2: 1229375963
+    Data3: 1328471226
+    Data4: 1421769485
+  Banks:
+  - {fileID: -1596150037198509546}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 2200
 --- !u!114 &4769598391381382283
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -204,6 +289,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 600
+--- !u!114 &7754399351299443951
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/ThunderSound
+  m_EditorClassIdentifier: 
+  Path: event:/ThunderSound
+  Guid:
+    Data1: -732553567
+    Data2: 1264995516
+    Data3: 47325061
+    Data4: 1627110228
+  Banks:
+  - {fileID: -1596150037198509546}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 2400
 --- !u!114 &8694318224279666560
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -230,4 +342,4 @@ MonoBehaviour:
   Parameters: []
   MinDistance: 1
   MaxDistance: 20
-  Length: 800
+  Length: 440

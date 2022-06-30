@@ -2087,11 +2087,11 @@ MonoBehaviour:
   CollisionTag: 
   EventReference:
     Guid:
-      Data1: -292803828
-      Data2: 1140425971
-      Data3: -1567936324
-      Data4: 1066660759
-    Path: event:/SoundTrack1
+      Data1: -1548635482
+      Data2: 1273458156
+      Data3: 1074822331
+      Data4: 1234063593
+    Path: event:/SoundTrack2
   Event: 
   PlayEvent: 1
   StopEvent: 2
@@ -3081,9 +3081,12 @@ MonoBehaviour:
   coolDownAbility2: 3
   Scythe: {fileID: 3476939067000881665}
   scytheExplosion: {fileID: 0}
+  dashHitbox: {fileID: 0}
   damage: 10
+  scytheSlash: 
   slashHorizontalVFX: {fileID: 0}
   slashVerticalVFX: {fileID: 0}
+  dashVFX: {fileID: 0}
   comboTiming: 2
 --- !u!65 &7323113557897599531
 BoxCollider:

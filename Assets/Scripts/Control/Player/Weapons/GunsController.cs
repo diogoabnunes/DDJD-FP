@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System;
 using UnityEngine;
+using FMODUnity;
 
 public class GunsController : WeaponController
 {
@@ -17,6 +18,8 @@ public class GunsController : WeaponController
     public float recoil = 1f;
 
     string[] basicAttackAnimationNames = {"leftGunBasicAttack", "rightGunBasicAttack"};
+
+    [EventRef, SerializeField] string bulletSound = default;
     
     int currentGun = 0;
 
@@ -58,6 +61,11 @@ public class GunsController : WeaponController
     }
 
     private void Shoot(Transform bulletSpawnPoint){
+
+        var audioEvent = RuntimeManager.CreateInstance(bulletSound);
+        audioEvent.start();
+        audioEvent.release();
+
         Vector3 targetPoint = GetTargetPoint();
 
         Vector3 aim_dir = (targetPoint - bulletSpawnPoint.position);
@@ -67,6 +75,9 @@ public class GunsController : WeaponController
         GameObject spawnedBullet = Instantiate(Bullet, bulletSpawnPoint.position, Quaternion.identity);
 
         spawnedBullet.GetComponent<BulletProjectile>().direction = aim_dir;
+
+        
+        Destroy(spawnedBullet, 5f);
     }
 
     public override void ExecuteAbility1() {
