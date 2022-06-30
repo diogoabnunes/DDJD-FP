@@ -13,6 +13,7 @@ public class GunsController : WeaponController
     public Transform leftBulletSpawnPoint;
     public Transform rightBulletSpawnPoint;
     public LayerMask spawnerLayerMask;
+
     public float recoil = 1f;
 
     string[] basicAttackAnimationNames = {"leftGunBasicAttack", "rightGunBasicAttack"};
@@ -44,7 +45,7 @@ public class GunsController : WeaponController
 
     public override void ExecuteLeftBasicAttack() {
         float targetAngle = playerController.GetTargetAngleTowardsCameraDirection(Vector3.zero);
-        
+
         playerController.RotatePlayer(targetAngle, 0f);
 
         Transform bulletSpawnPoint = leftBulletSpawnPoint;
@@ -78,7 +79,8 @@ public class GunsController : WeaponController
 
         Vector2 screenCenterPoint = new Vector2(Screen.width / 2f, Screen.height / 2f);
         Ray ray = Camera.main.ScreenPointToRay(screenCenterPoint);
-        if(Physics.Raycast(ray, out RaycastHit raycastHit, Mathf.Infinity)){
+
+        if(Physics.Raycast(ray, out RaycastHit raycastHit, Mathf.Infinity,  ~spawnerLayerMask.value)){
             targetPoint = raycastHit.point;
         }
 
