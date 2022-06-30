@@ -6,7 +6,7 @@ using UnityEngine.VFX;
 public class ScytheController : WeaponController
 {
     public GameObject Scythe;
-    public ScytheExplosion scytheExplosion;
+    public Explosion scytheExplosion;
 
     public float damage = 10f;
 
@@ -65,6 +65,8 @@ public class ScytheController : WeaponController
         m_Animator.SetTrigger("dash");
         Vector3 moveDir = playerController.getCharacterFacingDirection();
         playerController.MovePlayer(moveDir.normalized * 30f * (1.5f / 3));
+
+        SetNextAbility1Time();
     }
 
     public override void ExecuteAbility2() {
@@ -78,6 +80,7 @@ public class ScytheController : WeaponController
             Collider[] hitColliders = scytheExplosion.ExplosionDamage(playerController.GetCharacterGlobalPosition());
 
             TriggerAOEDamage(hitColliders, scytheExplosion.damage);
+            SetNextAbility2Time();
         }
         
     }

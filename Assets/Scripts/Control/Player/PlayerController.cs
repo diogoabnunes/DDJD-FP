@@ -138,9 +138,6 @@ public class PlayerController : MonoBehaviour
     }
 
     public void Dive() {
-        isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
-        if (isGrounded) return;
-
         velocity.y = Mathf.Sqrt(jumpHeight * -10f * gravity) * -1;
     }
 
