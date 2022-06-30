@@ -2521,7 +2521,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1844458254}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9dd4e31d44226f540bb7e6862d451021, type: 3}
+  m_Script: {fileID: 11500000, guid: 010a2e04482a8a14b9525a9f25ca48e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &1844458257
@@ -3082,6 +3082,7 @@ MonoBehaviour:
   Scythe: {fileID: 3476939067000881665}
   scytheExplosion: {fileID: 0}
   damage: 10
+  scytheSlash: 
   slashHorizontalVFX: {fileID: 0}
   slashVerticalVFX: {fileID: 0}
   comboTiming: 2

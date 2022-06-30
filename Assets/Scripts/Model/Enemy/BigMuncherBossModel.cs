@@ -66,9 +66,9 @@ public class BigMuncherBossModel : EnemyModel
     }
 
     IEnumerator AfterDeath() {
-      yield return new WaitForSeconds(7f);
+      yield return new WaitForSeconds(4f);
       LaunchLightning();
-      yield return new WaitForSeconds(2f);
+      yield return new WaitForSeconds(1f);
       OpenCrack();
       // StartCoroutine(Dissolve());
       Destroy(gameObject);

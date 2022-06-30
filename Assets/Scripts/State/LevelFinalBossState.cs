@@ -16,7 +16,7 @@ public class LevelFinalBossState : State {
         }
 
         if (RequiredEnemiesDead()) {
-            return new WinningMenuState();
+            return new TransictionFromBossLevelState();
         }
 
         return null;

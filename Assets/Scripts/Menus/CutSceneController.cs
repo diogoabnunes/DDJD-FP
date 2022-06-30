@@ -51,6 +51,6 @@ public class CutSceneController : MonoBehaviour
     }
 
     void GoToNextScene() {
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene(6);
     }
 }

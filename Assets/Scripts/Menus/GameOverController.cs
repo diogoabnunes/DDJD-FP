@@ -21,7 +21,7 @@ public class GameOverController : MonoBehaviour
 
     public void MainMenu() {
         TimeAuxiliar.ResumeTime();
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene(6);
         gameManager.UpdateState(new MainMenuState());
     }
 
