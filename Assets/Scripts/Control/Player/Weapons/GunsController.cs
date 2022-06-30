@@ -17,10 +17,8 @@ public class GunsController : WeaponController
     public float recoil = 1f;
 
     string[] basicAttackAnimationNames = {"leftGunBasicAttack", "rightGunBasicAttack"};
+    
     int currentGun = 0;
-
-    // public float fireRate = 30f;
-    // public float impactForce = 3f;
 
     override public void Start() {
         base.Start();
@@ -44,10 +42,6 @@ public class GunsController : WeaponController
     }
 
     public override void ExecuteLeftBasicAttack() {
-        float targetAngle = playerController.GetTargetAngleTowardsCameraDirection(Vector3.zero);
-
-        playerController.RotatePlayer(targetAngle, 0f);
-
         Transform bulletSpawnPoint = leftBulletSpawnPoint;
 
         if (currentGun == 1) bulletSpawnPoint = rightBulletSpawnPoint;
@@ -58,10 +52,11 @@ public class GunsController : WeaponController
 
         Vector3 aim_dir = (targetPoint - bulletSpawnPoint.position);
 
+        playerController.RotatePlayerWithVector(aim_dir);
+
         GameObject spawnedBullet = Instantiate(Bullet, bulletSpawnPoint.position, Quaternion.identity);
 
         spawnedBullet.GetComponent<BulletProjectile>().direction = aim_dir;
-
 
         currentGun = (currentGun + 1) % basicAttackAnimationNames.Length;
     }
@@ -85,15 +80,5 @@ public class GunsController : WeaponController
         }
 
         return targetPoint;
-    }
-
-    void ApplyGunRecoil(Vector3 aimDir) {
-        aimDir.x = aimDir.x / Mathf.Abs(aimDir.x);
-        aimDir.z = aimDir.z / Mathf.Abs(aimDir.z);
-        aimDir.y = 0;
-
-        aimDir = aimDir * recoil * -1;
-
-        playerController.MovePlayer(aimDir);
     }
 }

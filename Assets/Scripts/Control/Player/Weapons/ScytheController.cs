@@ -42,9 +42,6 @@ public class ScytheController : WeaponController
             leftCurrentBasicAttackPhase = 0;
         }
 
-
-    
-        Debug.Log(verticalBasicAttackAnimationNames[leftCurrentBasicAttackPhase]);
         m_Animator.SetTrigger(horizontalBasicAttackAnimationNames[leftCurrentBasicAttackPhase]);
         slashVFX.Play();
 
@@ -57,7 +54,6 @@ public class ScytheController : WeaponController
             rightCurrentBasicAttackPhase = 0;
         }
 
-        Debug.Log(verticalBasicAttackAnimationNames[rightCurrentBasicAttackPhase]);
         m_Animator.SetTrigger(verticalBasicAttackAnimationNames[rightCurrentBasicAttackPhase]);
         slashVFX.Play();
 

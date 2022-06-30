@@ -169,6 +169,9 @@ public class PlayerController : MonoBehaviour
         float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref turnSmoothVelocity, smoothTime);
         transform.rotation = Quaternion.Euler(0f, angle, 0f);
     }
+    public void RotatePlayerWithVector(Vector3 direction){
+        transform.forward = Vector3.Lerp(transform.forward, direction, Time.deltaTime * 15f);
+    }
 
     public float GetTargetAngleTowardsCameraDirection(Vector3 direction) {
         return Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg + cam.eulerAngles.y;
