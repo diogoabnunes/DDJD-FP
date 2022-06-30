@@ -24,7 +24,7 @@ public class BigMuncherModel : EnemyModel
         maxHealth = health;
         healthSlider.value = 1;
 
-        // m_Renderer = rendererHolder.GetComponentInChildren<SkinnedMeshRenderer>();
+        m_Renderer = rendererHolder.GetComponentInChildren<SkinnedMeshRenderer>();
         bigMuncherController = gameObject.GetComponent<BigMuncherController>();
     }
 
@@ -34,7 +34,6 @@ public class BigMuncherModel : EnemyModel
 
     override public void TakeDamage(float damage) {
         base.TakeDamage(damage);
-        Debug.Log("Big Muncher was hit! Health: " + health);
     }
 
     public void ManageAnimations() {
@@ -60,8 +59,13 @@ public class BigMuncherModel : EnemyModel
         }
 
         // StartCoroutine(Dissolve());
+    }
 
-        Debug.Log("Colossal Muncher died!");
+    public IEnumerator Dissolve() {
+      yield return new WaitForSeconds(1);
+      InvokeRepeating("DeadAnimation", 0f, 0.01f);
+
+      StartCoroutine(DieDelay());
     }
 
     public IEnumerator DieDelay() {
@@ -72,12 +76,5 @@ public class BigMuncherModel : EnemyModel
         }
 
         Destroy(gameObject);
-    }
-
-    public IEnumerator Dissolve() {
-      yield return new WaitForSeconds(1);
-      InvokeRepeating("DeadAnimation", 0f, 0.01f);
-
-      StartCoroutine(DieDelay());
     }
 }

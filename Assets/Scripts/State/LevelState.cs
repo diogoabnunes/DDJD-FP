@@ -4,9 +4,6 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class LevelState : State {
-
-    protected bool bossDefeated = false;
-    protected bool bossActive = false;
     public override void Setup() {
         TimeAuxiliar.ResumeTime();
         gameManager.ResetEnemyKilledCounter();
@@ -17,25 +14,22 @@ public class LevelState : State {
             return new PauseMenuState(this);
         }
 
-        if (RequiredEnemiesDead() && !bossActive && !bossDefeated) {
-            SpawnBoss();
+        if (RequiredEnemiesDead()) {
+            return GetNextLevelBoss();
         }
 
         return null;
-    }
-
-    public virtual bool LevelPassed() {
-        return false;
     }
 
     public virtual bool RequiredEnemiesDead() {
         return false;
     }
 
-    public virtual void SpawnBoss() {
+    public virtual State GetNextLevelBoss() {
+        return null;
     }
 
-    public virtual State GetNextTransiction() {
-        return null;
+    public virtual int GetDifficulty() {
+        return 1;
     }
 }

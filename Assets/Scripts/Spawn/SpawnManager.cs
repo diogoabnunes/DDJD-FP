@@ -51,7 +51,7 @@ public class SpawnManager : MonoBehaviour
 
     public void SpawnBoss(){
         GameObject enemyToSpawn = chooseBossEnemyToSpawn();
-        Vector3 pointToSpawn = choosePointToSpawn();
+        Vector3 pointToSpawn = choosePointToSpawn(20);
 
         if (pointToSpawn.y == (spawnRectangle.getY() - 10f)) {
             return;
@@ -112,13 +112,13 @@ public class SpawnManager : MonoBehaviour
         return bossEnemies[Random.Range(0, bossEnemies.Length)];
     }
 
-    Vector3 choosePointToSpawn() {
+    Vector3 choosePointToSpawn(float padding = 0) {
         Vector3 point;
         bool valid;
         int numberOfTries = 10;
 
         do {
-            point = generatePoint();
+            point = generatePoint(padding);
             valid = validPoint(point);
         } while (!valid && numberOfTries-- > 0);
 
@@ -129,9 +129,9 @@ public class SpawnManager : MonoBehaviour
         return point;
     }
 
-    Vector3 generatePoint() {
-        float x = Random.Range(spawnRectangle.getMinXPoint(), spawnRectangle.getMaxXPoint());
-        float z = Random.Range(spawnRectangle.getMinZPoint(), spawnRectangle.getMaxZPoint());
+    Vector3 generatePoint(float padding) {
+        float x = Random.Range(spawnRectangle.getMinXPoint() - padding, spawnRectangle.getMaxXPoint() - padding);
+        float z = Random.Range(spawnRectangle.getMinZPoint() - padding, spawnRectangle.getMaxZPoint() - padding);
 
         Vector3 point = new Vector3(x, spawnRectangle.getY(), z);
 

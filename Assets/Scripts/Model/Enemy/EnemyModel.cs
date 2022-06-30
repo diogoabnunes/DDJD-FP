@@ -76,16 +76,16 @@ public abstract class EnemyModel : CharacterModel
 		text.GetComponent<TextMesh>().text = damage.ToString();
 	}
 
-    public virtual void Die() {
-      if (spawnManager != null){
-          spawnManager.enemyDied(this.gameObject);
-      }
-
-      
-      if (gameManager != null) {
-        gameManager.addEnemyKilled();
-      }
-
-      Destroy(gameObject);
+  public virtual void Die() {
+    if (spawnManager != null){
+        spawnManager.enemyDied(this.gameObject);
     }
+
+    
+    if (gameManager != null) {
+      gameManager.addEnemyKilled();
+    }
+
+    Destroy(gameObject);
+  }
 }

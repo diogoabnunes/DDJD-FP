@@ -6,23 +6,11 @@ using UnityEngine.SceneManagement;
 public class Level1State : LevelState {
     int numberOfEnemiesToKill = 1;
 
-    public override bool LevelPassed() {
+    public override bool RequiredEnemiesDead() {
         return gameManager.GetNumberOfEnemiesKilled() >= numberOfEnemiesToKill;
     }
 
-    public override bool RequiredEnemiesDead()
-    {
-        return gameManager.GetNumberOfEnemiesKilled() >= numberOfEnemiesToKill;
+    public override State GetNextLevelBoss() {
+        return new Level1BossState();
     }
-
-    public override void SpawnBoss()
-    {
-        bossActive = true;
-        Debug.Log("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
-        gameManager.spawnBoss();
-    }
-
-    // public override State GetNextTransiction() {
-    //     return new TransictionFromLevel1State();
-    // }
 }
