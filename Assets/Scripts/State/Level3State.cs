@@ -5,12 +5,12 @@ using UnityEngine;
 public class Level3State : LevelState {
     int numberOfEnemiesToKill = 1;
 
-    public override bool LevelPassed() {
+    public override bool RequiredEnemiesDead() {
         return gameManager.GetNumberOfEnemiesKilled() >= numberOfEnemiesToKill;
     }
 
-    public override State GetNextTransiction() {
-        return new TransictionFromLevel3State();
+    public override State GetNextLevelBoss() {
+        return new Level3BossState();
     }
     
     public override int GetDifficulty() {

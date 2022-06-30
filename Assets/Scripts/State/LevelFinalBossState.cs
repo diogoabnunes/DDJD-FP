@@ -1,9 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
-public class LevelState : State {
+public class LevelFinalBossState : State {
+    int numberOfEnemiesToKill = 1;
+
     public override void Setup() {
         TimeAuxiliar.ResumeTime();
         gameManager.ResetEnemyKilledCounter();
@@ -15,21 +16,13 @@ public class LevelState : State {
         }
 
         if (RequiredEnemiesDead()) {
-            return GetNextLevelBoss();
+            return new WinningMenuState();
         }
 
         return null;
     }
 
-    public virtual bool RequiredEnemiesDead() {
-        return false;
-    }
-
-    public virtual State GetNextLevelBoss() {
-        return null;
-    }
-
-    public virtual int GetDifficulty() {
-        return 1;
+    bool RequiredEnemiesDead() {
+        return gameManager.GetNumberOfEnemiesKilled() >= numberOfEnemiesToKill;
     }
 }

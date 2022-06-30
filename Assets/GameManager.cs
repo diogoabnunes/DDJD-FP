@@ -60,6 +60,13 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    public void BossLevelKilled() {
+        State nextTransition = ((LevelBossState) state).GetNextTransiction();
+        if (nextTransition != null) {
+            UpdateState(nextTransition);
+        }
+    }
+
     public void PlayerDied() {
         if (!state.IsGameOver()) {
             UpdateState(new GameOverState());

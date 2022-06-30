@@ -1,31 +1,35 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
-public class BigMuncherModel : EnemyModel
+public class FlyingMuncherBossModel : EnemyModel
 {
-
     public Animator m_Animator;
 
     SkinnedMeshRenderer m_Renderer;
     public GameObject rendererHolder;
     float dissolvedPercentage = 0f;
 
+    public GameObject groundCrack;
 
-    BigMuncherController bigMuncherController;
+    public GameObject lightning;
+
+    FlyingMuncherController flyingMuncherController;
+
     override public void Start() {
         base.Start();
 
-        health = 20f * gameManager.getDifficulty();
+        health = 1.5f * gameManager.getDifficulty();
         if (lifeMultiplier != -1) {
           health *= lifeMultiplier;
         }
-
+        
         maxHealth = health;
         healthSlider.value = 1;
 
         m_Renderer = rendererHolder.GetComponentInChildren<SkinnedMeshRenderer>();
-        bigMuncherController = gameObject.GetComponent<BigMuncherController>();
+        flyingMuncherController = gameObject.GetComponent<FlyingMuncherController>();
     }
 
     void Update() {
@@ -34,10 +38,11 @@ public class BigMuncherModel : EnemyModel
 
     override public void TakeDamage(float damage) {
         base.TakeDamage(damage);
+        Debug.Log("Flying Muncher was hit for " + damage +"! Health: " + health);
     }
 
     public void ManageAnimations() {
-      if (bigMuncherController.isRunning()) {
+      if (flyingMuncherController.isRunning()) {
         m_Animator.SetBool("isRunning", true);
       } else {
         m_Animator.SetBool("isRunning", false);
@@ -52,20 +57,33 @@ public class BigMuncherModel : EnemyModel
     override public void Die() {
         m_Animator.SetTrigger("die");
         dead = true;
-        bigMuncherController.StopMovement();
+        flyingMuncherController.StopMovement();
+        flyingMuncherController.Lock();
 
         if (spawnManager != null){
             spawnManager.enemyDied(this.gameObject);
         }
 
-        // StartCoroutine(Dissolve());
+        StartCoroutine("AfterDeath");
     }
 
-    public IEnumerator Dissolve() {
-      yield return new WaitForSeconds(1);
-      InvokeRepeating("DeadAnimation", 0f, 0.01f);
+    IEnumerator AfterDeath() {
+      yield return new WaitForSeconds(2f);
+      LaunchLightning();
+      yield return new WaitForSeconds(0.8f);
+      OpenCrack();
+      // StartCoroutine(Dissolve());
+      Destroy(gameObject);
+    }
 
-      StartCoroutine(DieDelay());
+    void LaunchLightning() {
+      lightning.SetActive(true);
+    }
+
+    void OpenCrack() {
+        Vector3 crackPosition = transform.position;
+        crackPosition.y -= 15;
+        Instantiate(groundCrack, crackPosition, transform.rotation);
     }
 
     public IEnumerator DieDelay() {
@@ -76,5 +94,12 @@ public class BigMuncherModel : EnemyModel
         }
 
         Destroy(gameObject);
+    }
+
+    public IEnumerator Dissolve() {
+      yield return new WaitForSeconds(1);
+      InvokeRepeating("DeadAnimation", 0f, 0.01f);
+
+      StartCoroutine(DieDelay());
     }
 }

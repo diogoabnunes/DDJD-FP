@@ -9,6 +9,6 @@ public class TransictionFrom3Controller : TransictionController
     }
 
     public override State GetNextState() {
-        return new BossLevelState();
+        return new LevelFinalBossState();
     }
 }

@@ -1,12 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.VFX;
-public class BigMuncherBossModel : EnemyModel
+using UnityEngine.UI;
+
+public class SmallMuncherBossModel : EnemyModel
 {
-
     public Animator m_Animator;
-
     SkinnedMeshRenderer m_Renderer;
     public GameObject rendererHolder;
     float dissolvedPercentage = 0f;
@@ -15,12 +14,13 @@ public class BigMuncherBossModel : EnemyModel
 
     public GameObject lightning;
 
-    BigMuncherController bigMuncherController;
+    SmallMuncherController smallMuncherController;
 
     override public void Start() {
+
         base.Start();
 
-        health = 1f * gameManager.getDifficulty();
+        health = 2f * gameManager.getDifficulty();
         if (lifeMultiplier != -1) {
           health *= lifeMultiplier;
         }
@@ -29,7 +29,7 @@ public class BigMuncherBossModel : EnemyModel
         healthSlider.value = 1;
 
         m_Renderer = rendererHolder.GetComponentInChildren<SkinnedMeshRenderer>();
-        bigMuncherController = gameObject.GetComponent<BigMuncherController>();
+        smallMuncherController = gameObject.GetComponent<SmallMuncherController>();
     }
 
     void Update() {
@@ -38,10 +38,11 @@ public class BigMuncherBossModel : EnemyModel
 
     override public void TakeDamage(float damage) {
         base.TakeDamage(damage);
+        Debug.Log("Small Muncher was hit " + damage +"! Health: " + health);
     }
 
     public void ManageAnimations() {
-      if (bigMuncherController.isRunning()) {
+      if (smallMuncherController.isRunning()) {
         m_Animator.SetBool("isRunning", true);
       } else {
         m_Animator.SetBool("isRunning", false);
@@ -51,21 +52,22 @@ public class BigMuncherBossModel : EnemyModel
     public void DeadAnimation() {
       dissolvedPercentage = dissolvedPercentage + 0.01f;
       m_Renderer.materials[0].SetFloat("Vector1_89f3df7da7884450b303f423e3242b03", dissolvedPercentage);
+      m_Renderer.materials[1].SetFloat("Vector1_89f3df7da7884450b303f423e3242b03", dissolvedPercentage);
     }
 
     override public void Die() {
         m_Animator.SetTrigger("die");
         dead = true;
-        bigMuncherController.StopMovement();
-        bigMuncherController.Lock();
+        smallMuncherController.StopMovement();
+        smallMuncherController.Lock();
 
         StartCoroutine("AfterDeath");
     }
 
     IEnumerator AfterDeath() {
-      yield return new WaitForSeconds(7f);
-      LaunchLightning();
       yield return new WaitForSeconds(2f);
+      LaunchLightning();
+      yield return new WaitForSeconds(0.8f);
       OpenCrack();
       // StartCoroutine(Dissolve());
       Destroy(gameObject);
@@ -77,8 +79,22 @@ public class BigMuncherBossModel : EnemyModel
 
     void OpenCrack() {
         Vector3 crackPosition = transform.position;
-        crackPosition.y -= 1;
+        crackPosition.y -= 15;
         Instantiate(groundCrack, crackPosition, transform.rotation);
+    }
+
+    public IEnumerator DieDelay() {
+        if (spawnManager != null){
+            spawnManager.enemyDied(this.gameObject);
+        }
+
+        yield return new WaitForSeconds(2);
+
+        if (gameManager != null) {
+            gameManager.addEnemyKilled();
+        }
+
+        Destroy(gameObject);
     }
 
     public IEnumerator Dissolve() {
@@ -86,15 +102,5 @@ public class BigMuncherBossModel : EnemyModel
       InvokeRepeating("DeadAnimation", 0f, 0.01f);
 
       StartCoroutine(DieDelay());
-    }
-
-    public IEnumerator DieDelay() {
-        yield return new WaitForSeconds(2);
-
-        if (gameManager != null) {
-          gameManager.addEnemyKilled();
-        }
-
-        Destroy(gameObject);
     }
 }
