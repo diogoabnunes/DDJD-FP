@@ -112,7 +112,7 @@ public class SpawnManager : MonoBehaviour
         return bossEnemies[Random.Range(0, bossEnemies.Length)];
     }
 
-    Vector3 choosePointToSpawn(float padding = 0) {
+    Vector3 choosePointToSpawn(float padding = 10) {
         Vector3 point;
         bool valid;
         int numberOfTries = 10;

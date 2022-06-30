@@ -59,17 +59,18 @@ public class SmallMuncherBossModel : EnemyModel
         m_Animator.SetTrigger("die");
         dead = true;
         smallMuncherController.StopMovement();
+        smallMuncherController.Lock();
 
         StartCoroutine("AfterDeath");
     }
 
     IEnumerator AfterDeath() {
-      yield return new WaitForSeconds(7f);
-      LaunchLightning();
       yield return new WaitForSeconds(2f);
+      LaunchLightning();
+      yield return new WaitForSeconds(0.8f);
       OpenCrack();
-      StartCoroutine(Dissolve());
-    //   Destroy(gameObject);
+      // StartCoroutine(Dissolve());
+      Destroy(gameObject);
     }
 
     void LaunchLightning() {
@@ -78,7 +79,7 @@ public class SmallMuncherBossModel : EnemyModel
 
     void OpenCrack() {
         Vector3 crackPosition = transform.position;
-        crackPosition.y -= 1;
+        crackPosition.y -= 15;
         Instantiate(groundCrack, crackPosition, transform.rotation);
     }
 
