@@ -20,8 +20,8 @@ public class SpawnManager : MonoBehaviour
 
     float levelStart;
     float nextSpawnTime;
-    int SECONDS_ELAPSED_TO_INCREASE_LIFE = 3;
-    float BASE_LIFE_MULTIPLIER = 1.5f;
+    public int SECONDS_ELAPSED_TO_INCREASE_LIFE = 3;
+    public float BASE_LIFE_MULTIPLIER = 1.5f;
 
     SpawnRectangle spawnRectangle;
 

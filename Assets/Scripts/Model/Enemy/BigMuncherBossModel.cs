@@ -13,8 +13,7 @@ public class BigMuncherBossModel : EnemyModel
 
     public GameObject groundCrack;
 
-    public VisualEffect lightning;
-
+    public GameObject lightning;
 
     BigMuncherController bigMuncherController;
     override public void Start() {
@@ -63,12 +62,27 @@ public class BigMuncherBossModel : EnemyModel
             spawnManager.enemyDied(this.gameObject);
         }
 
-        Debug.Log("CRACK SPAWN");
-        Instantiate(groundCrack, gameObject.transform);
+        StartCoroutine("AfterDeath");
 
         // StartCoroutine(Dissolve());
+    }
 
-        Debug.Log("Colossal Muncher died!");
+    IEnumerator AfterDeath() {
+      yield return new WaitForSeconds(7f);
+      LaunchLightning();
+      yield return new WaitForSeconds(2f);
+      OpenCrack();
+      Destroy(gameObject);
+    }
+
+    void LaunchLightning() {
+      lightning.SetActive(true);
+    }
+
+    void OpenCrack() {
+        Vector3 crackPosition = transform.position;
+        crackPosition.y -= 1;
+        GameObject crack = Instantiate(groundCrack, crackPosition, transform.rotation);
     }
 
     public IEnumerator DieDelay() {
