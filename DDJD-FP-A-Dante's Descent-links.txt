@@ -1,3 +1,4 @@
+GDD: https://docs.google.com/document/d/1ZJ1bl5Grxeghhw0ul8XhjAxtcAxqKRlnYeFT-VdmbMw/edit?usp=sharing
 Source code: TODO: link
 Executable/installer: TODO: link
 itch.io: TODO: link
