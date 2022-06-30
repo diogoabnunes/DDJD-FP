@@ -79,7 +79,7 @@ public class FlyingMuncherModel : EnemyModel
 
     public IEnumerator Dissolve() {
       yield return new WaitForSeconds(1);
-      InvokeRepeating("DeadAnimation", 0f, 0.01f);
+      // InvokeRepeating("DeadAnimation", 0f, 0.01f);
 
       StartCoroutine(DieDelay());
     }
