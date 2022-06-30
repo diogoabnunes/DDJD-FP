@@ -6,6 +6,7 @@ using UnityEngine;
 [RequireComponent(typeof(BigMuncherFireball))]
 public class BigMuncherController : EnemyController
 {
+
     PunchGroundAttack punchGroundAttack;
     BigMuncherFireball fireballAttack;
 
