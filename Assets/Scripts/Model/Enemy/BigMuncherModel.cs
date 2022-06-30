@@ -16,7 +16,7 @@ public class BigMuncherModel : EnemyModel
     override public void Start() {
         base.Start();
 
-        health = 100f * gameManager.getDifficulty();
+        health = 20f * gameManager.getDifficulty();
         if (lifeMultiplier != -1) {
           health *= lifeMultiplier;
         }
@@ -59,7 +59,7 @@ public class BigMuncherModel : EnemyModel
             spawnManager.enemyDied(this.gameObject);
         }
 
-        StartCoroutine(Dissolve());
+        // StartCoroutine(Dissolve());
 
         Debug.Log("Colossal Muncher died!");
     }
@@ -71,7 +71,6 @@ public class BigMuncherModel : EnemyModel
           gameManager.addEnemyKilled();
         }
 
-        Debug.Log("AAAAAAAAAAAAAAAAAAAA");
         Destroy(gameObject);
     }
 

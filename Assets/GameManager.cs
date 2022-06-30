@@ -35,6 +35,7 @@ public class GameManager : MonoBehaviour
     // ----------------------------------------------------------------
 
     State state;
+    SpawnManager spawnManager;
 
     void Start() {
         state = new MainMenuState();
@@ -156,5 +157,13 @@ public class GameManager : MonoBehaviour
         if (spawn != null) {
             spawn.gameObject.SetActive(true);
         }
+    }
+
+
+    public void spawnBoss(){
+        GameObject spawnObject = GameObject.Find("SpawnManager");
+        Debug.Log(spawnObject);
+        spawnManager = spawnObject.GetComponent<SpawnManager>();
+        spawnManager.SpawnBoss();
     }
 }

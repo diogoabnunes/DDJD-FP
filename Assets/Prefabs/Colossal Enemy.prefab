@@ -385,13 +385,13 @@ GameObject:
   - component: {fileID: 3300998421190121477}
   - component: {fileID: 7371934651452660554}
   - component: {fileID: 7922710384162458389}
-  - component: {fileID: -2936366589781418865}
+  - component: {fileID: 7959822200432785000}
   - component: {fileID: 8301829470012420382}
   - component: {fileID: 8361871492036607398}
   - component: {fileID: 7427822928097824036}
   - component: {fileID: 7871712293745103961}
   m_Layer: 9
-  m_Name: Colossal_EXPORT_FIX 1
+  m_Name: Colossal Enemy
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -488,7 +488,7 @@ MonoBehaviour:
   health: 1
   lookRange: 200
   m_Animator: {fileID: 1692445669941671252}
---- !u!114 &-2936366589781418865
+--- !u!114 &7959822200432785000
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -573,7 +573,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   controller: {fileID: 7922710384162458389}
-  model: {fileID: -2936366589781418865}
+  model: {fileID: 7959822200432785000}
   groundCheck: {fileID: 6758463336356979992}
   groundDistance: 0.4
   groundMask:
