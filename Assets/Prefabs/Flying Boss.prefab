@@ -83,6 +83,18 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6280932423528241669, guid: 6308e22559595c248b989d278e3b5e8b, type: 3}
+      propertyPath: range
+      value: 75
+      objectReference: {fileID: 0}
+    - target: {fileID: 6280932423528241669, guid: 6308e22559595c248b989d278e3b5e8b, type: 3}
+      propertyPath: bullet
+      value: 
+      objectReference: {fileID: 4781227624998267373, guid: 0f5fc14cf0ce60c4f808be0061b29f5b, type: 3}
+    - target: {fileID: 6280932423528241669, guid: 6308e22559595c248b989d278e3b5e8b, type: 3}
+      propertyPath: damage
+      value: 20
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 6608964908956284240, guid: 6308e22559595c248b989d278e3b5e8b, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 6308e22559595c248b989d278e3b5e8b, type: 3}

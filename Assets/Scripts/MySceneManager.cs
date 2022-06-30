@@ -8,10 +8,13 @@ public class MySceneManager : MonoBehaviour
         CheckForDuplicatedObjects("GameManager");
         CheckForDuplicatedObjects("TransitionCanvas");
         CheckForDuplicatedObjects("Main Camera");
+        CheckForDuplicatedObjects("Sound");
 
         RemoveObject("Third Person Player");
         RemoveObject("PlayerCanvas");
         RemoveObject("Third Person Camera");
+
+
     }
 
     void CheckForDuplicatedObjects(string name) {
