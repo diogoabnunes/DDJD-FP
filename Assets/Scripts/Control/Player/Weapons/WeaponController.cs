@@ -64,15 +64,12 @@ public class WeaponController : MonoBehaviour
 
         ExecuteAbility1();
 
-        SetNextAbility1Time();
     }
 
     public void Ability2() {
         if (!CanDoAbility2()) return;
 
         ExecuteAbility2();
-
-        SetNextAbility2Time();
     }
 
     public virtual void ExecuteLeftBasicAttack() {}

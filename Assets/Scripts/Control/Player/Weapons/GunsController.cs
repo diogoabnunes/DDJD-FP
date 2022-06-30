@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System;
 using UnityEngine;
 
 public class GunsController : WeaponController
@@ -8,16 +9,16 @@ public class GunsController : WeaponController
     public GameObject GunR;
 
     public Transform bullet;
+    public GameObject Bullet;
     public Transform leftBulletSpawnPoint;
     public Transform rightBulletSpawnPoint;
+    public LayerMask spawnerLayerMask;
 
     public float recoil = 1f;
 
     string[] basicAttackAnimationNames = {"leftGunBasicAttack", "rightGunBasicAttack"};
+    
     int currentGun = 0;
-
-    // public float fireRate = 30f;
-    // public float impactForce = 3f;
 
     override public void Start() {
         base.Start();
@@ -41,30 +42,39 @@ public class GunsController : WeaponController
     }
 
     public override void ExecuteLeftBasicAttack() {
-        float targetAngle = playerController.GetTargetAngleTowardsCameraDirection(Vector3.zero);
-        playerController.RotatePlayer(targetAngle, 0f);
+        Transform bulletSpawnPoint = leftBulletSpawnPoint;
 
+        m_Animator.SetTrigger("leftGunBasicAttack");
+
+        Shoot(bulletSpawnPoint);
+    }
+
+    public override void ExecuteRightBasicAttack() {
+        Transform bulletSpawnPoint = rightBulletSpawnPoint;
+
+        m_Animator.SetTrigger("rightGunBasicAttack");
+
+        Shoot(bulletSpawnPoint);
+    }
+
+    private void Shoot(Transform bulletSpawnPoint){
         Vector3 targetPoint = GetTargetPoint();
 
-        Transform bulletSpawnPoint = leftBulletSpawnPoint;
-        if (currentGun == 1) bulletSpawnPoint = rightBulletSpawnPoint;
+        Vector3 aim_dir = (targetPoint - bulletSpawnPoint.position);
 
-        m_Animator.SetTrigger(basicAttackAnimationNames[currentGun]);
+        playerController.RotatePlayerWithVector(aim_dir);
 
-        Vector3 aimDir = (targetPoint - bulletSpawnPoint.position).normalized;
-        Instantiate(bullet, bulletSpawnPoint.position, Quaternion.LookRotation(aimDir, Vector3.up));
+        GameObject spawnedBullet = Instantiate(Bullet, bulletSpawnPoint.position, Quaternion.identity);
 
-        //ApplyGunRecoil(aimDir);
-
-        currentGun = (currentGun + 1) % basicAttackAnimationNames.Length;
+        spawnedBullet.GetComponent<BulletProjectile>().direction = aim_dir;
     }
 
     public override void ExecuteAbility1() {
-        Debug.Log("Guns Ability 1");
+        playerController.BackFlip();
     }
 
     public override void ExecuteAbility2() {
-        Debug.Log("Guns Ability 2");
+        StartCoroutine(Ability2Shooting());
     }
 
     Vector3 GetTargetPoint() {
@@ -72,20 +82,24 @@ public class GunsController : WeaponController
 
         Vector2 screenCenterPoint = new Vector2(Screen.width / 2f, Screen.height / 2f);
         Ray ray = Camera.main.ScreenPointToRay(screenCenterPoint);
-        if(Physics.Raycast(ray, out RaycastHit raycastHit, Mathf.Infinity)){
+
+        if(Physics.Raycast(ray, out RaycastHit raycastHit, Mathf.Infinity,  ~spawnerLayerMask.value)){
             targetPoint = raycastHit.point;
         }
 
         return targetPoint;
     }
 
-    void ApplyGunRecoil(Vector3 aimDir) {
-        aimDir.x = aimDir.x / Mathf.Abs(aimDir.x);
-        aimDir.z = aimDir.z / Mathf.Abs(aimDir.z);
-        aimDir.y = 0;
+    IEnumerator Ability2Shooting() {
+        Lock();
 
-        aimDir = aimDir * recoil * -1;
-
-        playerController.MovePlayer(aimDir);
+        for(int i = 0; i < 15; i++){
+            ExecuteLeftBasicAttack();
+            yield return new WaitForSeconds(0.07f);
+            ExecuteRightBasicAttack();
+            yield return new WaitForSeconds(0.07f);
+        }
+        
+        Unlock();
     }
 }

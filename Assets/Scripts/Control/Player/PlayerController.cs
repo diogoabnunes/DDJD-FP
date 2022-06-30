@@ -112,11 +112,18 @@ public class PlayerController : MonoBehaviour
     public Vector3 GetCharacterGlobalPosition(){
         return transform.position;
     }
-
+    
     void UpdateGravity() {
-        if (isGrounded && velocity.y < 0){
-            gravity = -10000f;
-            velocity.y = -2f;
+        if (isGrounded){
+            if(velocity.y < 0){
+                gravity = -10000f;
+                velocity.y = -2f;
+            }
+
+            if(velocity.x != 0 || velocity.z != 0){
+                velocity.x = 0;
+                velocity.z = 0;
+            }
         }
 
         velocity.y += gravity * Time.deltaTime;
@@ -131,10 +138,15 @@ public class PlayerController : MonoBehaviour
     }
 
     public void Dive() {
-        isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
-        if (isGrounded) return;
-
         velocity.y = Mathf.Sqrt(jumpHeight * -10f * gravity) * -1;
+    }
+
+    public void BackFlip(){
+        velocity = transform.forward * -2 * baseSpeed;
+        gravity = -9.8f * 4.5f;
+        velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
+
+        isGrounded = false;
     }
 
     public void Run(Vector3 direction) {
@@ -168,6 +180,9 @@ public class PlayerController : MonoBehaviour
     public void RotatePlayer(float targetAngle, float smoothTime) {
         float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref turnSmoothVelocity, smoothTime);
         transform.rotation = Quaternion.Euler(0f, angle, 0f);
+    }
+    public void RotatePlayerWithVector(Vector3 direction){
+        transform.forward = Vector3.Lerp(transform.forward, direction, Time.deltaTime * 15f);
     }
 
     public float GetTargetAngleTowardsCameraDirection(Vector3 direction) {

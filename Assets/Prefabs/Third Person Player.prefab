@@ -24,7 +24,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 382132951}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.5, y: 0.77, z: 1.522}
+  m_LocalPosition: {x: 0.5, y: 0.65, z: 3.55}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 6188083686845781671}
@@ -271,7 +271,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3619131493065048135}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 1.6380001}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 6188083686845781671}
@@ -297,8 +297,12 @@ MonoBehaviour:
   GunL: {fileID: 6188083686582889015}
   GunR: {fileID: 6188083686084518980}
   bullet: {fileID: 2957822337685437143, guid: 9b377373624d16b4185f7ac3cc169d0c, type: 3}
+  Bullet: {fileID: 675284056905247640, guid: 9b377373624d16b4185f7ac3cc169d0c, type: 3}
   leftBulletSpawnPoint: {fileID: 382132952}
   rightBulletSpawnPoint: {fileID: 6188083686883295327}
+  spawnerLayerMask:
+    serializedVersion: 2
+    m_Bits: 131072
   recoil: 1
 --- !u!1 &6188083685637024843
 GameObject:
@@ -1141,7 +1145,7 @@ MonoBehaviour:
   coolDownAbility1: 3
   coolDownAbility2: 3
   Scythe: {fileID: 6188083686401257737}
-  scytheExplosion: {fileID: 6188083686927309035}
+  scytheExplosion: {fileID: 6411982618166412323}
   damage: 10
   slashHorizontalVFX: {fileID: 6188083687187144837}
   slashVerticalVFX: {fileID: 6315792845301330178}
@@ -1864,7 +1868,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6188083686883295324}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.35, y: 0.77, z: 1.522}
+  m_LocalPosition: {x: -0.5, y: 0.65, z: 3.55}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 6188083687187144955}
@@ -2842,7 +2846,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6188083687671026793}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 2.42, z: 0}
+  m_LocalPosition: {x: 0, y: 2.42, z: 1.6380001}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 6188083686845781671}
@@ -2964,21 +2968,30 @@ PrefabInstance:
       propertyPath: m_Name
       value: ScytheExplosion
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 1505862077339263777, guid: 4531f9c0133a66a4e8c49e7eccb21fca, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 4531f9c0133a66a4e8c49e7eccb21fca, type: 3}
+--- !u!1 &6188083686927309033 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1505862077339263779, guid: 4531f9c0133a66a4e8c49e7eccb21fca, type: 3}
+  m_PrefabInstance: {fileID: 4685318969815006154}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &6188083686927309032 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1505862077339263778, guid: 4531f9c0133a66a4e8c49e7eccb21fca, type: 3}
   m_PrefabInstance: {fileID: 4685318969815006154}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &6188083686927309035 stripped
+--- !u!114 &6411982618166412323
 MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1505862077339263777, guid: 4531f9c0133a66a4e8c49e7eccb21fca, type: 3}
-  m_PrefabInstance: {fileID: 4685318969815006154}
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 6188083686927309033}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e8f26d6c1ec32074eb12d7776ceb83e2, type: 3}
+  m_Script: {fileID: 11500000, guid: 15472e764ce799943bc1af938fdfc9e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damage: 5
+  radius: 15

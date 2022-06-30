@@ -28,6 +28,7 @@ TagManager:
   - LayerMask
   - SeeThrough
   - BossEnemy
+  - Spawner
   - Obstacle
   - 
   - 

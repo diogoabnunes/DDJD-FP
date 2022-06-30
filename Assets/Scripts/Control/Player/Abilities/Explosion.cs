@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ScytheExplosion : MonoBehaviour
+public class Explosion : MonoBehaviour
 {
     public float damage;
     public float radius;
