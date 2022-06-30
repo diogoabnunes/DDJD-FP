@@ -171,6 +171,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8108107403728645317}
+  - component: {fileID: 367713659}
+  - component: {fileID: 367713660}
   m_Layer: 0
   m_Name: Ground_Crack
   m_TagString: Untagged
@@ -185,7 +187,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8921094390429365887}
-  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -77.97493, y: -18.53, z: 33.672176}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -194,3 +196,28 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &367713659
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8921094390429365887}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 9.6441345, y: 26.382067, z: 8.504101}
+  m_Center: {x: 1.0884247, y: 12.691033, z: -0.49798775}
+--- !u!114 &367713660
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8921094390429365887}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ebfb7c37b78a9584c93853247fa88c85, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
