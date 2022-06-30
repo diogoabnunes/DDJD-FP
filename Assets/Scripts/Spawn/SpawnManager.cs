@@ -5,6 +5,7 @@ using UnityEngine;
 public class SpawnManager : MonoBehaviour
 {
     [SerializeField] private GameObject[] enemies;
+    [SerializeField] private GameObject[] bossEnemies;
 
     [SerializeField] private float awayDistance;
     [SerializeField] private float coolDown;
@@ -45,6 +46,22 @@ public class SpawnManager : MonoBehaviour
         }
 
         nextSpawnTime = Time.time + coolDown;
+    }
+
+
+    public void SpawnBoss(){
+        GameObject enemyToSpawn = chooseBossEnemyToSpawn();
+        Vector3 pointToSpawn = choosePointToSpawn();
+
+        if (pointToSpawn.y == (spawnRectangle.getY() - 10f)) {
+            return;
+        }
+
+        float lifeMultiplier = ComputeLifeMultiplier();
+
+        GameObject enemy = Instantiate(enemyToSpawn, pointToSpawn, Quaternion.identity);
+        enemy.GetComponent<EnemyModel>().ApplyLifeTimeMultiplier(lifeMultiplier);
+        activeEnemies.Add(enemy);
     }
 
     bool CanSpawn() {
@@ -89,6 +106,10 @@ public class SpawnManager : MonoBehaviour
 
     GameObject chooseEnemyToSpawn() {
         return enemies[Random.Range(0, enemies.Length)];
+    }
+
+    GameObject chooseBossEnemyToSpawn() {
+        return bossEnemies[Random.Range(0, bossEnemies.Length)];
     }
 
     Vector3 choosePointToSpawn() {

@@ -13,7 +13,9 @@ public class ScytheController : WeaponController
     string[] verticalBasicAttackAnimationNames = {"attack2_phase1_vertical", "attack2_phase2_vertical", "attack2_phase3_vertical"};
     string[] horizontalBasicAttackAnimationNames = {"attack1_phase1_horizontal", "attack1_phase2_horizontal", "attack1_phase3_horizontal"};
 
-    public VisualEffect slashVFX;
+    public VisualEffect slashHorizontalVFX;
+
+    public VisualEffect slashVerticalVFX;
     
     int leftCurrentBasicAttackPhase = 0;
 
@@ -46,7 +48,7 @@ public class ScytheController : WeaponController
     
         Debug.Log(verticalBasicAttackAnimationNames[leftCurrentBasicAttackPhase]);
         m_Animator.SetTrigger(horizontalBasicAttackAnimationNames[leftCurrentBasicAttackPhase]);
-        slashVFX.Play();
+        slashHorizontalVFX.Play();
 
         leftCurrentBasicAttackPhase = (leftCurrentBasicAttackPhase + 1) % horizontalBasicAttackAnimationNames.Length;
         timeSinceLastBasicAttack = Time.time;
@@ -59,7 +61,7 @@ public class ScytheController : WeaponController
 
         Debug.Log(verticalBasicAttackAnimationNames[rightCurrentBasicAttackPhase]);
         m_Animator.SetTrigger(verticalBasicAttackAnimationNames[rightCurrentBasicAttackPhase]);
-        slashVFX.Play();
+        slashVerticalVFX.Play();
 
         rightCurrentBasicAttackPhase = (rightCurrentBasicAttackPhase + 1) % verticalBasicAttackAnimationNames.Length;
         timeSinceLastBasicAttack = Time.time;

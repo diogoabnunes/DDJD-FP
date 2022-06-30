@@ -1,8 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
-public class BigMuncherModel : EnemyModel
+using UnityEngine.VFX;
+public class BigMuncherBossModel : EnemyModel
 {
 
     public Animator m_Animator;
@@ -11,12 +11,16 @@ public class BigMuncherModel : EnemyModel
     public GameObject rendererHolder;
     float dissolvedPercentage = 0f;
 
+    public GameObject groundCrack;
+
+    public VisualEffect lightning;
+
 
     BigMuncherController bigMuncherController;
     override public void Start() {
         base.Start();
 
-        health = 20f * gameManager.getDifficulty();
+        health = 1f * gameManager.getDifficulty();
         if (lifeMultiplier != -1) {
           health *= lifeMultiplier;
         }
@@ -58,6 +62,9 @@ public class BigMuncherModel : EnemyModel
         if (spawnManager != null){
             spawnManager.enemyDied(this.gameObject);
         }
+
+        Debug.Log("CRACK SPAWN");
+        Instantiate(groundCrack, gameObject.transform);
 
         // StartCoroutine(Dissolve());
 
