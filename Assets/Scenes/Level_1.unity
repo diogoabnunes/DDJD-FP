@@ -3150,7 +3150,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 357346177}
-  m_LocalRotation: {x: 0.091398865, y: 0.000000017134369, z: -0.0000000015726442, w: 0.9958144}
+  m_LocalRotation: {x: 0.091398865, y: -0.000000017134358, z: 0.0000000015726432, w: 0.9958144}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -8742,7 +8742,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
-  m_LocalRotation: {x: 0.095021136, y: 0.000000027381608, z: 9.634193e-11, w: 0.9954753}
+  m_LocalRotation: {x: 0.095021136, y: -0.000000027381603, z: -9.634288e-11, w: 0.9954753}
   m_LocalPosition: {x: -50.09, y: -0.40394163, z: -18.214973}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -12009,11 +12009,11 @@ MonoBehaviour:
   CollisionTag: 
   EventReference:
     Guid:
-      Data1: -1548635482
-      Data2: 1273458156
-      Data3: 1074822331
-      Data4: 1234063593
-    Path: event:/SoundTrack2
+      Data1: -292803828
+      Data2: 1140425971
+      Data3: -1567936324
+      Data4: 1066660759
+    Path: event:/SoundTrack1
   Event: 
   PlayEvent: 1
   StopEvent: 2

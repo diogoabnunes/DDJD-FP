@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="AudioFile" id="{d8ca1fd2-57a5-4611-a96c-63787ba7da4d}">
+		<property name="assetPath">
+			<value>Rosnar.wav</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>48</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>4</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{db923ee2-e55b-4a57-8bcd-3316cb95a44e}</destination>
+		</relationship>
+	</object>
+</objects>

@@ -14,7 +14,7 @@ public class BigMuncherModel : EnemyModel
     override public void Start() {
         base.Start();
 
-        health = 20f * gameManager.getDifficulty();
+        health = 50f * gameManager.getDifficulty();
         if (lifeMultiplier != -1) {
           health *= lifeMultiplier;
         }
@@ -49,16 +49,17 @@ public class BigMuncherModel : EnemyModel
     override public void Die() {
         m_Animator.SetTrigger("die");
         dead = true;
-        if (bigMuncherController != null) {
-          bigMuncherController.StopMovement();
-          bigMuncherController.Lock();
-        }
+        // if (bigMuncherController != null) {
+        //   bigMuncherController.StopMovement();
+        //   bigMuncherController.Lock();
+        // }
 
         if (spawnManager != null){
             spawnManager.enemyDied(this.gameObject);
         }
 
-        StartCoroutine(Dissolve());
+        // StartCoroutine(Dissolve());
+        Destroy(gameObject, 2f);
     }
 
     public IEnumerator Dissolve() {
