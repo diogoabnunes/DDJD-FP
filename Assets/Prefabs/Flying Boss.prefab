@@ -11,6 +11,10 @@ PrefabInstance:
       propertyPath: model
       value: 
       objectReference: {fileID: 4730626138748367868}
+    - target: {fileID: 1671186849760664, guid: 6308e22559595c248b989d278e3b5e8b, type: 3}
+      propertyPath: groundDistance
+      value: 50
+      objectReference: {fileID: 0}
     - target: {fileID: 25232103498235937, guid: 6308e22559595c248b989d278e3b5e8b, type: 3}
       propertyPath: m_Name
       value: Flying Boss
@@ -149,7 +153,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 631684180240347350, guid: b5f3eb581f239564f93edfcd57ed6082, type: 3}
       propertyPath: m_Enabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 631684180240347351, guid: b5f3eb581f239564f93edfcd57ed6082, type: 3}
       propertyPath: m_RootOrder
@@ -201,7 +205,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 631684180240347352, guid: b5f3eb581f239564f93edfcd57ed6082, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b5f3eb581f239564f93edfcd57ed6082, type: 3}
