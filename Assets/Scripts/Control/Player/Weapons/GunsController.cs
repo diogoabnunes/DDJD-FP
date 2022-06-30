@@ -66,7 +66,7 @@ public class GunsController : WeaponController
     }
 
     public override void ExecuteAbility2() {
-        Debug.Log("Guns Ability 2");
+        playerController.BackFlip();
     }
 
     Vector3 GetTargetPoint() {
