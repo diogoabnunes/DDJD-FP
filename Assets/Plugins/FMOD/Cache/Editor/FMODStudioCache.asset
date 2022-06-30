@@ -15,11 +15,38 @@ MonoBehaviour:
   Path: Assets/Sound/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 637921929743384523
+  lastModified: 637922156569257178
   FileSizes:
   - Name: Desktop
-    Value: 2163296
+    Value: 5878560
   Exists: 1
+--- !u!114 &-1318692990778952021
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/PullScythe
+  m_EditorClassIdentifier: 
+  Path: event:/PullScythe
+  Guid:
+    Data1: -479151465
+    Data2: 1218023262
+    Data3: -618872681
+    Data4: -1142820675
+  Banks:
+  - {fileID: -1596150037198509546}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 800
 --- !u!114 &-758121949624946535
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -35,10 +62,10 @@ MonoBehaviour:
   Path: Assets/Sound/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 637921929743394520
+  lastModified: 637922156569277198
   FileSizes:
   - Name: Desktop
-    Value: 760
+    Value: 998
   Exists: 1
 --- !u!114 &11400000
 MonoBehaviour:
@@ -57,13 +84,45 @@ MonoBehaviour:
   - {fileID: -1596150037198509546}
   EditorEvents:
   - {fileID: 2709652458898149159}
+  - {fileID: 1339674247372411463}
+  - {fileID: 6065755647565365418}
+  - {fileID: -1318692990778952021}
+  - {fileID: 4769598391381382283}
+  - {fileID: 8694318224279666560}
   EditorParameters: []
   MasterBanks:
   - {fileID: -1596150037198509546}
   StringsBanks:
   - {fileID: -758121949624946535}
-  cacheTime: 637921929743394520
+  cacheTime: 637922156569277198
   cacheVersion: 131591
+--- !u!114 &1339674247372411463
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SoundTrack2
+  m_EditorClassIdentifier: 
+  Path: event:/SoundTrack2
+  Guid:
+    Data1: -1548635482
+    Data2: 1273458156
+    Data3: 1074822331
+    Data4: 1234063593
+  Banks:
+  - {fileID: -1596150037198509546}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 181192
 --- !u!114 &2709652458898149159
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -91,3 +150,84 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 177984
+--- !u!114 &4769598391381382283
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Rain
+  m_EditorClassIdentifier: 
+  Path: event:/Rain
+  Guid:
+    Data1: 1872898094
+    Data2: 1149277678
+    Data3: -2020141635
+    Data4: -1944101320
+  Banks:
+  - {fileID: -1596150037198509546}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 121032
+--- !u!114 &6065755647565365418
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/ScytheSlash
+  m_EditorClassIdentifier: 
+  Path: event:/ScytheSlash
+  Guid:
+    Data1: -2019551892
+    Data2: 1207868040
+    Data3: -1944716412
+    Data4: 1977954750
+  Banks:
+  - {fileID: -1596150037198509546}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 600
+--- !u!114 &8694318224279666560
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/PistolShot
+  m_EditorClassIdentifier: 
+  Path: event:/PistolShot
+  Guid:
+    Data1: -1561366389
+    Data2: 1129690196
+    Data3: 2027945907
+    Data4: 2115114999
+  Banks:
+  - {fileID: -1596150037198509546}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 800

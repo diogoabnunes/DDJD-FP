@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.VFX;
+using FMODUnity;
 
 public class ScytheController : WeaponController
 {
@@ -9,6 +10,8 @@ public class ScytheController : WeaponController
     public Explosion scytheExplosion;
 
     public float damage = 10f;
+
+    [EventRef, SerializeField] string scytheSlash = default;
 
     string[] verticalBasicAttackAnimationNames = {"attack2_phase1_vertical", "attack2_phase2_vertical", "attack2_phase3_vertical"};
     string[] horizontalBasicAttackAnimationNames = {"attack1_phase1_horizontal", "attack1_phase2_horizontal", "attack1_phase3_horizontal"};
@@ -24,10 +27,8 @@ public class ScytheController : WeaponController
     float timeSinceLastBasicAttack = 0f;
     public float comboTiming = 2f;
 
-
     override public void Start() {
         base.Start();
-
         Scythe.SetActive(true);
     }
 
@@ -47,6 +48,10 @@ public class ScytheController : WeaponController
         m_Animator.SetTrigger(horizontalBasicAttackAnimationNames[leftCurrentBasicAttackPhase]);
         slashHorizontalVFX.Play();
 
+        var audioEvent = RuntimeManager.CreateInstance(scytheSlash);
+        audioEvent.start();
+        audioEvent.release();
+
         leftCurrentBasicAttackPhase = (leftCurrentBasicAttackPhase + 1) % horizontalBasicAttackAnimationNames.Length;
         timeSinceLastBasicAttack = Time.time;
     }
@@ -58,6 +63,10 @@ public class ScytheController : WeaponController
 
         m_Animator.SetTrigger(verticalBasicAttackAnimationNames[rightCurrentBasicAttackPhase]);
         slashVerticalVFX.Play();
+
+        var audioEvent = RuntimeManager.CreateInstance(scytheSlash);
+        audioEvent.start();
+        audioEvent.release();
 
         rightCurrentBasicAttackPhase = (rightCurrentBasicAttackPhase + 1) % verticalBasicAttackAnimationNames.Length;
         timeSinceLastBasicAttack = Time.time;

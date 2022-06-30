@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="AudioFile" id="{2278bee1-ee26-4ba3-bd8a-d7536db4c215}">
+		<property name="assetPath">
+			<value>Scythe Sound.mp3</value>
+		</property>
+		<property name="isStreaming">
+			<value>true</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>44.0999985</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>10.109387755102041</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{db923ee2-e55b-4a57-8bcd-3316cb95a44e}</destination>
+		</relationship>
+	</object>
+</objects>

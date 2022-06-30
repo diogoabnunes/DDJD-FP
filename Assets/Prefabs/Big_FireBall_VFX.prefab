@@ -126,7 +126,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e895ac2913e433641ace707d6289d9d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 1
+  damage: 20
   speed: 40
 --- !u!1 &7848996685532857739
 GameObject:
@@ -139,7 +139,7 @@ GameObject:
   - component: {fileID: 7848996685532857738}
   - component: {fileID: 7848996685532857740}
   - component: {fileID: 7848996685532857741}
-  m_Layer: 19
+  m_Layer: 10
   m_Name: Fire_VFX
   m_TagString: Untagged
   m_Icon: {fileID: 0}

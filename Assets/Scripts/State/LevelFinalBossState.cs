@@ -5,6 +5,11 @@ using UnityEngine;
 public class LevelFinalBossState : State {
     int numberOfEnemiesToKill = 1;
 
+    public override void Setup() {
+        TimeAuxiliar.ResumeTime();
+        gameManager.ResetEnemyKilledCounter();
+    }
+
     public override State GetNextState() {
         if (PauseMenuCommand()) {
             return new PauseMenuState(this);

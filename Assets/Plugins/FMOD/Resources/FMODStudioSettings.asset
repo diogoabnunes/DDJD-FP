@@ -286,7 +286,7 @@ MonoBehaviour:
   sourceProjectPath: Assets/Sound/Sound.fspro
   sourceBankPath: Assets/Sound/Build
   SourceBankPathUnformatted: 
-  BankRefreshCooldown: 5
+  BankRefreshCooldown: 1
   ShowBankRefreshWindow: 1
   AutomaticEventLoading: 1
   BankLoadType: 0

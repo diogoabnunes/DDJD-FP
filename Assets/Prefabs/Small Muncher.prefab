@@ -664,9 +664,69 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[2]
       value: 
       objectReference: {fileID: 2100000, guid: d5aee49f483d1ba438256444338e11bf, type: 2}
+    - target: {fileID: -8117402714163028944, guid: 1350fb3e014e74d4387a2a18a9ecb26d, type: 3}
+      propertyPath: m_Layer
+      value: 19
+      objectReference: {fileID: 0}
+    - target: {fileID: -4122758207331840509, guid: 1350fb3e014e74d4387a2a18a9ecb26d, type: 3}
+      propertyPath: m_Layer
+      value: 19
+      objectReference: {fileID: 0}
+    - target: {fileID: -4012197257440702533, guid: 1350fb3e014e74d4387a2a18a9ecb26d, type: 3}
+      propertyPath: m_Layer
+      value: 19
+      objectReference: {fileID: 0}
+    - target: {fileID: -3890944464740102367, guid: 1350fb3e014e74d4387a2a18a9ecb26d, type: 3}
+      propertyPath: m_Layer
+      value: 19
+      objectReference: {fileID: 0}
+    - target: {fileID: -3546448246445584136, guid: 1350fb3e014e74d4387a2a18a9ecb26d, type: 3}
+      propertyPath: m_Layer
+      value: 19
+      objectReference: {fileID: 0}
+    - target: {fileID: -3456229109248040338, guid: 1350fb3e014e74d4387a2a18a9ecb26d, type: 3}
+      propertyPath: m_Layer
+      value: 19
+      objectReference: {fileID: 0}
+    - target: {fileID: -3375532436673266560, guid: 1350fb3e014e74d4387a2a18a9ecb26d, type: 3}
+      propertyPath: m_Layer
+      value: 19
+      objectReference: {fileID: 0}
+    - target: {fileID: -1539347044857480972, guid: 1350fb3e014e74d4387a2a18a9ecb26d, type: 3}
+      propertyPath: m_Layer
+      value: 19
+      objectReference: {fileID: 0}
+    - target: {fileID: -741832106251744268, guid: 1350fb3e014e74d4387a2a18a9ecb26d, type: 3}
+      propertyPath: m_Layer
+      value: 19
+      objectReference: {fileID: 0}
+    - target: {fileID: -372837988371965009, guid: 1350fb3e014e74d4387a2a18a9ecb26d, type: 3}
+      propertyPath: m_Layer
+      value: 19
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 1350fb3e014e74d4387a2a18a9ecb26d, type: 3}
       propertyPath: m_Name
       value: Muncher_Ground_anim
+      objectReference: {fileID: 0}
+    - target: {fileID: 1011273745074045145, guid: 1350fb3e014e74d4387a2a18a9ecb26d, type: 3}
+      propertyPath: m_Layer
+      value: 19
+      objectReference: {fileID: 0}
+    - target: {fileID: 1982412314034628828, guid: 1350fb3e014e74d4387a2a18a9ecb26d, type: 3}
+      propertyPath: m_Layer
+      value: 19
+      objectReference: {fileID: 0}
+    - target: {fileID: 2688604414798223720, guid: 1350fb3e014e74d4387a2a18a9ecb26d, type: 3}
+      propertyPath: m_Layer
+      value: 19
+      objectReference: {fileID: 0}
+    - target: {fileID: 4879506736770265001, guid: 1350fb3e014e74d4387a2a18a9ecb26d, type: 3}
+      propertyPath: m_Layer
+      value: 19
+      objectReference: {fileID: 0}
+    - target: {fileID: 7544043338996704054, guid: 1350fb3e014e74d4387a2a18a9ecb26d, type: 3}
+      propertyPath: m_Layer
+      value: 19
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1350fb3e014e74d4387a2a18a9ecb26d, type: 3}

@@ -28,7 +28,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 6188083686845781671}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1657606697553468993
 GameObject:
@@ -57,7 +57,7 @@ Transform:
   m_GameObject: {fileID: 1657606697553468993}
   m_LocalRotation: {x: 0.5, y: -0.5, z: 0.5, w: 0.5}
   m_LocalPosition: {x: 0, y: -0.74, z: -1.93}
-  m_LocalScale: {x: -1.7362041, y: 1.7362045, z: 1.7362049}
+  m_LocalScale: {x: 1.736204, y: 1.7362045, z: -1.736205}
   m_Children: []
   m_Father: {fileID: 6188083686883295327}
   m_RootOrder: 1
@@ -275,7 +275,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 6188083686845781671}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &6613654695490976779
 MonoBehaviour:
@@ -560,84 +560,6 @@ Transform:
   m_Father: {fileID: 6188083686784453562}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &6188083686007637639
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 6188083686007637638}
-  - component: {fileID: 1604991486}
-  - component: {fileID: 1089440017}
-  m_Layer: 3
-  m_Name: Melee Weapon
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &6188083686007637638
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6188083686007637639}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.17, z: 1.44}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 6188083686845781671}
-  m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1604991486
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6188083686007637639}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d9f14209a4a79694ebea4bca2376df9b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  player: {fileID: 6188083686845781659}
-  m_Animator: {fileID: 6188083687191178615}
-  coolDownBasicAttack: 0
-  coolDownAbility1: 0
-  coolDownAbility2: 0
-  Scythe: {fileID: 6188083686401257737}
-  scytheExplosion: {fileID: 0}
-  damage: 10
-  slashHorizontalVFX: {fileID: 0}
-  slashVerticalVFX: {fileID: 0}
-  comboTiming: 2
---- !u!114 &1089440017
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6188083686007637639}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d9f14209a4a79694ebea4bca2376df9b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  player: {fileID: 6188083686845781659}
-  m_Animator: {fileID: 6188083687191178615}
-  coolDownBasicAttack: 0
-  coolDownAbility1: 0
-  coolDownAbility2: 0
-  Scythe: {fileID: 6188083686401257737}
-  scytheExplosion: {fileID: 0}
-  damage: 10
-  slashHorizontalVFX: {fileID: 0}
-  slashVerticalVFX: {fileID: 0}
-  comboTiming: 2
 --- !u!1 &6188083686020807312
 GameObject:
   m_ObjectHideFlags: 0
@@ -1043,6 +965,7 @@ GameObject:
   - component: {fileID: 1856032419994978429}
   - component: {fileID: 5979602988557714046}
   - component: {fileID: 1715956003}
+  - component: {fileID: 2874516434545019127}
   m_Layer: 3
   m_Name: D_Scythe:pCube1
   m_TagString: PlayerWeapon
@@ -1146,7 +1069,8 @@ MonoBehaviour:
   coolDownAbility2: 3
   Scythe: {fileID: 6188083686401257737}
   scytheExplosion: {fileID: 6411982618166412323}
-  damage: 10
+  damage: 20
+  scytheSlash: event:/ScytheSlash
   slashHorizontalVFX: {fileID: 6188083687187144837}
   slashVerticalVFX: {fileID: 6315792845301330178}
   comboTiming: 2
@@ -1163,6 +1087,36 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 3.1672623, y: 3.695105, z: 6.399099}
   m_Center: {x: 0.5181066, y: -1.0440288, z: 1.1408758}
+--- !u!114 &2874516434545019127
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6188083686401257737}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: -479151465
+      Data2: 1218023262
+      Data3: -618872681
+      Data4: -1142820675
+    Path: event:/PullScythe
+  Event: 
+  PlayEvent: 11
+  StopEvent: 0
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 20
 --- !u!1 &6188083686410644647
 GameObject:
   m_ObjectHideFlags: 0
@@ -1315,8 +1269,8 @@ SkinnedMeshRenderer:
   m_BlendShapeWeights: []
   m_RootBone: {fileID: 0}
   m_AABB:
-    m_Center: {x: -0.029486597, y: -0.25443885, z: 0.4184948}
-    m_Extent: {x: 0.41830382, y: 0.24245933, z: 0.04420373}
+    m_Center: {x: -0.029509395, y: -0.25444388, z: 0.41849455}
+    m_Extent: {x: 0.41832665, y: 0.24246433, z: 0.04420349}
   m_DirtyAABB: 0
 --- !u!183 &6188083686488481717
 Cloth:
@@ -1747,7 +1701,6 @@ Transform:
   m_Children:
   - {fileID: 6188083687191178614}
   - {fileID: 6188083686901790664}
-  - {fileID: 6188083686007637638}
   - {fileID: 6188083686883295327}
   - {fileID: 6188083687671026792}
   - {fileID: 4097744538749614538}
@@ -1874,7 +1827,7 @@ Transform:
   - {fileID: 6188083687187144955}
   - {fileID: 5909797667482646692}
   m_Father: {fileID: 6188083686845781671}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6188083686884715352
 GameObject:
@@ -2850,7 +2803,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 6188083686845781671}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6188083687678564797
 GameObject:
@@ -2922,7 +2875,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1505862077339263778, guid: 4531f9c0133a66a4e8c49e7eccb21fca, type: 3}
       propertyPath: m_RootOrder
-      value: 7
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 1505862077339263778, guid: 4531f9c0133a66a4e8c49e7eccb21fca, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2993,5 +2946,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15472e764ce799943bc1af938fdfc9e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 5
+  damage: 30
   radius: 15
