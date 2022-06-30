@@ -7,10 +7,8 @@ public class BigMuncherModel : EnemyModel
 
     public Animator m_Animator;
 
-    SkinnedMeshRenderer m_Renderer;
-    public GameObject rendererHolder;
+    public SkinnedMeshRenderer m_Renderer;
     float dissolvedPercentage = 0f;
-
 
     BigMuncherController bigMuncherController;
     override public void Start() {
@@ -24,7 +22,6 @@ public class BigMuncherModel : EnemyModel
         maxHealth = health;
         healthSlider.value = 1;
 
-        m_Renderer = rendererHolder.GetComponentInChildren<SkinnedMeshRenderer>();
         bigMuncherController = gameObject.GetComponent<BigMuncherController>();
     }
 
@@ -52,13 +49,16 @@ public class BigMuncherModel : EnemyModel
     override public void Die() {
         m_Animator.SetTrigger("die");
         dead = true;
-        bigMuncherController.StopMovement();
+        if (bigMuncherController != null) {
+          bigMuncherController.StopMovement();
+          bigMuncherController.Lock();
+        }
 
         if (spawnManager != null){
             spawnManager.enemyDied(this.gameObject);
         }
 
-        // StartCoroutine(Dissolve());
+        StartCoroutine(Dissolve());
     }
 
     public IEnumerator Dissolve() {
@@ -69,7 +69,7 @@ public class BigMuncherModel : EnemyModel
     }
 
     public IEnumerator DieDelay() {
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(10);
 
         if (gameManager != null) {
           gameManager.addEnemyKilled();

@@ -56,8 +56,11 @@ public class BigMuncherBossModel : EnemyModel
     override public void Die() {
         m_Animator.SetTrigger("die");
         dead = true;
-        bigMuncherController.StopMovement();
-        bigMuncherController.Lock();
+
+        if (bigMuncherController != null) {
+          bigMuncherController.StopMovement();
+          bigMuncherController.Lock();
+        }
 
         StartCoroutine("AfterDeath");
     }

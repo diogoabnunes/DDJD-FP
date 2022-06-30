@@ -55,7 +55,12 @@ public class SmallMuncherModel : EnemyModel
     override public void Die() {
         m_Animator.SetTrigger("die");
         dead = true;
-        smallMuncherController.StopMovement();
+        
+        if (smallMuncherController != null) {
+          smallMuncherController.StopMovement();
+          smallMuncherController.Lock();
+        }
+
         StartCoroutine(Dissolve());
 
         Debug.Log("Small Muncher died!");

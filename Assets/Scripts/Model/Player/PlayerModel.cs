@@ -11,6 +11,8 @@ public class PlayerModel : CharacterModel
     public float health = 10f;
     public Slider healthSlider;
 
+    public Animator m_Animator;
+
     #region Singleton
 
     public static PlayerModel instance;
@@ -75,7 +77,7 @@ public class PlayerModel : CharacterModel
     }
 
     void Die() {
-        Debug.Log("Player died!");
+        m_Animator.SetTrigger("die");
         GameManager.instance.PlayerDied();
     }
 

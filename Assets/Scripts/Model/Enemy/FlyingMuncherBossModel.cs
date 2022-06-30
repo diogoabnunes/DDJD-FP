@@ -57,8 +57,11 @@ public class FlyingMuncherBossModel : EnemyModel
     override public void Die() {
         m_Animator.SetTrigger("die");
         dead = true;
-        flyingMuncherController.StopMovement();
-        flyingMuncherController.Lock();
+
+        if (flyingMuncherController != null) {
+          flyingMuncherController.StopMovement();
+          flyingMuncherController.Lock();
+        }
 
         if (spawnManager != null){
             spawnManager.enemyDied(this.gameObject);
