@@ -17281,7 +17281,7 @@ MonoBehaviour:
   maxEnemiesActive: 10
   minEnemiesToSpawn: 1
   maxEnemiesToSpawn: 5
-  SECONDS_ELAPSED_TO_INCREASE_LIFE: 3
+  SECONDS_ELAPSED_TO_INCREASE_LIFE: 180
   BASE_LIFE_MULTIPLIER: 1.5
 --- !u!4 &2132234169
 Transform:
