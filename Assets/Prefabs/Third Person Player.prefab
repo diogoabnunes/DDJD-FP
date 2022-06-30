@@ -302,7 +302,7 @@ MonoBehaviour:
   rightBulletSpawnPoint: {fileID: 6188083686883295327}
   spawnerLayerMask:
     serializedVersion: 2
-    m_Bits: 131072
+    m_Bits: 524288
   recoil: 1
 --- !u!1 &6188083685637024843
 GameObject:
@@ -2831,7 +2831,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6188083687671026792}
-  m_Layer: 3
+  m_Layer: 19
   m_Name: FollowPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2846,7 +2846,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6188083687671026793}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 2.42, z: 1.6380001}
+  m_LocalPosition: {x: 0, y: 2.42, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 6188083686845781671}

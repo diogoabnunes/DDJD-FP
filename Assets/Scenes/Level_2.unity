@@ -520,7 +520,7 @@ GameObject:
   - component: {fileID: 132749464}
   - component: {fileID: 132749466}
   - component: {fileID: 132749465}
-  m_Layer: 0
+  m_Layer: 19
   m_Name: SpawnPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -797,7 +797,7 @@ GameObject:
   - component: {fileID: 179552426}
   - component: {fileID: 179552428}
   - component: {fileID: 179552427}
-  m_Layer: 0
+  m_Layer: 19
   m_Name: SpawnPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1097,7 +1097,7 @@ GameObject:
   - component: {fileID: 255878656}
   - component: {fileID: 255878658}
   - component: {fileID: 255878657}
-  m_Layer: 0
+  m_Layer: 19
   m_Name: SpawnPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2404,7 +2404,7 @@ GameObject:
   - component: {fileID: 463497692}
   - component: {fileID: 463497694}
   - component: {fileID: 463497693}
-  m_Layer: 0
+  m_Layer: 19
   m_Name: SpawnPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2599,7 +2599,7 @@ GameObject:
   - component: {fileID: 496809595}
   - component: {fileID: 496809597}
   - component: {fileID: 496809596}
-  m_Layer: 0
+  m_Layer: 19
   m_Name: SpawnPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2907,7 +2907,7 @@ GameObject:
   - component: {fileID: 537799319}
   - component: {fileID: 537799321}
   - component: {fileID: 537799320}
-  m_Layer: 0
+  m_Layer: 19
   m_Name: SpawnPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4093,7 +4093,7 @@ GameObject:
   - component: {fileID: 746630420}
   - component: {fileID: 746630422}
   - component: {fileID: 746630421}
-  m_Layer: 0
+  m_Layer: 19
   m_Name: SpawnPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4543,7 +4543,7 @@ GameObject:
   - component: {fileID: 771874487}
   - component: {fileID: 771874489}
   - component: {fileID: 771874488}
-  m_Layer: 0
+  m_Layer: 19
   m_Name: SpawnPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4803,7 +4803,7 @@ GameObject:
   - component: {fileID: 830640497}
   - component: {fileID: 830640499}
   - component: {fileID: 830640498}
-  m_Layer: 0
+  m_Layer: 19
   m_Name: SpawnPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5297,7 +5297,7 @@ GameObject:
   - component: {fileID: 908782632}
   - component: {fileID: 908782634}
   - component: {fileID: 908782633}
-  m_Layer: 0
+  m_Layer: 19
   m_Name: SpawnPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6518,7 +6518,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1125767362}
   - component: {fileID: 1125767361}
-  m_Layer: 0
+  m_Layer: 19
   m_Name: SpawnManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6541,6 +6541,7 @@ MonoBehaviour:
   - {fileID: 25232103498235937, guid: 6308e22559595c248b989d278e3b5e8b, type: 3}
   - {fileID: 7154847956561250490, guid: bcaf2385efe1de447827125abeb3e03b, type: 3}
   - {fileID: 1998946839587997947, guid: 117b77275d207184c9c907a99c0c28e0, type: 3}
+  bossEnemies: []
   awayDistance: 7
   coolDown: 3
   maxEnemiesActive: 10
@@ -6730,7 +6731,7 @@ GameObject:
   - component: {fileID: 1180483143}
   - component: {fileID: 1180483145}
   - component: {fileID: 1180483144}
-  m_Layer: 0
+  m_Layer: 19
   m_Name: SpawnPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7573,7 +7574,7 @@ GameObject:
   - component: {fileID: 1345871884}
   - component: {fileID: 1345871886}
   - component: {fileID: 1345871885}
-  m_Layer: 0
+  m_Layer: 19
   m_Name: SpawnPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7826,7 +7827,7 @@ GameObject:
   - component: {fileID: 1424245847}
   - component: {fileID: 1424245849}
   - component: {fileID: 1424245848}
-  m_Layer: 0
+  m_Layer: 19
   m_Name: SpawnPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7894,7 +7895,7 @@ GameObject:
   - component: {fileID: 1448856375}
   - component: {fileID: 1448856377}
   - component: {fileID: 1448856376}
-  m_Layer: 0
+  m_Layer: 19
   m_Name: SpawnPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9393,7 +9394,7 @@ GameObject:
   - component: {fileID: 1711999395}
   - component: {fileID: 1711999397}
   - component: {fileID: 1711999396}
-  m_Layer: 0
+  m_Layer: 19
   m_Name: SpawnPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9520,7 +9521,7 @@ GameObject:
   - component: {fileID: 1743282795}
   - component: {fileID: 1743282797}
   - component: {fileID: 1743282796}
-  m_Layer: 0
+  m_Layer: 19
   m_Name: SpawnPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9736,7 +9737,7 @@ GameObject:
   - component: {fileID: 1770534196}
   - component: {fileID: 1770534198}
   - component: {fileID: 1770534197}
-  m_Layer: 0
+  m_Layer: 19
   m_Name: SpawnPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9794,7 +9795,7 @@ GameObject:
   - component: {fileID: 1771066142}
   - component: {fileID: 1771066144}
   - component: {fileID: 1771066143}
-  m_Layer: 0
+  m_Layer: 19
   m_Name: SpawnPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10117,7 +10118,7 @@ GameObject:
   - component: {fileID: 1814592163}
   - component: {fileID: 1814592165}
   - component: {fileID: 1814592164}
-  m_Layer: 0
+  m_Layer: 19
   m_Name: SpawnPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10758,7 +10759,7 @@ GameObject:
   - component: {fileID: 1959170269}
   - component: {fileID: 1959170271}
   - component: {fileID: 1959170270}
-  m_Layer: 0
+  m_Layer: 19
   m_Name: SpawnPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10816,7 +10817,7 @@ GameObject:
   - component: {fileID: 1971961435}
   - component: {fileID: 1971961437}
   - component: {fileID: 1971961436}
-  m_Layer: 0
+  m_Layer: 19
   m_Name: SpawnPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -11282,7 +11283,7 @@ GameObject:
   - component: {fileID: 2048436612}
   - component: {fileID: 2048436614}
   - component: {fileID: 2048436613}
-  m_Layer: 0
+  m_Layer: 19
   m_Name: SpawnPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -11425,7 +11426,7 @@ GameObject:
   - component: {fileID: 2055512483}
   - component: {fileID: 2055512485}
   - component: {fileID: 2055512484}
-  m_Layer: 0
+  m_Layer: 19
   m_Name: SpawnPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -11483,7 +11484,7 @@ GameObject:
   - component: {fileID: 2062706918}
   - component: {fileID: 2062706920}
   - component: {fileID: 2062706919}
-  m_Layer: 0
+  m_Layer: 19
   m_Name: SpawnPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
