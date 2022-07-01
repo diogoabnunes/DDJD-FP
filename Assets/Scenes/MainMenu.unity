@@ -3077,8 +3077,10 @@ MonoBehaviour:
   player: {fileID: 0}
   m_Animator: {fileID: 0}
   coolDownBasicAttack: 0.25
-  coolDownAbility1: 3
-  coolDownAbility2: 3
+  coolDownAbility1: 1.25
+  coolDownAbility2: 7
+  canAbility1: 1
+  canAbility2: 1
   Scythe: {fileID: 3476939067000881665}
   scytheExplosion: {fileID: 0}
   dashHitbox: {fileID: 0}
@@ -3088,6 +3090,8 @@ MonoBehaviour:
   slashVerticalVFX: {fileID: 0}
   dashVFX: {fileID: 0}
   comboTiming: 2
+  spriteScytheAbility1: {fileID: 0}
+  spriteScytheAbility2: {fileID: 0}
 --- !u!65 &7323113557897599531
 BoxCollider:
   m_ObjectHideFlags: 0

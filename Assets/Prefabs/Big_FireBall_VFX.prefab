@@ -126,8 +126,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e895ac2913e433641ace707d6289d9d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 20
+  damage: 10
   speed: 40
+  ExplosionvFX: {fileID: 979949695207069304, guid: b6f41e61a62bf8f4ba969fa500919e62, type: 3}
 --- !u!1 &7848996685532857739
 GameObject:
   m_ObjectHideFlags: 0

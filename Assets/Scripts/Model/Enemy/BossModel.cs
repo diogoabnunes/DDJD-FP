@@ -10,7 +10,7 @@ public class BossModel : EnemyModel
     override public void Start() {
         base.Start();
 
-        health = 3000f * gameManager.getDifficulty();
+        health = 2000f * gameManager.getDifficulty();
         if (lifeMultiplier != -1) {
             health *= lifeMultiplier;
         }

@@ -465,9 +465,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   coolDown: 15
-  range: 35
+  range: 40
   duration: 2
-  damage: 30
+  damage: 10
   TIME_ELAPSED_FROM_ANIMATION_START_UNTIL_SHOOT: 1
   destroyTime: 3
   bullet: {fileID: 7848996684634915871, guid: bfa54f5ac8be796478d1a9840d141048, type: 3}
@@ -486,7 +486,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rotationSpeed: 5
   health: 1
-  lookRange: 200
+  lookRange: 400
   m_Animator: {fileID: 1692445669941671252}
 --- !u!114 &7959822200432785000
 MonoBehaviour:

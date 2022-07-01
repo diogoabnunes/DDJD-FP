@@ -371,9 +371,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   coolDown: 1.25
-  range: 4
+  range: 2.5
   duration: 1.25
-  damage: 15
+  damage: 5
   blade: {fileID: 934570961098314055}
 --- !u!114 &2615334229696653915
 MonoBehaviour:
@@ -389,7 +389,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rotationSpeed: 5
   health: 2.5
-  lookRange: 100
+  lookRange: 500
   m_Animator: {fileID: 8042752311171428910}
 --- !u!114 &7768373141748172399
 MonoBehaviour:

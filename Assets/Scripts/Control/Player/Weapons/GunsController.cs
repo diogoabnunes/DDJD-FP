@@ -19,6 +19,9 @@ public class GunsController : WeaponController
 
     public float recoil = 1f;
 
+    public GameObject spriteGunAbility1;
+    public GameObject spriteGunAbility2;
+
     string[] basicAttackAnimationNames = {"leftGunBasicAttack", "rightGunBasicAttack"};
 
     [EventRef, SerializeField] string bulletSound = default;
@@ -30,6 +33,19 @@ public class GunsController : WeaponController
 
         GunL.SetActive(false);
         GunR.SetActive(false);
+    }
+
+    public void Update()
+    {
+        if (!canAbility1)
+        {
+            spriteGunAbility1.SetActive(false);
+        }
+        else spriteGunAbility1.SetActive(true);
+        if (!canAbility2)
+        {
+            spriteGunAbility2.SetActive(false);
+        } else spriteGunAbility2.SetActive(true);
     }
 
     public override void Enable() {
@@ -115,11 +131,11 @@ public class GunsController : WeaponController
 
         Lock();
 
-        for(int i = 0; i < 15; i++){
+        for(int i = 0; i < 8; i++){
             ExecuteLeftBasicAttack();
-            yield return new WaitForSeconds(0.07f);
+            yield return new WaitForSeconds(0.04f);
             ExecuteRightBasicAttack();
-            yield return new WaitForSeconds(0.07f);
+            yield return new WaitForSeconds(0.04f);
         }
         
         Unlock();

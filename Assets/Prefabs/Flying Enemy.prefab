@@ -33,7 +33,7 @@ Transform:
   m_GameObject: {fileID: 25232103498235937}
   m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
   m_LocalPosition: {x: 2.0063534, y: -21.47956, z: 4.949121}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children:
   - {fileID: 2713431176821494135}
   - {fileID: 6904743607938266084}
@@ -106,9 +106,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 811b3df94109be84d9264e8b204a9f98, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  coolDown: 3
+  coolDown: 2
   range: 25
-  duration: 3
+  duration: 2
   damage: 10
   TIME_ELAPSED_FROM_ANIMATION_START_UNTIL_SHOOT: 1
   destroyTime: 3
@@ -128,7 +128,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rotationSpeed: 5
   health: 4
-  lookRange: 100
+  lookRange: 300
   m_Animator: {fileID: 8769047318769058970}
   stoppingDistance: 5
 --- !u!114 &3246957251492561835

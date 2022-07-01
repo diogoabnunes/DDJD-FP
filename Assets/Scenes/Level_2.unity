@@ -6014,19 +6014,25 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemies:
+  - {fileID: 7154847956561250490, guid: bcaf2385efe1de447827125abeb3e03b, type: 3}
+  - {fileID: 25232103498235937, guid: 6308e22559595c248b989d278e3b5e8b, type: 3}
+  - {fileID: 1998946839587997947, guid: 117b77275d207184c9c907a99c0c28e0, type: 3}
+  - {fileID: 7154847956561250490, guid: bcaf2385efe1de447827125abeb3e03b, type: 3}
+  - {fileID: 7154847956561250490, guid: bcaf2385efe1de447827125abeb3e03b, type: 3}
+  - {fileID: 25232103498235937, guid: 6308e22559595c248b989d278e3b5e8b, type: 3}
   - {fileID: 25232103498235937, guid: 6308e22559595c248b989d278e3b5e8b, type: 3}
   - {fileID: 7154847956561250490, guid: bcaf2385efe1de447827125abeb3e03b, type: 3}
   - {fileID: 1998946839587997947, guid: 117b77275d207184c9c907a99c0c28e0, type: 3}
+  - {fileID: 7154847956561250490, guid: bcaf2385efe1de447827125abeb3e03b, type: 3}
   bossEnemies:
-  - {fileID: 3051886792988362290, guid: 69f9aeca03d87494b96bec77908dbea6, type: 3}
   - {fileID: 7816729447618702826, guid: a0a49f529e2b0c544b91fbb6aa37db9e, type: 3}
-  awayDistance: 7
+  awayDistance: 20
   coolDown: 3
-  maxEnemiesActive: 10
+  maxEnemiesActive: 15
   minEnemiesToSpawn: 1
-  maxEnemiesToSpawn: 5
-  SECONDS_ELAPSED_TO_INCREASE_LIFE: 3
-  BASE_LIFE_MULTIPLIER: 1.5
+  maxEnemiesToSpawn: 3
+  SECONDS_ELAPSED_TO_INCREASE_LIFE: 180
+  BASE_LIFE_MULTIPLIER: 2
 --- !u!4 &1125767362
 Transform:
   m_ObjectHideFlags: 0

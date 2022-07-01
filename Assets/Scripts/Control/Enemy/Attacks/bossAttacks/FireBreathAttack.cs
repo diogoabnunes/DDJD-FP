@@ -63,12 +63,13 @@ public class FireBreathAttack : Attack
         // look for player
         float startLookingTime = Time.time;
         while (Time.time - startLookingTime < LOOK_DURATION) {
+            m_Animator.SetBool("breathingFire_Prep", true);
             Quaternion rotationTowardsPlayer = bossController.ComputeRotationTowardsPlayer();
             bossController.FacePlayer(rotationTowardsPlayer);
 
             yield return null;
         }
-
+        m_Animator.SetBool("breathingFire_Prep", false);
         m_Animator.SetBool("breathingFire", true);
 
         rightFire.GetComponent<ParticleSystem>().Play();

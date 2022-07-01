@@ -10,6 +10,7 @@ public class EnemyBulletController : MonoBehaviour
 
     public float damage = 1.0f;
     public float speed = 1.0f;
+    public GameObject ExplosionvFX;
 
     Rigidbody rigidBody;
 
@@ -30,6 +31,7 @@ public class EnemyBulletController : MonoBehaviour
     }
 
     void Update() {
+
 
     }
 
@@ -73,6 +75,7 @@ public class EnemyBulletController : MonoBehaviour
         }
 
         //
+        Instantiate(ExplosionvFX, other.transform.position, other.transform.rotation);
         Destroy(gameObject);
     }
 

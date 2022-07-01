@@ -127,7 +127,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 200
-  damage: 10
+  damage: 8.75
   direction: {x: 0, y: 0, z: 0}
 --- !u!96 &1484097769172977755
 TrailRenderer:

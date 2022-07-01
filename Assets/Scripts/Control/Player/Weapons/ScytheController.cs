@@ -31,6 +31,9 @@ public class ScytheController : WeaponController
     float timeSinceLastBasicAttack = 0f;
     public float comboTiming = 2f;
 
+    public GameObject spriteScytheAbility1;
+    public GameObject spriteScytheAbility2;
+
     override public void Start() {
         base.Start();
         Scythe.SetActive(true);
@@ -38,7 +41,19 @@ public class ScytheController : WeaponController
         slashHorizontalVFX.Stop();
         slashVerticalVFX.Stop();
     }
-
+    public void Update()
+    {
+        if (!canAbility1)
+        {
+            spriteScytheAbility1.SetActive(false);
+        }
+        else spriteScytheAbility1.SetActive(true);
+        if (!canAbility2)
+        {
+            spriteScytheAbility2.SetActive(false);
+        }
+        else spriteScytheAbility2.SetActive(true);
+    }
     public override void Enable() {
         Scythe.SetActive(true);
         resetAbilities();

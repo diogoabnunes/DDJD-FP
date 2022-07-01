@@ -20,7 +20,7 @@ public class BigMuncherBossModel : EnemyModel
     override public void Start() {
         base.Start();
 
-        health = 350f * gameManager.getDifficulty();
+        health = 200f * gameManager.getDifficulty();
         if (lifeMultiplier != -1) {
           health *= lifeMultiplier;
         }
