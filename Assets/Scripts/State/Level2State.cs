@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Level2State : LevelState {
-    int numberOfEnemiesToKill = 1;
+    int numberOfEnemiesToKill = 20;
 
     public override bool RequiredEnemiesDead() {
         return gameManager.GetNumberOfEnemiesKilled() >= numberOfEnemiesToKill;

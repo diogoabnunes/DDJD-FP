@@ -41,6 +41,7 @@ public class ScytheController : WeaponController
 
     public override void Enable() {
         Scythe.SetActive(true);
+        resetAbilities();
     }
 
     public override void Disable() {
@@ -90,7 +91,8 @@ public class ScytheController : WeaponController
         new WaitForSeconds(0.2f);
         dashHitbox.SetActive(false);
 
-        SetNextAbility1Time();
+        StartCoroutine(CooldownAbility1());
+
     }
 
     public override void ExecuteAbility2() {
@@ -105,7 +107,8 @@ public class ScytheController : WeaponController
             Collider[] hitColliders = scytheExplosion.ExplosionDamage(playerController.GetCharacterGlobalPosition());
 
             TriggerAOEDamage(hitColliders, scytheExplosion.damage);
-            SetNextAbility2Time();
+            StartCoroutine(CooldownAbility2());
+
         }
         
     }

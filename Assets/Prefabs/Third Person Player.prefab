@@ -458,8 +458,10 @@ MonoBehaviour:
   player: {fileID: 6188083686845781659}
   m_Animator: {fileID: 6188083687191178615}
   coolDownBasicAttack: 0.01
-  coolDownAbility1: 0
-  coolDownAbility2: 0
+  coolDownAbility1: 3
+  coolDownAbility2: 5
+  canAbility1: 1
+  canAbility2: 1
   GunL: {fileID: 6188083686582889015}
   GunR: {fileID: 6188083686084518980}
   uiInterface: {fileID: 0}
@@ -1267,6 +1269,8 @@ MonoBehaviour:
   coolDownBasicAttack: 0.25
   coolDownAbility1: 3
   coolDownAbility2: 3
+  canAbility1: 1
+  canAbility2: 1
   Scythe: {fileID: 6188083686401257737}
   scytheExplosion: {fileID: 6411982618166412323}
   dashHitbox: {fileID: 3185574544311399791}

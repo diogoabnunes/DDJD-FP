@@ -39,6 +39,7 @@ public class GunsController : WeaponController
 
         uiInterface.SetActive(true);
 
+        resetAbilities();
 
         m_Animator.SetTrigger("switchToGuns");
     }
@@ -86,9 +87,10 @@ public class GunsController : WeaponController
     }
 
     public override void ExecuteAbility1() {
-        playerController.BackFlip();
-
-        SetNextAbility1Time();
+        if(playerController.IsGrounded()){
+            playerController.BackFlip();
+            StartCoroutine(CooldownAbility1());
+        }
     }
 
     public override void ExecuteAbility2() {
@@ -123,6 +125,7 @@ public class GunsController : WeaponController
         Unlock();
 
         playerController.baseSpeed = 15.0f;
-        SetNextAbility2Time();
+
+        StartCoroutine(CooldownAbility2());
     }
 }

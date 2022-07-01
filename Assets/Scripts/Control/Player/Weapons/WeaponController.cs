@@ -13,8 +13,10 @@ public class WeaponController : MonoBehaviour
 
 
     public float coolDownBasicAttack = 0.5f;
-    public float coolDownAbility1 = 5.0f;
-    public float coolDownAbility2 = 10.0f;
+    public float coolDownAbility1 = 0.0f;
+    public float coolDownAbility2 = 0.0f;
+    public bool canAbility1 = true;
+    public bool canAbility2 = true;
 
     float nextTimeBasicAttack = -1.0f;
     float nextTimeAbility1 = -1.0f;
@@ -34,15 +36,16 @@ public class WeaponController : MonoBehaviour
     public virtual void Enable() {}
 
     public virtual void Disable() {}
-
+    public void resetAbilities(){
+        canAbility1 = true;
+        canAbility2 = true;
+    }
     public void RightBasicAttack() {
         if (!CanDoBasicAttack()) return;
 
         Lock();
 
         ExecuteRightBasicAttack();
-
-        SetNextBasicAttackTime();
 
         StartCoroutine(UnlockWhenTimeElapsed());
     }
@@ -53,8 +56,6 @@ public class WeaponController : MonoBehaviour
         Lock();
 
         ExecuteLeftBasicAttack();
-
-        SetNextBasicAttackTime();
 
         StartCoroutine(UnlockWhenTimeElapsed());
     }
@@ -85,29 +86,29 @@ public class WeaponController : MonoBehaviour
 
     protected bool CanDoAbility1() {
         
-        return !IsLocked() && Time.time >= nextTimeAbility1;
+        return !IsLocked() && canAbility1;
     }
 
     protected bool CanDoAbility2() {
         
-        return !IsLocked() && Time.time >= nextTimeAbility2;
+        return !IsLocked() && canAbility2;
     }
 
-    protected void SetNextBasicAttackTime() {
-        nextTimeBasicAttack = Time.time + coolDownBasicAttack;
+    protected IEnumerator CooldownAbility1 (){
+        canAbility1 = false;
         
+        yield return new WaitForSeconds(coolDownAbility1);
+
+        canAbility1 = true;
     }
 
-    protected void SetNextAbility1Time() {
-        nextTimeAbility1 = Time.time + coolDownAbility1;
+    protected IEnumerator CooldownAbility2 (){
+        canAbility2 = false;
         
-    }
+        yield return new WaitForSeconds(coolDownAbility2);
 
-    protected void SetNextAbility2Time() {
-        nextTimeAbility2 = Time.time + coolDownAbility2;
-        
+        canAbility2 = true;
     }
-
     protected void Lock() {
         locked = true;
     }
