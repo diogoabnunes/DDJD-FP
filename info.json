@@ -49,10 +49,10 @@
         "Windows"
     ],
     "executables": [
-        "game.executable"
+        "Dante's Descent.exe"
     ],
     "UC": "DDJD",
-    "website": "www.pe_game.pt",
+    "website": "https://diogoabnunes.itch.io/dantes-descent",
     "icon": "icon.png",
     "media": [
         {
