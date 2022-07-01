@@ -74,7 +74,7 @@ public class FireballController : MonoBehaviour
         Vector3 impactPoint = transform.position;
         bool playerHit = playerModel.PlayerWithinArea(impactPoint, damageArea);
         if (playerHit) {
-            Debug.Log("Player was Hit!");
+            
             playerModel.TakeDamage(damage);
         }
     }

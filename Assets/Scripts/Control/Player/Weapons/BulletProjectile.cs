@@ -24,7 +24,7 @@ public class BulletProjectile : MonoBehaviour
     }
 
     private void OnTriggerEnter(Collider collider) {
-        if(collider.gameObject.layer == LayerMask.NameToLayer("IgnoreBullets")){
+        if(collider.gameObject.layer == LayerMask.NameToLayer("IgnoreBullets") || collider.gameObject.tag == "Player"){
             return;
         }
 

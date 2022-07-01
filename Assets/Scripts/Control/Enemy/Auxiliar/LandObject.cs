@@ -25,7 +25,7 @@ public class LandObject : MonoBehaviour
     }
 
     bool CollidedWithGround() {
-        // Debug.Log(rigidbody.velocity.y);
+        // 
         // return Mathf.Abs(rigidbody.velocity.y) <= 0.0001f;
         return Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
     }

@@ -67,13 +67,13 @@ public class ChargeAttack : Attack
     }
 
     public override IEnumerator DoAttackCoroutine() {
-        // Debug.Log("Boss Charge Attack");
+        // 
 
         bossController.Lock();
 
         bossController.CancelMovement();
 
-        // Debug.Log("Charging");
+        // 
 
         float startChargingTime = Time.time;
         while (Time.time - startChargingTime < CHARGE_DURATION) {
@@ -115,11 +115,11 @@ public class ChargeAttack : Attack
 
     float GetTimeStoppedAfterCollision() {
         if (CollidedWithObject()) {
-            // Debug.Log("STUNNED!!!");
+            // 
             return STUNNED_DURATION;
         }
         else {
-            // Debug.Log("RESTING!!!");
+            // 
             return REST_DURATION;
         }
     }
@@ -137,7 +137,7 @@ public class ChargeAttack : Attack
     }
 
     void Dash() {
-        // Debug.Log("Dash");
+        // 
 
         SetupDash();
 
@@ -164,7 +164,7 @@ public class ChargeAttack : Attack
     }
 
     void StopDash() {
-        // Debug.Log("Stopped");
+        // 
 
         StopMovement();
         

@@ -11,7 +11,7 @@ public class addNewEffect : MonoBehaviour
 
     private void Awake() {
         playerModel = PlayerModel.instance;
-        Debug.Log(playerModel);
+        
         effectList = new List<Effect>(){new IncreaseDamage(playerModel)};
 
         
@@ -20,10 +20,10 @@ public class addNewEffect : MonoBehaviour
 
     void OnTriggerEnter(Collider collider)
     {
-        Debug.Log(collider.name);
+        
         if(collider.name == "Third Person Player"){
 
-            Debug.Log(collider.name);
+            
             objectEffect.execute();
             Destroy(gameObject);
         }

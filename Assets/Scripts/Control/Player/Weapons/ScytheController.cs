@@ -34,6 +34,9 @@ public class ScytheController : WeaponController
     override public void Start() {
         base.Start();
         Scythe.SetActive(true);
+        dashVFX.Stop();
+        slashHorizontalVFX.Stop();
+        slashVerticalVFX.Stop();
     }
 
     public override void Enable() {
@@ -96,6 +99,7 @@ public class ScytheController : WeaponController
             ExecuteRightBasicAttack();
         }
         else{
+            m_Animator.SetTrigger("plungeAttack");
             playerController.Dive();
 
             Collider[] hitColliders = scytheExplosion.ExplosionDamage(playerController.GetCharacterGlobalPosition());
@@ -107,7 +111,7 @@ public class ScytheController : WeaponController
     }
 
     private void TriggerAOEDamage(Collider[] hitColliders, float aoeDamage){
-        Debug.Log("dealing " + aoeDamage + " to " + hitColliders.Length + " monsters");
+        
         foreach (var hitCollider in hitColliders)
         {
            CharacterModel model = hitCollider.gameObject.GetComponent<CharacterModel>();

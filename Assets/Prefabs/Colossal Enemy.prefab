@@ -508,7 +508,6 @@ MonoBehaviour:
   healthSlider: {fileID: 5751738807736965464}
   m_Animator: {fileID: 1692445669941671252}
   m_Renderer: {fileID: 1703818160696715733}
-  rendererHolder: {fileID: 8427405052481762205}
 --- !u!195 &8301829470012420382
 NavMeshAgent:
   m_ObjectHideFlags: 0

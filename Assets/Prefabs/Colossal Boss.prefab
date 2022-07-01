@@ -833,7 +833,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   coolDown: 3
-  range: 5
+  range: 70
   duration: 1
   damage: 25
   damageArea: 4
@@ -850,9 +850,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   coolDown: 15
-  range: 35
+  range: 70
   duration: 2
-  damage: 30
+  damage: 85
   TIME_ELAPSED_FROM_ANIMATION_START_UNTIL_SHOOT: 1
   destroyTime: 3
   bullet: {fileID: 7848996684634915871, guid: bfa54f5ac8be796478d1a9840d141048, type: 3}

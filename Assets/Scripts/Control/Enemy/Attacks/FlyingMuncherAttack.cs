@@ -32,7 +32,7 @@ public class FlyingMuncherAttack : Attack
     }
 
     public override IEnumerator DoAttackCoroutine() {
-        Debug.Log("Enemy 3 Attack");
+        
 
         flyingMuncherController.Lock();
 

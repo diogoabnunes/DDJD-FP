@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class LevelBossState : State {    
     public override void Setup() {
-        Debug.Log("Boss Level 1");
+        
         SpawnBoss();
     }
 

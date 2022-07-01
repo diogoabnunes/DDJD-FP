@@ -22,7 +22,7 @@ public class Attack : MonoBehaviour
     }
 
     public virtual bool CanAttack(float distanceToPlayer) {
-        Debug.Log("Missing Implementation for: CanAttack()!");
+        
         return false;
     }
 
@@ -31,7 +31,7 @@ public class Attack : MonoBehaviour
     }
 
     public virtual IEnumerator DoAttackCoroutine() {
-        Debug.Log("Missing Implementation for: Attack()!");
+        
         yield return null;
     }
 
