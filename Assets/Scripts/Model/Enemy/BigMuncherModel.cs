@@ -58,6 +58,7 @@ public class BigMuncherModel : EnemyModel
             spawnManager.enemyDied(this.gameObject);
         }
 
+        
         // StartCoroutine(Dissolve());
         Destroy(gameObject, 2f);
     }

@@ -30,7 +30,7 @@ public class ClawAttack : Attack
     }
 
     public override IEnumerator DoAttackCoroutine() {
-        Debug.Log("Claw Attack");
+        
 
         bossController.Lock();
 

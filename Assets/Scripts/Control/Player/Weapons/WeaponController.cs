@@ -12,13 +12,13 @@ public class WeaponController : MonoBehaviour
     public Animator m_Animator;
 
 
-    public float coolDownBasicAttack = 0f;
-    public float coolDownAbility1 = 0f;
-    public float coolDownAbility2 = 0f;
+    public float coolDownBasicAttack = 0.5f;
+    public float coolDownAbility1 = 5.0f;
+    public float coolDownAbility2 = 10.0f;
 
-    float nextTimeBasicAttack = -1f;
-    float nextTimeAbility1 = -1f;
-    float nextTimeAbility2 = -1f;
+    float nextTimeBasicAttack = -1.0f;
+    float nextTimeAbility1 = -1.0f;
+    float nextTimeAbility2 = -1.0f;
 
     bool locked = false;
 
@@ -63,7 +63,6 @@ public class WeaponController : MonoBehaviour
         if (!CanDoAbility1()) return;
 
         ExecuteAbility1();
-
     }
 
     public void Ability2() {
@@ -80,27 +79,33 @@ public class WeaponController : MonoBehaviour
     public virtual void ExecuteAbility2() {}
 
     protected bool CanDoBasicAttack() {
+        
         return !IsLocked() && Time.time >= nextTimeBasicAttack;
     }
 
     protected bool CanDoAbility1() {
+        
         return !IsLocked() && Time.time >= nextTimeAbility1;
     }
 
     protected bool CanDoAbility2() {
+        
         return !IsLocked() && Time.time >= nextTimeAbility2;
     }
 
     protected void SetNextBasicAttackTime() {
         nextTimeBasicAttack = Time.time + coolDownBasicAttack;
+        
     }
 
     protected void SetNextAbility1Time() {
         nextTimeAbility1 = Time.time + coolDownAbility1;
+        
     }
 
     protected void SetNextAbility2Time() {
         nextTimeAbility2 = Time.time + coolDownAbility2;
+        
     }
 
     protected void Lock() {

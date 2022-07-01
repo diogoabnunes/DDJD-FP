@@ -33,11 +33,11 @@ public class BossModel : EnemyModel
 
     override public void TakeDamage(float damage) {
         base.TakeDamage(damage);
-        Debug.Log("Boss was hit: " + health);
+        
     }
 
     override public void Die() {
         base.Die();
-        Debug.Log("Boss died!");
+        
     }
 }

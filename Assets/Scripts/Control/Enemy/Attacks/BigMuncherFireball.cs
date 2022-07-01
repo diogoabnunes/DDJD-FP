@@ -33,7 +33,7 @@ public class BigMuncherFireball : Attack
     }
 
     public override IEnumerator DoAttackCoroutine() {
-        Debug.Log("Enemy 3 Attack");
+        
 
         bigMuncherController.Lock();
 

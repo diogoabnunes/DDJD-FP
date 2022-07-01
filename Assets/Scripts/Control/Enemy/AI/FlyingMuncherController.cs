@@ -24,8 +24,8 @@ public class FlyingMuncherController : EnemyController
     }
 
     bool CanAttack(float distanceToPlayer, Quaternion rotationTowardsPlayer) {
-        //Debug.Log("Can Attack: " + flyingMuncherAttack.CanAttack(distanceToPlayer));
-        //Debug.Log("Rotation: " + IsFacingPlayer(rotationTowardsPlayer));
+        //
+        //
         return flyingMuncherAttack.CanAttack(distanceToPlayer) && IsFacingPlayer(rotationTowardsPlayer);
     }
 
@@ -48,7 +48,7 @@ public class FlyingMuncherController : EnemyController
 
     Action GetActionWhenPlayerIsInLookRange(Quaternion rotationTowardsPlayer) {
         previousActionWasRandomMovement = false;
-        //Debug.Log("chasing");
+        //
         return new ChaseAction(base.gameObject, rotationTowardsPlayer);
     }
 }

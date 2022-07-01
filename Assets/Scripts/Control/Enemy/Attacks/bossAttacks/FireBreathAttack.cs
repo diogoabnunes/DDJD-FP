@@ -40,11 +40,11 @@ public class FireBreathAttack : Attack
     }
 
     public override IEnumerator DoAttackCoroutine() {
-        Debug.Log("Fire Breath Attack");
+        
 
         bossController.Lock();
 
-        Debug.Log("Moving to the center of the arena!");
+        
 
         float stoppingDistance = bossController.GetStoppingDistance();
         bossController.SetStoppingDistance(0f);
@@ -58,7 +58,7 @@ public class FireBreathAttack : Attack
 
         bossController.SetStoppingDistance(stoppingDistance);
 
-        Debug.Log("Facing player!");
+        
 
         // look for player
         float startLookingTime = Time.time;
@@ -76,7 +76,7 @@ public class FireBreathAttack : Attack
         middleFire.GetComponent<ParticleSystem>().Play();
 
 
-        Debug.Log("Breathing fire!");
+        
 
         var audioEvent = RuntimeManager.CreateInstance(fireBreath);
         audioEvent.start();
@@ -99,11 +99,11 @@ public class FireBreathAttack : Attack
 
 
 
-        Debug.Log("Resting!");
+        
 
         yield return new WaitForSeconds(REST_DURATION);
 
-        Debug.Log("Done!");
+        
 
         DefineNextAttackTime();
 

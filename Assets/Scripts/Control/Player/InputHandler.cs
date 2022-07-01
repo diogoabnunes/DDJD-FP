@@ -18,8 +18,8 @@ public class InputHandler
         if (Input.GetButtonDown("Jump")) commands.Add(new JumpCommand());
         if (Input.GetButton("Normal Attack")) commands.Add(new LeftBasicAttackCommand());
         if (Input.GetButton("Alt Attack")) commands.Add(new RightBasicAttackCommand());
-        if (Input.GetKeyDown(KeyCode.Alpha1)) commands.Add(new Ability1Command());
-        if (Input.GetKeyDown(KeyCode.Alpha2)) commands.Add(new Ability2Command());
+        if (Input.GetKeyDown(KeyCode.Q)) commands.Add(new Ability1Command());
+        if (Input.GetKeyDown(KeyCode.E)) commands.Add(new Ability2Command());
         if (Input.GetKeyDown(KeyCode.R)) commands.Add(new SwapWeaponCommand());
 
         return commands;

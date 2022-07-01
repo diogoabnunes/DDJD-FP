@@ -72,7 +72,7 @@ public class EnemyBulletController : MonoBehaviour
             interactionManager.manageInteraction(new TakeDamage(damage, model));
         }
 
-        //Debug.Log(other.gameObject.name);
+        //
         Destroy(gameObject);
     }
 

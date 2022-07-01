@@ -28,7 +28,7 @@ public class FireballAttack : Attack
     }
 
     public override IEnumerator DoAttackCoroutine() {
-        Debug.Log("Fireball Attack!");
+        
 
         bigMuncherController.Lock();
 

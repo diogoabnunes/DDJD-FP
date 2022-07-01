@@ -11,6 +11,14 @@ PrefabInstance:
       propertyPath: model
       value: 
       objectReference: {fileID: 6985323984288443595}
+    - target: {fileID: 4791775955114906487, guid: bcaf2385efe1de447827125abeb3e03b, type: 3}
+      propertyPath: range
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 4791775955114906487, guid: bcaf2385efe1de447827125abeb3e03b, type: 3}
+      propertyPath: damage
+      value: 40
+      objectReference: {fileID: 0}
     - target: {fileID: 7154847956561250469, guid: bcaf2385efe1de447827125abeb3e03b, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -198,6 +206,10 @@ PrefabInstance:
     - target: {fileID: 631684180240347352, guid: b5f3eb581f239564f93edfcd57ed6082, type: 3}
       propertyPath: m_Name
       value: Lighting_VFX
+      objectReference: {fileID: 0}
+    - target: {fileID: 631684180240347352, guid: b5f3eb581f239564f93edfcd57ed6082, type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 631684180240347352, guid: b5f3eb581f239564f93edfcd57ed6082, type: 3}
       propertyPath: m_IsActive

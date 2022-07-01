@@ -169,7 +169,7 @@ public class GameManager : MonoBehaviour
 
     public void spawnBoss(){
         GameObject spawnObject = GameObject.Find("SpawnManager");
-        Debug.Log(spawnObject);
+        
         spawnManager = spawnObject.GetComponent<SpawnManager>();
         spawnManager.SpawnBoss();
     }

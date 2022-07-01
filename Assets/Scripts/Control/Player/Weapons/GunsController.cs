@@ -9,6 +9,8 @@ public class GunsController : WeaponController
     public GameObject GunL;
     public GameObject GunR;
 
+    public GameObject uiInterface;
+
     public Transform bullet;
     public GameObject Bullet;
     public Transform leftBulletSpawnPoint;
@@ -34,12 +36,16 @@ public class GunsController : WeaponController
         GunL.SetActive(true);
         GunR.SetActive(true);
 
+
+        uiInterface.SetActive(true);
+
+
         m_Animator.SetTrigger("switchToGuns");
     }
 
     public override void Disable() {
         m_Animator.SetTrigger("switchToScythe");
-
+        uiInterface.SetActive(false);
         GunL.SetActive(false);
         GunR.SetActive(false);
     }
@@ -76,12 +82,13 @@ public class GunsController : WeaponController
 
         spawnedBullet.GetComponent<BulletProjectile>().direction = aim_dir;
 
-        
         Destroy(spawnedBullet, 5f);
     }
 
     public override void ExecuteAbility1() {
         playerController.BackFlip();
+
+        SetNextAbility1Time();
     }
 
     public override void ExecuteAbility2() {
@@ -102,6 +109,8 @@ public class GunsController : WeaponController
     }
 
     IEnumerator Ability2Shooting() {
+        playerController.baseSpeed = 5.0f;
+
         Lock();
 
         for(int i = 0; i < 15; i++){
@@ -112,5 +121,8 @@ public class GunsController : WeaponController
         }
         
         Unlock();
+
+        playerController.baseSpeed = 15.0f;
+        SetNextAbility2Time();
     }
 }

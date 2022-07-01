@@ -28,7 +28,7 @@ public class PunchGroundAttack : Attack
     }
 
     public override IEnumerator DoAttackCoroutine() {
-        Debug.Log("Punch Ground Attack!");
+        
 
         bigMuncherController.Lock();
 
@@ -41,7 +41,7 @@ public class PunchGroundAttack : Attack
         yield return new WaitForSeconds(duration);
 
         // after the enemy hits the ground
-        Debug.Log("Missing time of when enemy 2 hits ground");
+        
 
         PunchGround();
 
@@ -57,7 +57,7 @@ public class PunchGroundAttack : Attack
 
         bool playerHit = playerModel.PlayerWithinArea(impactPoint, damageArea);
         if (playerHit) {
-            Debug.Log("Player was Hit!");
+            
             interactionManager.manageInteraction(new TakeDamage(damage, playerModel));
         }
     }

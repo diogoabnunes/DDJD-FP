@@ -66,7 +66,7 @@ public class PlayerModel : CharacterModel
     override public void TakeDamage(float damage) {
         health -= damage;
         UpdateSlider();
-        Debug.Log(damage);
+        
 
         if (health <= 0) {
             Die();
