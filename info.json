@@ -1,6 +1,6 @@
 {
     "name": "Dante's Descent",
-    "description": "",
+    "description": "Dante's Descent | DDJD | Group 4",
     "year": "2022",
     "authors": [
         {
@@ -36,14 +36,14 @@
             "role": "Sound Designer"
         },
         {
-            "name": "Nathaly ",
+            "name": "Natália Santos",
             "role": "Sound Designer"
         }
     ],
     "genres": [
         "Action",
         "Roguelike",
-        "Third-person Shooter"
+        "Third-Person Shooter"
     ],
     "operative_system": [
         "Windows"
